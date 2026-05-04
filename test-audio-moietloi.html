@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>moietloi.fr — Test Audio Pipeline</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Source+Sans+3:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --vert: #5a7260;
+    --vert-clair: #8a9e8a;
+    --beige: #d4c8b0;
+    --peche: #d4956a;
+    --peche-clair: #e8b99a;
+    --gris-fonce: #2d2d2d;
+    --gris-moyen: #6b6b6b;
+    --fond: #f7f4ef;
+    --blanc: #ffffff;
+    --rouge-erreur: #c0392b;
+    --vert-succes: #5a7260;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    background: var(--fond);
+    color: var(--gris-fonce);
+    min-height: 100vh;
+    padding: 20px;
+  }
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  /* HEADER */
+  header {
+    text-align: center;
+    padding: 40px 0 32px;
+    border-bottom: 1px solid var(--beige);
+    margin-bottom: 32px;
+  }
+
+  .logo-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem;
+    color: var(--gris-fonce);
+    letter-spacing: -0.5px;
+  }
+
+  .logo-text .et {
+    color: var(--peche);
+    font-style: italic;
+  }
+
+  .logo-text .loi {
+    color: var(--vert);
+  }
+
+  .sous-titre {
+    font-size: 0.85rem;
+    color: var(--gris-moyen);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 6px;
+    font-weight: 300;
+  }
+
+  .badge-test {
+    display: inline-block;
+    background: var(--beige);
+    color: var(--gris-moyen);
+    font-size: 0.75rem;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-top: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  /* CARDS */
+  .card {
+    background: var(--blanc);
+    border-radius: 12px;
+    padding: 28px;
+    margin-bottom: 20px;
+    border: 1px solid #e8e2d8;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--gris-fonce);
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .step-num {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--vert);
+    color: white;
+    font-size: 0.8rem;
+    font-family: 'Source Sans 3', sans-serif;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  /* INPUTS */
+  .input-group {
+    margin-bottom: 16px;
+  }
+
+  label {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--gris-moyen);
+    margin-bottom: 6px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  input[type="password"],
+  input[type="text"] {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1.5px solid #ddd8d0;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-family: 'Source Sans 3', sans-serif;
+    background: var(--fond);
+    color: var(--gris-fonce);
+    transition: border-color 0.2s;
+    -webkit-appearance: none;
+  }
+
+  input:focus {
+    outline: none;
+    border-color: var(--vert);
+    background: white;
+  }
+
+  .hint {
+    font-size: 0.78rem;
+    color: var(--gris-moyen);
+    margin-top: 5px;
+    font-style: italic;
+  }
+
+  /* ENREGISTREMENT */
+  .record-zone {
+    text-align: center;
+    padding: 20px 0;
+  }
+
+  .record-instruction {
+    font-size: 0.95rem;
+    color: var(--gris-moyen);
+    margin-bottom: 24px;
+    line-height: 1.6;
+    font-style: italic;
+  }
+
+  .btn-record {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: none;
+    background: var(--vert);
+    color: white;
+    cursor: pointer;
+    font-size: 2rem;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+    box-shadow: 0 4px 16px rgba(90,114,96,0.3);
+  }
+
+  .btn-record:hover { transform: scale(1.05); }
+
+  .btn-record.recording {
+    background: var(--peche);
+    animation: pulse 1.5s infinite;
+    box-shadow: 0 4px 16px rgba(212,149,106,0.4);
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); box-shadow: 0 4px 16px rgba(212,149,106,0.4); }
+    50% { transform: scale(1.08); box-shadow: 0 6px 24px rgba(212,149,106,0.6); }
+  }
+
+  .record-status {
+    font-size: 0.9rem;
+    color: var(--gris-moyen);
+    min-height: 24px;
+  }
+
+  .record-status.active {
+    color: var(--peche);
+    font-weight: 500;
+  }
+
+  .timer {
+    font-size: 1.4rem;
+    font-family: 'Playfair Display', serif;
+    color: var(--peche);
+    margin: 8px 0;
+    min-height: 36px;
+  }
+
+  .btn-stop {
+    display: none;
+    margin: 12px auto 0;
+    padding: 10px 28px;
+    border: 1.5px solid var(--peche);
+    background: transparent;
+    color: var(--peche);
+    border-radius: 8px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    font-family: 'Source Sans 3', sans-serif;
+    transition: all 0.2s;
+  }
+
+  .btn-stop:hover { background: var(--peche); color: white; }
+
+  /* BUTTONS */
+  .btn-primary {
+    width: 100%;
+    padding: 14px;
+    background: var(--vert);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: 'Source Sans 3', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.3px;
+  }
+
+  .btn-primary:hover { background: #4a6050; }
+  .btn-primary:disabled { background: #b0c0b8; cursor: not-allowed; }
+
+  /* PROGRESS */
+  .progress-section {
+    display: none;
+  }
+
+  .progress-step {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid #f0ebe3;
+    font-size: 0.9rem;
+    color: var(--gris-moyen);
+  }
+
+  .progress-step:last-child { border-bottom: none; }
+
+  .step-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    flex-shrink: 0;
+    background: #e8e2d8;
+    color: var(--gris-moyen);
+  }
+
+  .step-icon.done { background: var(--vert); color: white; }
+  .step-icon.active { background: var(--peche); color: white; animation: pulse-soft 1s infinite; }
+  .step-icon.error { background: var(--rouge-erreur); color: white; }
+
+  @keyframes pulse-soft {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+  }
+
+  /* RÉSULTAT */
+  .resultat-section {
+    display: none;
+  }
+
+  .transcript-box {
+    background: var(--fond);
+    border: 1px solid #e0dbd0;
+    border-radius: 8px;
+    padding: 16px;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: var(--gris-fonce);
+    margin-bottom: 16px;
+    max-height: 200px;
+    overflow-y: auto;
+    font-style: italic;
+  }
+
+  .document-box {
+    background: var(--blanc);
+    border: 1.5px solid var(--vert-clair);
+    border-radius: 10px;
+    padding: 20px;
+    font-size: 0.88rem;
+    line-height: 1.8;
+    color: var(--gris-fonce);
+    white-space: pre-wrap;
+  }
+
+  .section-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--gris-moyen);
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+
+  .succes-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #eef3ee;
+    color: var(--vert);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    margin-bottom: 16px;
+  }
+
+  /* ERREUR */
+  .error-box {
+    display: none;
+    background: #fdf0ef;
+    border: 1px solid #e8b0ad;
+    border-radius: 8px;
+    padding: 14px 16px;
+    font-size: 0.88rem;
+    color: var(--rouge-erreur);
+    margin-top: 12px;
+  }
+
+  /* AUDIO PLAYER */
+  audio {
+    width: 100%;
+    margin-top: 12px;
+    border-radius: 8px;
+  }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 32px 0 20px;
+    font-size: 0.78rem;
+    color: #b0a898;
+    letter-spacing: 0.3px;
+  }
+
+  /* MOBILE */
+  @media (max-width: 480px) {
+    .logo-text { font-size: 2rem; }
+    .card { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="logo-text">moi <span class="et">&</span> <span class="loi">loi</span></div>
+    <div class="sous-titre">Témoignages citoyens</div>
+    <span class="badge-test">Test pipeline audio</span>
+  </header>
+
+  <!-- ÉTAPE 1 : CLÉS API -->
+  <div class="card" id="card-cles">
+    <div class="card-title">
+      <span class="step-num">1</span>
+      Vos clés API
+    </div>
+    <div class="input-group">
+      <label>Clé OpenAI (Whisper)</label>
+      <input type="password" id="openai-key" placeholder="sk-proj-..." autocomplete="off">
+      <div class="hint">Pour la transcription audio en français</div>
+    </div>
+    <div class="input-group">
+      <label>Clé Anthropic (Claude)</label>
+      <input type="password" id="anthropic-key" placeholder="sk-ant-..." autocomplete="off">
+      <div class="hint">Pour structurer le témoignage</div>
+    </div>
+    <div class="hint" style="margin-top: 4px;">🔒 Ces clés restent dans votre navigateur — elles ne sont jamais transmises ni stockées.</div>
+  </div>
+
+  <!-- ÉTAPE 2 : ENREGISTREMENT -->
+  <div class="card" id="card-record">
+    <div class="card-title">
+      <span class="step-num">2</span>
+      Enregistrez votre témoignage
+    </div>
+    <div class="record-zone">
+      <p class="record-instruction">Racontez librement une situation absurde vécue avec l'administration.<br>Prenez le temps qu'il vous faut.</p>
+      <button class="btn-record" id="btn-record" onclick="toggleRecord()">🎙️</button>
+      <div class="timer" id="timer"></div>
+      <div class="record-status" id="record-status">Appuyez pour commencer</div>
+      <button class="btn-stop" id="btn-stop" onclick="stopRecord()">Terminer l'enregistrement</button>
+    </div>
+    <div id="audio-preview"></div>
+    <div class="error-box" id="error-record"></div>
+  </div>
+
+  <!-- ÉTAPE 3 : TRAITEMENT -->
+  <div class="card progress-section" id="card-progress">
+    <div class="card-title">
+      <span class="step-num">3</span>
+      Traitement en cours…
+    </div>
+    <div class="progress-step" id="step-transcription">
+      <div class="step-icon" id="icon-transcription">1</div>
+      <span>Transcription Whisper en français…</span>
+    </div>
+    <div class="progress-step" id="step-analyse">
+      <div class="step-icon" id="icon-analyse">2</div>
+      <span>Analyse et structuration par Claude…</span>
+    </div>
+    <div class="progress-step" id="step-document">
+      <div class="step-icon" id="icon-document">3</div>
+      <span>Génération du document de témoignage…</span>
+    </div>
+  </div>
+
+  <!-- RÉSULTAT -->
+  <div class="card resultat-section" id="card-resultat">
+    <div class="card-title">
+      <span class="step-num">✓</span>
+      Résultat du pipeline
+    </div>
+
+    <div class="succes-badge">✓ Pipeline fonctionnel</div>
+
+    <div class="section-label">Transcription brute (Whisper)</div>
+    <div class="transcript-box" id="transcript-result">—</div>
+
+    <div class="section-label">Document structuré (Claude)</div>
+    <div class="document-box" id="document-result">—</div>
+
+    <div class="error-box" id="error-pipeline"></div>
+  </div>
+
+  <!-- BOUTON LANCER -->
+  <button class="btn-primary" id="btn-lancer" onclick="lancerPipeline()" disabled>
+    Lancer le pipeline →
+  </button>
+
+  <footer>moietloi.fr — Test technique · Les clés API ne sont jamais stockées</footer>
+
+</div>
+
+<script>
+// ─── ÉTAT ───────────────────────────────────────────────────
+let mediaRecorder = null;
+let audioChunks = [];
+let audioBlob = null;
+let isRecording = false;
+let timerInterval = null;
+let seconds = 0;
+
+// ─── ENREGISTREMENT ─────────────────────────────────────────
+async function toggleRecord() {
+  if (isRecording) {
+    stopRecord();
+  } else {
+    await startRecord();
+  }
+}
+
+async function startRecord() {
+  const errorBox = document.getElementById('error-record');
+  errorBox.style.display = 'none';
+
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    mediaRecorder = new MediaRecorder(stream, { mimeType: getSupportedMimeType() });
+    audioChunks = [];
+
+    mediaRecorder.ondataavailable = e => {
+      if (e.data.size > 0) audioChunks.push(e.data);
+    };
+
+    mediaRecorder.onstop = () => {
+      const mimeType = getSupportedMimeType();
+      audioBlob = new Blob(audioChunks, { type: mimeType });
+      showAudioPreview();
+      document.getElementById('btn-lancer').disabled = false;
+      stream.getTracks().forEach(t => t.stop());
+    };
+
+    mediaRecorder.start(100);
+    isRecording = true;
+    seconds = 0;
+
+    document.getElementById('btn-record').classList.add('recording');
+    document.getElementById('btn-record').textContent = '⏸';
+    document.getElementById('record-status').textContent = 'Enregistrement en cours…';
+    document.getElementById('record-status').classList.add('active');
+    document.getElementById('btn-stop').style.display = 'block';
+
+    timerInterval = setInterval(() => {
+      seconds++;
+      const m = Math.floor(seconds / 60).toString().padStart(2, '0');
+      const s = (seconds % 60).toString().padStart(2, '0');
+      document.getElementById('timer').textContent = m + ':' + s;
+    }, 1000);
+
+  } catch (err) {
+    errorBox.style.display = 'block';
+    errorBox.textContent = '⚠️ Accès au microphone refusé. Autorisez le microphone dans les réglages Safari.';
+  }
+}
+
+function stopRecord() {
+  if (mediaRecorder && isRecording) {
+    mediaRecorder.stop();
+    isRecording = false;
+    clearInterval(timerInterval);
+
+    document.getElementById('btn-record').classList.remove('recording');
+    document.getElementById('btn-record').textContent = '🎙️';
+    document.getElementById('record-status').textContent = '✓ Enregistrement terminé';
+    document.getElementById('record-status').classList.remove('active');
+    document.getElementById('btn-stop').style.display = 'none';
+  }
+}
+
+function getSupportedMimeType() {
+  const types = ['audio/webm;codecs=opus', 'audio/webm', 'audio/mp4', 'audio/ogg'];
+  for (const type of types) {
+    if (MediaRecorder.isTypeSupported(type)) return type;
+  }
+  return 'audio/webm';
+}
+
+function showAudioPreview() {
+  const url = URL.createObjectURL(audioBlob);
+  document.getElementById('audio-preview').innerHTML =
+    `<audio controls src="${url}"></audio>`;
+}
+
+// ─── PIPELINE ───────────────────────────────────────────────
+async function lancerPipeline() {
+  const openaiKey = document.getElementById('openai-key').value.trim();
+  const anthropicKey = document.getElementById('anthropic-key').value.trim();
+
+  if (!openaiKey || !anthropicKey) {
+    alert('Veuillez entrer vos deux clés API avant de lancer le pipeline.');
+    return;
+  }
+
+  if (!audioBlob) {
+    alert('Veuillez enregistrer un témoignage audio avant de lancer.');
+    return;
+  }
+
+  // Afficher la progression
+  document.getElementById('card-progress').style.display = 'block';
+  document.getElementById('card-resultat').style.display = 'none';
+  document.getElementById('btn-lancer').disabled = true;
+  document.getElementById('error-pipeline').style.display = 'none';
+
+  // ── ÉTAPE 1 : WHISPER ──
+  setStepActive('transcription');
+  let transcript = '';
+
+  try {
+    const formData = new FormData();
+    // Convertir en fichier avec extension compatible
+    const audioFile = new File([audioBlob], 'temoignage.mp4', { type: audioBlob.type });
+    formData.append('file', audioFile);
+    formData.append('model', 'whisper-1');
+    formData.append('language', 'fr');
+    formData.append('response_format', 'text');
+
+    const whisperRes = await fetch('https://api.openai.com/v1/audio/transcriptions', {
+      method: 'POST',
+      headers: { 'Authorization': `Bearer ${openaiKey}` },
+      body: formData
+    });
+
+    if (!whisperRes.ok) {
+      const err = await whisperRes.json();
+      throw new Error(err.error?.message || 'Erreur Whisper');
+    }
+
+    transcript = await whisperRes.text();
+    setStepDone('transcription');
+
+  } catch (err) {
+    setStepError('transcription');
+    showError('error-pipeline', `Erreur transcription Whisper : ${err.message}`);
+    document.getElementById('btn-lancer').disabled = false;
+    return;
+  }
+
+  // ── ÉTAPE 2 : CLAUDE ──
+  setStepActive('analyse');
+
+  const prompt = `Tu es l'assistant de moietloi.fr, une plateforme civique qui documente les dysfonctionnements administratifs et réglementaires vécus par des citoyens et entrepreneurs en France.
+
+Tu reçois la transcription d'un témoignage oral spontané. Produis un document structuré selon ce format exact :
+
+**RÉSUMÉ**
+[Une phrase claire et neutre décrivant la situation]
+
+**RÉCIT**
+[Le témoignage restructuré, fidèle à l'original, sans répétitions ni artefacts oraux — 150 mots maximum]
+
+**CE QUI EST REPROCHÉ**
+[La règle ou norme invoquée, en termes simples]
+
+**JUSTIFICATION OFFICIELLE**
+[Les motifs donnés par l'administration]
+
+**VOLET 1 — ABSURDITÉ DE LA NORME**
+[En quoi la règle elle-même est inadaptée ou contre-productive]
+
+**VOLET 2 — ABUS DANS L'APPLICATION**
+[En quoi l'application est disproportionnée ou détournée — si applicable]
+
+**DOMAINES RÉGLEMENTAIRES**
+[Urbanisme / ERP / Droit rural / etc.]
+
+**TYPE DE DYSFONCTIONNEMENT**
+[Contradiction / Disproportionnalité / Détournement de procédure / etc.]
+
+**QUESTIONS DE CLARIFICATION**
+[Maximum 3 questions essentielles pour compléter le dossier — ou "Témoignage complet" si rien ne manque]
+
+Règles absolues :
+- Ne jamais ajouter de faits non mentionnés
+- Rester neutre et factuel
+- Utiliser un français clair et sobre
+- Si un volet ne s'applique pas, l'indiquer brièvement
+
+TRANSCRIPTION :
+${transcript}`;
+
+  try {
+    const claudeRes = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': anthropicKey,
+        'anthropic-version': '2023-06-01',
+        'anthropic-dangerous-direct-browser-access': 'true'
+      },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1500,
+        messages: [{ role: 'user', content: prompt }]
+      })
+    });
+
+    if (!claudeRes.ok) {
+      const err = await claudeRes.json();
+      throw new Error(err.error?.message || 'Erreur Claude API');
+    }
+
+    const claudeData = await claudeRes.json();
+    const documentStructure = claudeData.content[0].text;
+
+    setStepDone('analyse');
+    setStepDone('document');
+
+    // Afficher les résultats
+    document.getElementById('card-resultat').style.display = 'block';
+    document.getElementById('transcript-result').textContent = transcript;
+    document.getElementById('document-result').textContent = documentStructure;
+
+    // Scroll vers le résultat
+    document.getElementById('card-resultat').scrollIntoView({ behavior: 'smooth' });
+
+  } catch (err) {
+    setStepError('analyse');
+    showError('error-pipeline', `Erreur Claude : ${err.message}`);
+    document.getElementById('btn-lancer').disabled = false;
+    return;
+  }
+
+  document.getElementById('btn-lancer').disabled = false;
+  document.getElementById('btn-lancer').textContent = '🔄 Tester à nouveau';
+  document.getElementById('btn-lancer').onclick = () => location.reload();
+}
+
+// ─── HELPERS ────────────────────────────────────────────────
+function setStepActive(step) {
+  const icon = document.getElementById(`icon-${step}`);
+  icon.className = 'step-icon active';
+  icon.textContent = '…';
+}
+
+function setStepDone(step) {
+  const icon = document.getElementById(`icon-${step}`);
+  icon.className = 'step-icon done';
+  icon.textContent = '✓';
+}
+
+function setStepError(step) {
+  const icon = document.getElementById(`icon-${step}`);
+  icon.className = 'step-icon error';
+  icon.textContent = '✕';
+}
+
+function showError(id, msg) {
+  const box = document.getElementById(id);
+  box.style.display = 'block';
+  box.textContent = msg;
+}
+
+// Activer le bouton lancer si les deux clés sont remplies
+document.getElementById('openai-key').addEventListener('input', checkReady);
+document.getElementById('anthropic-key').addEventListener('input', checkReady);
+
+function checkReady() {
+  const ok = document.getElementById('openai-key').value.trim() &&
+             document.getElementById('anthropic-key').value.trim() &&
+             audioBlob;
+  document.getElementById('btn-lancer').disabled = !ok;
+}
+</script>
+</body>
+</html>
