@@ -86,6 +86,11 @@
   .mr-status { font-size:0.85rem; color:var(--gris-moyen); }
   .mini-up { margin-top:10px; padding:10px 14px; border:1.5px dashed #ddd8d0; border-radius:8px; font-size:0.82rem; color:var(--gris-moyen); cursor:pointer; text-align:center; transition:all 0.2s; }
   .mini-up:hover { border-color:var(--vert); color:var(--vert); background:#f0f4f0; }
+  .rep-zone { display:flex; flex-direction:column; gap:10px; }
+  .rep-row { display:flex; gap:10px; align-items:flex-start; }
+  .rep-row textarea { flex:1; min-height:80px; }
+  .rep-mic-wrap { display:flex; flex-direction:column; align-items:center; gap:6px; padding-top:4px; }
+  .rep-mic-st { font-size:0.7rem; color:var(--gris-moyen); text-align:center; max-width:48px; line-height:1.3; }
 
   .btn-complement { display:none; margin:10px auto 0; padding:9px 22px; border:1.5px solid var(--vert); background:transparent; color:var(--vert); border-radius:8px; font-size:0.88rem; cursor:pointer; font-family:'Source Sans 3',sans-serif; transition:all 0.2s; }
   .btn-complement:hover { background:var(--vert); color:white; }
@@ -156,9 +161,9 @@
          ondragleave="this.classList.remove('over')"
          ondrop="dropDocs(event,'main')">
       <div class="upload-icon">📎</div>
-      <div class="upload-txt"><strong>Glissez vos documents ici</strong><br>ou cliquez pour sélectionner · PDF, Word, images</div>
+      <div class="upload-txt"><strong>Glissez vos documents ici</strong><br>ou cliquez pour sélectionner · PDF, photos JPG ou PNG</div>
     </div>
-    <input type="file" id="fiMain" multiple accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.txt" style="display:none" onchange="selDocs(event,'main')">
+    <input type="file" id="fiMain" multiple accept=".pdf,.jpg,.jpeg,.png" style="display:none" onchange="selDocs(event,'main')">
     <div class="doc-list" id="dlMain"></div>
     <div class="confidentiel hidden" id="confMain">
       <span>🔒</span>
@@ -364,17 +369,17 @@ async function lancer(){
 
   // DOCS
   setP('piDocs','active');
-  let ctx='';
+  let docBlocks=[];
   try{
-    for(const d of docsMain){const t=await readTxt(d.f);if(t)ctx+=`\n\nDOCUMENT (${d.f.name}) :\n${t.substring(0,2000)}`;}
+    for(const d of docsMain){const b=await readDoc(d.f);if(b)docBlocks.push(b);}
     docsMain=[];renderMain();setP('piDocs','done');
   }catch{setP('piDocs','done');}
 
   // CLAUDE
   setP('piClaude','active');
-  const prompt=buildPrompt(transcript,ctx,'');
+  const prompt=buildPrompt(transcript,'','');
   try{
-    const res=await claude(akey,prompt,2000);
+    const res=await claude(akey,prompt,2000,docBlocks);
     const txt=res.content[0].text;
     docInitial=txt;setP('piClaude','done');
     const qs=extractQ(txt);questions=qs;
@@ -437,47 +442,29 @@ function showQ(qs){
     const qid=`q${i}`;
     return `<div class="qitem">
       <div class="qtxt">${i+1}. ${q}</div>
-      <div class="qmode">
-        <button class="btn-m on" id="bmt_${i}" onclick="swM(${i},'txt')">✏️ Texte</button>
-        <button class="btn-m" id="bmv_${i}" onclick="swM(${i},'voc')">🎙️ Vocal</button>
-        <button class="btn-m" id="bmd_${i}" onclick="swM(${i},'doc')">📎 Document</button>
-      </div>
-      <div id="zt_${i}"><textarea placeholder="Votre réponse…" id="rt_${i}" rows="3"></textarea></div>
-      <div class="hidden" id="zv_${i}">
-        <div class="mini-rec">
-          <button class="btn-mr" id="bmr_${i}" onclick="togMini(${i})">🎙️</button>
-          <div><div class="mr-status" id="ms_${i}">Appuyez pour enregistrer</div><div id="mp_${i}"></div></div>
+      <div class="rep-zone">
+        <div class="rep-row">
+          <textarea placeholder="Votre réponse par écrit…" id="rt_${i}" rows="3"></textarea>
+          <div class="rep-mic-wrap">
+            <button class="btn-mr" id="bmr_${i}" onclick="togMini(${i})" title="Répondre à la voix">🎙️</button>
+            <div class="rep-mic-st" id="ms_${i}">vocal</div>
+          </div>
         </div>
-      </div>
-      <div class="hidden" id="zd_${i}">
-        <div class="mini-up" onclick="document.getElementById('fiq_${i}').click()">📎 Cliquer pour joindre un document</div>
-        <input type="file" id="fiq_${i}" style="display:none" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.txt" onchange="selDocs(event,'${qid}')">
+        <div id="mp_${i}"></div>
+        <div class="mini-up" onclick="document.getElementById('fiq_${i}').click()">📎 Joindre un document — PDF ou photo (optionnel)</div>
+        <input type="file" id="fiq_${i}" style="display:none" accept=".pdf,.jpg,.jpeg,.png" onchange="selDocs(event,'${qid}')">
         <div class="doc-list" id="dlQ_${qid}"></div>
-        <div class="confidentiel" style="margin-top:8px;"><span>🔒</span><span>Ce document sera détruit après traitement — jamais stocké.</span></div>
       </div>
     </div>`;
   }).join('');
   scrollEl('cardQ');
 }
 
-function swM(i,mode){
-  // Si on quitte le mode vocal et que le micro est actif, l'arrêter
-  if(mode!=='voc' && miniMR[i]?.on){ miniMR[i].mr.stop(); miniMR[i].on=false; }
 
-  ['txt','voc','doc'].forEach(m=>{
-    G(`zt_${i}`)?.classList.toggle('hidden',m!==mode);
-    G(`zv_${i}`)?.classList.toggle('hidden',m!==mode);
-    G(`zd_${i}`)?.classList.toggle('hidden',m!==mode);
-    G(`bmt_${i}`)?.classList.toggle('on',m===mode&&mode==='txt');
-    G(`bmv_${i}`)?.classList.toggle('on',m===mode&&mode==='voc');
-    G(`bmd_${i}`)?.classList.toggle('on',m===mode&&mode==='doc');
-  });
-
-  // Lancer le micro automatiquement quand on passe en mode vocal
-  if(mode==='voc' && !miniMR[i]?.on && !miniMR[i]?.blob){ togMini(i); }
-}
 
 async function togMini(i){
+  const stEl=G(`ms_${i}`);
+  // Si enregistrement en cours → stop
   if(miniMR[i]?.on){miniMR[i].mr.stop();miniMR[i].on=false;return;}
   try{
     const stream=await navigator.mediaDevices.getUserMedia({audio:true});
@@ -485,15 +472,15 @@ async function togMini(i){
     m.ondataavailable=e=>{if(e.data.size>0)c.push(e.data);};
     m.onstop=()=>{
       const b=new Blob(c,{type:mime()});miniMR[i].blob=b;
-      G(`mp_${i}`).innerHTML=`<audio controls src="${URL.createObjectURL(b)}" style="width:100%;margin-top:6px;"></audio>`;
-      G(`ms_${i}`).textContent='✓ Réponse enregistrée';
+      G(`mp_${i}`).innerHTML=`<audio controls src="${URL.createObjectURL(b)}" style="width:100%;margin-top:6px;border-radius:6px;"></audio>`;
+      if(stEl)stEl.textContent='✓ ok';
       G(`bmr_${i}`).classList.remove('rec');G(`bmr_${i}`).textContent='🔄';
       stream.getTracks().forEach(t=>t.stop());
     };
     m.start(100);miniMR[i]={mr:m,on:true,blob:null};
     G(`bmr_${i}`).classList.add('rec');G(`bmr_${i}`).textContent='⏹';
-    G(`ms_${i}`).textContent='Enregistrement…';
-  }catch{G(`ms_${i}`).textContent='⚠️ Micro non accessible';}
+    if(stEl)stEl.textContent='rec…';
+  }catch{if(stEl)stEl.textContent='⚠️';}
 }
 
 // ── FINALISER ─────────────────────────────────────────────────
@@ -501,27 +488,25 @@ async function finaliser(){
   const okey=G('ok').value.trim(), akey=G('ak').value.trim();
   const btn=G('btnFinal');btn.disabled=true;btn.textContent='Génération en cours…';
   let reps='';
+  let qBlocks=[];
   for(let i=0;i<questions.length;i++){
-    const isVoc=!G(`zv_${i}`).classList.contains('hidden');
-    const isDoc=!G(`zd_${i}`).classList.contains('hidden');
     let rep='';
-    if(isVoc&&miniMR[i]?.blob){
+    if(miniMR[i]?.blob){
       try{
         const fd=new FormData();fd.append('file',new File([miniMR[i].blob],'r.mp4',{type:miniMR[i].blob.type}));
         fd.append('model','whisper-1');fd.append('language','fr');fd.append('response_format','text');
         const r=await fetch('https://api.openai.com/v1/audio/transcriptions',{method:'POST',headers:{'Authorization':`Bearer ${okey}`},body:fd});
         if(r.ok)rep=await r.text();
       }catch{rep='[réponse vocale]';}
-    }else if(isDoc){
-      const qid=`q${i}`;const docs=docsQ[qid]||[];
-      for(const d of docs){const t=await readTxt(d.f);rep+=t?`[${d.f.name}]\n${t.substring(0,500)}`:`[${d.f.name}]`;}
-      if(!rep)rep='(document joint)';
     }else{rep=G(`rt_${i}`)?.value?.trim()||'(sans réponse)';}
+    // Docs joints à cette question → blocs multimodaux
+    const qid=`q${i}`;
+    for(const d of (docsQ[qid]||[])){const b=await readDoc(d.f);if(b)qBlocks.push(b);}
     reps+=`Q${i+1}: ${questions[i]}\nR: ${rep}\n\n`;
   }
-  const p=`Régénère ce document en intégrant les réponses. Même format, sans section QUESTIONS. N'invente rien.\n\nDOCUMENT INITIAL:\n${docInitial}\n\nRÉPONSES:\n${reps}`;
+  const p=`Régénère ce document en intégrant les réponses et les documents joints. Même format, sans section QUESTIONS. N'invente rien.\n\nDOCUMENT INITIAL:\n${docInitial}\n\nRÉPONSES:\n${reps}`;
   try{
-    const res=await claude(akey,p,2000);
+    const res=await claude(akey,p,2000,qBlocks);
     const txt=res.content[0].text;docInitial=txt;
     hide('cardQ');showRes(transcript,txt);
   }catch(e){alert(`Erreur: ${e.message}`);}
@@ -539,7 +524,20 @@ function showRes(tr,txt){
   hide('errCorr');scrollEl('cardRes');
 }
 
-function valider(){hide('zoneValidation');show('zoneFinal');scrollEl('zoneFinal');}
+async function valider(){
+  const akey=G('ak').value.trim();
+  const btnVal=document.querySelector('[onclick="valider()"]');
+  if(btnVal){btnVal.disabled=true;btnVal.textContent='Relecture finale…';}
+  const texteEdite=G('docRes').innerText;
+  const p='Tu es correcteur-rédacteur pour moietloi.fr. Fais un passage de relecture finale sur ce témoignage : corrige les fautes d\'orthographe et de frappe, fluidifie les phrases maladroites, assure la cohérence — sans jamais changer le fond, les faits, ni la structure. Garde exactement le même format avec les mêmes titres en gras. Réponds uniquement avec le document corrigé, sans commentaire.\n\nDOCUMENT :\n'+texteEdite;
+  try{
+    const res=await claude(akey,p,2000);
+    const txt=res.content[0].text;
+    docInitial=txt;G('docRes').innerText=txt;
+  }catch(e){/* si erreur API, on valide avec le texte tel quel */}
+  if(btnVal){btnVal.disabled=false;btnVal.textContent='✓ Valider ce témoignage';}
+  hide('zoneValidation');show('zoneFinal');scrollEl('zoneFinal');
+}
 
 function showCorr(){
   show('zoneCorr');
@@ -601,20 +599,37 @@ async function appliquerCorr(){
 }
 
 // ── CLAUDE API ────────────────────────────────────────────────
-async function claude(key,prompt,max){
+// blocks = tableau optionnel de contenus multimodaux (PDF, images) à joindre au message
+async function claude(key,prompt,max,blocks=[]){
+  const content=[...blocks,{type:'text',text:prompt}];
   const r=await fetch('https://api.anthropic.com/v1/messages',{
     method:'POST',
     headers:{'Content-Type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
-    body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:max,messages:[{role:'user',content:prompt}]})
+    body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:max,messages:[{role:'user',content}]})
   });
   if(!r.ok){const e=await r.json();throw new Error(e.error?.message||'Erreur API');}
   return r.json();
 }
 
 // ── UTILS ─────────────────────────────────────────────────────
-function readTxt(f){return new Promise(resolve=>{
-  if(f.type==='text/plain'||f.name.endsWith('.txt')){const r=new FileReader();r.onload=e=>resolve(e.target.result);r.onerror=()=>resolve('');r.readAsText(f);}
-  else resolve(`[Fichier: ${f.name}]`);
+// Encode un fichier en base64 et retourne un bloc de contenu Claude
+function readDoc(f){return new Promise(resolve=>{
+  const r=new FileReader();
+  r.onload=e=>{
+    const b64=e.target.result.split(',')[1];
+    const isPdf=f.type==='application/pdf'||f.name.toLowerCase().endsWith('.pdf');
+    const isImg=f.type.startsWith('image/')||/\.(jpg|jpeg|png)$/i.test(f.name);
+    if(isPdf){
+      resolve({type:'document',source:{type:'base64',media_type:'application/pdf',data:b64},title:f.name});
+    }else if(isImg){
+      const mt=f.type||'image/jpeg';
+      resolve({type:'image',source:{type:'base64',media_type:mt,data:b64}});
+    }else{
+      resolve(null);
+    }
+  };
+  r.onerror=()=>resolve(null);
+  r.readAsDataURL(f);
 });}
 
 function G(id){return document.getElementById(id);}
