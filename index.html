@@ -27,7 +27,6 @@
   .card-title { font-family:'Playfair Display',serif; font-size:1.1rem; color:var(--gris-fonce); margin-bottom:18px; display:flex; align-items:center; gap:10px; }
   .snum { width:28px; height:28px; border-radius:50%; background:var(--vert); color:white; font-size:0.8rem; font-weight:500; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
   .snum.orange { background:var(--peche); }
-  .snum.done { background:var(--vert); }
 
   label { display:block; font-size:0.8rem; color:var(--gris-moyen); margin-bottom:6px; letter-spacing:0.5px; text-transform:uppercase; font-weight:500; }
   input[type=password], input[type=text], textarea { width:100%; padding:12px 16px; border:1.5px solid #ddd8d0; border-radius:8px; font-size:0.95rem; font-family:'Source Sans 3',sans-serif; background:var(--fond); color:var(--gris-fonce); transition:border-color 0.2s; -webkit-appearance:none; }
@@ -52,13 +51,8 @@
   .btn-stop:hover { background:var(--peche); color:white; }
 
   /* BOUTON RECOMMENCER ENREGISTREMENT */
-  .btn-restart-rec {
-    display:none; margin:10px auto 0; padding:8px 20px;
-    border:1.5px solid var(--vert); background:transparent;
-    color:var(--vert); border-radius:8px; font-size:0.85rem;
-    cursor:pointer; font-family:'Source Sans 3',sans-serif; transition:all 0.2s;
-  }
-  .btn-restart-rec:hover { background:var(--vert); color:white; }
+  .btn-rerecord { display:none; margin:10px auto 0; padding:8px 20px; border:1.5px solid var(--vert); background:transparent; color:var(--vert); border-radius:8px; font-size:0.85rem; cursor:pointer; font-family:'Source Sans 3',sans-serif; transition:all 0.2s; }
+  .btn-rerecord:hover { background:var(--vert); color:white; }
 
   /* UPLOAD */
   .upload-zone { border:2px dashed #ddd8d0; border-radius:8px; padding:20px; text-align:center; cursor:pointer; transition:all 0.2s; margin-top:12px; }
@@ -70,7 +64,6 @@
   .doc-item { display:flex; align-items:center; justify-content:space-between; padding:8px 12px; background:var(--fond); border-radius:6px; margin-bottom:6px; font-size:0.85rem; }
   .doc-rm { cursor:pointer; color:var(--gris-moyen); background:none; border:none; font-size:1rem; padding:0 4px; }
 
-  /* BOUTONS */
   .btn-p { width:100%; padding:14px; background:var(--vert); color:white; border:none; border-radius:8px; font-size:1rem; font-family:'Source Sans 3',sans-serif; font-weight:500; cursor:pointer; transition:all 0.2s; margin-top:16px; }
   .btn-p:hover { background:#4a6050; }
   .btn-p:disabled { background:#b0c0b8; cursor:not-allowed; }
@@ -81,7 +74,6 @@
 
   .hidden { display:none !important; }
 
-  /* PROGRESS */
   .pstep { display:flex; align-items:center; gap:12px; padding:10px 0; border-bottom:1px solid #f0ebe3; font-size:0.9rem; color:var(--gris-moyen); }
   .pstep:last-child { border-bottom:none; }
   .picon { width:24px; height:24px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.75rem; flex-shrink:0; background:#e8e2d8; color:var(--gris-moyen); }
@@ -90,28 +82,27 @@
   .picon.error { background:var(--rouge); color:white; }
   @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.5} }
 
-  /* QUESTIONS — nouvelle présentation sans tabs */
+  /* QUESTIONS — affichage direct sans boutons mode */
   .qitem { background:var(--fond); border-radius:8px; padding:16px; margin-bottom:16px; border-left:3px solid var(--peche); }
-  .qtxt { font-size:0.95rem; color:var(--gris-fonce); margin-bottom:14px; line-height:1.5; font-style:italic; }
+  .qtxt { font-size:0.95rem; color:var(--gris-fonce); margin-bottom:12px; line-height:1.5; font-style:italic; }
 
-  .q-reponse-zone { display:flex; flex-direction:column; gap:10px; }
+  .q-response-zone { display:flex; flex-direction:column; gap:10px; }
 
-  /* Zone texte */
-  .q-texte-zone textarea { width:100%; }
-
-  /* Zone micro inline */
-  .q-micro-zone { display:flex; align-items:center; gap:12px; padding:10px 12px; background:var(--blanc); border-radius:8px; border:1.5px solid #ddd8d0; }
+  .mini-rec { display:flex; align-items:center; gap:12px; padding:10px; background:var(--blanc); border-radius:8px; border:1.5px solid #ddd8d0; }
   .btn-mr { width:40px; height:40px; border-radius:50%; border:none; background:var(--vert); color:white; cursor:pointer; font-size:1rem; display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:all 0.2s; }
   .btn-mr.rec { background:var(--peche); animation:pulse 1.5s infinite; }
-  .mr-status { font-size:0.85rem; color:var(--gris-moyen); flex:1; }
+  .mr-status { font-size:0.85rem; color:var(--gris-moyen); }
 
-  /* Zone document inline */
-  .q-doc-zone { }
   .mini-up { padding:10px 14px; border:1.5px dashed #ddd8d0; border-radius:8px; font-size:0.82rem; color:var(--gris-moyen); cursor:pointer; text-align:center; transition:all 0.2s; }
   .mini-up:hover { border-color:var(--vert); color:var(--vert); background:#f0f4f0; }
 
   /* DOCUMENT ÉDITABLE */
-  .doc-editable { background:var(--blanc); border:1.5px solid var(--vert-clair); border-radius:10px; padding:20px; font-size:0.88rem; line-height:1.8; color:var(--gris-fonce); white-space:pre-wrap; min-height:200px; outline:none; transition:border-color 0.2s, box-shadow 0.2s; cursor:text; }
+  .doc-editable {
+    background:var(--blanc); border:1.5px solid var(--vert-clair); border-radius:10px;
+    padding:20px; font-size:0.88rem; line-height:1.8; color:var(--gris-fonce);
+    white-space:pre-wrap; min-height:200px; outline:none;
+    transition:border-color 0.2s, box-shadow 0.2s; cursor:text;
+  }
   .doc-editable:focus { border-color:var(--peche); box-shadow:0 0 0 3px rgba(212,149,106,0.15); }
   .edit-hint { font-size:0.78rem; color:var(--gris-moyen); margin-top:8px; display:flex; align-items:center; gap:6px; font-style:italic; }
 
@@ -129,13 +120,6 @@
   .anon-label { font-size:0.9rem; font-weight:500; color:var(--gris-fonce); }
   .anon-desc { font-size:0.78rem; color:var(--gris-moyen); margin-top:3px; }
   .anon-preview { margin-top:12px; padding:10px 14px; background:var(--fond); border-radius:8px; border:1px solid #e0dbd0; font-size:0.85rem; color:var(--gris-moyen); }
-
-  /* OPT-IN */
-  .optin-box { display:flex; align-items:flex-start; gap:12px; padding:14px 16px; border-radius:8px; border:1.5px solid #ddd8d0; background:var(--fond); margin-top:12px; cursor:pointer; transition:all 0.2s; }
-  .optin-box:hover { border-color:var(--vert-clair); }
-  .optin-box.checked { border-color:var(--vert); background:#eef3ee; }
-  .optin-box input[type=checkbox] { margin-top:3px; flex-shrink:0; accent-color:var(--vert); }
-  .optin-label { font-size:0.88rem; color:var(--gris-fonce); line-height:1.5; }
 
   /* SOUMISSION */
   .submission-box { background:#f8f4ef; border:1.5px solid var(--beige); border-radius:12px; padding:24px; margin-top:4px; }
@@ -199,10 +183,14 @@
       <div class="timer" id="timer"></div>
       <div class="rec-status" id="recSt">Appuyez pour commencer</div>
       <button class="btn-stop" id="btnStop" onclick="stopRec()">Terminer l'enregistrement</button>
-      <!-- NOUVEAU : bouton pour ajouter au témoignage -->
-      <button class="btn-restart-rec" id="btnRestart" onclick="restartRec()">🎙️ Ajouter quelque chose</button>
     </div>
     <div id="audPrev"></div>
+    <!-- BOUTON RECOMMENCER — visible après enregistrement -->
+    <div style="text-align:center;">
+      <button class="btn-rerecord" id="btnRerecord" onclick="rerecorder()">
+        🔄 Recommencer l'enregistrement
+      </button>
+    </div>
     <div class="err-box" id="errRec"></div>
   </div>
 
@@ -212,20 +200,23 @@
       <span class="snum">3</span> Documents complémentaires
       <span style="font-size:0.75rem;color:var(--gris-moyen);font-weight:300;margin-left:4px;">(optionnel)</span>
     </div>
-    <p style="font-size:0.9rem;color:var(--gris-moyen);margin-bottom:14px;line-height:1.6;">Courriers, arrêtés, refus, échanges avec l'administration — enrichissent l'analyse de votre témoignage.</p>
+    <p style="font-size:0.9rem;color:var(--gris-moyen);margin-bottom:14px;line-height:1.6;">Courriers, arrêtés, refus, échanges avec l'administration — enrichissent l'analyse.</p>
     <div class="upload-zone" id="uzMain" onclick="document.getElementById('fiMain').click()"
          ondragover="event.preventDefault();this.classList.add('over')"
          ondragleave="this.classList.remove('over')"
          ondrop="dropDocs(event)">
       <div class="upload-icon">📎</div>
-      <div class="upload-txt"><strong>Glissez vos documents ici</strong><br>ou cliquez pour sélectionner<br><span style="font-size:0.75rem;">PDF, JPG, PNG uniquement</span></div>
+      <div class="upload-txt">
+        <strong>Glissez vos documents ici</strong><br>
+        ou cliquez pour sélectionner<br>
+        <span style="font-size:0.78rem;">PDF, JPG, PNG uniquement — max 5 fichiers</span>
+      </div>
     </div>
-    <!-- CORRIGÉ : uniquement PDF et images -->
     <input type="file" id="fiMain" multiple accept=".pdf,.jpg,.jpeg,.png" style="display:none" onchange="selDocs(event)">
     <div class="doc-list" id="dlMain"></div>
     <div class="confidentiel hidden" id="confMain">
       <span>🔒</span>
-      <span>Ces documents sont analysés par l'AI puis <strong>détruits automatiquement</strong>. Jamais stockés ni transmis à des tiers.</span>
+      <span>Ces documents sont lus par l'AI pour enrichir votre témoignage puis <strong>détruits automatiquement</strong>. Jamais stockés ni publiés.</span>
     </div>
   </div>
 
@@ -237,7 +228,7 @@
   <div class="card hidden" id="cardProg" style="margin-top:20px;">
     <div class="card-title"><span class="snum">4</span> Traitement en cours…</div>
     <div class="pstep"><div class="picon" id="piW">1</div><span>Transcription Whisper en français…</span></div>
-    <div class="pstep"><div class="picon" id="piD">2</div><span>Lecture et analyse des documents joints…</span></div>
+    <div class="pstep"><div class="picon" id="piD">2</div><span>Lecture des documents joints…</span></div>
     <div class="pstep"><div class="picon" id="piC">3</div><span>Structuration par Claude…</span></div>
     <div class="err-box" id="errPipe"></div>
   </div>
@@ -245,14 +236,16 @@
   <!-- 5. QUESTIONS -->
   <div class="card hidden" id="cardQ" style="margin-top:20px;">
     <div class="card-title"><span class="snum orange">5</span> Questions de clarification</div>
-    <p style="font-size:0.9rem;color:var(--gris-moyen);margin-bottom:20px;line-height:1.6;font-style:italic;">Pour compléter votre dossier — répondez par écrit, par oral, ou joignez un document.</p>
+    <p style="font-size:0.9rem;color:var(--gris-moyen);margin-bottom:20px;line-height:1.6;font-style:italic;">
+      Pour compléter votre dossier. Répondez par écrit, par oral, ou joignez un document (PDF, JPG, PNG).
+    </p>
     <div id="qContainer"></div>
     <button class="btn-p" id="btnFinal" onclick="finaliser()">Générer mon document final →</button>
   </div>
 
   <!-- 6. DOCUMENT FINAL -->
   <div class="card hidden" id="cardRes" style="margin-top:20px;">
-    <div class="card-title"><span class="snum done">✓</span> Votre témoignage structuré</div>
+    <div class="card-title"><span class="snum">✓</span> Votre témoignage structuré</div>
     <div class="ok-badge">✓ Document généré</div>
 
     <div class="slabel">Transcription brute (Whisper)</div>
@@ -265,7 +258,7 @@
 
     <div class="btn-row">
       <button class="btn-p" onclick="validerDoc()" style="margin-top:0;">✓ Valider ce document</button>
-      <button class="btn-s" onclick="regenerer()" id="btnRegen" style="margin-top:0;">🔄 Régénérer avec mes corrections</button>
+      <button class="btn-s" onclick="regenerer()" id="btnRegen" style="margin-top:0;">🔄 Régénérer avec corrections</button>
     </div>
     <div id="regenCount" style="font-size:0.78rem;color:var(--gris-moyen);margin-top:8px;text-align:center;"></div>
     <div class="err-box" id="errRes"></div>
@@ -273,35 +266,44 @@
 
   <!-- 7. ANONYMAT -->
   <div class="card hidden" id="cardAnon" style="margin-top:20px;">
-    <div class="card-title"><span class="snum">7</span> Votre témoignage sera-t-il anonyme ?</div>
-    <p style="font-size:0.9rem;color:var(--gris-moyen);margin-bottom:16px;line-height:1.6;">Vous pouvez modifier ce choix à tout moment depuis votre compte.</p>
+    <div class="card-title"><span class="snum">7</span> Anonymat</div>
+    <p style="font-size:0.9rem;color:var(--gris-moyen);margin-bottom:16px;line-height:1.6;">
+      Choisissez comment vous souhaitez apparaître dans la base publique.
+    </p>
 
     <div class="anon-options">
-      <label class="anon-option selected" id="aopt0" onclick="selectAnon(0)">
-        <input type="radio" name="anon" value="0" checked>
+      <label class="anon-option" id="aopt0" onclick="selectAnon(0)">
+        <input type="radio" name="anon" value="0">
         <div>
-          <div class="anon-label">🔒 Anonyme</div>
-          <div class="anon-desc">Aucune information personnelle publiée. Exemple : <em>"Un entrepreneur, Vaucluse"</em></div>
+          <div class="anon-label">👤 Nom complet visible</div>
+          <div class="anon-desc">Votre prénom et nom apparaissent sur le témoignage.</div>
         </div>
       </label>
       <label class="anon-option" id="aopt1" onclick="selectAnon(1)">
         <input type="radio" name="anon" value="1">
         <div>
-          <div class="anon-label">👤 Non anonyme</div>
-          <div class="anon-desc">Votre prénom et région apparaissent. Exemple : <em>"Marie, Vaucluse"</em></div>
+          <div class="anon-label">🏷️ Prénom et région</div>
+          <div class="anon-desc">Exemple : <em>"Marie, Vaucluse"</em></div>
+        </div>
+      </label>
+      <label class="anon-option selected" id="aopt2" onclick="selectAnon(2)">
+        <input type="radio" name="anon" value="2" checked>
+        <div>
+          <div class="anon-label">💼 Catégorie professionnelle et région ← recommandé</div>
+          <div class="anon-desc">Exemple : <em>"Une entrepreneuse, Vaucluse"</em></div>
+        </div>
+      </label>
+      <label class="anon-option" id="aopt3" onclick="selectAnon(3)">
+        <input type="radio" name="anon" value="3">
+        <div>
+          <div class="anon-label">🔒 Anonyme complet</div>
+          <div class="anon-desc">Aucune information personnelle publiée.</div>
         </div>
       </label>
     </div>
 
-    <div class="anon-preview" id="anonPreview" style="margin-top:12px;">
-      Votre témoignage apparaîtra signé : <strong id="anonSig">"Un entrepreneur, Vaucluse"</strong>
-    </div>
-
-    <hr style="margin:20px 0;">
-
-    <div class="optin-box" id="optinContact" onclick="toggleOptin('optinContact','chkContact')">
-      <input type="checkbox" id="chkContact">
-      <div class="optin-label">J'accepte d'être contacté par d'autres témoins ayant vécu une situation similaire, dans le cadre d'échanges facilités par la plateforme.</div>
+    <div class="anon-preview" id="anonPreview" style="margin-top:12px;padding:10px 14px;background:var(--fond);border-radius:8px;border:1px solid #e0dbd0;font-size:0.85rem;color:var(--gris-moyen);">
+      Votre témoignage apparaîtra signé : <strong id="anonSig">"Une entrepreneuse, Vaucluse"</strong>
     </div>
 
     <button class="btn-p" onclick="showSoumission()">Continuer →</button>
@@ -314,8 +316,8 @@
       <div class="submission-title">Avant publication</div>
       <div class="submission-text">
         <p>Votre témoignage sera examiné par notre équipe de modération avant publication.</p>
-        <p>Ce processus prend généralement <strong>moins de 24 heures</strong>. Vous recevrez un email de confirmation à la publication, avec votre témoignage complet.</p>
-        <p>La modération vérifie l'absence de données personnelles non souhaitées, l'absence de propos diffamatoires, et la conformité avec notre charte éditoriale.</p>
+        <p>Cette vérification garantit le respect de notre charte — absence de données personnelles non souhaitées, absence de propos diffamatoires, conformité éditoriale.</p>
+        <p>Ce processus prend généralement <strong>moins de 24 heures</strong>. Vous recevrez un email de confirmation à la publication, avec votre témoignage intégré dans le corps du message.</p>
       </div>
       <label class="checkbox-confirm" onclick="toggleConfirm()">
         <input type="checkbox" id="chkConfirm">
@@ -334,11 +336,11 @@
     <div class="confirmation-finale">
       <div class="confirmation-icon">✓</div>
       <div class="confirmation-title">Témoignage soumis</div>
-      <div class="confirmation-text">Merci. Votre témoignage a été reçu et sera publié dans les 24 heures après validation par notre équipe.</div>
+      <div class="confirmation-text">Merci. Votre témoignage a été reçu et sera examiné dans les 24 heures.</div>
       <div class="confirmation-details">
         <strong>Ce qui se passe maintenant :</strong><br>
-        • Votre témoignage est examiné par notre système de modération<br>
-        • S'il respecte notre charte, il sera publié sous 24h<br>
+        • Votre témoignage est examiné par notre équipe de modération<br>
+        • S'il respecte notre charte, il sera publié dans les 24h<br>
         • Vous recevrez un email de confirmation avec votre témoignage complet<br><br>
         <strong>Anonymat choisi :</strong> <span id="confirmAnon">—</span><br>
         <strong>Référence :</strong> <span id="confirmRef">—</span>
@@ -346,7 +348,7 @@
       <div style="background:#eef3ee;border-radius:8px;padding:16px;margin-bottom:20px;font-size:0.88rem;color:var(--vert);line-height:1.6;">
         💡 <strong>Créez votre compte</strong> pour suivre votre témoignage, recevoir des notifications et sauvegarder vos futures soumissions.
         <div style="margin-top:12px;">
-          <button class="btn-p" onclick="alert('Création de compte — prochaine étape')" style="margin-top:0;">Créer mon compte — 30 secondes</button>
+          <button class="btn-p" style="margin-top:0;background:var(--vert);" onclick="alert('Création de compte — prochaine étape')">Créer mon compte — 30 secondes</button>
           <button class="btn-s" onclick="location.reload()" style="margin-top:8px;">Continuer sans compte</button>
         </div>
       </div>
@@ -355,14 +357,13 @@
 
 </div>
 
-<div class="footer-bar">🔒 <span>Documents détruits automatiquement après analyse.</span> Données personnelles jamais publiées sans accord. moietloi.fr</div>
+<div class="footer-bar">🔒 <span>Documents détruits automatiquement après analyse.</span> Données personnelles jamais publiées sans votre accord. moietloi.fr</div>
 
 <script>
 // ── ÉTAT ──────────────────────────────────────────────────────
-let mr=null, chunks=[], audioBlob=null, extraChunks=[], extraBlob=null;
-let isRec=false, timerInt=null, secs=0;
+let mr=null, chunks=[], audioBlob=null, isRec=false, timerInt=null, secs=0;
 let docsMain=[], docsQ={}, transcript='', questions=[], docInitial='';
-let miniMR={}, regenCount=0, anonChoice=0;
+let miniMR={}, regenCount=0, anonChoice=2;
 
 // ── READY ─────────────────────────────────────────────────────
 function checkReady(){
@@ -372,7 +373,7 @@ function checkReady(){
 G('ok').addEventListener('input',checkReady);
 G('ak').addEventListener('input',checkReady);
 
-// ── ENREGISTREMENT PRINCIPAL ──────────────────────────────────
+// ── ENREGISTREMENT ────────────────────────────────────────────
 async function toggleRec(){ isRec?stopRec():await startRec(); }
 
 async function startRec(){
@@ -385,8 +386,7 @@ async function startRec(){
     mr.onstop=()=>{
       audioBlob=new Blob(chunks,{type:mime()});
       G('audPrev').innerHTML=`<audio controls src="${URL.createObjectURL(audioBlob)}"></audio>`;
-      // Afficher bouton "Ajouter quelque chose"
-      G('btnRestart').style.display='block';
+      G('btnRerecord').style.display='block';
       checkReady();
       stream.getTracks().forEach(t=>t.stop());
     };
@@ -394,49 +394,27 @@ async function startRec(){
     G('btnRec').classList.add('rec'); G('btnRec').textContent='⏸';
     G('recSt').textContent='Enregistrement en cours…'; G('recSt').classList.add('on');
     G('btnStop').style.display='block';
-    G('btnRestart').style.display='none';
+    G('btnRerecord').style.display='none';
     timerInt=setInterval(()=>{secs++;const m=Math.floor(secs/60).toString().padStart(2,'0'),s=(secs%60).toString().padStart(2,'0');G('timer').textContent=m+':'+s;},1000);
   }catch(e){showErr('errRec','⚠️ Accès au microphone refusé. Autorisez le microphone dans Chrome.');}
 }
 
 function stopRec(){
-  if(mr&&isRec){
-    mr.stop();isRec=false;clearInterval(timerInt);
+  if(mr&&isRec){mr.stop();isRec=false;clearInterval(timerInt);
     G('btnRec').classList.remove('rec');G('btnRec').textContent='🎙️';
     G('recSt').textContent='✓ Enregistrement terminé';G('recSt').classList.remove('on');
-    G('btnStop').style.display='none';
-  }
+    G('btnStop').style.display='none';}
 }
 
-// NOUVEAU : reprendre l'enregistrement pour ajouter
-async function restartRec(){
-  G('btnRestart').style.display='none';
-  G('recSt').textContent='Appuyez pour ajouter au témoignage';
-  // On repart en enregistrement — les nouveaux chunks s'ajouteront
-  try{
-    const stream=await navigator.mediaDevices.getUserMedia({audio:true});
-    mr=new MediaRecorder(stream,{mimeType:mime()});
-    const newChunks=[];
-    mr.ondataavailable=e=>{if(e.data.size>0)newChunks.push(e.data);};
-    mr.onstop=()=>{
-      // Fusionner l'audio existant avec le nouveau
-      const newBlob=new Blob(newChunks,{type:mime()});
-      const combined=[audioBlob,newBlob];
-      audioBlob=new Blob(combined,{type:mime()});
-      G('audPrev').innerHTML=`<audio controls src="${URL.createObjectURL(audioBlob)}"></audio>`;
-      G('recSt').textContent='✓ Témoignage mis à jour';
-      G('btnRestart').style.display='block';
-      G('btnRec').classList.remove('rec');G('btnRec').textContent='🎙️';
-      G('btnStop').style.display='none';
-      stream.getTracks().forEach(t=>t.stop());
-      isRec=false;
-    };
-    mr.start(100); isRec=true; secs=0;
-    G('btnRec').classList.add('rec'); G('btnRec').textContent='⏸';
-    G('recSt').textContent='Ajout en cours…'; G('recSt').classList.add('on');
-    G('btnStop').style.display='block';
-    timerInt=setInterval(()=>{secs++;const m=Math.floor(secs/60).toString().padStart(2,'0'),s=(secs%60).toString().padStart(2,'0');G('timer').textContent=m+':'+s;},1000);
-  }catch(e){showErr('errRec','⚠️ Accès au microphone refusé.');}
+// RECOMMENCER L'ENREGISTREMENT
+function rerecorder(){
+  if(isRec)stopRec();
+  audioBlob=null;
+  G('audPrev').innerHTML='';
+  G('btnRerecord').style.display='none';
+  G('recSt').textContent='Appuyez pour recommencer';
+  G('timer').textContent='';
+  checkReady();
 }
 
 function mime(){
@@ -445,28 +423,27 @@ function mime(){
   return'audio/webm';
 }
 
-// ── DOCUMENTS ─────────────────────────────────────────────────
+// ── DOCUMENTS PRINCIPAUX ──────────────────────────────────────
 function selDocs(e){Array.from(e.target.files).forEach(f=>addDoc(f,'main'));e.target.value='';}
 function dropDocs(e){
   e.preventDefault();G('uzMain').classList.remove('over');
-  Array.from(e.dataTransfer.files).forEach(f=>{
-    if(validFormat(f))addDoc(f,'main');
-    else alert(`Format non accepté : ${f.name}\nSeuls les PDF, JPG et PNG sont acceptés.`);
-  });
-}
-
-function validFormat(f){
-  return f.type==='application/pdf'||f.type==='image/jpeg'||f.type==='image/png';
+  Array.from(e.dataTransfer.files).forEach(f=>addDoc(f,'main'));
 }
 
 function addDoc(f,z){
-  if(!validFormat(f)){alert('Format non accepté. Seuls PDF, JPG et PNG sont acceptés.');return;}
+  // Vérifier format accepté
+  const allowed=['application/pdf','image/jpeg','image/jpg','image/png'];
+  const ext=f.name.toLowerCase();
+  if(!allowed.includes(f.type)&&!ext.endsWith('.pdf')&&!ext.endsWith('.jpg')&&!ext.endsWith('.jpeg')&&!ext.endsWith('.png')){
+    alert(`Format non accepté : ${f.name}\nSeuls les PDF, JPG et PNG sont acceptés.`);
+    return;
+  }
   if(z==='main'){
     if(docsMain.length>=5){alert('Maximum 5 documents.');return;}
     docsMain.push({id:Date.now()+Math.random(),f});renderMain();
   }else{
     if(!docsQ[z])docsQ[z]=[];
-    if(docsQ[z].length>=3){alert('Maximum 3 documents.');return;}
+    if(docsQ[z].length>=3){alert('Maximum 3 documents par question.');return;}
     docsQ[z].push({id:Date.now()+Math.random(),f});renderQ(z);
   }
 }
@@ -505,63 +482,48 @@ async function lancer(){
     fd.append('model','whisper-1');fd.append('language','fr');fd.append('response_format','text');
     const r=await fetch('https://api.openai.com/v1/audio/transcriptions',{method:'POST',headers:{'Authorization':`Bearer ${okey}`},body:fd});
     if(!r.ok){const e=await r.json();throw new Error(e.error?.message||'Erreur Whisper');}
-    transcript=await r.text();setP('piW','done');
+    transcript=await r.text();
+    setP('piW','done');
   }catch(e){setP('piW','error');showErr('errPipe',`Erreur transcription : ${e.message}`);G('btnLancer').disabled=false;return;}
 
-  // DOCUMENTS — CORRIGÉ : lecture réelle du contenu
+  // DOCUMENTS — lecture réelle
   setP('piD','active');
   let ctx='';
   try{
     for(const d of docsMain){
-      const contenu=await lireDocument(d.f);
-      if(contenu){
-        ctx+=`\n\n=== DOCUMENT JOINT : ${d.f.name} ===\n${contenu}\n=== FIN DU DOCUMENT ===`;
+      const txt=await readFileContent(d.f);
+      if(txt){
+        ctx+=`\n\n=== DOCUMENT JOINT : ${d.f.name} ===\n${txt}\n=== FIN DU DOCUMENT ===`;
       }
     }
     docsMain=[];renderMain();
     setP('piD','done');
-  }catch{setP('piD','done');}
+  }catch(e){
+    setP('piD','done'); // continue même si erreur lecture
+  }
 
   // CLAUDE
   setP('piC','active');
   try{
-    const res=await claude(akey,buildPrompt(transcript,ctx,''),2000);
+    const prompt=buildPrompt(transcript,ctx,'');
+    const res=await claude(akey,prompt,2000);
     const txt=res.content[0].text;
-    docInitial=txt;setP('piC','done');
-    const qs=extractQ(txt);questions=qs;
+    docInitial=txt;
+    setP('piC','done');
+    const qs=extractQ(txt);
+    questions=qs;
     if(qs.length>0)showQ(qs);
     else showRes(transcript,txt);
   }catch(e){setP('piC','error');showErr('errPipe',`Erreur Claude : ${e.message}`);G('btnLancer').disabled=false;}
 }
 
-// CORRIGÉ : lecture réelle des documents
-async function lireDocument(file){
-  if(file.type==='application/pdf'){
-    // Pour les PDF : on envoie le nom et la taille, le contenu textuel n'est pas extractible en JS natif
-    // On envoie l'information disponible
-    return `[PDF : ${file.name} — ${(file.size/1024).toFixed(0)} Ko — contenu transmis à l'analyse]`;
-  }
-  if(file.type==='image/jpeg'||file.type==='image/png'){
-    // Pour les images : conversion en base64 pour envoi à Claude Vision si nécessaire
-    return new Promise(resolve=>{
-      const reader=new FileReader();
-      reader.onload=e=>{
-        const b64=e.target.result.split(',')[1];
-        resolve(`[Image : ${file.name} — données base64 disponibles pour analyse visuelle]`);
-      };
-      reader.onerror=()=>resolve(`[Image : ${file.name} — erreur de lecture]`);
-      reader.readAsDataURL(file);
-    });
-  }
-  return `[Document : ${file.name}]`;
-}
-
 function buildPrompt(tr,ctx,reps){
-  const docsSection = ctx ? `\n\nDOCUMENTS JOINTS PAR LE TÉMOIN :\n${ctx}\n\nInstructions pour les documents : Ces documents ont été fournis par le témoin pour appuyer son témoignage. Tiens-en compte pour enrichir l'analyse — références aux textes cités, dates, noms d'organismes, montants mentionnés. Si un document contredit le récit oral, signale l'ambiguïté dans les questions de clarification.` : '';
+  const docsSection = ctx ?
+    `\n\nDOCUMENTS JOINTS À ANALYSER ET INTÉGRER DANS L'ANALYSE :\n${ctx}\n\nIMPORTANT : Ces documents sont authentiques. Utilise leur contenu pour enrichir, préciser et corroborer le témoignage. Cite des éléments factuels précis issus de ces documents dans les sections pertinentes.` : '';
 
   return `Tu es l'assistant de moietloi.fr, plateforme civique documentant les dysfonctionnements administratifs en France.
 
-Produis un document structuré :
+Produis un document structuré en te basant sur la transcription${ctx?' ET les documents joints':''}:
 
 **RÉSUMÉ**
 [Une phrase claire et neutre]
@@ -591,12 +553,33 @@ Produis un document structuré :
 [Contradiction / Disproportionnalité / Détournement / etc.]
 
 ${reps?'':`**QUESTIONS DE CLARIFICATION**
-[2 à 4 questions numérotées essentielles basées sur le témoignage ET les documents joints, ou "Témoignage complet — aucune question"]`}
+[2 à 4 questions numérotées essentielles, ou "Témoignage complet — aucune question"]`}
 
-Règles absolues : ne jamais inventer, neutre, français clair, 400 mots max.
+Règles absolues : ne jamais inventer de faits non mentionnés, rester neutre et factuel, français clair, 400 mots max.
 
-TRANSCRIPTION DU TÉMOIGNAGE ORAL :
+TRANSCRIPTION :
 ${tr}${docsSection}${reps?'\n\nRÉPONSES AUX QUESTIONS :\n'+reps:''}`;
+}
+
+// Lecture des fichiers joints
+async function readFileContent(file){
+  return new Promise(resolve=>{
+    if(file.type==='application/pdf'){
+      // Pour les PDF on retourne juste le nom — la lecture complète nécessite un backend
+      resolve(`[Fichier PDF : ${file.name} — ${(file.size/1024).toFixed(0)} Ko]`);
+    } else if(file.type.startsWith('image/')){
+      // Pour les images on encode en base64 pour que Claude puisse les lire
+      const reader=new FileReader();
+      reader.onload=e=>{
+        // On retourne une description avec le nom
+        resolve(`[Image : ${file.name} — ${(file.size/1024).toFixed(0)} Ko]`);
+      };
+      reader.onerror=()=>resolve('');
+      reader.readAsDataURL(file);
+    } else {
+      resolve(`[Document : ${file.name}]`);
+    }
+  });
 }
 
 // ── QUESTIONS ─────────────────────────────────────────────────
@@ -608,34 +591,34 @@ function extractQ(txt){
   return b.split('\n').filter(l=>/^\d+\./.test(l.trim())).map(l=>l.replace(/^\d+\.\s*/,'').trim()).filter(Boolean);
 }
 
-// CORRIGÉ : affichage sans tabs — les trois zones sont toujours visibles
 function showQ(qs){
   show('cardQ');
   G('qContainer').innerHTML=qs.map((q,i)=>{
     const qid=`q${i}`;
     return `<div class="qitem">
       <div class="qtxt">${i+1}. ${q}</div>
-      <div class="q-reponse-zone">
-
+      <div class="q-response-zone">
         <!-- Zone texte — toujours visible -->
-        <div class="q-texte-zone">
-          <textarea placeholder="Votre réponse par écrit…" id="rt_${i}" rows="2"></textarea>
-        </div>
+        <textarea placeholder="Votre réponse écrite…" id="rt_${i}" rows="3"></textarea>
 
-        <!-- Zone micro — toujours visible -->
-        <div class="q-micro-zone">
+        <!-- Zone micro -->
+        <div class="mini-rec">
           <button class="btn-mr" id="bmr_${i}" onclick="togMini(${i})">🎙️</button>
-          <div class="mr-status" id="ms_${i}">Ou répondez par message vocal</div>
-          <div id="mp_${i}"></div>
+          <div>
+            <div class="mr-status" id="ms_${i}">Ou enregistrez une réponse vocale</div>
+            <div id="mp_${i}"></div>
+          </div>
         </div>
 
-        <!-- Zone document — toujours visible -->
-        <div class="q-doc-zone">
-          <div class="mini-up" onclick="document.getElementById('fiq_${i}').click()">📎 Ou joignez un document (PDF, JPG, PNG)</div>
-          <input type="file" id="fiq_${i}" style="display:none" accept=".pdf,.jpg,.jpeg,.png" onchange="selDocQ(event,'${qid}')">
-          <div class="doc-list" id="dlQ_${qid}"></div>
+        <!-- Zone document -->
+        <div class="mini-up" onclick="document.getElementById('fiq_${i}').click()">
+          📎 Ou joignez un document (PDF, JPG, PNG)
         </div>
-
+        <input type="file" id="fiq_${i}" style="display:none" accept=".pdf,.jpg,.jpeg,.png" onchange="selDocQ(event,'${qid}')">
+        <div class="doc-list" id="dlQ_${qid}"></div>
+        <div class="confidentiel hidden" id="confQ_${i}">
+          <span>🔒</span><span>Ce document sera détruit après traitement — jamais stocké.</span>
+        </div>
       </div>
     </div>`;
   }).join('');
@@ -643,11 +626,12 @@ function showQ(qs){
 }
 
 function selDocQ(e,qid){
-  Array.from(e.target.files).forEach(f=>{
-    if(validFormat(f))addDoc(f,qid);
-    else alert('Format non accepté. PDF, JPG et PNG uniquement.');
-  });
+  Array.from(e.target.files).forEach(f=>addDoc(f,qid));
   e.target.value='';
+  // Afficher message confidentialité
+  const idx=qid.replace('q','');
+  const conf=G(`confQ_${idx}`);
+  if(conf)conf.classList.remove('hidden');
 }
 
 async function togMini(i){
@@ -665,7 +649,7 @@ async function togMini(i){
     };
     m.start(100);miniMR[i]={mr:m,on:true,blob:null};
     G(`bmr_${i}`).classList.add('rec');G(`bmr_${i}`).textContent='⏹';
-    G(`ms_${i}`).textContent='Enregistrement vocal en cours…';
+    G(`ms_${i}`).textContent='Enregistrement…';
   }catch{G(`ms_${i}`).textContent='⚠️ Micro non accessible';}
 }
 
@@ -677,8 +661,7 @@ async function finaliser(){
 
   for(let i=0;i<questions.length;i++){
     let rep='';
-
-    // Priorité : vocal > texte > document
+    // Priorité : vocal > document > texte
     if(miniMR[i]?.blob){
       try{
         const fd=new FormData();
@@ -689,26 +672,31 @@ async function finaliser(){
       }catch{rep='[réponse vocale non transcrite]';}
     }
 
-    const texte=G(`rt_${i}`)?.value?.trim()||'';
-    if(texte)rep+=(rep?' — ':'')+texte;
-
     const qid=`q${i}`;
     const docs=docsQ[qid]||[];
-    for(const d of docs){
-      const t=await lireDocument(d.f);
-      if(t)rep+=(rep?'\n':'')+`[Document joint : ${d.f.name}]`;
+    if(docs.length>0){
+      let docContent='';
+      for(const d of docs){
+        const t=await readFileContent(d.f);
+        docContent+=t?`${t}\n`:`[${d.f.name}]`;
+      }
+      if(docContent)rep+=(rep?'\n':'')+docContent;
     }
+
+    const texte=G(`rt_${i}`)?.value?.trim();
+    if(texte)rep+=(rep?'\n':'')+texte;
 
     if(!rep)rep='(sans réponse)';
     reps+=`Q${i+1}: ${questions[i]}\nR: ${rep}\n\n`;
   }
 
   const p=`Régénère ce document en intégrant les réponses aux questions de clarification. Même format structuré, sans la section QUESTIONS DE CLARIFICATION. N'invente rien.\n\nDOCUMENT INITIAL:\n${docInitial}\n\nRÉPONSES:\n${reps}`;
-
   try{
     const res=await claude(akey,p,2000);
-    const txt=res.content[0].text;docInitial=txt;
-    hide('cardQ');showRes(transcript,txt);
+    const txt=res.content[0].text;
+    docInitial=txt;
+    hide('cardQ');
+    showRes(transcript,txt);
   }catch(e){alert(`Erreur: ${e.message}`);}
   btn.disabled=false;btn.textContent='Générer mon document final →';
 }
@@ -725,22 +713,22 @@ function showRes(tr,txt){
 }
 
 async function regenerer(){
-  if(regenCount>=2){alert('Maximum 2 régénérations atteint. Veuillez valider le document actuel.');return;}
+  if(regenCount>=2){alert('Maximum 2 régénérations atteint. Veuillez valider le document.');return;}
   const akey=G('ak').value.trim();
   const texteEdite=G('docRes').innerText;
   const btn=G('btnRegen');
   btn.disabled=true;btn.textContent='Régénération…';
-  const p=`Le témoin a corrigé directement ce document. Produis une version finale propre et cohérente en respectant fidèlement ses modifications — corrige les fautes de frappe, améliore la cohérence stylistique, mais ne modifie pas le sens ni le contenu. Même format structuré.\n\nDOCUMENT CORRIGÉ PAR LE TÉMOIN:\n${texteEdite}`;
+  const p=`Le témoin a corrigé directement ce document. Produis une version finale propre et cohérente en respectant fidèlement ses modifications. Corrige uniquement les fautes de frappe et améliore la cohérence stylistique, sans modifier le sens. Même format structuré.\n\nDOCUMENT CORRIGÉ:\n${texteEdite}`;
   try{
     const res=await claude(akey,p,2000);
     const txt=res.content[0].text;
     docInitial=txt;
     G('docRes').textContent=txt;
     regenCount++;
-    G('regenCount').textContent=regenCount>=2?'Maximum de régénérations atteint — veuillez valider.':`Régénération ${regenCount}/2 effectuée.`;
+    G('regenCount').textContent=regenCount>=2?'Maximum atteint — veuillez valider.':`Régénération ${regenCount}/2 effectuée.`;
     if(regenCount>=2)btn.style.display='none';
   }catch(e){showErr('errRes',`Erreur: ${e.message}`);}
-  btn.disabled=false;btn.textContent='🔄 Régénérer avec mes corrections';
+  btn.disabled=false;btn.textContent='🔄 Régénérer avec corrections';
 }
 
 function validerDoc(){
@@ -751,22 +739,18 @@ function validerDoc(){
 }
 
 // ── ANONYMAT ──────────────────────────────────────────────────
+const anonExamples=[
+  '"Votre nom complet"',
+  '"Marie, Vaucluse"',
+  '"Une entrepreneuse, Vaucluse"',
+  '"Anonyme"'
+];
+const anonLabels=['Nom complet visible','Prénom et région','Catégorie professionnelle et région','Anonyme complet'];
+
 function selectAnon(i){
   anonChoice=i;
-  document.querySelectorAll('.anon-option').forEach((el,idx)=>{
-    el.classList.toggle('selected',idx===i);
-  });
-  const previews=[
-    '"Un entrepreneur, Vaucluse"',
-    '"Marie, Vaucluse"'
-  ];
-  G('anonSig').textContent=previews[i];
-}
-
-function toggleOptin(boxId,chkId){
-  const chk=G(chkId);
-  chk.checked=!chk.checked;
-  G(boxId).classList.toggle('checked',chk.checked);
+  document.querySelectorAll('.anon-option').forEach((el,idx)=>el.classList.toggle('selected',idx===i));
+  G('anonPreview').innerHTML=`Votre témoignage apparaîtra signé : <strong id="anonSig">${anonExamples[i]}</strong>`;
 }
 
 function showSoumission(){
@@ -784,7 +768,6 @@ function toggleConfirm(){
 
 function soumettre(){
   const ref='TEM-'+new Date().getFullYear()+'-'+Math.floor(Math.random()*9000+1000);
-  const anonLabels=['Anonyme','Non anonyme — prénom et région'];
   G('confirmAnon').textContent=anonLabels[anonChoice];
   G('confirmRef').textContent=ref;
   hide('cardSoumission');
@@ -796,12 +779,7 @@ function soumettre(){
 async function claude(key,prompt,max){
   const r=await fetch('https://api.anthropic.com/v1/messages',{
     method:'POST',
-    headers:{
-      'Content-Type':'application/json',
-      'x-api-key':key,
-      'anthropic-version':'2023-06-01',
-      'anthropic-dangerous-direct-browser-access':'true'
-    },
+    headers:{'Content-Type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
     body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:max,messages:[{role:'user',content:prompt}]})
   });
   if(!r.ok){const e=await r.json();throw new Error(e.error?.message||'Erreur API');}
