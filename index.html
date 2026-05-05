@@ -87,7 +87,9 @@
   .mini-up { margin-top:10px; padding:10px 14px; border:1.5px dashed #ddd8d0; border-radius:8px; font-size:0.82rem; color:var(--gris-moyen); cursor:pointer; text-align:center; transition:all 0.2s; }
   .mini-up:hover { border-color:var(--vert); color:var(--vert); background:#f0f4f0; }
 
-  .doc-box { background:var(--blanc); border:1.5px solid var(--vert-clair); border-radius:10px; padding:20px; font-size:0.88rem; line-height:1.8; color:var(--gris-fonce); white-space:pre-wrap; }
+  .btn-complement { display:none; margin:10px auto 0; padding:9px 22px; border:1.5px solid var(--vert); background:transparent; color:var(--vert); border-radius:8px; font-size:0.88rem; cursor:pointer; font-family:'Source Sans 3',sans-serif; transition:all 0.2s; }
+  .btn-complement:hover { background:var(--vert); color:white; }
+  .doc-box { background:var(--blanc); border:1.5px solid var(--vert-clair); border-radius:10px; padding:20px; font-size:0.88rem; line-height:1.8; color:var(--gris-fonce); white-space:pre-wrap; outline:none; }
   .tr-box { background:var(--fond); border:1px solid #e0dbd0; border-radius:8px; padding:16px; font-size:0.9rem; line-height:1.7; color:var(--gris-fonce); margin-bottom:16px; max-height:180px; overflow-y:auto; font-style:italic; }
   .slabel { font-size:0.75rem; text-transform:uppercase; letter-spacing:1.5px; color:var(--gris-moyen); margin-bottom:8px; font-weight:500; }
   .ok-badge { display:inline-flex; align-items:center; gap:6px; background:#eef3ee; color:var(--vert); padding:6px 14px; border-radius:20px; font-size:0.82rem; font-weight:500; margin-bottom:16px; }
@@ -110,7 +112,7 @@
   <header>
     <div class="logo">moi <span class="et">&</span> <span class="loi">loi</span></div>
     <div class="sous-titre">Témoignages citoyens</div>
-    <span class="badge">Test pipeline v3</span>
+    <span class="badge">Test pipeline v4</span>
   </header>
 
   <!-- 1. CLÉS -->
@@ -138,6 +140,7 @@
       <button class="btn-stop" id="btnStop" onclick="stopRec()">Terminer l'enregistrement</button>
     </div>
     <div id="audPrev"></div>
+    <button class="btn-complement" id="btnComplement" onclick="ajouterComplement()">+ Ajouter un complément vocal</button>
     <div class="err-box" id="errRec"></div>
   </div>
 
@@ -192,8 +195,8 @@
     <div class="slabel">Transcription brute (Whisper)</div>
     <div class="tr-box" id="trRes">—</div>
     <hr>
-    <div class="slabel">Document structuré</div>
-    <div class="doc-box" id="docRes">—</div>
+    <div class="slabel">Document structuré <span style="font-size:0.7rem;color:var(--gris-clair);font-style:italic;font-weight:400;">— cliquez pour corriger directement</span></div>
+    <div class="doc-box" id="docRes" contenteditable="true" spellcheck="false">—</div>
     <hr>
 
     <!-- VALIDATION / CORRECTION -->
@@ -262,8 +265,11 @@ async function startRec(){
     chunks=[];
     mr.ondataavailable=e=>{if(e.data.size>0)chunks.push(e.data);};
     mr.onstop=()=>{
-      audioBlob=new Blob(chunks,{type:mime()});
+      const raw=new Blob(chunks,{type:mime()});
+      audioBlob=buildFinalBlob(raw);
+      allChunks=[];// reset après fusion
       G('audPrev').innerHTML=`<audio controls src="${URL.createObjectURL(audioBlob)}"></audio>`;
+      G('btnComplement').style.display='block';
       checkReady(); stream.getTracks().forEach(t=>t.stop());
     };
     mr.start(100); isRec=true; secs=0;
@@ -278,7 +284,28 @@ function stopRec(){
   if(mr&&isRec){mr.stop();isRec=false;clearInterval(timerInt);
     G('btnRec').classList.remove('rec');G('btnRec').textContent='🎙️';
     G('recSt').textContent='✓ Enregistrement terminé';G('recSt').classList.remove('on');
-    G('btnStop').style.display='none';}
+    G('btnStop').style.display='none';
+    G('btnComplement').style.display='block';}
+}
+
+let allChunks=[];// accumule tous les segments (principal + compléments)
+
+async function ajouterComplement(){
+  // Sauvegarde le blob actuel dans allChunks puis relance l'enregistrement
+  if(audioBlob) allChunks.push(audioBlob);
+  audioBlob=null;
+  G('btnComplement').style.display='none';
+  G('recSt').textContent='Ajoutez votre complément…';
+  G('recSt').classList.add('on');
+  G('audPrev').innerHTML='';
+  await startRec();
+}
+
+// Surcharge onstop pour fusionner les blobs si nécessaire
+function buildFinalBlob(newBlob){
+  if(allChunks.length===0) return newBlob;
+  // Concatène tous les segments en un seul Blob du même type
+  return new Blob([...allChunks, newBlob], {type: newBlob.type});
 }
 
 function mime(){const t=['audio/webm;codecs=opus','audio/webm','audio/mp4','audio/ogg'];for(const m of t)if(MediaRecorder.isTypeSupported(m))return m;return'audio/webm';}
@@ -321,6 +348,7 @@ async function lancer(){
   const okey=G('ok').value.trim(), akey=G('ak').value.trim();
   show('cardProg');hide('cardQ');hide('cardRes');
   G('btnLancer').disabled=true; hide('errPipe');
+  G('btnComplement').style.display='none';
   scrollEl('cardProg');
 
   // WHISPER
@@ -433,6 +461,9 @@ function showQ(qs){
 }
 
 function swM(i,mode){
+  // Si on quitte le mode vocal et que le micro est actif, l'arrêter
+  if(mode!=='voc' && miniMR[i]?.on){ miniMR[i].mr.stop(); miniMR[i].on=false; }
+
   ['txt','voc','doc'].forEach(m=>{
     G(`zt_${i}`)?.classList.toggle('hidden',m!==mode);
     G(`zv_${i}`)?.classList.toggle('hidden',m!==mode);
@@ -441,6 +472,9 @@ function swM(i,mode){
     G(`bmv_${i}`)?.classList.toggle('on',m===mode&&mode==='voc');
     G(`bmd_${i}`)?.classList.toggle('on',m===mode&&mode==='doc');
   });
+
+  // Lancer le micro automatiquement quand on passe en mode vocal
+  if(mode==='voc' && !miniMR[i]?.on && !miniMR[i]?.blob){ togMini(i); }
 }
 
 async function togMini(i){
@@ -497,7 +531,10 @@ async function finaliser(){
 // ── RÉSULTAT ──────────────────────────────────────────────────
 function showRes(tr,txt){
   show('cardRes');
-  G('trRes').textContent=tr;G('docRes').textContent=txt;
+  G('trRes').textContent=tr;
+  G('docRes').innerText=txt;
+  // Sync docInitial quand l'utilisateur édite directement dans la zone
+  G('docRes').oninput=()=>{ docInitial=G('docRes').innerText; };
   show('zoneValidation');hide('zoneCorr');hide('zoneFinal');
   hide('errCorr');scrollEl('cardRes');
 }
@@ -555,7 +592,7 @@ async function appliquerCorr(){
   try{
     const res=await claude(akey,p,2000);
     const txt=res.content[0].text;docInitial=txt;
-    G('docRes').textContent=txt;corrCount++;
+    G('docRes').innerText=txt;corrCount++;
     hide('zoneCorr');
     if(corrCount>=2)document.querySelector('.btn-s[onclick="showCorr()"]').style.display='none';
     scrollEl('docRes');
