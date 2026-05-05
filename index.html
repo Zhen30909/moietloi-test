@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>moietloi.fr — Test Audio Pipeline</title>
+<title>moietloi.fr — Test Pipeline Complet</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Source+Sans+3:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -17,7 +17,6 @@
     --fond: #f7f4ef;
     --blanc: #ffffff;
     --rouge-erreur: #c0392b;
-    --vert-succes: #5a7260;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -30,12 +29,8 @@
     padding: 20px;
   }
 
-  .container {
-    max-width: 720px;
-    margin: 0 auto;
-  }
+  .container { max-width: 720px; margin: 0 auto; }
 
-  /* HEADER */
   header {
     text-align: center;
     padding: 40px 0 32px;
@@ -47,17 +42,10 @@
     font-family: 'Playfair Display', serif;
     font-size: 2.4rem;
     color: var(--gris-fonce);
-    letter-spacing: -0.5px;
   }
 
-  .logo-text .et {
-    color: var(--peche);
-    font-style: italic;
-  }
-
-  .logo-text .loi {
-    color: var(--vert);
-  }
+  .logo-text .et { color: var(--peche); font-style: italic; }
+  .logo-text .loi { color: var(--vert); }
 
   .sous-titre {
     font-size: 0.85rem;
@@ -80,7 +68,6 @@
     text-transform: uppercase;
   }
 
-  /* CARDS */
   .card {
     background: var(--blanc);
     border-radius: 12px;
@@ -101,13 +88,11 @@
   }
 
   .step-num {
-    width: 28px;
-    height: 28px;
+    width: 28px; height: 28px;
     border-radius: 50%;
     background: var(--vert);
     color: white;
     font-size: 0.8rem;
-    font-family: 'Source Sans 3', sans-serif;
     font-weight: 500;
     display: flex;
     align-items: center;
@@ -115,10 +100,7 @@
     flex-shrink: 0;
   }
 
-  /* INPUTS */
-  .input-group {
-    margin-bottom: 16px;
-  }
+  .input-group { margin-bottom: 16px; }
 
   label {
     display: block;
@@ -130,8 +112,7 @@
     font-weight: 500;
   }
 
-  input[type="password"],
-  input[type="text"] {
+  input[type="password"], input[type="text"], textarea {
     width: 100%;
     padding: 12px 16px;
     border: 1.5px solid #ddd8d0;
@@ -144,11 +125,8 @@
     -webkit-appearance: none;
   }
 
-  input:focus {
-    outline: none;
-    border-color: var(--vert);
-    background: white;
-  }
+  textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
+  input:focus, textarea:focus { outline: none; border-color: var(--vert); background: white; }
 
   .hint {
     font-size: 0.78rem;
@@ -157,11 +135,7 @@
     font-style: italic;
   }
 
-  /* ENREGISTREMENT */
-  .record-zone {
-    text-align: center;
-    padding: 20px 0;
-  }
+  .record-zone { text-align: center; padding: 20px 0; }
 
   .record-instruction {
     font-size: 0.95rem;
@@ -172,8 +146,7 @@
   }
 
   .btn-record {
-    width: 80px;
-    height: 80px;
+    width: 80px; height: 80px;
     border-radius: 50%;
     border: none;
     background: var(--vert);
@@ -193,24 +166,15 @@
   .btn-record.recording {
     background: var(--peche);
     animation: pulse 1.5s infinite;
-    box-shadow: 0 4px 16px rgba(212,149,106,0.4);
   }
 
   @keyframes pulse {
-    0%, 100% { transform: scale(1); box-shadow: 0 4px 16px rgba(212,149,106,0.4); }
-    50% { transform: scale(1.08); box-shadow: 0 6px 24px rgba(212,149,106,0.6); }
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.08); }
   }
 
-  .record-status {
-    font-size: 0.9rem;
-    color: var(--gris-moyen);
-    min-height: 24px;
-  }
-
-  .record-status.active {
-    color: var(--peche);
-    font-weight: 500;
-  }
+  .record-status { font-size: 0.9rem; color: var(--gris-moyen); min-height: 24px; }
+  .record-status.active { color: var(--peche); font-weight: 500; }
 
   .timer {
     font-size: 1.4rem;
@@ -236,6 +200,62 @@
 
   .btn-stop:hover { background: var(--peche); color: white; }
 
+  /* DOCUMENTS */
+  .upload-zone {
+    border: 2px dashed #ddd8d0;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 12px;
+  }
+
+  .upload-zone:hover { border-color: var(--vert); background: #f0f4f0; }
+  .upload-zone.dragover { border-color: var(--vert); background: #e8f0e8; }
+
+  .upload-icon { font-size: 2rem; margin-bottom: 8px; }
+
+  .upload-text {
+    font-size: 0.9rem;
+    color: var(--gris-moyen);
+    line-height: 1.5;
+  }
+
+  .upload-text strong { color: var(--vert); }
+
+  .documents-liste { margin-top: 12px; }
+
+  .document-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px;
+    background: var(--fond);
+    border-radius: 6px;
+    margin-bottom: 6px;
+    font-size: 0.85rem;
+  }
+
+  .document-item .doc-name { color: var(--gris-fonce); }
+  .document-item .doc-remove {
+    cursor: pointer;
+    color: var(--gris-moyen);
+    font-size: 1rem;
+    background: none;
+    border: none;
+    padding: 0 4px;
+  }
+
+  .destruction-notice {
+    font-size: 0.78rem;
+    color: var(--vert);
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
   /* BUTTONS */
   .btn-primary {
     width: 100%;
@@ -249,16 +269,30 @@
     font-weight: 500;
     cursor: pointer;
     transition: all 0.2s;
-    letter-spacing: 0.3px;
   }
 
   .btn-primary:hover { background: #4a6050; }
   .btn-primary:disabled { background: #b0c0b8; cursor: not-allowed; }
 
-  /* PROGRESS */
-  .progress-section {
-    display: none;
+  .btn-secondary {
+    width: 100%;
+    padding: 12px;
+    background: transparent;
+    color: var(--vert);
+    border: 1.5px solid var(--vert);
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-family: 'Source Sans 3', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 10px;
   }
+
+  .btn-secondary:hover { background: var(--vert); color: white; }
+
+  /* PROGRESS */
+  .progress-section { display: none; }
 
   .progress-step {
     display: flex;
@@ -273,8 +307,7 @@
   .progress-step:last-child { border-bottom: none; }
 
   .step-icon {
-    width: 24px;
-    height: 24px;
+    width: 24px; height: 24px;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -294,10 +327,82 @@
     50% { opacity: 0.6; }
   }
 
-  /* RÉSULTAT */
-  .resultat-section {
-    display: none;
+  /* QUESTIONS DE CLARIFICATION */
+  .questions-section { display: none; }
+
+  .question-item {
+    background: var(--fond);
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+    border-left: 3px solid var(--peche);
   }
+
+  .question-text {
+    font-size: 0.95rem;
+    color: var(--gris-fonce);
+    margin-bottom: 12px;
+    line-height: 1.5;
+    font-style: italic;
+  }
+
+  .reponse-mode {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .btn-mode {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    border: 1.5px solid #ddd8d0;
+    background: var(--blanc);
+    color: var(--gris-moyen);
+    font-family: 'Source Sans 3', sans-serif;
+    transition: all 0.2s;
+  }
+
+  .btn-mode.active {
+    border-color: var(--vert);
+    background: var(--vert);
+    color: white;
+  }
+
+  .reponse-texte { display: block; }
+  .reponse-vocal { display: none; }
+
+  .mini-recorder {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px;
+    background: var(--blanc);
+    border-radius: 8px;
+    border: 1.5px solid #ddd8d0;
+  }
+
+  .btn-mini-record {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    border: none;
+    background: var(--vert);
+    color: white;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.2s;
+  }
+
+  .btn-mini-record.recording { background: var(--peche); animation: pulse 1.5s infinite; }
+  .mini-record-status { font-size: 0.85rem; color: var(--gris-moyen); }
+
+  /* RÉSULTAT */
+  .resultat-section { display: none; }
 
   .transcript-box {
     background: var(--fond);
@@ -346,7 +451,6 @@
     margin-bottom: 16px;
   }
 
-  /* ERREUR */
   .error-box {
     display: none;
     background: #fdf0ef;
@@ -358,23 +462,21 @@
     margin-top: 12px;
   }
 
-  /* AUDIO PLAYER */
-  audio {
-    width: 100%;
-    margin-top: 12px;
-    border-radius: 8px;
-  }
+  audio { width: 100%; margin-top: 12px; border-radius: 8px; }
 
-  /* FOOTER */
   footer {
     text-align: center;
     padding: 32px 0 20px;
     font-size: 0.78rem;
     color: #b0a898;
-    letter-spacing: 0.3px;
   }
 
-  /* MOBILE */
+  .separator {
+    border: none;
+    border-top: 1px solid var(--beige);
+    margin: 20px 0;
+  }
+
   @media (max-width: 480px) {
     .logo-text { font-size: 2rem; }
     .card { padding: 20px; }
@@ -387,7 +489,7 @@
   <header>
     <div class="logo-text">moi <span class="et">&</span> <span class="loi">loi</span></div>
     <div class="sous-titre">Témoignages citoyens</div>
-    <span class="badge-test">Test pipeline audio</span>
+    <span class="badge-test">Test pipeline complet v2</span>
   </header>
 
   <!-- ÉTAPE 1 : CLÉS API -->
@@ -399,14 +501,12 @@
     <div class="input-group">
       <label>Clé OpenAI (Whisper)</label>
       <input type="password" id="openai-key" placeholder="sk-proj-..." autocomplete="off">
-      <div class="hint">Pour la transcription audio en français</div>
     </div>
     <div class="input-group">
       <label>Clé Anthropic (Claude)</label>
       <input type="password" id="anthropic-key" placeholder="sk-ant-..." autocomplete="off">
-      <div class="hint">Pour structurer le témoignage</div>
     </div>
-    <div class="hint" style="margin-top: 4px;">🔒 Ces clés restent dans votre navigateur — elles ne sont jamais transmises ni stockées.</div>
+    <div class="hint">🔒 Ces clés restent dans votre navigateur — jamais transmises ni stockées.</div>
   </div>
 
   <!-- ÉTAPE 2 : ENREGISTREMENT -->
@@ -426,89 +526,141 @@
     <div class="error-box" id="error-record"></div>
   </div>
 
-  <!-- ÉTAPE 3 : TRAITEMENT -->
-  <div class="card progress-section" id="card-progress">
+  <!-- ÉTAPE 3 : DOCUMENTS -->
+  <div class="card" id="card-documents">
     <div class="card-title">
       <span class="step-num">3</span>
-      Traitement en cours…
+      Documents complémentaires
+      <span style="font-size:0.75rem; color: var(--gris-moyen); font-family: 'Source Sans 3'; font-weight: 300; margin-left: 4px;">(optionnel)</span>
     </div>
-    <div class="progress-step" id="step-transcription">
-      <div class="step-icon" id="icon-transcription">1</div>
-      <span>Transcription Whisper en français…</span>
-    </div>
-    <div class="progress-step" id="step-analyse">
-      <div class="step-icon" id="icon-analyse">2</div>
-      <span>Analyse et structuration par Claude…</span>
-    </div>
-    <div class="progress-step" id="step-document">
-      <div class="step-icon" id="icon-document">3</div>
-      <span>Génération du document de témoignage…</span>
-    </div>
-  </div>
+    <p style="font-size: 0.9rem; color: var(--gris-moyen); margin-bottom: 16px; line-height: 1.6;">
+      Vous pouvez joindre des documents pour enrichir votre témoignage — courriers, arrêtés, refus, échanges écrits avec l'administration.
+    </p>
 
-  <!-- RÉSULTAT -->
-  <div class="card resultat-section" id="card-resultat">
-    <div class="card-title">
-      <span class="step-num">✓</span>
-      Résultat du pipeline
+    <div class="upload-zone" id="upload-zone" onclick="document.getElementById('file-input').click()" 
+         ondragover="event.preventDefault(); this.classList.add('dragover')"
+         ondragleave="this.classList.remove('dragover')"
+         ondrop="handleDrop(event)">
+      <div class="upload-icon">📎</div>
+      <div class="upload-text">
+        <strong>Glissez vos documents ici</strong><br>
+        ou cliquez pour sélectionner<br>
+        <span style="font-size: 0.75rem;">PDF, Word, images acceptés</span>
+      </div>
     </div>
 
-    <div class="succes-badge">✓ Pipeline fonctionnel</div>
+    <input type="file" id="file-input" multiple accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" style="display:none" onchange="handleFileSelect(event)">
 
-    <div class="section-label">Transcription brute (Whisper)</div>
-    <div class="transcript-box" id="transcript-result">—</div>
+    <div class="documents-liste" id="documents-liste"></div>
 
-    <div class="section-label">Document structuré (Claude)</div>
-    <div class="document-box" id="document-result">—</div>
-
-    <div class="error-box" id="error-pipeline"></div>
+    <div class="destruction-notice" id="destruction-notice" style="display:none">
+      🔒 Ces documents seront détruits automatiquement après traitement — jamais stockés ni publiés.
+    </div>
   </div>
 
   <!-- BOUTON LANCER -->
   <button class="btn-primary" id="btn-lancer" onclick="lancerPipeline()" disabled>
-    Lancer le pipeline →
+    Analyser mon témoignage →
   </button>
 
-  <footer>moietloi.fr — Test technique · Les clés API ne sont jamais stockées</footer>
+  <!-- ÉTAPE 4 : TRAITEMENT -->
+  <div class="card progress-section" id="card-progress" style="margin-top: 20px;">
+    <div class="card-title">
+      <span class="step-num">4</span>
+      Traitement en cours…
+    </div>
+    <div class="progress-step">
+      <div class="step-icon" id="icon-transcription">1</div>
+      <span>Transcription Whisper en français…</span>
+    </div>
+    <div class="progress-step">
+      <div class="step-icon" id="icon-documents-ai">2</div>
+      <span>Analyse des documents joints…</span>
+    </div>
+    <div class="progress-step">
+      <div class="step-icon" id="icon-analyse">3</div>
+      <span>Structuration par Claude…</span>
+    </div>
+    <div class="error-box" id="error-pipeline"></div>
+  </div>
+
+  <!-- ÉTAPE 5 : QUESTIONS DE CLARIFICATION -->
+  <div class="card questions-section" id="card-questions" style="margin-top: 20px;">
+    <div class="card-title">
+      <span class="step-num">5</span>
+      Questions de clarification
+    </div>
+    <p style="font-size: 0.9rem; color: var(--gris-moyen); margin-bottom: 20px; line-height: 1.6; font-style: italic;">
+      Pour compléter votre dossier, quelques questions. Répondez comme vous le souhaitez — par écrit ou par message vocal.
+    </p>
+    <div id="questions-container"></div>
+    <button class="btn-primary" id="btn-finaliser" onclick="finaliserDocument()" style="margin-top: 8px;">
+      Générer mon document final →
+    </button>
+  </div>
+
+  <!-- ÉTAPE 6 : DOCUMENT FINAL -->
+  <div class="card resultat-section" id="card-resultat" style="margin-top: 20px;">
+    <div class="card-title">
+      <span class="step-num">✓</span>
+      Votre témoignage structuré
+    </div>
+
+    <div class="succes-badge">✓ Pipeline complet fonctionnel</div>
+
+    <div class="section-label">Transcription brute (Whisper)</div>
+    <div class="transcript-box" id="transcript-result">—</div>
+
+    <hr class="separator">
+
+    <div class="section-label">Document structuré final (Claude)</div>
+    <div class="document-box" id="document-result">—</div>
+
+    <div class="error-box" id="error-final"></div>
+
+    <button class="btn-secondary" onclick="location.reload()" style="margin-top: 16px;">
+      🔄 Tester un nouveau témoignage
+    </button>
+  </div>
+
+  <footer>moietloi.fr — Test technique v2 · Les clés API et documents ne sont jamais stockés</footer>
 
 </div>
 
 <script>
-// ─── ÉTAT ───────────────────────────────────────────────────
+// ─── ÉTAT GLOBAL ─────────────────────────────────────────────
 let mediaRecorder = null;
 let audioChunks = [];
 let audioBlob = null;
 let isRecording = false;
 let timerInterval = null;
 let seconds = 0;
+let documentsJoints = [];
+let transcriptGlobal = '';
+let questionsGlobales = [];
 
-// ─── ENREGISTREMENT ─────────────────────────────────────────
+// Mini recorders pour les questions
+let miniRecorders = {};
+
+// ─── ENREGISTREMENT PRINCIPAL ────────────────────────────────
 async function toggleRecord() {
-  if (isRecording) {
-    stopRecord();
-  } else {
-    await startRecord();
-  }
+  if (isRecording) stopRecord();
+  else await startRecord();
 }
 
 async function startRecord() {
   const errorBox = document.getElementById('error-record');
   errorBox.style.display = 'none';
-
   try {
     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
     mediaRecorder = new MediaRecorder(stream, { mimeType: getSupportedMimeType() });
     audioChunks = [];
 
-    mediaRecorder.ondataavailable = e => {
-      if (e.data.size > 0) audioChunks.push(e.data);
-    };
-
+    mediaRecorder.ondataavailable = e => { if (e.data.size > 0) audioChunks.push(e.data); };
     mediaRecorder.onstop = () => {
-      const mimeType = getSupportedMimeType();
-      audioBlob = new Blob(audioChunks, { type: mimeType });
+      audioBlob = new Blob(audioChunks, { type: getSupportedMimeType() });
       showAudioPreview();
-      document.getElementById('btn-lancer').disabled = false;
+      checkLancerReady();
       stream.getTracks().forEach(t => t.stop());
     };
 
@@ -531,7 +683,7 @@ async function startRecord() {
 
   } catch (err) {
     errorBox.style.display = 'block';
-    errorBox.textContent = '⚠️ Accès au microphone refusé. Autorisez le microphone dans les réglages Safari.';
+    errorBox.textContent = '⚠️ Accès au microphone refusé. Autorisez le microphone dans les réglages Chrome.';
   }
 }
 
@@ -540,7 +692,6 @@ function stopRecord() {
     mediaRecorder.stop();
     isRecording = false;
     clearInterval(timerInterval);
-
     document.getElementById('btn-record').classList.remove('recording');
     document.getElementById('btn-record').textContent = '🎙️';
     document.getElementById('record-status').textContent = '✓ Enregistrement terminé';
@@ -559,30 +710,74 @@ function getSupportedMimeType() {
 
 function showAudioPreview() {
   const url = URL.createObjectURL(audioBlob);
-  document.getElementById('audio-preview').innerHTML =
-    `<audio controls src="${url}"></audio>`;
+  document.getElementById('audio-preview').innerHTML = `<audio controls src="${url}"></audio>`;
 }
 
-// ─── PIPELINE ───────────────────────────────────────────────
+// ─── GESTION DOCUMENTS ───────────────────────────────────────
+function handleFileSelect(event) {
+  Array.from(event.target.files).forEach(addDocument);
+}
+
+function handleDrop(event) {
+  event.preventDefault();
+  document.getElementById('upload-zone').classList.remove('dragover');
+  Array.from(event.dataTransfer.files).forEach(addDocument);
+}
+
+function addDocument(file) {
+  if (documentsJoints.length >= 5) {
+    alert('Maximum 5 documents autorisés.');
+    return;
+  }
+  const id = Date.now() + Math.random();
+  documentsJoints.push({ id, file });
+  renderDocuments();
+}
+
+function removeDocument(id) {
+  documentsJoints = documentsJoints.filter(d => d.id !== id);
+  renderDocuments();
+}
+
+function renderDocuments() {
+  const liste = document.getElementById('documents-liste');
+  const notice = document.getElementById('destruction-notice');
+
+  if (documentsJoints.length === 0) {
+    liste.innerHTML = '';
+    notice.style.display = 'none';
+    return;
+  }
+
+  notice.style.display = 'flex';
+  liste.innerHTML = documentsJoints.map(d => `
+    <div class="document-item">
+      <span class="doc-name">📄 ${d.file.name} <span style="color:var(--gris-moyen); font-size:0.75rem;">(${(d.file.size/1024).toFixed(0)} Ko)</span></span>
+      <button class="doc-remove" onclick="removeDocument(${d.id})">✕</button>
+    </div>
+  `).join('');
+}
+
+// ─── VÉRIFICATION PRÊT ───────────────────────────────────────
+function checkLancerReady() {
+  const ok = document.getElementById('openai-key').value.trim() &&
+             document.getElementById('anthropic-key').value.trim() &&
+             audioBlob;
+  document.getElementById('btn-lancer').disabled = !ok;
+}
+
+document.getElementById('openai-key').addEventListener('input', checkLancerReady);
+document.getElementById('anthropic-key').addEventListener('input', checkLancerReady);
+
+// ─── PIPELINE PRINCIPAL ──────────────────────────────────────
 async function lancerPipeline() {
   const openaiKey = document.getElementById('openai-key').value.trim();
   const anthropicKey = document.getElementById('anthropic-key').value.trim();
 
-  if (!openaiKey || !anthropicKey) {
-    alert('Veuillez entrer vos deux clés API avant de lancer le pipeline.');
-    return;
-  }
-
-  if (!audioBlob) {
-    alert('Veuillez enregistrer un témoignage audio avant de lancer.');
-    return;
-  }
-
-  // Afficher la progression
   document.getElementById('card-progress').style.display = 'block';
-  document.getElementById('card-resultat').style.display = 'none';
   document.getElementById('btn-lancer').disabled = true;
   document.getElementById('error-pipeline').style.display = 'none';
+  window.scrollTo({ top: document.getElementById('card-progress').offsetTop - 20, behavior: 'smooth' });
 
   // ── ÉTAPE 1 : WHISPER ──
   setStepActive('transcription');
@@ -590,7 +785,6 @@ async function lancerPipeline() {
 
   try {
     const formData = new FormData();
-    // Convertir en fichier avec extension compatible
     const audioFile = new File([audioBlob], 'temoignage.mp4', { type: audioBlob.type });
     formData.append('file', audioFile);
     formData.append('model', 'whisper-1');
@@ -609,21 +803,48 @@ async function lancerPipeline() {
     }
 
     transcript = await whisperRes.text();
+    transcriptGlobal = transcript;
     setStepDone('transcription');
 
   } catch (err) {
     setStepError('transcription');
-    showError('error-pipeline', `Erreur transcription Whisper : ${err.message}`);
+    showError('error-pipeline', `Erreur transcription : ${err.message}`);
     document.getElementById('btn-lancer').disabled = false;
     return;
   }
 
-  // ── ÉTAPE 2 : CLAUDE ──
+  // ── ÉTAPE 2 : DOCUMENTS ──
+  setStepActive('documents-ai');
+  let contexteDocs = '';
+
+  if (documentsJoints.length > 0) {
+    try {
+      // Lire les documents comme texte si possible
+      for (const doc of documentsJoints) {
+        const text = await readFileAsText(doc.file);
+        if (text) {
+          contexteDocs += `\n\nDOCUMENT JOINT (${doc.file.name}) :\n${text.substring(0, 2000)}`;
+        }
+      }
+      // Destruction simulée après lecture
+      documentsJoints = [];
+      renderDocuments();
+      setStepDone('documents-ai');
+    } catch (err) {
+      setStepDone('documents-ai'); // On continue même si erreur lecture
+    }
+  } else {
+    setStepDone('documents-ai');
+  }
+
+  // ── ÉTAPE 3 : CLAUDE ──
   setStepActive('analyse');
 
   const prompt = `Tu es l'assistant de moietloi.fr, une plateforme civique qui documente les dysfonctionnements administratifs et réglementaires vécus par des citoyens et entrepreneurs en France.
 
-Tu reçois la transcription d'un témoignage oral spontané. Produis un document structuré selon ce format exact :
+Tu reçois la transcription d'un témoignage oral spontané${contexteDocs ? ' ainsi que des documents joints' : ''}.
+
+Produis un document structuré selon ce format exact :
 
 **RÉSUMÉ**
 [Une phrase claire et neutre décrivant la situation]
@@ -643,6 +864,9 @@ Tu reçois la transcription d'un témoignage oral spontané. Produis un document
 **VOLET 2 — ABUS DANS L'APPLICATION**
 [En quoi l'application est disproportionnée ou détournée — si applicable]
 
+**VOLET 3 — VERROUILLAGE SYSTÉMIQUE**
+[Si les recours eux-mêmes ne fonctionnent pas — sinon indiquer "Non applicable"]
+
 **DOMAINES RÉGLEMENTAIRES**
 [Urbanisme / ERP / Droit rural / etc.]
 
@@ -650,16 +874,16 @@ Tu reçois la transcription d'un témoignage oral spontané. Produis un document
 [Contradiction / Disproportionnalité / Détournement de procédure / etc.]
 
 **QUESTIONS DE CLARIFICATION**
-[Maximum 3 questions essentielles pour compléter le dossier — ou "Témoignage complet" si rien ne manque]
+[Liste de 2 à 4 questions essentielles numérotées, ou "Témoignage complet — aucune question nécessaire"]
 
 Règles absolues :
 - Ne jamais ajouter de faits non mentionnés
 - Rester neutre et factuel
 - Utiliser un français clair et sobre
-- Si un volet ne s'applique pas, l'indiquer brièvement
+- Maximum 400 mots au total
 
 TRANSCRIPTION :
-${transcript}`;
+${transcript}${contexteDocs}`;
 
   try {
     const claudeRes = await fetch('https://api.anthropic.com/v1/messages', {
@@ -672,7 +896,7 @@ ${transcript}`;
       },
       body: JSON.stringify({
         model: 'claude-sonnet-4-20250514',
-        max_tokens: 1500,
+        max_tokens: 2000,
         messages: [{ role: 'user', content: prompt }]
       })
     });
@@ -683,18 +907,19 @@ ${transcript}`;
     }
 
     const claudeData = await claudeRes.json();
-    const documentStructure = claudeData.content[0].text;
-
+    const documentTexte = claudeData.content[0].text;
     setStepDone('analyse');
-    setStepDone('document');
 
-    // Afficher les résultats
-    document.getElementById('card-resultat').style.display = 'block';
-    document.getElementById('transcript-result').textContent = transcript;
-    document.getElementById('document-result').textContent = documentStructure;
+    // Extraire les questions
+    const questions = extraireQuestions(documentTexte);
+    questionsGlobales = questions;
 
-    // Scroll vers le résultat
-    document.getElementById('card-resultat').scrollIntoView({ behavior: 'smooth' });
+    if (questions.length > 0) {
+      afficherQuestions(questions, documentTexte);
+    } else {
+      // Pas de questions — afficher directement le document final
+      afficherResultat(transcript, documentTexte);
+    }
 
   } catch (err) {
     setStepError('analyse');
@@ -702,10 +927,214 @@ ${transcript}`;
     document.getElementById('btn-lancer').disabled = false;
     return;
   }
+}
 
-  document.getElementById('btn-lancer').disabled = false;
-  document.getElementById('btn-lancer').textContent = '🔄 Tester à nouveau';
-  document.getElementById('btn-lancer').onclick = () => location.reload();
+// ─── QUESTIONS DE CLARIFICATION ──────────────────────────────
+function extraireQuestions(documentTexte) {
+  const match = documentTexte.match(/\*\*QUESTIONS DE CLARIFICATION\*\*\n([\s\S]*?)(?=\n\*\*|$)/);
+  if (!match) return [];
+
+  const bloc = match[1].trim();
+  if (bloc.includes('Témoignage complet') || bloc.includes('aucune question')) return [];
+
+  const lignes = bloc.split('\n').filter(l => l.trim() && /^\d+\./.test(l.trim()));
+  return lignes.map(l => l.replace(/^\d+\.\s*/, '').trim()).filter(Boolean);
+}
+
+function afficherQuestions(questions, documentInitial) {
+  document.getElementById('card-questions').style.display = 'block';
+
+  const container = document.getElementById('questions-container');
+  container.innerHTML = questions.map((q, i) => `
+    <div class="question-item" id="question-${i}">
+      <div class="question-text">${i + 1}. ${q}</div>
+      <div class="reponse-mode">
+        <button class="btn-mode active" id="mode-texte-${i}" onclick="switchMode(${i}, 'texte')">✏️ Texte</button>
+        <button class="btn-mode" id="mode-vocal-${i}" onclick="switchMode(${i}, 'vocal')">🎙️ Vocal</button>
+      </div>
+      <div class="reponse-texte" id="texte-${i}">
+        <textarea placeholder="Votre réponse…" id="reponse-texte-${i}" rows="3"></textarea>
+      </div>
+      <div class="reponse-vocal" id="vocal-${i}">
+        <div class="mini-recorder">
+          <button class="btn-mini-record" id="btn-mini-${i}" onclick="toggleMiniRecord(${i})">🎙️</button>
+          <div>
+            <div class="mini-record-status" id="mini-status-${i}">Appuyez pour enregistrer</div>
+            <div id="mini-preview-${i}"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `).join('');
+
+  // Stocker le document initial pour la régénération
+  container.dataset.documentInitial = documentInitial;
+
+  window.scrollTo({ top: document.getElementById('card-questions').offsetTop - 20, behavior: 'smooth' });
+}
+
+function switchMode(index, mode) {
+  document.getElementById(`texte-${index}`).style.display = mode === 'texte' ? 'block' : 'none';
+  document.getElementById(`vocal-${index}`).style.display = mode === 'vocal' ? 'block' : 'none';
+  document.getElementById(`mode-texte-${index}`).classList.toggle('active', mode === 'texte');
+  document.getElementById(`mode-vocal-${index}`).classList.toggle('active', mode === 'vocal');
+}
+
+// Mini recorders pour les réponses vocales
+function toggleMiniRecord(index) {
+  if (miniRecorders[index] && miniRecorders[index].isRecording) {
+    stopMiniRecord(index);
+  } else {
+    startMiniRecord(index);
+  }
+}
+
+async function startMiniRecord(index) {
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    const mr = new MediaRecorder(stream, { mimeType: getSupportedMimeType() });
+    const chunks = [];
+
+    mr.ondataavailable = e => { if (e.data.size > 0) chunks.push(e.data); };
+    mr.onstop = () => {
+      const blob = new Blob(chunks, { type: getSupportedMimeType() });
+      miniRecorders[index].blob = blob;
+      const url = URL.createObjectURL(blob);
+      document.getElementById(`mini-preview-${index}`).innerHTML = `<audio controls src="${url}" style="width:100%; margin-top:6px;"></audio>`;
+      document.getElementById(`mini-status-${index}`).textContent = '✓ Réponse enregistrée';
+      document.getElementById(`btn-mini-${index}`).classList.remove('recording');
+      document.getElementById(`btn-mini-${index}`).textContent = '🔄';
+      stream.getTracks().forEach(t => t.stop());
+    };
+
+    mr.start(100);
+    miniRecorders[index] = { mr, isRecording: true, blob: null };
+    document.getElementById(`btn-mini-${index}`).classList.add('recording');
+    document.getElementById(`btn-mini-${index}`).textContent = '⏹';
+    document.getElementById(`mini-status-${index}`).textContent = 'Enregistrement…';
+
+  } catch (err) {
+    document.getElementById(`mini-status-${index}`).textContent = '⚠️ Micro non accessible';
+  }
+}
+
+function stopMiniRecord(index) {
+  if (miniRecorders[index] && miniRecorders[index].isRecording) {
+    miniRecorders[index].mr.stop();
+    miniRecorders[index].isRecording = false;
+  }
+}
+
+// ─── FINALISATION DU DOCUMENT ────────────────────────────────
+async function finaliserDocument() {
+  const openaiKey = document.getElementById('openai-key').value.trim();
+  const anthropicKey = document.getElementById('anthropic-key').value.trim();
+
+  document.getElementById('btn-finaliser').disabled = true;
+  document.getElementById('btn-finaliser').textContent = 'Génération en cours…';
+
+  // Collecter les réponses
+  let reponsesTexte = '';
+
+  for (let i = 0; i < questionsGlobales.length; i++) {
+    const modeVocal = document.getElementById(`vocal-${i}`).style.display === 'block';
+    let reponse = '';
+
+    if (modeVocal && miniRecorders[i] && miniRecorders[i].blob) {
+      // Transcrire la réponse vocale
+      try {
+        const formData = new FormData();
+        const audioFile = new File([miniRecorders[i].blob], 'reponse.mp4', { type: miniRecorders[i].blob.type });
+        formData.append('file', audioFile);
+        formData.append('model', 'whisper-1');
+        formData.append('language', 'fr');
+        formData.append('response_format', 'text');
+
+        const res = await fetch('https://api.openai.com/v1/audio/transcriptions', {
+          method: 'POST',
+          headers: { 'Authorization': `Bearer ${openaiKey}` },
+          body: formData
+        });
+
+        if (res.ok) reponse = await res.text();
+      } catch (err) {
+        reponse = '[Réponse vocale non transcrite]';
+      }
+    } else {
+      reponse = document.getElementById(`reponse-texte-${i}`)?.value?.trim() || '(sans réponse)';
+    }
+
+    reponsesTexte += `\nQuestion ${i + 1} : ${questionsGlobales[i]}\nRéponse : ${reponse}\n`;
+  }
+
+  // Régénérer avec Claude en intégrant les réponses
+  const promptFinal = `Tu es l'assistant de moietloi.fr. Tu as déjà produit un premier document structuré à partir d'un témoignage. Le témoin a maintenant répondu aux questions de clarification. 
+
+Régénère le document final en intégrant ces réponses pour enrichir et préciser le témoignage. Utilise exactement le même format structuré que le document initial.
+
+DOCUMENT INITIAL :
+${document.getElementById('questions-container').dataset.documentInitial}
+
+RÉPONSES AUX QUESTIONS DE CLARIFICATION :
+${reponsesTexte}
+
+Produis le document final enrichi en intégrant naturellement les informations apportées par les réponses. Ne mentionne pas les questions dans le document final — intègre les réponses directement dans les sections pertinentes. Supprime la section QUESTIONS DE CLARIFICATION dans le document final.`;
+
+  try {
+    const claudeRes = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': anthropicKey,
+        'anthropic-version': '2023-06-01',
+        'anthropic-dangerous-direct-browser-access': 'true'
+      },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 2000,
+        messages: [{ role: 'user', content: promptFinal }]
+      })
+    });
+
+    if (!claudeRes.ok) {
+      const err = await claudeRes.json();
+      throw new Error(err.error?.message || 'Erreur Claude');
+    }
+
+    const data = await claudeRes.json();
+    const documentFinal = data.content[0].text;
+
+    document.getElementById('card-questions').style.display = 'none';
+    afficherResultat(transcriptGlobal, documentFinal);
+
+  } catch (err) {
+    showError('error-final', `Erreur : ${err.message}`);
+    document.getElementById('btn-finaliser').disabled = false;
+    document.getElementById('btn-finaliser').textContent = 'Générer mon document final →';
+  }
+}
+
+// ─── AFFICHER RÉSULTAT ───────────────────────────────────────
+function afficherResultat(transcript, document_texte) {
+  document.getElementById('card-resultat').style.display = 'block';
+  document.getElementById('transcript-result').textContent = transcript;
+  document.getElementById('document-result').textContent = document_texte;
+  window.scrollTo({ top: document.getElementById('card-resultat').offsetTop - 20, behavior: 'smooth' });
+}
+
+// ─── LECTURE FICHIER ─────────────────────────────────────────
+function readFileAsText(file) {
+  return new Promise((resolve) => {
+    if (file.type === 'text/plain' || file.name.endsWith('.txt')) {
+      const reader = new FileReader();
+      reader.onload = e => resolve(e.target.result);
+      reader.onerror = () => resolve('');
+      reader.readAsText(file);
+    } else {
+      // Pour PDF et autres — on note juste le nom pour l'instant
+      resolve(`[Fichier : ${file.name} — ${(file.size/1024).toFixed(0)} Ko]`);
+    }
+  });
 }
 
 // ─── HELPERS ────────────────────────────────────────────────
@@ -731,17 +1160,6 @@ function showError(id, msg) {
   const box = document.getElementById(id);
   box.style.display = 'block';
   box.textContent = msg;
-}
-
-// Activer le bouton lancer si les deux clés sont remplies
-document.getElementById('openai-key').addEventListener('input', checkReady);
-document.getElementById('anthropic-key').addEventListener('input', checkReady);
-
-function checkReady() {
-  const ok = document.getElementById('openai-key').value.trim() &&
-             document.getElementById('anthropic-key').value.trim() &&
-             audioBlob;
-  document.getElementById('btn-lancer').disabled = !ok;
 }
 </script>
 </body>
