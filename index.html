@@ -3,1164 +3,589 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>moietloi.fr — Test Pipeline Complet</title>
+<title>moietloi.fr — Test Pipeline v3</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Source+Sans+3:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --vert: #5a7260;
-    --vert-clair: #8a9e8a;
-    --beige: #d4c8b0;
-    --peche: #d4956a;
-    --peche-clair: #e8b99a;
-    --gris-fonce: #2d2d2d;
-    --gris-moyen: #6b6b6b;
-    --fond: #f7f4ef;
-    --blanc: #ffffff;
-    --rouge-erreur: #c0392b;
+    --vert: #5a7260; --vert-clair: #8a9e8a; --beige: #d4c8b0;
+    --peche: #d4956a; --gris-fonce: #2d2d2d; --gris-moyen: #6b6b6b;
+    --fond: #f7f4ef; --blanc: #ffffff; --rouge: #c0392b;
   }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    font-family: 'Source Sans 3', sans-serif;
-    background: var(--fond);
-    color: var(--gris-fonce);
-    min-height: 100vh;
-    padding: 20px;
-  }
-
-  .container { max-width: 720px; margin: 0 auto; }
-
-  header {
-    text-align: center;
-    padding: 40px 0 32px;
-    border-bottom: 1px solid var(--beige);
-    margin-bottom: 32px;
-  }
-
-  .logo-text {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.4rem;
-    color: var(--gris-fonce);
-  }
-
-  .logo-text .et { color: var(--peche); font-style: italic; }
-  .logo-text .loi { color: var(--vert); }
-
-  .sous-titre {
-    font-size: 0.85rem;
-    color: var(--gris-moyen);
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin-top: 6px;
-    font-weight: 300;
-  }
-
-  .badge-test {
-    display: inline-block;
-    background: var(--beige);
-    color: var(--gris-moyen);
-    font-size: 0.75rem;
-    padding: 4px 12px;
-    border-radius: 20px;
-    margin-top: 12px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-  }
-
-  .card {
-    background: var(--blanc);
-    border-radius: 12px;
-    padding: 28px;
-    margin-bottom: 20px;
-    border: 1px solid #e8e2d8;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-  }
-
-  .card-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.1rem;
-    color: var(--gris-fonce);
-    margin-bottom: 18px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .step-num {
-    width: 28px; height: 28px;
-    border-radius: 50%;
-    background: var(--vert);
-    color: white;
-    font-size: 0.8rem;
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-  }
-
-  .input-group { margin-bottom: 16px; }
-
-  label {
-    display: block;
-    font-size: 0.8rem;
-    color: var(--gris-moyen);
-    margin-bottom: 6px;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    font-weight: 500;
-  }
-
-  input[type="password"], input[type="text"], textarea {
-    width: 100%;
-    padding: 12px 16px;
-    border: 1.5px solid #ddd8d0;
-    border-radius: 8px;
-    font-size: 0.95rem;
-    font-family: 'Source Sans 3', sans-serif;
-    background: var(--fond);
-    color: var(--gris-fonce);
-    transition: border-color 0.2s;
-    -webkit-appearance: none;
-  }
-
-  textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
-  input:focus, textarea:focus { outline: none; border-color: var(--vert); background: white; }
-
-  .hint {
-    font-size: 0.78rem;
-    color: var(--gris-moyen);
-    margin-top: 5px;
-    font-style: italic;
-  }
-
-  .record-zone { text-align: center; padding: 20px 0; }
-
-  .record-instruction {
-    font-size: 0.95rem;
-    color: var(--gris-moyen);
-    margin-bottom: 24px;
-    line-height: 1.6;
-    font-style: italic;
-  }
-
-  .btn-record {
-    width: 80px; height: 80px;
-    border-radius: 50%;
-    border: none;
-    background: var(--vert);
-    color: white;
-    cursor: pointer;
-    font-size: 2rem;
-    transition: all 0.2s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 16px;
-    box-shadow: 0 4px 16px rgba(90,114,96,0.3);
-  }
-
-  .btn-record:hover { transform: scale(1.05); }
-
-  .btn-record.recording {
-    background: var(--peche);
-    animation: pulse 1.5s infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.08); }
-  }
-
-  .record-status { font-size: 0.9rem; color: var(--gris-moyen); min-height: 24px; }
-  .record-status.active { color: var(--peche); font-weight: 500; }
-
-  .timer {
-    font-size: 1.4rem;
-    font-family: 'Playfair Display', serif;
-    color: var(--peche);
-    margin: 8px 0;
-    min-height: 36px;
-  }
-
-  .btn-stop {
-    display: none;
-    margin: 12px auto 0;
-    padding: 10px 28px;
-    border: 1.5px solid var(--peche);
-    background: transparent;
-    color: var(--peche);
-    border-radius: 8px;
-    font-size: 0.9rem;
-    cursor: pointer;
-    font-family: 'Source Sans 3', sans-serif;
-    transition: all 0.2s;
-  }
-
-  .btn-stop:hover { background: var(--peche); color: white; }
-
-  /* DOCUMENTS */
-  .upload-zone {
-    border: 2px dashed #ddd8d0;
-    border-radius: 8px;
-    padding: 20px;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.2s;
-    margin-top: 12px;
-  }
-
-  .upload-zone:hover { border-color: var(--vert); background: #f0f4f0; }
-  .upload-zone.dragover { border-color: var(--vert); background: #e8f0e8; }
-
-  .upload-icon { font-size: 2rem; margin-bottom: 8px; }
-
-  .upload-text {
-    font-size: 0.9rem;
-    color: var(--gris-moyen);
-    line-height: 1.5;
-  }
-
-  .upload-text strong { color: var(--vert); }
-
-  .documents-liste { margin-top: 12px; }
-
-  .document-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 8px 12px;
-    background: var(--fond);
-    border-radius: 6px;
-    margin-bottom: 6px;
-    font-size: 0.85rem;
-  }
-
-  .document-item .doc-name { color: var(--gris-fonce); }
-  .document-item .doc-remove {
-    cursor: pointer;
-    color: var(--gris-moyen);
-    font-size: 1rem;
-    background: none;
-    border: none;
-    padding: 0 4px;
-  }
-
-  .destruction-notice {
-    font-size: 0.78rem;
-    color: var(--vert);
-    margin-top: 8px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-
-  /* BUTTONS */
-  .btn-primary {
-    width: 100%;
-    padding: 14px;
-    background: var(--vert);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    font-family: 'Source Sans 3', sans-serif;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-
-  .btn-primary:hover { background: #4a6050; }
-  .btn-primary:disabled { background: #b0c0b8; cursor: not-allowed; }
-
-  .btn-secondary {
-    width: 100%;
-    padding: 12px;
-    background: transparent;
-    color: var(--vert);
-    border: 1.5px solid var(--vert);
-    border-radius: 8px;
-    font-size: 0.95rem;
-    font-family: 'Source Sans 3', sans-serif;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s;
-    margin-top: 10px;
-  }
-
-  .btn-secondary:hover { background: var(--vert); color: white; }
-
-  /* PROGRESS */
-  .progress-section { display: none; }
-
-  .progress-step {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 10px 0;
-    border-bottom: 1px solid #f0ebe3;
-    font-size: 0.9rem;
-    color: var(--gris-moyen);
-  }
-
-  .progress-step:last-child { border-bottom: none; }
-
-  .step-icon {
-    width: 24px; height: 24px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.75rem;
-    flex-shrink: 0;
-    background: #e8e2d8;
-    color: var(--gris-moyen);
-  }
-
-  .step-icon.done { background: var(--vert); color: white; }
-  .step-icon.active { background: var(--peche); color: white; animation: pulse-soft 1s infinite; }
-  .step-icon.error { background: var(--rouge-erreur); color: white; }
-
-  @keyframes pulse-soft {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.6; }
-  }
-
-  /* QUESTIONS DE CLARIFICATION */
-  .questions-section { display: none; }
-
-  .question-item {
-    background: var(--fond);
-    border-radius: 8px;
-    padding: 16px;
-    margin-bottom: 16px;
-    border-left: 3px solid var(--peche);
-  }
-
-  .question-text {
-    font-size: 0.95rem;
-    color: var(--gris-fonce);
-    margin-bottom: 12px;
-    line-height: 1.5;
-    font-style: italic;
-  }
-
-  .reponse-mode {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 12px;
-  }
-
-  .btn-mode {
-    padding: 6px 14px;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    cursor: pointer;
-    border: 1.5px solid #ddd8d0;
-    background: var(--blanc);
-    color: var(--gris-moyen);
-    font-family: 'Source Sans 3', sans-serif;
-    transition: all 0.2s;
-  }
-
-  .btn-mode.active {
-    border-color: var(--vert);
-    background: var(--vert);
-    color: white;
-  }
-
-  .reponse-texte { display: block; }
-  .reponse-vocal { display: none; }
-
-  .mini-recorder {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 10px;
-    background: var(--blanc);
-    border-radius: 8px;
-    border: 1.5px solid #ddd8d0;
-  }
-
-  .btn-mini-record {
-    width: 40px; height: 40px;
-    border-radius: 50%;
-    border: none;
-    background: var(--vert);
-    color: white;
-    cursor: pointer;
-    font-size: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    transition: all 0.2s;
-  }
-
-  .btn-mini-record.recording { background: var(--peche); animation: pulse 1.5s infinite; }
-  .mini-record-status { font-size: 0.85rem; color: var(--gris-moyen); }
-
-  /* RÉSULTAT */
-  .resultat-section { display: none; }
-
-  .transcript-box {
-    background: var(--fond);
-    border: 1px solid #e0dbd0;
-    border-radius: 8px;
-    padding: 16px;
-    font-size: 0.9rem;
-    line-height: 1.7;
-    color: var(--gris-fonce);
-    margin-bottom: 16px;
-    max-height: 200px;
-    overflow-y: auto;
-    font-style: italic;
-  }
-
-  .document-box {
-    background: var(--blanc);
-    border: 1.5px solid var(--vert-clair);
-    border-radius: 10px;
-    padding: 20px;
-    font-size: 0.88rem;
-    line-height: 1.8;
-    color: var(--gris-fonce);
-    white-space: pre-wrap;
-  }
-
-  .section-label {
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    color: var(--gris-moyen);
-    margin-bottom: 8px;
-    font-weight: 500;
-  }
-
-  .succes-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: #eef3ee;
-    color: var(--vert);
-    padding: 6px 14px;
-    border-radius: 20px;
-    font-size: 0.82rem;
-    font-weight: 500;
-    margin-bottom: 16px;
-  }
-
-  .error-box {
-    display: none;
-    background: #fdf0ef;
-    border: 1px solid #e8b0ad;
-    border-radius: 8px;
-    padding: 14px 16px;
-    font-size: 0.88rem;
-    color: var(--rouge-erreur);
-    margin-top: 12px;
-  }
-
-  audio { width: 100%; margin-top: 12px; border-radius: 8px; }
-
-  footer {
-    text-align: center;
-    padding: 32px 0 20px;
-    font-size: 0.78rem;
-    color: #b0a898;
-  }
-
-  .separator {
-    border: none;
-    border-top: 1px solid var(--beige);
-    margin: 20px 0;
-  }
-
-  @media (max-width: 480px) {
-    .logo-text { font-size: 2rem; }
-    .card { padding: 20px; }
-  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Source Sans 3',sans-serif; background:var(--fond); color:var(--gris-fonce); min-height:100vh; padding:20px 20px 80px; }
+  .container { max-width:720px; margin:0 auto; }
+
+  header { text-align:center; padding:40px 0 32px; border-bottom:1px solid var(--beige); margin-bottom:32px; }
+  .logo { font-family:'Playfair Display',serif; font-size:2.4rem; color:var(--gris-fonce); }
+  .logo .et { color:var(--peche); font-style:italic; }
+  .logo .loi { color:var(--vert); }
+  .sous-titre { font-size:0.85rem; color:var(--gris-moyen); letter-spacing:2px; text-transform:uppercase; margin-top:6px; font-weight:300; }
+  .badge { display:inline-block; background:var(--beige); color:var(--gris-moyen); font-size:0.75rem; padding:4px 12px; border-radius:20px; margin-top:12px; letter-spacing:1px; text-transform:uppercase; }
+
+  .card { background:var(--blanc); border-radius:12px; padding:28px; margin-bottom:20px; border:1px solid #e8e2d8; box-shadow:0 2px 8px rgba(0,0,0,0.04); }
+  .card-title { font-family:'Playfair Display',serif; font-size:1.1rem; color:var(--gris-fonce); margin-bottom:18px; display:flex; align-items:center; gap:10px; }
+  .snum { width:28px; height:28px; border-radius:50%; background:var(--vert); color:white; font-size:0.8rem; font-weight:500; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .snum.orange { background:var(--peche); }
+
+  label { display:block; font-size:0.8rem; color:var(--gris-moyen); margin-bottom:6px; letter-spacing:0.5px; text-transform:uppercase; font-weight:500; }
+  input[type=password], input[type=text], textarea { width:100%; padding:12px 16px; border:1.5px solid #ddd8d0; border-radius:8px; font-size:0.95rem; font-family:'Source Sans 3',sans-serif; background:var(--fond); color:var(--gris-fonce); transition:border-color 0.2s; -webkit-appearance:none; }
+  textarea { resize:vertical; min-height:80px; line-height:1.6; }
+  input:focus, textarea:focus { outline:none; border-color:var(--vert); background:white; }
+  .igrp { margin-bottom:16px; }
+  .hint { font-size:0.78rem; color:var(--gris-moyen); margin-top:5px; font-style:italic; }
+
+  .confidentiel { background:#f0f4f0; border:1px solid var(--vert-clair); border-radius:8px; padding:10px 14px; font-size:0.8rem; color:var(--vert); display:flex; align-items:flex-start; gap:8px; margin-top:12px; line-height:1.5; }
+
+  .record-zone { text-align:center; padding:20px 0; }
+  .record-instr { font-size:0.95rem; color:var(--gris-moyen); margin-bottom:24px; line-height:1.6; font-style:italic; }
+  .btn-rec { width:80px; height:80px; border-radius:50%; border:none; background:var(--vert); color:white; cursor:pointer; font-size:2rem; display:flex; align-items:center; justify-content:center; margin:0 auto 16px; box-shadow:0 4px 16px rgba(90,114,96,0.3); transition:all 0.2s; }
+  .btn-rec:hover { transform:scale(1.05); }
+  .btn-rec.rec { background:var(--peche); animation:pulse 1.5s infinite; }
+  @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.08)} }
+  .rec-status { font-size:0.9rem; color:var(--gris-moyen); min-height:24px; }
+  .rec-status.on { color:var(--peche); font-weight:500; }
+  .timer { font-size:1.4rem; font-family:'Playfair Display',serif; color:var(--peche); margin:8px 0; min-height:36px; }
+  .btn-stop { display:none; margin:12px auto 0; padding:10px 28px; border:1.5px solid var(--peche); background:transparent; color:var(--peche); border-radius:8px; font-size:0.9rem; cursor:pointer; font-family:'Source Sans 3',sans-serif; transition:all 0.2s; }
+  .btn-stop:hover { background:var(--peche); color:white; }
+
+  .upload-zone { border:2px dashed #ddd8d0; border-radius:8px; padding:20px; text-align:center; cursor:pointer; transition:all 0.2s; margin-top:12px; }
+  .upload-zone:hover, .upload-zone.over { border-color:var(--vert); background:#f0f4f0; }
+  .upload-icon { font-size:1.8rem; margin-bottom:8px; }
+  .upload-txt { font-size:0.88rem; color:var(--gris-moyen); line-height:1.5; }
+  .upload-txt strong { color:var(--vert); }
+  .doc-list { margin-top:10px; }
+  .doc-item { display:flex; align-items:center; justify-content:space-between; padding:8px 12px; background:var(--fond); border-radius:6px; margin-bottom:6px; font-size:0.85rem; }
+  .doc-rm { cursor:pointer; color:var(--gris-moyen); background:none; border:none; font-size:1rem; padding:0 4px; }
+
+  .btn-p { width:100%; padding:14px; background:var(--vert); color:white; border:none; border-radius:8px; font-size:1rem; font-family:'Source Sans 3',sans-serif; font-weight:500; cursor:pointer; transition:all 0.2s; margin-top:16px; }
+  .btn-p:hover { background:#4a6050; }
+  .btn-p:disabled { background:#b0c0b8; cursor:not-allowed; }
+  .btn-s { width:100%; padding:12px; background:transparent; color:var(--vert); border:1.5px solid var(--vert); border-radius:8px; font-size:0.95rem; font-family:'Source Sans 3',sans-serif; font-weight:500; cursor:pointer; transition:all 0.2s; margin-top:10px; }
+  .btn-s:hover { background:var(--vert); color:white; }
+  .btn-row { display:flex; gap:10px; margin-top:16px; }
+  .btn-row .btn-p, .btn-row .btn-s { margin-top:0; }
+
+  .hidden { display:none !important; }
+
+  .pstep { display:flex; align-items:center; gap:12px; padding:10px 0; border-bottom:1px solid #f0ebe3; font-size:0.9rem; color:var(--gris-moyen); }
+  .pstep:last-child { border-bottom:none; }
+  .picon { width:24px; height:24px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.75rem; flex-shrink:0; background:#e8e2d8; color:var(--gris-moyen); }
+  .picon.done { background:var(--vert); color:white; }
+  .picon.active { background:var(--peche); color:white; animation:blink 1s infinite; }
+  .picon.error { background:var(--rouge); color:white; }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.5} }
+
+  .qitem { background:var(--fond); border-radius:8px; padding:16px; margin-bottom:16px; border-left:3px solid var(--peche); }
+  .qtxt { font-size:0.95rem; color:var(--gris-fonce); margin-bottom:12px; line-height:1.5; font-style:italic; }
+  .qmode { display:flex; gap:8px; margin-bottom:12px; flex-wrap:wrap; }
+  .btn-m { padding:6px 14px; border-radius:20px; font-size:0.8rem; cursor:pointer; border:1.5px solid #ddd8d0; background:var(--blanc); color:var(--gris-moyen); font-family:'Source Sans 3',sans-serif; transition:all 0.2s; }
+  .btn-m.on { border-color:var(--vert); background:var(--vert); color:white; }
+  .mini-rec { display:flex; align-items:center; gap:12px; padding:10px; background:var(--blanc); border-radius:8px; border:1.5px solid #ddd8d0; }
+  .btn-mr { width:40px; height:40px; border-radius:50%; border:none; background:var(--vert); color:white; cursor:pointer; font-size:1rem; display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:all 0.2s; }
+  .btn-mr.rec { background:var(--peche); animation:pulse 1.5s infinite; }
+  .mr-status { font-size:0.85rem; color:var(--gris-moyen); }
+  .mini-up { margin-top:10px; padding:10px 14px; border:1.5px dashed #ddd8d0; border-radius:8px; font-size:0.82rem; color:var(--gris-moyen); cursor:pointer; text-align:center; transition:all 0.2s; }
+  .mini-up:hover { border-color:var(--vert); color:var(--vert); background:#f0f4f0; }
+
+  .doc-box { background:var(--blanc); border:1.5px solid var(--vert-clair); border-radius:10px; padding:20px; font-size:0.88rem; line-height:1.8; color:var(--gris-fonce); white-space:pre-wrap; }
+  .tr-box { background:var(--fond); border:1px solid #e0dbd0; border-radius:8px; padding:16px; font-size:0.9rem; line-height:1.7; color:var(--gris-fonce); margin-bottom:16px; max-height:180px; overflow-y:auto; font-style:italic; }
+  .slabel { font-size:0.75rem; text-transform:uppercase; letter-spacing:1.5px; color:var(--gris-moyen); margin-bottom:8px; font-weight:500; }
+  .ok-badge { display:inline-flex; align-items:center; gap:6px; background:#eef3ee; color:var(--vert); padding:6px 14px; border-radius:20px; font-size:0.82rem; font-weight:500; margin-bottom:16px; }
+  .err-box { display:none; background:#fdf0ef; border:1px solid #e8b0ad; border-radius:8px; padding:14px 16px; font-size:0.88rem; color:var(--rouge); margin-top:12px; }
+
+  .corr-tabs { display:flex; gap:8px; margin-bottom:12px; }
+  .corr-tab { padding:8px 16px; border-radius:8px; font-size:0.85rem; cursor:pointer; border:1.5px solid #ddd8d0; background:var(--blanc); color:var(--gris-moyen); font-family:'Source Sans 3',sans-serif; transition:all 0.2s; }
+  .corr-tab.on { border-color:var(--vert); background:var(--vert); color:white; }
+
+  audio { width:100%; margin-top:10px; border-radius:8px; }
+  hr { border:none; border-top:1px solid var(--beige); margin:20px 0; }
+
+  .footer-bar { position:fixed; bottom:0; left:0; right:0; background:var(--gris-fonce); color:#888; font-size:0.75rem; text-align:center; padding:10px 20px; z-index:100; }
+  .footer-bar span { color:#8a9e8a; }
 </style>
 </head>
 <body>
 <div class="container">
 
   <header>
-    <div class="logo-text">moi <span class="et">&</span> <span class="loi">loi</span></div>
+    <div class="logo">moi <span class="et">&</span> <span class="loi">loi</span></div>
     <div class="sous-titre">Témoignages citoyens</div>
-    <span class="badge-test">Test pipeline complet v2</span>
+    <span class="badge">Test pipeline v3</span>
   </header>
 
-  <!-- ÉTAPE 1 : CLÉS API -->
-  <div class="card" id="card-cles">
-    <div class="card-title">
-      <span class="step-num">1</span>
-      Vos clés API
-    </div>
-    <div class="input-group">
+  <!-- 1. CLÉS -->
+  <div class="card">
+    <div class="card-title"><span class="snum">1</span> Vos clés API</div>
+    <div class="igrp">
       <label>Clé OpenAI (Whisper)</label>
-      <input type="password" id="openai-key" placeholder="sk-proj-..." autocomplete="off">
+      <input type="password" id="ok" placeholder="sk-proj-..." autocomplete="off">
     </div>
-    <div class="input-group">
+    <div class="igrp">
       <label>Clé Anthropic (Claude)</label>
-      <input type="password" id="anthropic-key" placeholder="sk-ant-..." autocomplete="off">
+      <input type="password" id="ak" placeholder="sk-ant-..." autocomplete="off">
     </div>
     <div class="hint">🔒 Ces clés restent dans votre navigateur — jamais transmises ni stockées.</div>
   </div>
 
-  <!-- ÉTAPE 2 : ENREGISTREMENT -->
-  <div class="card" id="card-record">
-    <div class="card-title">
-      <span class="step-num">2</span>
-      Enregistrez votre témoignage
-    </div>
+  <!-- 2. ENREGISTREMENT -->
+  <div class="card">
+    <div class="card-title"><span class="snum">2</span> Enregistrez votre témoignage</div>
     <div class="record-zone">
-      <p class="record-instruction">Racontez librement une situation absurde vécue avec l'administration.<br>Prenez le temps qu'il vous faut.</p>
-      <button class="btn-record" id="btn-record" onclick="toggleRecord()">🎙️</button>
+      <p class="record-instr">Racontez librement une situation absurde vécue avec l'administration.<br>Prenez le temps qu'il vous faut.</p>
+      <button class="btn-rec" id="btnRec" onclick="toggleRec()">🎙️</button>
       <div class="timer" id="timer"></div>
-      <div class="record-status" id="record-status">Appuyez pour commencer</div>
-      <button class="btn-stop" id="btn-stop" onclick="stopRecord()">Terminer l'enregistrement</button>
+      <div class="rec-status" id="recSt">Appuyez pour commencer</div>
+      <button class="btn-stop" id="btnStop" onclick="stopRec()">Terminer l'enregistrement</button>
     </div>
-    <div id="audio-preview"></div>
-    <div class="error-box" id="error-record"></div>
+    <div id="audPrev"></div>
+    <div class="err-box" id="errRec"></div>
   </div>
 
-  <!-- ÉTAPE 3 : DOCUMENTS -->
-  <div class="card" id="card-documents">
+  <!-- 3. DOCUMENTS -->
+  <div class="card">
     <div class="card-title">
-      <span class="step-num">3</span>
-      Documents complémentaires
-      <span style="font-size:0.75rem; color: var(--gris-moyen); font-family: 'Source Sans 3'; font-weight: 300; margin-left: 4px;">(optionnel)</span>
+      <span class="snum">3</span> Documents complémentaires
+      <span style="font-size:0.75rem;color:var(--gris-moyen);font-weight:300;margin-left:4px;">(optionnel)</span>
     </div>
-    <p style="font-size: 0.9rem; color: var(--gris-moyen); margin-bottom: 16px; line-height: 1.6;">
-      Vous pouvez joindre des documents pour enrichir votre témoignage — courriers, arrêtés, refus, échanges écrits avec l'administration.
-    </p>
-
-    <div class="upload-zone" id="upload-zone" onclick="document.getElementById('file-input').click()" 
-         ondragover="event.preventDefault(); this.classList.add('dragover')"
-         ondragleave="this.classList.remove('dragover')"
-         ondrop="handleDrop(event)">
+    <p style="font-size:0.9rem;color:var(--gris-moyen);margin-bottom:14px;line-height:1.6;">Courriers, arrêtés, refus, échanges avec l'administration — enrichissent l'analyse de votre témoignage.</p>
+    <div class="upload-zone" id="uzMain" onclick="document.getElementById('fiMain').click()"
+         ondragover="event.preventDefault();this.classList.add('over')"
+         ondragleave="this.classList.remove('over')"
+         ondrop="dropDocs(event,'main')">
       <div class="upload-icon">📎</div>
-      <div class="upload-text">
-        <strong>Glissez vos documents ici</strong><br>
-        ou cliquez pour sélectionner<br>
-        <span style="font-size: 0.75rem;">PDF, Word, images acceptés</span>
-      </div>
+      <div class="upload-txt"><strong>Glissez vos documents ici</strong><br>ou cliquez pour sélectionner · PDF, Word, images</div>
     </div>
-
-    <input type="file" id="file-input" multiple accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" style="display:none" onchange="handleFileSelect(event)">
-
-    <div class="documents-liste" id="documents-liste"></div>
-
-    <div class="destruction-notice" id="destruction-notice" style="display:none">
-      🔒 Ces documents seront détruits automatiquement après traitement — jamais stockés ni publiés.
+    <input type="file" id="fiMain" multiple accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.txt" style="display:none" onchange="selDocs(event,'main')">
+    <div class="doc-list" id="dlMain"></div>
+    <div class="confidentiel hidden" id="confMain">
+      <span>🔒</span>
+      <span>Ces documents sont traités en mémoire temporaire et <strong>détruits automatiquement</strong> après analyse. Ils ne sont jamais stockés sur nos serveurs ni transmis à des tiers.</span>
     </div>
   </div>
 
-  <!-- BOUTON LANCER -->
-  <button class="btn-primary" id="btn-lancer" onclick="lancerPipeline()" disabled>
+  <button class="btn-p" id="btnLancer" onclick="lancer()" disabled style="margin-top:0;">
     Analyser mon témoignage →
   </button>
 
-  <!-- ÉTAPE 4 : TRAITEMENT -->
-  <div class="card progress-section" id="card-progress" style="margin-top: 20px;">
-    <div class="card-title">
-      <span class="step-num">4</span>
-      Traitement en cours…
-    </div>
-    <div class="progress-step">
-      <div class="step-icon" id="icon-transcription">1</div>
-      <span>Transcription Whisper en français…</span>
-    </div>
-    <div class="progress-step">
-      <div class="step-icon" id="icon-documents-ai">2</div>
-      <span>Analyse des documents joints…</span>
-    </div>
-    <div class="progress-step">
-      <div class="step-icon" id="icon-analyse">3</div>
-      <span>Structuration par Claude…</span>
-    </div>
-    <div class="error-box" id="error-pipeline"></div>
+  <!-- 4. TRAITEMENT -->
+  <div class="card hidden" id="cardProg" style="margin-top:20px;">
+    <div class="card-title"><span class="snum">4</span> Traitement en cours…</div>
+    <div class="pstep"><div class="picon" id="piWhisper">1</div><span>Transcription Whisper en français…</span></div>
+    <div class="pstep"><div class="picon" id="piDocs">2</div><span>Analyse des documents joints…</span></div>
+    <div class="pstep"><div class="picon" id="piClaude">3</div><span>Structuration par Claude…</span></div>
+    <div class="err-box" id="errPipe"></div>
   </div>
 
-  <!-- ÉTAPE 5 : QUESTIONS DE CLARIFICATION -->
-  <div class="card questions-section" id="card-questions" style="margin-top: 20px;">
-    <div class="card-title">
-      <span class="step-num">5</span>
-      Questions de clarification
-    </div>
-    <p style="font-size: 0.9rem; color: var(--gris-moyen); margin-bottom: 20px; line-height: 1.6; font-style: italic;">
-      Pour compléter votre dossier, quelques questions. Répondez comme vous le souhaitez — par écrit ou par message vocal.
-    </p>
-    <div id="questions-container"></div>
-    <button class="btn-primary" id="btn-finaliser" onclick="finaliserDocument()" style="margin-top: 8px;">
-      Générer mon document final →
-    </button>
+  <!-- 5. QUESTIONS -->
+  <div class="card hidden" id="cardQ" style="margin-top:20px;">
+    <div class="card-title"><span class="snum orange">5</span> Questions de clarification</div>
+    <p style="font-size:0.9rem;color:var(--gris-moyen);margin-bottom:20px;line-height:1.6;font-style:italic;">Pour compléter votre dossier. Répondez par écrit, par oral, ou joignez un document.</p>
+    <div id="qContainer"></div>
+    <button class="btn-p" id="btnFinal" onclick="finaliser()">Générer mon document final →</button>
   </div>
 
-  <!-- ÉTAPE 6 : DOCUMENT FINAL -->
-  <div class="card resultat-section" id="card-resultat" style="margin-top: 20px;">
-    <div class="card-title">
-      <span class="step-num">✓</span>
-      Votre témoignage structuré
+  <!-- 6. RÉSULTAT + CORRECTION -->
+  <div class="card hidden" id="cardRes" style="margin-top:20px;">
+    <div class="card-title"><span class="snum">✓</span> Votre témoignage structuré</div>
+    <div class="ok-badge">✓ Document généré</div>
+
+    <div class="slabel">Transcription brute (Whisper)</div>
+    <div class="tr-box" id="trRes">—</div>
+    <hr>
+    <div class="slabel">Document structuré</div>
+    <div class="doc-box" id="docRes">—</div>
+    <hr>
+
+    <!-- VALIDATION / CORRECTION -->
+    <div id="zoneValidation">
+      <p style="font-size:0.95rem;color:var(--gris-fonce);margin-bottom:14px;font-weight:500;">Ce document vous représente-t-il fidèlement ?</p>
+      <div class="btn-row">
+        <button class="btn-p" onclick="valider()" style="margin-top:0;">✓ Valider ce témoignage</button>
+        <button class="btn-s" onclick="showCorr()" style="margin-top:0;">✎ Corriger</button>
+      </div>
+
+      <div class="hidden" id="zoneCorr" style="margin-top:20px;">
+        <p style="font-size:0.88rem;color:var(--gris-moyen);margin-bottom:12px;">Indiquez ce qui ne vous représente pas fidèlement :</p>
+        <div class="corr-tabs">
+          <button class="corr-tab on" id="ctTxt" onclick="switchCorr('txt')">✏️ Par écrit</button>
+          <button class="corr-tab" id="ctVoc" onclick="switchCorr('voc')">🎙️ Par oral</button>
+        </div>
+        <div id="corrTxt"><textarea id="txtCorr" placeholder="Décrivez ce qui devrait être modifié…" rows="4"></textarea></div>
+        <div class="hidden" id="corrVoc">
+          <div class="mini-rec">
+            <button class="btn-mr" id="btnCorrVoc" onclick="toggleCorrVoc()">🎙️</button>
+            <div>
+              <div class="mr-status" id="stCorrVoc">Expliquez ce qui doit être corrigé</div>
+              <div id="prevCorrVoc"></div>
+            </div>
+          </div>
+        </div>
+        <button class="btn-p" id="btnAppCorr" onclick="appliquerCorr()">Régénérer avec corrections →</button>
+      </div>
     </div>
 
-    <div class="succes-badge">✓ Pipeline complet fonctionnel</div>
+    <div class="hidden" id="zoneFinal">
+      <div class="ok-badge" style="margin-top:16px;">✓ Témoignage validé — prêt pour publication</div>
+      <p style="font-size:0.88rem;color:var(--gris-moyen);margin-top:8px;line-height:1.5;">Dans la version complète, vous choisiriez votre niveau d'anonymat et le témoignage serait publié dans la base.</p>
+    </div>
 
-    <div class="section-label">Transcription brute (Whisper)</div>
-    <div class="transcript-box" id="transcript-result">—</div>
-
-    <hr class="separator">
-
-    <div class="section-label">Document structuré final (Claude)</div>
-    <div class="document-box" id="document-result">—</div>
-
-    <div class="error-box" id="error-final"></div>
-
-    <button class="btn-secondary" onclick="location.reload()" style="margin-top: 16px;">
-      🔄 Tester un nouveau témoignage
-    </button>
+    <div class="err-box" id="errCorr"></div>
+    <button class="btn-s" onclick="location.reload()" style="margin-top:16px;">🔄 Tester un nouveau témoignage</button>
   </div>
-
-  <footer>moietloi.fr — Test technique v2 · Les clés API et documents ne sont jamais stockés</footer>
 
 </div>
 
+<div class="footer-bar">🔒 <span>Tous les documents joints sont détruits automatiquement après analyse.</span> Jamais stockés sur nos serveurs ni transmis à des tiers.</div>
+
 <script>
-// ─── ÉTAT GLOBAL ─────────────────────────────────────────────
-let mediaRecorder = null;
-let audioChunks = [];
-let audioBlob = null;
-let isRecording = false;
-let timerInterval = null;
-let seconds = 0;
-let documentsJoints = [];
-let transcriptGlobal = '';
-let questionsGlobales = [];
+// ── ÉTAT ──────────────────────────────────────────────────────
+let mr=null, chunks=[], audioBlob=null, isRec=false, timerInt=null, secs=0;
+let docsMain=[], docsQ={}, transcript='', questions=[], docInitial='';
+let miniMR={}, corrVocMR=null, corrVocBlob=null, corrCount=0;
 
-// Mini recorders pour les questions
-let miniRecorders = {};
-
-// ─── ENREGISTREMENT PRINCIPAL ────────────────────────────────
-async function toggleRecord() {
-  if (isRecording) stopRecord();
-  else await startRecord();
+// ── READY ─────────────────────────────────────────────────────
+function checkReady(){
+  const ok=G('ok').value.trim()&&G('ak').value.trim()&&audioBlob;
+  G('btnLancer').disabled=!ok;
 }
+G('ok').addEventListener('input',checkReady);
+G('ak').addEventListener('input',checkReady);
 
-async function startRecord() {
-  const errorBox = document.getElementById('error-record');
-  errorBox.style.display = 'none';
-  try {
-    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-    mediaRecorder = new MediaRecorder(stream, { mimeType: getSupportedMimeType() });
-    audioChunks = [];
+// ── ENREGISTREMENT ────────────────────────────────────────────
+async function toggleRec(){ isRec?stopRec():await startRec(); }
 
-    mediaRecorder.ondataavailable = e => { if (e.data.size > 0) audioChunks.push(e.data); };
-    mediaRecorder.onstop = () => {
-      audioBlob = new Blob(audioChunks, { type: getSupportedMimeType() });
-      showAudioPreview();
-      checkLancerReady();
-      stream.getTracks().forEach(t => t.stop());
+async function startRec(){
+  hide('errRec');
+  try{
+    const stream=await navigator.mediaDevices.getUserMedia({audio:true});
+    mr=new MediaRecorder(stream,{mimeType:mime()});
+    chunks=[];
+    mr.ondataavailable=e=>{if(e.data.size>0)chunks.push(e.data);};
+    mr.onstop=()=>{
+      audioBlob=new Blob(chunks,{type:mime()});
+      G('audPrev').innerHTML=`<audio controls src="${URL.createObjectURL(audioBlob)}"></audio>`;
+      checkReady(); stream.getTracks().forEach(t=>t.stop());
     };
+    mr.start(100); isRec=true; secs=0;
+    G('btnRec').classList.add('rec'); G('btnRec').textContent='⏸';
+    G('recSt').textContent='Enregistrement en cours…'; G('recSt').classList.add('on');
+    G('btnStop').style.display='block';
+    timerInt=setInterval(()=>{secs++;const m=Math.floor(secs/60).toString().padStart(2,'0'),s=(secs%60).toString().padStart(2,'0');G('timer').textContent=m+':'+s;},1000);
+  }catch(e){show('errRec');G('errRec').textContent='⚠️ Accès au microphone refusé.';}
+}
 
-    mediaRecorder.start(100);
-    isRecording = true;
-    seconds = 0;
+function stopRec(){
+  if(mr&&isRec){mr.stop();isRec=false;clearInterval(timerInt);
+    G('btnRec').classList.remove('rec');G('btnRec').textContent='🎙️';
+    G('recSt').textContent='✓ Enregistrement terminé';G('recSt').classList.remove('on');
+    G('btnStop').style.display='none';}
+}
 
-    document.getElementById('btn-record').classList.add('recording');
-    document.getElementById('btn-record').textContent = '⏸';
-    document.getElementById('record-status').textContent = 'Enregistrement en cours…';
-    document.getElementById('record-status').classList.add('active');
-    document.getElementById('btn-stop').style.display = 'block';
+function mime(){const t=['audio/webm;codecs=opus','audio/webm','audio/mp4','audio/ogg'];for(const m of t)if(MediaRecorder.isTypeSupported(m))return m;return'audio/webm';}
 
-    timerInterval = setInterval(() => {
-      seconds++;
-      const m = Math.floor(seconds / 60).toString().padStart(2, '0');
-      const s = (seconds % 60).toString().padStart(2, '0');
-      document.getElementById('timer').textContent = m + ':' + s;
-    }, 1000);
+// ── DOCUMENTS ─────────────────────────────────────────────────
+function selDocs(e,z){Array.from(e.target.files).forEach(f=>addDoc(f,z));e.target.value='';}
+function dropDocs(e,z){e.preventDefault();G('uzMain').classList.remove('over');Array.from(e.dataTransfer.files).forEach(f=>addDoc(f,z));}
 
-  } catch (err) {
-    errorBox.style.display = 'block';
-    errorBox.textContent = '⚠️ Accès au microphone refusé. Autorisez le microphone dans les réglages Chrome.';
+function addDoc(f,z){
+  if(z==='main'){
+    if(docsMain.length>=5){alert('Max 5 documents.');return;}
+    docsMain.push({id:Date.now()+Math.random(),f});renderMain();
+  }else{
+    if(!docsQ[z])docsQ[z]=[];
+    if(docsQ[z].length>=3){alert('Max 3 documents par question.');return;}
+    docsQ[z].push({id:Date.now()+Math.random(),f});renderQ(z);
   }
 }
 
-function stopRecord() {
-  if (mediaRecorder && isRecording) {
-    mediaRecorder.stop();
-    isRecording = false;
-    clearInterval(timerInterval);
-    document.getElementById('btn-record').classList.remove('recording');
-    document.getElementById('btn-record').textContent = '🎙️';
-    document.getElementById('record-status').textContent = '✓ Enregistrement terminé';
-    document.getElementById('record-status').classList.remove('active');
-    document.getElementById('btn-stop').style.display = 'none';
-  }
+function rmDoc(id,z){
+  if(z==='main'){docsMain=docsMain.filter(d=>d.id!==id);renderMain();}
+  else{docsQ[z]=(docsQ[z]||[]).filter(d=>d.id!==id);renderQ(z);}
 }
 
-function getSupportedMimeType() {
-  const types = ['audio/webm;codecs=opus', 'audio/webm', 'audio/mp4', 'audio/ogg'];
-  for (const type of types) {
-    if (MediaRecorder.isTypeSupported(type)) return type;
-  }
-  return 'audio/webm';
+function renderMain(){
+  const l=G('dlMain'),c=G('confMain');
+  if(!docsMain.length){l.innerHTML='';c.classList.add('hidden');return;}
+  c.classList.remove('hidden');
+  l.innerHTML=docsMain.map(d=>`<div class="doc-item"><span>📄 ${d.f.name} <span style="color:var(--gris-moyen);font-size:0.75rem;">(${(d.f.size/1024).toFixed(0)} Ko)</span></span><button class="doc-rm" onclick="rmDoc(${d.id},'main')">✕</button></div>`).join('');
 }
 
-function showAudioPreview() {
-  const url = URL.createObjectURL(audioBlob);
-  document.getElementById('audio-preview').innerHTML = `<audio controls src="${url}"></audio>`;
+function renderQ(qid){
+  const l=G(`dlQ_${qid}`);if(!l)return;
+  const docs=docsQ[qid]||[];
+  l.innerHTML=docs.map(d=>`<div class="doc-item" style="font-size:0.8rem;"><span>📄 ${d.f.name}</span><button class="doc-rm" onclick="rmDoc(${d.id},'${qid}')">✕</button></div>`).join('');
 }
 
-// ─── GESTION DOCUMENTS ───────────────────────────────────────
-function handleFileSelect(event) {
-  Array.from(event.target.files).forEach(addDocument);
+// ── LANCER ────────────────────────────────────────────────────
+async function lancer(){
+  const okey=G('ok').value.trim(), akey=G('ak').value.trim();
+  show('cardProg');hide('cardQ');hide('cardRes');
+  G('btnLancer').disabled=true; hide('errPipe');
+  scrollEl('cardProg');
+
+  // WHISPER
+  setP('piWhisper','active');
+  try{
+    const fd=new FormData();
+    fd.append('file',new File([audioBlob],'t.mp4',{type:audioBlob.type}));
+    fd.append('model','whisper-1');fd.append('language','fr');fd.append('response_format','text');
+    const r=await fetch('https://api.openai.com/v1/audio/transcriptions',{method:'POST',headers:{'Authorization':`Bearer ${okey}`},body:fd});
+    if(!r.ok){const e=await r.json();throw new Error(e.error?.message||'Erreur Whisper');}
+    transcript=await r.text();setP('piWhisper','done');
+  }catch(e){setP('piWhisper','error');showE('errPipe',`Erreur transcription : ${e.message}`);G('btnLancer').disabled=false;return;}
+
+  // DOCS
+  setP('piDocs','active');
+  let ctx='';
+  try{
+    for(const d of docsMain){const t=await readTxt(d.f);if(t)ctx+=`\n\nDOCUMENT (${d.f.name}) :\n${t.substring(0,2000)}`;}
+    docsMain=[];renderMain();setP('piDocs','done');
+  }catch{setP('piDocs','done');}
+
+  // CLAUDE
+  setP('piClaude','active');
+  const prompt=buildPrompt(transcript,ctx,'');
+  try{
+    const res=await claude(akey,prompt,2000);
+    const txt=res.content[0].text;
+    docInitial=txt;setP('piClaude','done');
+    const qs=extractQ(txt);questions=qs;
+    if(qs.length>0)showQ(qs);else showRes(transcript,txt);
+  }catch(e){setP('piClaude','error');showE('errPipe',`Erreur Claude : ${e.message}`);G('btnLancer').disabled=false;}
 }
 
-function handleDrop(event) {
-  event.preventDefault();
-  document.getElementById('upload-zone').classList.remove('dragover');
-  Array.from(event.dataTransfer.files).forEach(addDocument);
-}
+function buildPrompt(tr,ctx,reps){
+  return `Tu es l'assistant de moietloi.fr, plateforme civique documentant les dysfonctionnements administratifs en France.
 
-function addDocument(file) {
-  if (documentsJoints.length >= 5) {
-    alert('Maximum 5 documents autorisés.');
-    return;
-  }
-  const id = Date.now() + Math.random();
-  documentsJoints.push({ id, file });
-  renderDocuments();
-}
-
-function removeDocument(id) {
-  documentsJoints = documentsJoints.filter(d => d.id !== id);
-  renderDocuments();
-}
-
-function renderDocuments() {
-  const liste = document.getElementById('documents-liste');
-  const notice = document.getElementById('destruction-notice');
-
-  if (documentsJoints.length === 0) {
-    liste.innerHTML = '';
-    notice.style.display = 'none';
-    return;
-  }
-
-  notice.style.display = 'flex';
-  liste.innerHTML = documentsJoints.map(d => `
-    <div class="document-item">
-      <span class="doc-name">📄 ${d.file.name} <span style="color:var(--gris-moyen); font-size:0.75rem;">(${(d.file.size/1024).toFixed(0)} Ko)</span></span>
-      <button class="doc-remove" onclick="removeDocument(${d.id})">✕</button>
-    </div>
-  `).join('');
-}
-
-// ─── VÉRIFICATION PRÊT ───────────────────────────────────────
-function checkLancerReady() {
-  const ok = document.getElementById('openai-key').value.trim() &&
-             document.getElementById('anthropic-key').value.trim() &&
-             audioBlob;
-  document.getElementById('btn-lancer').disabled = !ok;
-}
-
-document.getElementById('openai-key').addEventListener('input', checkLancerReady);
-document.getElementById('anthropic-key').addEventListener('input', checkLancerReady);
-
-// ─── PIPELINE PRINCIPAL ──────────────────────────────────────
-async function lancerPipeline() {
-  const openaiKey = document.getElementById('openai-key').value.trim();
-  const anthropicKey = document.getElementById('anthropic-key').value.trim();
-
-  document.getElementById('card-progress').style.display = 'block';
-  document.getElementById('btn-lancer').disabled = true;
-  document.getElementById('error-pipeline').style.display = 'none';
-  window.scrollTo({ top: document.getElementById('card-progress').offsetTop - 20, behavior: 'smooth' });
-
-  // ── ÉTAPE 1 : WHISPER ──
-  setStepActive('transcription');
-  let transcript = '';
-
-  try {
-    const formData = new FormData();
-    const audioFile = new File([audioBlob], 'temoignage.mp4', { type: audioBlob.type });
-    formData.append('file', audioFile);
-    formData.append('model', 'whisper-1');
-    formData.append('language', 'fr');
-    formData.append('response_format', 'text');
-
-    const whisperRes = await fetch('https://api.openai.com/v1/audio/transcriptions', {
-      method: 'POST',
-      headers: { 'Authorization': `Bearer ${openaiKey}` },
-      body: formData
-    });
-
-    if (!whisperRes.ok) {
-      const err = await whisperRes.json();
-      throw new Error(err.error?.message || 'Erreur Whisper');
-    }
-
-    transcript = await whisperRes.text();
-    transcriptGlobal = transcript;
-    setStepDone('transcription');
-
-  } catch (err) {
-    setStepError('transcription');
-    showError('error-pipeline', `Erreur transcription : ${err.message}`);
-    document.getElementById('btn-lancer').disabled = false;
-    return;
-  }
-
-  // ── ÉTAPE 2 : DOCUMENTS ──
-  setStepActive('documents-ai');
-  let contexteDocs = '';
-
-  if (documentsJoints.length > 0) {
-    try {
-      // Lire les documents comme texte si possible
-      for (const doc of documentsJoints) {
-        const text = await readFileAsText(doc.file);
-        if (text) {
-          contexteDocs += `\n\nDOCUMENT JOINT (${doc.file.name}) :\n${text.substring(0, 2000)}`;
-        }
-      }
-      // Destruction simulée après lecture
-      documentsJoints = [];
-      renderDocuments();
-      setStepDone('documents-ai');
-    } catch (err) {
-      setStepDone('documents-ai'); // On continue même si erreur lecture
-    }
-  } else {
-    setStepDone('documents-ai');
-  }
-
-  // ── ÉTAPE 3 : CLAUDE ──
-  setStepActive('analyse');
-
-  const prompt = `Tu es l'assistant de moietloi.fr, une plateforme civique qui documente les dysfonctionnements administratifs et réglementaires vécus par des citoyens et entrepreneurs en France.
-
-Tu reçois la transcription d'un témoignage oral spontané${contexteDocs ? ' ainsi que des documents joints' : ''}.
-
-Produis un document structuré selon ce format exact :
+Produis un document structuré :
 
 **RÉSUMÉ**
-[Une phrase claire et neutre décrivant la situation]
+[Une phrase claire et neutre]
 
 **RÉCIT**
-[Le témoignage restructuré, fidèle à l'original, sans répétitions ni artefacts oraux — 150 mots maximum]
+[Témoignage restructuré, fidèle, sans répétitions — 150 mots max]
 
 **CE QUI EST REPROCHÉ**
-[La règle ou norme invoquée, en termes simples]
+[La règle invoquée en termes simples]
 
 **JUSTIFICATION OFFICIELLE**
-[Les motifs donnés par l'administration]
+[Les motifs de l'administration]
 
 **VOLET 1 — ABSURDITÉ DE LA NORME**
-[En quoi la règle elle-même est inadaptée ou contre-productive]
+[En quoi la règle est inadaptée]
 
 **VOLET 2 — ABUS DANS L'APPLICATION**
-[En quoi l'application est disproportionnée ou détournée — si applicable]
+[En quoi l'application est disproportionnée — si applicable]
 
 **VOLET 3 — VERROUILLAGE SYSTÉMIQUE**
-[Si les recours eux-mêmes ne fonctionnent pas — sinon indiquer "Non applicable"]
+[Si les recours ne fonctionnent pas — sinon : Non applicable]
 
 **DOMAINES RÉGLEMENTAIRES**
 [Urbanisme / ERP / Droit rural / etc.]
 
 **TYPE DE DYSFONCTIONNEMENT**
-[Contradiction / Disproportionnalité / Détournement de procédure / etc.]
+[Contradiction / Disproportionnalité / Détournement / etc.]
 
-**QUESTIONS DE CLARIFICATION**
-[Liste de 2 à 4 questions essentielles numérotées, ou "Témoignage complet — aucune question nécessaire"]
+${reps?'':`**QUESTIONS DE CLARIFICATION**
+[2 à 4 questions numérotées essentielles, ou "Témoignage complet — aucune question"]`}
 
-Règles absolues :
-- Ne jamais ajouter de faits non mentionnés
-- Rester neutre et factuel
-- Utiliser un français clair et sobre
-- Maximum 400 mots au total
+Règles : ne jamais inventer, neutre, français clair, 400 mots max.
 
 TRANSCRIPTION :
-${transcript}${contexteDocs}`;
-
-  try {
-    const claudeRes = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': anthropicKey,
-        'anthropic-version': '2023-06-01',
-        'anthropic-dangerous-direct-browser-access': 'true'
-      },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 2000,
-        messages: [{ role: 'user', content: prompt }]
-      })
-    });
-
-    if (!claudeRes.ok) {
-      const err = await claudeRes.json();
-      throw new Error(err.error?.message || 'Erreur Claude API');
-    }
-
-    const claudeData = await claudeRes.json();
-    const documentTexte = claudeData.content[0].text;
-    setStepDone('analyse');
-
-    // Extraire les questions
-    const questions = extraireQuestions(documentTexte);
-    questionsGlobales = questions;
-
-    if (questions.length > 0) {
-      afficherQuestions(questions, documentTexte);
-    } else {
-      // Pas de questions — afficher directement le document final
-      afficherResultat(transcript, documentTexte);
-    }
-
-  } catch (err) {
-    setStepError('analyse');
-    showError('error-pipeline', `Erreur Claude : ${err.message}`);
-    document.getElementById('btn-lancer').disabled = false;
-    return;
-  }
+${tr}${ctx}${reps?'\n\nRÉPONSES :\n'+reps:''}`;
 }
 
-// ─── QUESTIONS DE CLARIFICATION ──────────────────────────────
-function extraireQuestions(documentTexte) {
-  const match = documentTexte.match(/\*\*QUESTIONS DE CLARIFICATION\*\*\n([\s\S]*?)(?=\n\*\*|$)/);
-  if (!match) return [];
-
-  const bloc = match[1].trim();
-  if (bloc.includes('Témoignage complet') || bloc.includes('aucune question')) return [];
-
-  const lignes = bloc.split('\n').filter(l => l.trim() && /^\d+\./.test(l.trim()));
-  return lignes.map(l => l.replace(/^\d+\.\s*/, '').trim()).filter(Boolean);
+// ── QUESTIONS ─────────────────────────────────────────────────
+function extractQ(txt){
+  const m=txt.match(/\*\*QUESTIONS DE CLARIFICATION\*\*\n([\s\S]*?)(?=\n\*\*|$)/);
+  if(!m)return[];const b=m[1].trim();
+  if(/complet|aucune/i.test(b))return[];
+  return b.split('\n').filter(l=>/^\d+\./.test(l.trim())).map(l=>l.replace(/^\d+\.\s*/,'').trim()).filter(Boolean);
 }
 
-function afficherQuestions(questions, documentInitial) {
-  document.getElementById('card-questions').style.display = 'block';
-
-  const container = document.getElementById('questions-container');
-  container.innerHTML = questions.map((q, i) => `
-    <div class="question-item" id="question-${i}">
-      <div class="question-text">${i + 1}. ${q}</div>
-      <div class="reponse-mode">
-        <button class="btn-mode active" id="mode-texte-${i}" onclick="switchMode(${i}, 'texte')">✏️ Texte</button>
-        <button class="btn-mode" id="mode-vocal-${i}" onclick="switchMode(${i}, 'vocal')">🎙️ Vocal</button>
+function showQ(qs){
+  show('cardQ');
+  G('qContainer').innerHTML=qs.map((q,i)=>{
+    const qid=`q${i}`;
+    return `<div class="qitem">
+      <div class="qtxt">${i+1}. ${q}</div>
+      <div class="qmode">
+        <button class="btn-m on" id="bmt_${i}" onclick="swM(${i},'txt')">✏️ Texte</button>
+        <button class="btn-m" id="bmv_${i}" onclick="swM(${i},'voc')">🎙️ Vocal</button>
+        <button class="btn-m" id="bmd_${i}" onclick="swM(${i},'doc')">📎 Document</button>
       </div>
-      <div class="reponse-texte" id="texte-${i}">
-        <textarea placeholder="Votre réponse…" id="reponse-texte-${i}" rows="3"></textarea>
-      </div>
-      <div class="reponse-vocal" id="vocal-${i}">
-        <div class="mini-recorder">
-          <button class="btn-mini-record" id="btn-mini-${i}" onclick="toggleMiniRecord(${i})">🎙️</button>
-          <div>
-            <div class="mini-record-status" id="mini-status-${i}">Appuyez pour enregistrer</div>
-            <div id="mini-preview-${i}"></div>
-          </div>
+      <div id="zt_${i}"><textarea placeholder="Votre réponse…" id="rt_${i}" rows="3"></textarea></div>
+      <div class="hidden" id="zv_${i}">
+        <div class="mini-rec">
+          <button class="btn-mr" id="bmr_${i}" onclick="togMini(${i})">🎙️</button>
+          <div><div class="mr-status" id="ms_${i}">Appuyez pour enregistrer</div><div id="mp_${i}"></div></div>
         </div>
       </div>
-    </div>
-  `).join('');
-
-  // Stocker le document initial pour la régénération
-  container.dataset.documentInitial = documentInitial;
-
-  window.scrollTo({ top: document.getElementById('card-questions').offsetTop - 20, behavior: 'smooth' });
+      <div class="hidden" id="zd_${i}">
+        <div class="mini-up" onclick="document.getElementById('fiq_${i}').click()">📎 Cliquer pour joindre un document</div>
+        <input type="file" id="fiq_${i}" style="display:none" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.txt" onchange="selDocs(event,'${qid}')">
+        <div class="doc-list" id="dlQ_${qid}"></div>
+        <div class="confidentiel" style="margin-top:8px;"><span>🔒</span><span>Ce document sera détruit après traitement — jamais stocké.</span></div>
+      </div>
+    </div>`;
+  }).join('');
+  scrollEl('cardQ');
 }
 
-function switchMode(index, mode) {
-  document.getElementById(`texte-${index}`).style.display = mode === 'texte' ? 'block' : 'none';
-  document.getElementById(`vocal-${index}`).style.display = mode === 'vocal' ? 'block' : 'none';
-  document.getElementById(`mode-texte-${index}`).classList.toggle('active', mode === 'texte');
-  document.getElementById(`mode-vocal-${index}`).classList.toggle('active', mode === 'vocal');
-}
-
-// Mini recorders pour les réponses vocales
-function toggleMiniRecord(index) {
-  if (miniRecorders[index] && miniRecorders[index].isRecording) {
-    stopMiniRecord(index);
-  } else {
-    startMiniRecord(index);
-  }
-}
-
-async function startMiniRecord(index) {
-  try {
-    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-    const mr = new MediaRecorder(stream, { mimeType: getSupportedMimeType() });
-    const chunks = [];
-
-    mr.ondataavailable = e => { if (e.data.size > 0) chunks.push(e.data); };
-    mr.onstop = () => {
-      const blob = new Blob(chunks, { type: getSupportedMimeType() });
-      miniRecorders[index].blob = blob;
-      const url = URL.createObjectURL(blob);
-      document.getElementById(`mini-preview-${index}`).innerHTML = `<audio controls src="${url}" style="width:100%; margin-top:6px;"></audio>`;
-      document.getElementById(`mini-status-${index}`).textContent = '✓ Réponse enregistrée';
-      document.getElementById(`btn-mini-${index}`).classList.remove('recording');
-      document.getElementById(`btn-mini-${index}`).textContent = '🔄';
-      stream.getTracks().forEach(t => t.stop());
-    };
-
-    mr.start(100);
-    miniRecorders[index] = { mr, isRecording: true, blob: null };
-    document.getElementById(`btn-mini-${index}`).classList.add('recording');
-    document.getElementById(`btn-mini-${index}`).textContent = '⏹';
-    document.getElementById(`mini-status-${index}`).textContent = 'Enregistrement…';
-
-  } catch (err) {
-    document.getElementById(`mini-status-${index}`).textContent = '⚠️ Micro non accessible';
-  }
-}
-
-function stopMiniRecord(index) {
-  if (miniRecorders[index] && miniRecorders[index].isRecording) {
-    miniRecorders[index].mr.stop();
-    miniRecorders[index].isRecording = false;
-  }
-}
-
-// ─── FINALISATION DU DOCUMENT ────────────────────────────────
-async function finaliserDocument() {
-  const openaiKey = document.getElementById('openai-key').value.trim();
-  const anthropicKey = document.getElementById('anthropic-key').value.trim();
-
-  document.getElementById('btn-finaliser').disabled = true;
-  document.getElementById('btn-finaliser').textContent = 'Génération en cours…';
-
-  // Collecter les réponses
-  let reponsesTexte = '';
-
-  for (let i = 0; i < questionsGlobales.length; i++) {
-    const modeVocal = document.getElementById(`vocal-${i}`).style.display === 'block';
-    let reponse = '';
-
-    if (modeVocal && miniRecorders[i] && miniRecorders[i].blob) {
-      // Transcrire la réponse vocale
-      try {
-        const formData = new FormData();
-        const audioFile = new File([miniRecorders[i].blob], 'reponse.mp4', { type: miniRecorders[i].blob.type });
-        formData.append('file', audioFile);
-        formData.append('model', 'whisper-1');
-        formData.append('language', 'fr');
-        formData.append('response_format', 'text');
-
-        const res = await fetch('https://api.openai.com/v1/audio/transcriptions', {
-          method: 'POST',
-          headers: { 'Authorization': `Bearer ${openaiKey}` },
-          body: formData
-        });
-
-        if (res.ok) reponse = await res.text();
-      } catch (err) {
-        reponse = '[Réponse vocale non transcrite]';
-      }
-    } else {
-      reponse = document.getElementById(`reponse-texte-${i}`)?.value?.trim() || '(sans réponse)';
-    }
-
-    reponsesTexte += `\nQuestion ${i + 1} : ${questionsGlobales[i]}\nRéponse : ${reponse}\n`;
-  }
-
-  // Régénérer avec Claude en intégrant les réponses
-  const promptFinal = `Tu es l'assistant de moietloi.fr. Tu as déjà produit un premier document structuré à partir d'un témoignage. Le témoin a maintenant répondu aux questions de clarification. 
-
-Régénère le document final en intégrant ces réponses pour enrichir et préciser le témoignage. Utilise exactement le même format structuré que le document initial.
-
-DOCUMENT INITIAL :
-${document.getElementById('questions-container').dataset.documentInitial}
-
-RÉPONSES AUX QUESTIONS DE CLARIFICATION :
-${reponsesTexte}
-
-Produis le document final enrichi en intégrant naturellement les informations apportées par les réponses. Ne mentionne pas les questions dans le document final — intègre les réponses directement dans les sections pertinentes. Supprime la section QUESTIONS DE CLARIFICATION dans le document final.`;
-
-  try {
-    const claudeRes = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': anthropicKey,
-        'anthropic-version': '2023-06-01',
-        'anthropic-dangerous-direct-browser-access': 'true'
-      },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 2000,
-        messages: [{ role: 'user', content: promptFinal }]
-      })
-    });
-
-    if (!claudeRes.ok) {
-      const err = await claudeRes.json();
-      throw new Error(err.error?.message || 'Erreur Claude');
-    }
-
-    const data = await claudeRes.json();
-    const documentFinal = data.content[0].text;
-
-    document.getElementById('card-questions').style.display = 'none';
-    afficherResultat(transcriptGlobal, documentFinal);
-
-  } catch (err) {
-    showError('error-final', `Erreur : ${err.message}`);
-    document.getElementById('btn-finaliser').disabled = false;
-    document.getElementById('btn-finaliser').textContent = 'Générer mon document final →';
-  }
-}
-
-// ─── AFFICHER RÉSULTAT ───────────────────────────────────────
-function afficherResultat(transcript, document_texte) {
-  document.getElementById('card-resultat').style.display = 'block';
-  document.getElementById('transcript-result').textContent = transcript;
-  document.getElementById('document-result').textContent = document_texte;
-  window.scrollTo({ top: document.getElementById('card-resultat').offsetTop - 20, behavior: 'smooth' });
-}
-
-// ─── LECTURE FICHIER ─────────────────────────────────────────
-function readFileAsText(file) {
-  return new Promise((resolve) => {
-    if (file.type === 'text/plain' || file.name.endsWith('.txt')) {
-      const reader = new FileReader();
-      reader.onload = e => resolve(e.target.result);
-      reader.onerror = () => resolve('');
-      reader.readAsText(file);
-    } else {
-      // Pour PDF et autres — on note juste le nom pour l'instant
-      resolve(`[Fichier : ${file.name} — ${(file.size/1024).toFixed(0)} Ko]`);
-    }
+function swM(i,mode){
+  ['txt','voc','doc'].forEach(m=>{
+    G(`zt_${i}`)?.classList.toggle('hidden',m!==mode);
+    G(`zv_${i}`)?.classList.toggle('hidden',m!==mode);
+    G(`zd_${i}`)?.classList.toggle('hidden',m!==mode);
+    G(`bmt_${i}`)?.classList.toggle('on',m===mode&&mode==='txt');
+    G(`bmv_${i}`)?.classList.toggle('on',m===mode&&mode==='voc');
+    G(`bmd_${i}`)?.classList.toggle('on',m===mode&&mode==='doc');
   });
 }
 
-// ─── HELPERS ────────────────────────────────────────────────
-function setStepActive(step) {
-  const icon = document.getElementById(`icon-${step}`);
-  icon.className = 'step-icon active';
-  icon.textContent = '…';
+async function togMini(i){
+  if(miniMR[i]?.on){miniMR[i].mr.stop();miniMR[i].on=false;return;}
+  try{
+    const stream=await navigator.mediaDevices.getUserMedia({audio:true});
+    const m=new MediaRecorder(stream,{mimeType:mime()});const c=[];
+    m.ondataavailable=e=>{if(e.data.size>0)c.push(e.data);};
+    m.onstop=()=>{
+      const b=new Blob(c,{type:mime()});miniMR[i].blob=b;
+      G(`mp_${i}`).innerHTML=`<audio controls src="${URL.createObjectURL(b)}" style="width:100%;margin-top:6px;"></audio>`;
+      G(`ms_${i}`).textContent='✓ Réponse enregistrée';
+      G(`bmr_${i}`).classList.remove('rec');G(`bmr_${i}`).textContent='🔄';
+      stream.getTracks().forEach(t=>t.stop());
+    };
+    m.start(100);miniMR[i]={mr:m,on:true,blob:null};
+    G(`bmr_${i}`).classList.add('rec');G(`bmr_${i}`).textContent='⏹';
+    G(`ms_${i}`).textContent='Enregistrement…';
+  }catch{G(`ms_${i}`).textContent='⚠️ Micro non accessible';}
 }
 
-function setStepDone(step) {
-  const icon = document.getElementById(`icon-${step}`);
-  icon.className = 'step-icon done';
-  icon.textContent = '✓';
+// ── FINALISER ─────────────────────────────────────────────────
+async function finaliser(){
+  const okey=G('ok').value.trim(), akey=G('ak').value.trim();
+  const btn=G('btnFinal');btn.disabled=true;btn.textContent='Génération en cours…';
+  let reps='';
+  for(let i=0;i<questions.length;i++){
+    const isVoc=!G(`zv_${i}`).classList.contains('hidden');
+    const isDoc=!G(`zd_${i}`).classList.contains('hidden');
+    let rep='';
+    if(isVoc&&miniMR[i]?.blob){
+      try{
+        const fd=new FormData();fd.append('file',new File([miniMR[i].blob],'r.mp4',{type:miniMR[i].blob.type}));
+        fd.append('model','whisper-1');fd.append('language','fr');fd.append('response_format','text');
+        const r=await fetch('https://api.openai.com/v1/audio/transcriptions',{method:'POST',headers:{'Authorization':`Bearer ${okey}`},body:fd});
+        if(r.ok)rep=await r.text();
+      }catch{rep='[réponse vocale]';}
+    }else if(isDoc){
+      const qid=`q${i}`;const docs=docsQ[qid]||[];
+      for(const d of docs){const t=await readTxt(d.f);rep+=t?`[${d.f.name}]\n${t.substring(0,500)}`:`[${d.f.name}]`;}
+      if(!rep)rep='(document joint)';
+    }else{rep=G(`rt_${i}`)?.value?.trim()||'(sans réponse)';}
+    reps+=`Q${i+1}: ${questions[i]}\nR: ${rep}\n\n`;
+  }
+  const p=`Régénère ce document en intégrant les réponses. Même format, sans section QUESTIONS. N'invente rien.\n\nDOCUMENT INITIAL:\n${docInitial}\n\nRÉPONSES:\n${reps}`;
+  try{
+    const res=await claude(akey,p,2000);
+    const txt=res.content[0].text;docInitial=txt;
+    hide('cardQ');showRes(transcript,txt);
+  }catch(e){alert(`Erreur: ${e.message}`);}
+  btn.disabled=false;btn.textContent='Générer mon document final →';
 }
 
-function setStepError(step) {
-  const icon = document.getElementById(`icon-${step}`);
-  icon.className = 'step-icon error';
-  icon.textContent = '✕';
+// ── RÉSULTAT ──────────────────────────────────────────────────
+function showRes(tr,txt){
+  show('cardRes');
+  G('trRes').textContent=tr;G('docRes').textContent=txt;
+  show('zoneValidation');hide('zoneCorr');hide('zoneFinal');
+  hide('errCorr');scrollEl('cardRes');
 }
 
-function showError(id, msg) {
-  const box = document.getElementById(id);
-  box.style.display = 'block';
-  box.textContent = msg;
+function valider(){hide('zoneValidation');show('zoneFinal');scrollEl('zoneFinal');}
+
+function showCorr(){
+  show('zoneCorr');
+  G('txtCorr').value='';corrVocBlob=null;
+  G('prevCorrVoc').innerHTML='';G('stCorrVoc').textContent='Expliquez ce qui doit être corrigé';
+  G('btnCorrVoc').classList.remove('rec');G('btnCorrVoc').textContent='🎙️';
 }
+
+function switchCorr(m){
+  G('corrTxt').classList.toggle('hidden',m!=='txt');
+  G('corrVoc').classList.toggle('hidden',m!=='voc');
+  G('ctTxt').classList.toggle('on',m==='txt');
+  G('ctVoc').classList.toggle('on',m==='voc');
+}
+
+async function toggleCorrVoc(){
+  if(corrVocMR?.on){corrVocMR.mr.stop();corrVocMR.on=false;return;}
+  try{
+    const stream=await navigator.mediaDevices.getUserMedia({audio:true});
+    const m=new MediaRecorder(stream,{mimeType:mime()});const c=[];
+    m.ondataavailable=e=>{if(e.data.size>0)c.push(e.data);};
+    m.onstop=()=>{
+      corrVocBlob=new Blob(c,{type:mime()});
+      G('prevCorrVoc').innerHTML=`<audio controls src="${URL.createObjectURL(corrVocBlob)}"></audio>`;
+      G('stCorrVoc').textContent='✓ Correction enregistrée';
+      G('btnCorrVoc').classList.remove('rec');G('btnCorrVoc').textContent='🔄';
+      stream.getTracks().forEach(t=>t.stop());
+    };
+    m.start(100);corrVocMR={mr:m,on:true};
+    G('btnCorrVoc').classList.add('rec');G('btnCorrVoc').textContent='⏹';
+    G('stCorrVoc').textContent='Enregistrement…';
+  }catch{G('stCorrVoc').textContent='⚠️ Micro non accessible';}
+}
+
+async function appliquerCorr(){
+  if(corrCount>=2){alert('Maximum 2 corrections atteint.');return;}
+  const okey=G('ok').value.trim(), akey=G('ak').value.trim();
+  const btn=G('btnAppCorr');btn.disabled=true;btn.textContent='Régénération…';
+  let corr=G('txtCorr').value.trim();
+  if(!corr&&corrVocBlob){
+    try{
+      const fd=new FormData();fd.append('file',new File([corrVocBlob],'c.mp4',{type:corrVocBlob.type}));
+      fd.append('model','whisper-1');fd.append('language','fr');fd.append('response_format','text');
+      const r=await fetch('https://api.openai.com/v1/audio/transcriptions',{method:'POST',headers:{'Authorization':`Bearer ${okey}`},body:fd});
+      if(r.ok)corr=await r.text();
+    }catch{corr='[correction vocale]';}
+  }
+  if(!corr){alert('Indiquez ce qui doit être corrigé.');btn.disabled=false;btn.textContent='Régénérer avec corrections →';return;}
+  const p=`Applique cette correction au document. Même format. N'invente rien.\n\nDOCUMENT:\n${docInitial}\n\nCORRECTION:\n${corr}`;
+  try{
+    const res=await claude(akey,p,2000);
+    const txt=res.content[0].text;docInitial=txt;
+    G('docRes').textContent=txt;corrCount++;
+    hide('zoneCorr');
+    if(corrCount>=2)document.querySelector('.btn-s[onclick="showCorr()"]').style.display='none';
+    scrollEl('docRes');
+  }catch(e){showE('errCorr',`Erreur: ${e.message}`);}
+  btn.disabled=false;btn.textContent='Régénérer avec corrections →';
+}
+
+// ── CLAUDE API ────────────────────────────────────────────────
+async function claude(key,prompt,max){
+  const r=await fetch('https://api.anthropic.com/v1/messages',{
+    method:'POST',
+    headers:{'Content-Type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
+    body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:max,messages:[{role:'user',content:prompt}]})
+  });
+  if(!r.ok){const e=await r.json();throw new Error(e.error?.message||'Erreur API');}
+  return r.json();
+}
+
+// ── UTILS ─────────────────────────────────────────────────────
+function readTxt(f){return new Promise(resolve=>{
+  if(f.type==='text/plain'||f.name.endsWith('.txt')){const r=new FileReader();r.onload=e=>resolve(e.target.result);r.onerror=()=>resolve('');r.readAsText(f);}
+  else resolve(`[Fichier: ${f.name}]`);
+});}
+
+function G(id){return document.getElementById(id);}
+function show(id){G(id)?.classList.remove('hidden');}
+function hide(id){G(id)?.classList.add('hidden');}
+function showE(id,msg){const b=G(id);if(b){b.style.display='block';b.textContent=msg;}}
+function setP(id,state){const el=G(id);if(!el)return;el.className=`picon ${state}`;el.textContent=state==='done'?'✓':state==='error'?'✕':'…';}
+function scrollEl(id){const el=G(id);if(el)window.scrollTo({top:el.offsetTop-20,behavior:'smooth'});}
 </script>
 </body>
 </html>
