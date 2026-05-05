@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>moietloi.fr — Test Pipeline v4</title>
+<title>moietloi.fr — Test Pipeline v3</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Source+Sans+3:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -77,13 +77,15 @@
 
   .qitem { background:var(--fond); border-radius:8px; padding:16px; margin-bottom:16px; border-left:3px solid var(--peche); }
   .qtxt { font-size:0.95rem; color:var(--gris-fonce); margin-bottom:12px; line-height:1.5; font-style:italic; }
+  .qmode { display:flex; gap:8px; margin-bottom:12px; flex-wrap:wrap; }
+  .btn-m { padding:6px 14px; border-radius:20px; font-size:0.8rem; cursor:pointer; border:1.5px solid #ddd8d0; background:var(--blanc); color:var(--gris-moyen); font-family:'Source Sans 3',sans-serif; transition:all 0.2s; }
+  .btn-m.on { border-color:var(--vert); background:var(--vert); color:white; }
   .mini-rec { display:flex; align-items:center; gap:12px; padding:10px; background:var(--blanc); border-radius:8px; border:1.5px solid #ddd8d0; }
   .btn-mr { width:40px; height:40px; border-radius:50%; border:none; background:var(--vert); color:white; cursor:pointer; font-size:1rem; display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:all 0.2s; }
   .btn-mr.rec { background:var(--peche); animation:pulse 1.5s infinite; }
   .mr-status { font-size:0.85rem; color:var(--gris-moyen); }
   .mini-up { margin-top:10px; padding:10px 14px; border:1.5px dashed #ddd8d0; border-radius:8px; font-size:0.82rem; color:var(--gris-moyen); cursor:pointer; text-align:center; transition:all 0.2s; }
   .mini-up:hover { border-color:var(--vert); color:var(--vert); background:#f0f4f0; }
-
   .btn-complement { display:none; margin:10px auto 0; padding:9px 22px; border:1.5px solid var(--vert); background:transparent; color:var(--vert); border-radius:8px; font-size:0.88rem; cursor:pointer; font-family:'Source Sans 3',sans-serif; transition:all 0.2s; }
   .btn-complement:hover { background:var(--vert); color:white; }
   .rep-zone { display:flex; flex-direction:column; gap:10px; }
@@ -91,6 +93,7 @@
   .rep-row textarea { flex:1; min-height:80px; }
   .rep-mic-wrap { display:flex; flex-direction:column; align-items:center; gap:6px; padding-top:4px; }
   .rep-mic-st { font-size:0.7rem; color:var(--gris-moyen); text-align:center; max-width:48px; line-height:1.3; }
+
   .doc-box { background:var(--blanc); border:1.5px solid var(--vert-clair); border-radius:10px; padding:20px; font-size:0.88rem; line-height:1.8; color:var(--gris-fonce); white-space:pre-wrap; outline:none; }
   .tr-box { background:var(--fond); border:1px solid #e0dbd0; border-radius:8px; padding:16px; font-size:0.9rem; line-height:1.7; color:var(--gris-fonce); margin-bottom:16px; max-height:180px; overflow-y:auto; font-style:italic; }
   .slabel { font-size:0.75rem; text-transform:uppercase; letter-spacing:1.5px; color:var(--gris-moyen); margin-bottom:8px; font-weight:500; }
@@ -114,7 +117,7 @@
   <header>
     <div class="logo">moi <span class="et">&</span> <span class="loi">loi</span></div>
     <div class="sous-titre">Témoignages citoyens</div>
-    <span class="badge">Test pipeline v4</span>
+    <span class="badge">Test pipeline v5</span>
   </header>
 
   <!-- 1. CLÉS -->
@@ -197,7 +200,7 @@
     <div class="slabel">Transcription brute (Whisper)</div>
     <div class="tr-box" id="trRes">—</div>
     <hr>
-    <div class="slabel">Document structuré <span style="font-size:0.7rem;color:var(--gris-clair);font-style:italic;font-weight:400;">— cliquez pour corriger directement</span></div>
+    <div class="slabel">Document structuré <span style="font-size:0.7rem;color:#a0a0a0;font-style:italic;font-weight:400;">— cliquez pour corriger directement</span></div>
     <div class="doc-box" id="docRes" contenteditable="true" spellcheck="false">—</div>
     <hr>
 
@@ -454,16 +457,7 @@ function showQ(qs){
   scrollEl('cardQ');
 }
 
-function swM(i,mode){
-  ['txt','voc','doc'].forEach(m=>{
-    G(`zt_${i}`)?.classList.toggle('hidden',m!==mode);
-    G(`zv_${i}`)?.classList.toggle('hidden',m!==mode);
-    G(`zd_${i}`)?.classList.toggle('hidden',m!==mode);
-    G(`bmt_${i}`)?.classList.toggle('on',m===mode&&mode==='txt');
-    G(`bmv_${i}`)?.classList.toggle('on',m===mode&&mode==='voc');
-    G(`bmd_${i}`)?.classList.toggle('on',m===mode&&mode==='doc');
-  });
-}
+
 
 async function togMini(i){
   const stEl=G(`ms_${i}`);
@@ -492,10 +486,8 @@ async function finaliser(){
   let reps='';
   let qBlocks=[];
   for(let i=0;i<questions.length;i++){
-    const isVoc=!G(`zv_${i}`).classList.contains('hidden');
-    const isDoc=!G(`zd_${i}`).classList.contains('hidden');
     let rep='';
-    if(isVoc&&miniMR[i]?.blob){
+    if(miniMR[i]?.blob){
       try{
         const fd=new FormData();fd.append('file',new File([miniMR[i].blob],'r.mp4',{type:miniMR[i].blob.type}));
         fd.append('model','whisper-1');fd.append('language','fr');fd.append('response_format','text');
@@ -509,9 +501,9 @@ async function finaliser(){
     }else{rep=G(`rt_${i}`)?.value?.trim()||'(sans réponse)';}
     reps+=`Q${i+1}: ${questions[i]}\nR: ${rep}\n\n`;
   }
-  const p=`Régénère ce document en intégrant les réponses. Même format, sans section QUESTIONS. N'invente rien.\n\nDOCUMENT INITIAL:\n${docInitial}\n\nRÉPONSES:\n${reps}`;
+  const p=`Régénère ce document en intégrant les réponses et les documents joints. Même format, sans section QUESTIONS. N'invente rien.\n\nDOCUMENT INITIAL:\n${docInitial}\n\nRÉPONSES:\n${reps}`;
   try{
-    const res=await claude(akey,p,2000);
+    const res=await claude(akey,p,2000,qBlocks);
     const txt=res.content[0].text;docInitial=txt;
     hide('cardQ');showRes(transcript,txt);
   }catch(e){alert(`Erreur: ${e.message}`);}
@@ -533,7 +525,7 @@ async function valider(){
   const btnVal=document.querySelector('[onclick="valider()"]');
   if(btnVal){btnVal.disabled=true;btnVal.textContent='Relecture finale…';}
   const texteEdite=G('docRes').innerText;
-  const p=`Tu es correcteur-rédacteur pour moietloi.fr. Fais un passage de relecture finale : corrige les fautes d'orthographe et de frappe, fluidifie les phrases maladroites, assure la cohérence — sans jamais changer le fond ni la structure. Garde exactement le même format avec les mêmes titres en gras. Réponds uniquement avec le document corrigé, sans commentaire.\n\nDOCUMENT :\n${texteEdite}`;
+  const p='Tu es correcteur-rédacteur pour moietloi.fr. Relecture finale : corrige les fautes d\'orthographe et de frappe, fluidifie les phrases maladroites, sans changer le fond ni la structure. Garde les mêmes titres en gras. Réponds uniquement avec le document corrigé.\n\nDOCUMENT :\n'+texteEdite;
   try{
     const res=await claude(akey,p,2000);
     const txt=res.content[0].text;
@@ -621,13 +613,9 @@ function readDoc(f){return new Promise(resolve=>{
     const b64=e.target.result.split(',')[1];
     const isPdf=f.type==='application/pdf'||f.name.toLowerCase().endsWith('.pdf');
     const isImg=f.type.startsWith('image/')||/\.(jpg|jpeg|png)$/i.test(f.name);
-    if(isPdf){
-      resolve({type:'document',source:{type:'base64',media_type:'application/pdf',data:b64},title:f.name});
-    }else if(isImg){
-      resolve({type:'image',source:{type:'base64',media_type:f.type||'image/jpeg',data:b64}});
-    }else{
-      resolve(null);
-    }
+    if(isPdf){resolve({type:'document',source:{type:'base64',media_type:'application/pdf',data:b64},title:f.name});}
+    else if(isImg){resolve({type:'image',source:{type:'base64',media_type:f.type||'image/jpeg',data:b64}});}
+    else{resolve(null);}
   };
   r.onerror=()=>resolve(null);
   r.readAsDataURL(f);
