@@ -118,7 +118,7 @@
   <header>
     <div class="logo">moi <span class="et">&amp;</span> <span class="loi">loi</span></div>
     <div class="sous-titre">Témoignages citoyens</div>
-    <span class="badge">Test pipeline v6.9</span>
+    <span class="badge">Test pipeline v7.0</span>
   </header>
 
   <!-- 1. CLÉS API -->
@@ -330,7 +330,9 @@ async function startRec(){
     chunks=[];
     mr.ondataavailable=e=>{if(e.data.size>0)chunks.push(e.data);};
     mr.onstop=()=>{
-      audioBlob=new Blob(chunks,{type:mime()});
+      const raw=new Blob(chunks,{type:mime()});
+      audioBlob=buildFinalBlob(raw);
+      allChunks=[];
       G('audPrev').innerHTML=`<audio controls src="${URL.createObjectURL(audioBlob)}"></audio>`;
       G('btnComplement').style.display='block';
       checkReady();
@@ -360,6 +362,11 @@ async function ajouterComplement(){
   G('recSt').classList.add('on');
   G('audPrev').innerHTML='';
   await startRec();
+}
+
+function buildFinalBlob(newBlob){
+  if(allChunks.length===0) return newBlob;
+  return new Blob([...allChunks, newBlob], {type:newBlob.type});
 }
 
 function mime(){
@@ -421,19 +428,12 @@ async function lancer(){
 
   setP('piW','active');
   try{
-    // If complements exist, transcribe each segment separately and join
-    const segments=[...allChunks, audioBlob].filter(Boolean);
-    const parts=[];
-    for(const seg of segments){
-      const fd=new FormData();
-      fd.append('file',new File([seg],'t.mp4',{type:seg.type}));
-      fd.append('model','whisper-1');fd.append('language','fr');fd.append('response_format','text');
-      const r=await fetch('https://api.openai.com/v1/audio/transcriptions',{method:'POST',headers:{'Authorization':`Bearer ${okey}`},body:fd});
-      if(!r.ok){const e=await r.json();throw new Error(e.error?.message||'Erreur Whisper');}
-      parts.push((await r.text()).trim());
-    }
-    transcript=parts.filter(Boolean).join(' ');
-    allChunks=[];
+    const fd=new FormData();
+    fd.append('file',new File([audioBlob],'t.mp4',{type:audioBlob.type}));
+    fd.append('model','whisper-1');fd.append('language','fr');fd.append('response_format','text');
+    const r=await fetch('https://api.openai.com/v1/audio/transcriptions',{method:'POST',headers:{'Authorization':`Bearer ${okey}`},body:fd});
+    if(!r.ok){const e=await r.json();throw new Error(e.error?.message||'Erreur Whisper');}
+    transcript=await r.text();
     setP('piW','done');
   }catch(e){setP('piW','error');showErr('errPipe',`Erreur transcription : ${e.message}`);G('btnLancer').disabled=false;return;}
 
