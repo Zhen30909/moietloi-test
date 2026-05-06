@@ -44,8 +44,8 @@
   .timer { font-size:1.4rem; font-family:'Playfair Display',serif; color:var(--peche); margin:8px 0; min-height:36px; }
   .btn-stop { display:none; margin:12px auto 0; padding:10px 28px; border:1.5px solid var(--peche); background:transparent; color:var(--peche); border-radius:8px; font-size:0.9rem; cursor:pointer; font-family:'Source Sans 3',sans-serif; transition:all 0.2s; }
   .btn-stop:hover { background:var(--peche); color:white; }
-  .btn-rerecord { display:none; margin:10px auto 0; padding:8px 20px; border:1.5px solid var(--vert); background:transparent; color:var(--vert); border-radius:8px; font-size:0.85rem; cursor:pointer; font-family:'Source Sans 3',sans-serif; transition:all 0.2s; }
-  .btn-rerecord:hover { background:var(--vert); color:white; }
+  .btn-complement { display:none; margin:10px auto 0; padding:8px 20px; border:1.5px solid var(--vert); background:transparent; color:var(--vert); border-radius:8px; font-size:0.85rem; cursor:pointer; font-family:'Source Sans 3',sans-serif; transition:all 0.2s; }
+  .btn-complement:hover { background:var(--vert); color:white; }
   .upload-zone { border:2px dashed #ddd8d0; border-radius:8px; padding:20px; text-align:center; cursor:pointer; transition:all 0.2s; margin-top:12px; }
   .upload-zone:hover, .upload-zone.over { border-color:var(--vert); background:#f0f4f0; }
   .upload-icon { font-size:1.8rem; margin-bottom:8px; }
@@ -85,13 +85,13 @@
   .slabel { font-size:0.75rem; text-transform:uppercase; letter-spacing:1.5px; color:var(--gris-moyen); margin-bottom:8px; font-weight:500; }
   .ok-badge { display:inline-flex; align-items:center; gap:6px; background:#eef3ee; color:var(--vert); padding:6px 14px; border-radius:20px; font-size:0.82rem; font-weight:500; margin-bottom:16px; }
   .err-box { display:none; background:#fdf0ef; border:1px solid #e8b0ad; border-radius:8px; padding:14px 16px; font-size:0.88rem; color:var(--rouge); margin-top:12px; }
-  .anon-options { display:flex; flex-direction:column; gap:10px; margin-top:4px; }
-  .anon-option { display:flex; align-items:flex-start; gap:12px; padding:14px 16px; border-radius:8px; border:1.5px solid #ddd8d0; background:var(--fond); cursor:pointer; transition:all 0.2s; }
-  .anon-option:hover { border-color:var(--vert-clair); background:#f0f4f0; }
-  .anon-option.selected { border-color:var(--vert); background:#eef3ee; }
-  .anon-option input[type=radio] { margin-top:3px; flex-shrink:0; accent-color:var(--vert); }
-  .anon-label { font-size:0.9rem; font-weight:500; color:var(--gris-fonce); }
-  .anon-desc { font-size:0.78rem; color:var(--gris-moyen); margin-top:3px; }
+  .anon-fields { display:flex; flex-direction:column; gap:8px; margin-top:4px; }
+  .anon-field { display:flex; align-items:center; gap:12px; padding:12px 16px; border-radius:8px; border:1.5px solid #ddd8d0; background:var(--fond); transition:all 0.2s; }
+  .anon-field.checked { border-color:var(--vert); background:#eef3ee; }
+  .anon-field input[type=checkbox] { accent-color:var(--vert); width:18px; height:18px; cursor:pointer; flex-shrink:0; }
+  .anon-field-label { font-size:0.9rem; font-weight:500; color:var(--gris-fonce); flex:1; }
+  .anon-field input[type=text] { width:160px; padding:6px 10px; border:1.5px solid #ddd8d0; border-radius:6px; font-size:0.85rem; background:white; font-family:'Source Sans 3',sans-serif; }
+  .anon-field input[type=text]:focus { outline:none; border-color:var(--vert); }
   .submission-box { background:#f8f4ef; border:1.5px solid var(--beige); border-radius:12px; padding:24px; margin-top:4px; }
   .submission-title { font-family:'Playfair Display',serif; font-size:1.1rem; color:var(--gris-fonce); margin-bottom:12px; }
   .submission-text { font-size:0.88rem; color:var(--gris-moyen); line-height:1.7; margin-bottom:16px; }
@@ -118,7 +118,7 @@
   <header>
     <div class="logo">moi <span class="et">&</span> <span class="loi">loi</span></div>
     <div class="sous-titre">Témoignages citoyens</div>
-    <span class="badge">Test pipeline v5</span>
+    <span class="badge">Test pipeline v6</span>
   </header>
 
   <!-- 1. CLÉS API -->
@@ -147,7 +147,7 @@
     </div>
     <div id="audPrev"></div>
     <div style="text-align:center;">
-      <button class="btn-rerecord" id="btnRerecord" onclick="rerecorder()">🔄 Recommencer l'enregistrement</button>
+      <button class="btn-complement" id="btnComplement" onclick="ajouterComplement()">+ Ajouter un complément vocal</button>
     </div>
     <div class="err-box" id="errRec"></div>
   </div>
@@ -225,26 +225,36 @@
     <p style="font-size:0.9rem;color:var(--gris-moyen);margin-bottom:16px;line-height:1.6;">
       Choisissez comment vous souhaitez apparaître dans la base publique.
     </p>
-    <div class="anon-options">
-      <label class="anon-option" id="aopt0" onclick="selectAnon(0)">
-        <input type="radio" name="anon" value="0">
-        <div><div class="anon-label">👤 Nom complet visible</div><div class="anon-desc">Votre prénom et nom apparaissent sur le témoignage.</div></div>
-      </label>
-      <label class="anon-option" id="aopt1" onclick="selectAnon(1)">
-        <input type="radio" name="anon" value="1">
-        <div><div class="anon-label">🏷️ Prénom et région</div><div class="anon-desc">Exemple : <em>"Marie, Vaucluse"</em></div></div>
-      </label>
-      <label class="anon-option selected" id="aopt2" onclick="selectAnon(2)">
-        <input type="radio" name="anon" value="2" checked>
-        <div><div class="anon-label">💼 Catégorie professionnelle et région ← recommandé</div><div class="anon-desc">Exemple : <em>"Une entrepreneuse, Vaucluse"</em></div></div>
-      </label>
-      <label class="anon-option" id="aopt3" onclick="selectAnon(3)">
-        <input type="radio" name="anon" value="3">
-        <div><div class="anon-label">🔒 Anonyme complet</div><div class="anon-desc">Aucune information personnelle publiée.</div></div>
-      </label>
+    <p style="font-size:0.82rem;color:var(--gris-moyen);margin-bottom:12px;font-style:italic;">Cochez les informations que vous souhaitez faire apparaître. Tout le reste restera anonyme.</p>
+    <div class="anon-fields">
+      <div class="anon-field" id="af_prenom">
+        <input type="checkbox" id="chk_prenom" onchange="updateAnonPreview()">
+        <span class="anon-field-label">👤 Prénom</span>
+        <input type="text" id="val_prenom" placeholder="Votre prénom" oninput="updateAnonPreview()" onclick="G('chk_prenom').checked=true;updateAnonPreview()">
+      </div>
+      <div class="anon-field" id="af_nom">
+        <input type="checkbox" id="chk_nom" onchange="updateAnonPreview()">
+        <span class="anon-field-label">👤 Nom</span>
+        <input type="text" id="val_nom" placeholder="Votre nom" oninput="updateAnonPreview()" onclick="G('chk_nom').checked=true;updateAnonPreview()">
+      </div>
+      <div class="anon-field" id="af_profession">
+        <input type="checkbox" id="chk_profession" onchange="updateAnonPreview()">
+        <span class="anon-field-label">💼 Profession / Catégorie</span>
+        <input type="text" id="val_profession" placeholder="Ex: Entrepreneuse" oninput="updateAnonPreview()" onclick="G('chk_profession').checked=true;updateAnonPreview()">
+      </div>
+      <div class="anon-field" id="af_age">
+        <input type="checkbox" id="chk_age" onchange="updateAnonPreview()">
+        <span class="anon-field-label">🎂 Tranche d'âge</span>
+        <input type="text" id="val_age" placeholder="Ex: 40-50 ans" oninput="updateAnonPreview()" onclick="G('chk_age').checked=true;updateAnonPreview()">
+      </div>
+      <div class="anon-field" id="af_region">
+        <input type="checkbox" id="chk_region" onchange="updateAnonPreview()">
+        <span class="anon-field-label">📍 Région / Département</span>
+        <input type="text" id="val_region" placeholder="Ex: Vaucluse" oninput="updateAnonPreview()" onclick="G('chk_region').checked=true;updateAnonPreview()">
+      </div>
     </div>
     <div style="margin-top:12px;padding:10px 14px;background:var(--fond);border-radius:8px;border:1px solid #e0dbd0;font-size:0.85rem;color:var(--gris-moyen);">
-      Votre témoignage apparaîtra signé : <strong id="anonSig">"Une entrepreneuse, Vaucluse"</strong>
+      Votre témoignage apparaîtra signé : <strong id="anonSig">Anonyme</strong>
     </div>
     <button class="btn-p" onclick="showSoumission()">Continuer →</button>
   </div>
@@ -257,7 +267,7 @@
       <div class="submission-text">
         <p>Votre témoignage sera examiné par notre équipe de modération avant publication.</p>
         <p>Cette vérification garantit le respect de notre charte — absence de données personnelles non souhaitées, absence de propos diffamatoires, conformité éditoriale.</p>
-        <p>Ce processus prend généralement <strong>moins de 24 heures</strong>. Vous recevrez un email de confirmation à la publication, avec votre témoignage intégré dans le corps du message.</p>
+        <p>Ce processus prend généralement <strong>moins de 48 heures</strong>. Vous recevrez un email de confirmation à la publication, avec votre témoignage intégré dans le corps du message.</p>
       </div>
       <div class="checkbox-confirm">
         <input type="checkbox" id="chkConfirm" onchange="toggleConfirm()">
@@ -276,11 +286,11 @@
     <div class="confirmation-finale">
       <div class="confirmation-icon">✓</div>
       <div class="confirmation-title">Témoignage soumis</div>
-      <div class="confirmation-text">Merci. Votre témoignage a été reçu et sera examiné dans les 24 heures.</div>
+      <div class="confirmation-text">Merci. Votre témoignage a été reçu et sera examiné dans les 48 heures.</div>
       <div class="confirmation-details">
         <strong>Ce qui se passe maintenant :</strong><br>
         • Votre témoignage est examiné par notre équipe de modération<br>
-        • S'il respecte notre charte, il sera publié dans les 24h<br>
+        • S'il respecte notre charte, il sera publié dans les 48h<br>
         • Vous recevrez un email de confirmation avec votre témoignage complet<br><br>
         <strong>Anonymat choisi :</strong> <span id="confirmAnon">—</span><br>
         <strong>Référence :</strong> <span id="confirmRef">—</span>
@@ -289,7 +299,6 @@
         💡 <strong>Créez votre compte</strong> pour suivre votre témoignage, recevoir des notifications et sauvegarder vos futures soumissions.
         <div style="margin-top:12px;">
           <button class="btn-p" style="margin-top:0;background:var(--vert);" onclick="alert('Création de compte — prochaine étape')">Créer mon compte — 30 secondes</button>
-          <button class="btn-s" onclick="location.reload()" style="margin-top:8px;">Continuer sans compte</button>
         </div>
       </div>
     </div>
@@ -324,9 +333,11 @@ async function startRec(){
     chunks=[];
     mr.ondataavailable=e=>{if(e.data.size>0)chunks.push(e.data);};
     mr.onstop=()=>{
-      audioBlob=new Blob(chunks,{type:mime()});
+      const raw=new Blob(chunks,{type:mime()});
+      audioBlob=buildFinalBlob(raw);
+      allChunks=[];
       G('audPrev').innerHTML=`<audio controls src="${URL.createObjectURL(audioBlob)}"></audio>`;
-      G('btnRerecord').style.display='block';
+      G('btnComplement').style.display='block';
       checkReady();
       stream.getTracks().forEach(t=>t.stop());
     };
@@ -334,7 +345,7 @@ async function startRec(){
     G('btnRec').classList.add('rec'); G('btnRec').textContent='⏸';
     G('recSt').textContent='Enregistrement en cours…'; G('recSt').classList.add('on');
     G('btnStop').style.display='block';
-    G('btnRerecord').style.display='none';
+    G('btnComplement').style.display='none';
     timerInt=setInterval(()=>{secs++;const m=Math.floor(secs/60).toString().padStart(2,'0'),s=(secs%60).toString().padStart(2,'0');G('timer').textContent=m+':'+s;},1000);
   }catch(e){showErr('errRec','⚠️ Accès au microphone refusé. Autorisez le microphone dans Chrome.');}
 }
@@ -350,7 +361,7 @@ function rerecorder(){
   if(isRec)stopRec();
   audioBlob=null;
   G('audPrev').innerHTML='';
-  G('btnRerecord').style.display='none';
+  G('btnComplement').style.display='none';
   G('recSt').textContent='Appuyez pour recommencer';
   G('timer').textContent='';
   checkReady();
@@ -408,6 +419,7 @@ function renderQ(qid){
 async function lancer(){
   const okey=G('ok').value.trim(), akey=G('ak').value.trim();
   show('cardProg');hide('cardQ');hide('cardRes');hide('cardAnon');hide('cardSoumission');hide('cardConfirm');
+  G('btnComplement').style.display='none';
   G('btnLancer').disabled=true;
   hideErr('errPipe');
   scrollEl('cardProg');
@@ -632,13 +644,22 @@ function validerDoc(){
 }
 
 // ── ANONYMAT
-const anonExamples=['"Votre nom complet"','"Marie, Vaucluse"','"Une entrepreneuse, Vaucluse"','"Anonyme"'];
-const anonLabels=['Nom complet visible','Prénom et région','Catégorie professionnelle et région','Anonyme complet'];
-
-function selectAnon(i){
-  anonChoice=i;
-  document.querySelectorAll('.anon-option').forEach((el,idx)=>el.classList.toggle('selected',idx===i));
-  G('anonSig').textContent=anonExamples[i];
+function updateAnonPreview(){
+  const fields=['prenom','nom','profession','age','region'];
+  const parts=[];
+  fields.forEach(f=>{
+    const chk=G('chk_'+f);
+    const val=G('val_'+f);
+    const af=G('af_'+f);
+    if(chk&&chk.checked){
+      af&&af.classList.add('checked');
+      if(val&&val.value.trim())parts.push(val.value.trim());
+    }else{
+      af&&af.classList.remove('checked');
+    }
+  });
+  anonChoice=parts.length>0?parts.join(', '):'Anonyme';
+  G('anonSig').textContent='"'+anonChoice+'"';
 }
 
 function showSoumission(){
@@ -656,7 +677,7 @@ function toggleConfirm(){
 
 function soumettre(){
   const ref='TEM-'+new Date().getFullYear()+'-'+Math.floor(Math.random()*9000+1000);
-  G('confirmAnon').textContent=anonLabels[anonChoice];
+  G('confirmAnon').textContent=typeof anonChoice==='string'?anonChoice:'Anonyme';
   G('confirmRef').textContent=ref;
   hide('cardSoumission');
   show('cardConfirm');
