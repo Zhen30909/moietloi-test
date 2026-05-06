@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>moi & loi — Témoignages citoyens sur les dysfonctionnements administratifs</title>
+<meta name="description" content="Archive civique de témoignages sur les dysfonctionnements administratifs et réglementaires en France. Déposez votre témoignage vocal, analysé par IA, publié anonymement.">
+<meta property="og:title" content="moi & loi — Témoignages citoyens">
+<meta property="og:description" content="Archive civique de témoignages sur les dysfonctionnements administratifs en France. Votre expérience, documentée et publiée.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://moietloi.fr/">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="moi & loi">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","name":"moi & loi","alternateName":"moietloi.fr","url":"https://moietloi.fr","description":"Archive civique française de témoignages sur les dysfonctionnements administratifs et réglementaires. Plateforme bilingue français/anglais. Témoignages validés par leurs auteurs, analysés par IA, modérés avant publication.","publisher":{"@type":"Organization","name":"moietloi.fr","url":"https://moietloi.fr"},"potentialAction":{"@type":"SearchAction","target":"https://moietloi.fr/temoignages/?q={search_term_string}","query-input":"required name=search_term_string"}}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --vert:#5a7260; --vert-clair:#8a9e8a; --vert-pale:#eef3ee;
+  --beige:#d4c8b0; --beige-clair:#ede8df;
+  --peche:#d4956a; --peche-pale:#faf0e8;
+  --gris-fonce:#2d2d2d; --gris-moyen:#6b6b6b; --gris-clair:#b0b0b0;
+  --fond:#f7f4ef; --blanc:#ffffff;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Source Sans 3',sans-serif;background:var(--fond);color:var(--gris-fonce);overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(247,244,239,0.96);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--beige);height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 28px;transition:box-shadow 0.3s}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--gris-fonce);text-decoration:none;letter-spacing:-0.3px}
+.nav-logo .et{color:var(--peche);font-style:italic}
+.nav-logo .loi{color:var(--vert)}
+.nav-links{display:flex;align-items:center;gap:4px;list-style:none}
+.nav-links a{font-size:0.85rem;color:var(--gris-moyen);text-decoration:none;font-weight:400;padding:7px 12px;border-radius:6px;transition:color 0.2s,background 0.2s;white-space:nowrap}
+.nav-links a:hover{color:var(--vert);background:var(--vert-pale)}
+.nav-cta{background:var(--vert)!important;color:white!important;font-weight:500!important}
+.nav-cta:hover{background:#4a6050!important;color:white!important}
+.nav-burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+.nav-burger span{display:block;width:22px;height:2px;background:var(--gris-fonce);border-radius:2px;transition:all 0.3s}
+.nav-mobile{display:none;position:fixed;top:58px;left:0;right:0;background:var(--blanc);border-bottom:1px solid var(--beige);padding:16px 24px 20px;z-index:190;flex-direction:column;gap:4px;box-shadow:0 8px 24px rgba(0,0,0,0.08)}
+.nav-mobile.open{display:flex}
+.nav-mobile a{font-size:0.95rem;color:var(--gris-fonce);text-decoration:none;padding:10px 12px;border-radius:8px;transition:background 0.2s}
+.nav-mobile a:hover{background:var(--fond)}
+.nav-cta-mob{background:var(--vert);color:white!important;font-weight:500;text-align:center;margin-bottom:4px}
+.hero{min-height:100vh;padding:58px 24px 60px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 70% 55% at 85% 15%,rgba(90,114,96,0.08) 0%,transparent 55%),radial-gradient(ellipse 55% 45% at 10% 80%,rgba(212,149,106,0.07) 0%,transparent 55%),radial-gradient(ellipse 40% 30% at 50% 50%,rgba(212,200,176,0.12) 0%,transparent 60%)}
+.hero-deco{position:absolute;top:0;bottom:0;right:22%;width:1px;background:linear-gradient(to bottom,transparent 0%,var(--beige) 25%,var(--beige) 75%,transparent 100%);opacity:0.35;pointer-events:none}
+.hero-inner{position:relative;max-width:680px;width:100%;text-align:center}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;text-transform:uppercase;letter-spacing:2.5px;color:var(--vert);font-weight:500;margin-bottom:28px;padding:6px 14px;background:var(--vert-pale);border-radius:20px;border:1px solid rgba(90,114,96,0.2)}
+.hero-eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--vert);flex-shrink:0;animation:pulseDot 2s infinite}
+@keyframes pulseDot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(0.7)}}
+.hero-logo{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,8vw,4.8rem);font-weight:400;line-height:1.05;letter-spacing:-1px;color:var(--gris-fonce);margin-bottom:6px}
+.hero-logo .et{color:var(--peche);font-style:italic}
+.hero-logo .loi{color:var(--vert)}
+.hero-subtitle{font-size:0.75rem;letter-spacing:3px;text-transform:uppercase;color:var(--gris-moyen);font-weight:300;margin-bottom:36px}
+.hero-accroche{font-family:'Playfair Display',serif;font-size:clamp(1.1rem,3vw,1.45rem);font-style:italic;color:var(--gris-fonce);line-height:1.65;max-width:520px;margin:0 auto 14px;font-weight:400}
+.hero-desc{font-size:0.95rem;color:var(--gris-moyen);line-height:1.7;max-width:460px;margin:0 auto 44px;font-weight:300}
+.hero-ctas{display:flex;flex-direction:column;align-items:center;gap:12px;margin-bottom:52px}
+.btn-primary{display:inline-flex;align-items:center;gap:10px;background:var(--vert);color:white;font-family:'Source Sans 3',sans-serif;font-size:1.05rem;font-weight:500;padding:16px 36px;border-radius:10px;text-decoration:none;border:none;cursor:pointer;box-shadow:0 4px 20px rgba(90,114,96,0.3);transition:all 0.22s;letter-spacing:0.2px}
+.btn-primary:hover{background:#4a6050;transform:translateY(-2px);box-shadow:0 8px 28px rgba(90,114,96,0.35)}
+.btn-secondary{display:inline-flex;align-items:center;gap:8px;color:var(--gris-moyen);font-size:0.9rem;font-weight:400;text-decoration:none;padding:8px 16px;border-radius:8px;transition:all 0.2s;border:1px solid transparent}
+.btn-secondary:hover{color:var(--vert);background:var(--vert-pale);border-color:rgba(90,114,96,0.2)}
+.btn-secondary .arr{transition:transform 0.2s}
+.btn-secondary:hover .arr{transform:translateX(4px)}
+.hero-stats{display:flex;justify-content:center;gap:40px;padding-top:40px;border-top:1px solid var(--beige);flex-wrap:wrap}
+.stat-item{text-align:center}
+.stat-num{font-family:'Playfair Display',serif;font-size:2rem;font-weight:600;color:var(--vert);line-height:1;margin-bottom:4px}
+.stat-label{font-size:0.72rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--gris-moyen);font-weight:400}
+.section{padding:80px 24px}
+.s-inner{max-width:860px;margin:0 auto}
+.s-label{font-size:0.7rem;text-transform:uppercase;letter-spacing:3px;color:var(--vert);font-weight:500;margin-bottom:12px}
+.s-title{font-family:'Playfair Display',serif;font-size:clamp(1.4rem,3.5vw,2rem);color:var(--gris-fonce);margin-bottom:10px;line-height:1.3}
+.s-desc{font-size:0.95rem;color:var(--gris-moyen);line-height:1.7;max-width:520px;margin-bottom:40px;font-weight:300}
+.section-temoins{background:var(--blanc)}
+.temoins-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.temoin-card{background:var(--fond);border:1px solid var(--beige-clair);border-radius:12px;padding:24px;transition:all 0.22s}
+.temoin-card:hover{border-color:var(--vert-clair);box-shadow:0 4px 20px rgba(90,114,96,0.1);transform:translateY(-2px)}
+.temoin-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.tag{font-size:0.7rem;padding:3px 10px;border-radius:12px;font-weight:500;letter-spacing:0.3px}
+.tag-d{background:var(--vert-pale);color:var(--vert)}
+.tag-t{background:var(--peche-pale);color:var(--peche)}
+.tag-r{background:#f0ebe3;color:var(--gris-moyen)}
+.temoin-resume{font-family:'Playfair Display',serif;font-size:0.93rem;color:var(--gris-fonce);line-height:1.6;font-style:italic;margin-bottom:16px}
+.temoin-meta{display:flex;align-items:center;justify-content:space-between;padding-top:12px;border-top:1px solid var(--beige-clair)}
+.temoin-sig{font-size:0.78rem;color:var(--gris-moyen);font-weight:500}
+.temoin-views{font-size:0.72rem;color:var(--gris-clair);display:flex;align-items:center;gap:4px}
+.section-comment{background:var(--fond)}
+.steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:48px}
+.step-item{position:relative}
+.step-num{width:44px;height:44px;border-radius:50%;background:var(--blanc);border:1.5px solid var(--beige);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--vert);font-weight:600;margin-bottom:20px;position:relative;z-index:1}
+.step-item:not(:last-child)::after{content:'';position:absolute;top:22px;left:44px;right:-32px;height:1px;background:linear-gradient(to right,var(--beige),transparent)}
+.step-title{font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--gris-fonce);margin-bottom:10px;font-weight:600}
+.step-desc{font-size:0.88rem;color:var(--gris-moyen);line-height:1.7;font-weight:300}
+.step-detail{margin-top:12px;font-size:0.78rem;color:var(--vert-clair);display:flex;flex-direction:column;gap:4px}
+.step-detail span::before{content:'→ ';color:var(--vert)}
+.section-pourquoi{background:var(--vert);position:relative;overflow:hidden}
+.section-pourquoi::before{content:'';position:absolute;top:-40px;right:-40px;width:300px;height:300px;border-radius:50%;background:rgba(255,255,255,0.04);pointer-events:none}
+.pourquoi-inner{max-width:860px;margin:0 auto;padding:80px 24px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+.pourquoi-left .s-label{color:rgba(255,255,255,0.6)}
+.pourquoi-left .s-title{color:white;margin-bottom:16px}
+.pourquoi-left .s-desc{color:rgba(255,255,255,0.7);margin-bottom:0}
+.pourquoi-list{display:flex;flex-direction:column;gap:20px}
+.pourquoi-item{display:flex;gap:16px;align-items:flex-start}
+.pourquoi-icon{width:40px;height:40px;border-radius:10px;background:rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.pourquoi-txt strong{display:block;color:white;font-size:0.9rem;font-weight:600;margin-bottom:3px}
+.pourquoi-txt span{font-size:0.83rem;color:rgba(255,255,255,0.65);line-height:1.6}
+.section-chiffres{background:var(--blanc)}
+.chiffres-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;max-width:860px;margin:40px auto 0}
+.chiffre-item{text-align:center;padding:28px 16px;background:var(--fond);border-radius:12px;border:1px solid var(--beige-clair)}
+.chiffre-num{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--vert);line-height:1;margin-bottom:6px}
+.chiffre-label{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.8px;color:var(--gris-moyen)}
+.section-cta{padding:100px 24px;text-align:center;background:var(--fond);position:relative;overflow:hidden}
+.section-cta::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 50%,rgba(90,114,96,0.06) 0%,transparent 70%);pointer-events:none}
+.cta-inner{position:relative;max-width:580px;margin:0 auto}
+.cta-title{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,4vw,2.4rem);color:var(--gris-fonce);line-height:1.3;margin-bottom:16px}
+.cta-title em{color:var(--vert);font-style:italic}
+.cta-desc{font-size:0.95rem;color:var(--gris-moyen);line-height:1.7;margin-bottom:36px;font-weight:300}
+.cta-note{margin-top:16px;font-size:0.78rem;color:var(--gris-clair);display:flex;align-items:center;justify-content:center;gap:4px;flex-wrap:wrap}
+footer{background:var(--gris-fonce);padding:48px 24px 24px;color:#888}
+.footer-inner{max-width:860px;margin:0 auto}
+.footer-top{display:grid;grid-template-columns:1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.footer-logo{font-family:'Playfair Display',serif;font-size:1.4rem;color:white;margin-bottom:8px}
+.footer-logo .et{color:var(--peche);font-style:italic}
+.footer-logo .loi{color:var(--vert-clair)}
+.footer-tagline{font-size:0.8rem;color:#666;line-height:1.6;font-weight:300}
+.footer-col h4{font-size:0.72rem;text-transform:uppercase;letter-spacing:2px;color:#888;margin-bottom:12px;font-weight:500}
+.footer-col a{display:block;font-size:0.85rem;color:#666;text-decoration:none;margin-bottom:8px;transition:color 0.2s}
+.footer-col a:hover{color:var(--vert-clair)}
+.footer-bottom{border-top:1px solid #3a3a3a;padding-top:20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:0.75rem;color:#555}
+.footer-bottom a{color:#555;text-decoration:none}
+.footer-bottom a:hover{color:var(--vert-clair)}
+.fi{opacity:0;transform:translateY(22px);transition:opacity 0.65s ease,transform 0.65s ease}
+.fi.v{opacity:1;transform:translateY(0)}
+.fi.d1{transition-delay:0.1s}.fi.d2{transition-delay:0.2s}.fi.d3{transition-delay:0.3s}.fi.d4{transition-delay:0.4s}
+@media(max-width:700px){
+  nav{padding:0 18px}
+  .nav-links{display:none}
+  .nav-burger{display:flex}
+  .hero{padding:58px 20px 48px}
+  .hero-deco{display:none}
+  .hero-stats{gap:24px}
+  .stat-num{font-size:1.6rem}
+  .temoins-grid{grid-template-columns:1fr}
+  .steps-grid{grid-template-columns:1fr;gap:24px}
+  .step-item::after{display:none}
+  .pourquoi-inner{grid-template-columns:1fr;gap:36px;padding:60px 24px}
+  .chiffres-grid{grid-template-columns:1fr 1fr}
+  .footer-top{grid-template-columns:1fr;gap:28px}
+  .footer-bottom{flex-direction:column;align-items:flex-start;gap:6px}
+}
+</style>
+</head>
+<body>
+
+<nav id="mainNav">
+  <a href="/" class="nav-logo">moi <span class="et">&</span> <span class="loi">loi</span></a>
+  <ul class="nav-links">
+    <li><a href="temoigner.html" class="nav-cta">🎙️ Déposer mon témoignage</a></li>
+    <li><a href="/temoignages/">Consulter</a></li>
+    <li><a href="/charte/">À propos</a></li>
+    <li><a href="/compte/">Connexion</a></li>
+  </ul>
+  <button class="nav-burger" onclick="toggleNav()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="nav-mobile" id="navMobile">
+  <a href="temoigner.html" class="nav-cta-mob">🎙️ Déposer mon témoignage</a>
+  <a href="/temoignages/">Consulter les témoignages</a>
+  <a href="/charte/">À propos / Charte</a>
+  <a href="/compte/">Connexion / Créer un compte</a>
+</div>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-deco"></div>
+  <div class="hero-inner" id="heroInner">
+    <div class="hero-eyebrow">Archive civique ouverte</div>
+    <h1 class="hero-logo">moi <span class="et">&</span> <span class="loi">loi</span></h1>
+    <p class="hero-subtitle">Témoignages citoyens</p>
+    <p class="hero-accroche">La réglementation vous a bloqué, pénalisé, épuisé.<br>Votre témoignage mérite d'être documenté.</p>
+    <p class="hero-desc">Racontez librement. L'IA transcrit, structure et analyse. Votre expérience rejoint une archive civique publique des dysfonctionnements administratifs en France.</p>
+    <div class="hero-ctas">
+      <a href="temoigner.html" class="btn-primary"><span>🎙️</span> Déposer mon témoignage</a>
+      <a href="/temoignages/" class="btn-secondary">Consulter la base &nbsp;<span class="arr">→</span></a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item"><div class="stat-num" id="cntTemoins">—</div><div class="stat-label">Témoignages publiés</div></div>
+      <div class="stat-item"><div class="stat-num" id="cntRegions">—</div><div class="stat-label">Régions représentées</div></div>
+      <div class="stat-item"><div class="stat-num" id="cntClusters">—</div><div class="stat-label">Clusters identifiés</div></div>
+      <div class="stat-item"><div class="stat-num">9</div><div class="stat-label">Domaines réglementaires</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-temoins">
+  <div class="s-inner">
+    <div class="s-label fi">Témoignages récents</div>
+    <h2 class="s-title fi d1">Ce que vivent les citoyens</h2>
+    <p class="s-desc fi d2">Des expériences réelles, structurées par IA, modérées avant publication. Chaque témoignage éclaire un dysfonctionnement précis.</p>
+    <div class="temoins-grid">
+      <div class="temoin-card fi d1">
+        <div class="temoin-tags"><span class="tag tag-d">ERP / Urbanisme</span><span class="tag tag-t">Norme contradictoire</span><span class="tag tag-r">📍 Vaucluse</span></div>
+        <p class="temoin-resume">"Un domaine événementiel déclaré conforme par le bureau de contrôle, fermé administrativement six mois plus tard pour les mêmes travaux — sans notification préalable."</p>
+        <div class="temoin-meta"><span class="temoin-sig">Une entrepreneuse, Vaucluse</span><span class="temoin-views">👁 142</span></div>
+      </div>
+      <div class="temoin-card fi d2">
+        <div class="temoin-tags"><span class="tag tag-d">Droit rural</span><span class="tag tag-t">Disproportionnalité</span><span class="tag tag-r">📍 Bretagne</span></div>
+        <p class="temoin-resume">"Mon exploitation classée en zone A2 par le PLU révisé. Aucune activité complémentaire tolérée — ni gîte, ni vente directe — malgré un projet validé trois ans avant."</p>
+        <div class="temoin-meta"><span class="temoin-sig">Un agriculteur, Finistère</span><span class="temoin-views">👁 89</span></div>
+      </div>
+      <div class="temoin-card fi d3">
+        <div class="temoin-tags"><span class="tag tag-d">Normes sanitaires</span><span class="tag tag-t">Détournement de procédure</span><span class="tag tag-r">📍 Occitanie</span></div>
+        <p class="temoin-resume">"Mise aux normes HACCP exigée rétroactivement sur une cuisine existante depuis 1997, délai de 60 jours. Coût estimé : 38 000 €. Résultat : fermeture."</p>
+        <div class="temoin-meta"><span class="temoin-sig">Un restaurateur, Hérault</span><span class="temoin-views">👁 217</span></div>
+      </div>
+      <div class="temoin-card fi d4">
+        <div class="temoin-tags"><span class="tag tag-d">Urbanisme / PLU</span><span class="tag tag-t">Vide juridique</span><span class="tag tag-r">📍 PACA</span></div>
+        <p class="temoin-resume">"Permis de construire accordé, travaux engagés, puis annulé sur recours d'un tiers — 18 mois après. Aucune indemnisation possible. Le recours gracieux n'a jamais reçu de réponse."</p>
+        <div class="temoin-meta"><span class="temoin-sig">Un particulier, Var</span><span class="temoin-views">👁 183</span></div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:32px">
+      <a href="/temoignages/" class="btn-secondary" style="display:inline-flex">Voir tous les témoignages &nbsp;<span class="arr">→</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="section section-comment">
+  <div class="s-inner">
+    <div class="s-label fi">Fonctionnement</div>
+    <h2 class="s-title fi d1">Trois étapes, dix minutes</h2>
+    <p class="s-desc fi d2">Pas de formulaire complexe. Racontez à voix haute — le reste est automatique.</p>
+    <div class="steps-grid">
+      <div class="step-item fi d1">
+        <div class="step-num">1</div>
+        <h3 class="step-title">Racontez librement</h3>
+        <p class="step-desc">Enregistrez votre témoignage vocal. Prenez le temps qu'il vous faut. Ajoutez des documents si nécessaire — courriers, arrêtés, refus.</p>
+        <div class="step-detail"><span>Microphone dans votre navigateur</span><span>Documents détruits après analyse</span><span>Aucune installation requise</span></div>
+      </div>
+      <div class="step-item fi d2">
+        <div class="step-num">2</div>
+        <h3 class="step-title">L'IA structure</h3>
+        <p class="step-desc">Whisper transcrit votre enregistrement. Claude analyse et produit un document structuré : résumé, récit, analyse en trois volets, classification réglementaire.</p>
+        <div class="step-detail"><span>Transcription Whisper en français</span><span>Structuration par Claude Sonnet</span><span>Questions de clarification si besoin</span></div>
+      </div>
+      <div class="step-item fi d3">
+        <div class="step-num">3</div>
+        <h3 class="step-title">Vous validez et soumettez</h3>
+        <p class="step-desc">Corrigez directement le document. Choisissez votre niveau d'anonymat. Soumettez. Modération sous 48h, puis publication dans la base publique.</p>
+        <div class="step-detail"><span>4 niveaux d'anonymat au choix</span><span>Modération humaine avant publication</span><span>Email de confirmation à la publication</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-pourquoi">
+  <div class="pourquoi-inner">
+    <div class="pourquoi-left">
+      <div class="s-label">Mission</div>
+      <h2 class="s-title">Documenter pour comprendre</h2>
+      <p class="s-desc">moietloi.fr n'est pas un forum de plaintes. C'est une archive civique neutre — factuelle, structurée, ouverte à tous. Chaque témoignage individuel révèle, mis en regard des autres, des patterns systémiques invisibles.</p>
+    </div>
+    <div class="pourquoi-list">
+      <div class="pourquoi-item fi"><div class="pourquoi-icon">📖</div><div class="pourquoi-txt"><strong>Archive ouverte, consultation libre</strong><span>Tous les témoignages publiés sont accessibles sans compte. Journalistes, chercheurs, citoyens — aucune friction. Modèle Wikipedia.</span></div></div>
+      <div class="pourquoi-item fi d1"><div class="pourquoi-icon">🔒</div><div class="pourquoi-txt"><strong>Anonymat garanti</strong><span>Vous choisissez ce qui apparaît. Prénom, région, catégorie professionnelle — ou rien du tout. Données personnelles jamais publiées sans votre accord.</span></div></div>
+      <div class="pourquoi-item fi d2"><div class="pourquoi-icon">📊</div><div class="pourquoi-txt"><strong>Clusters et analyse systémique</strong><span>Quand 5 témoignages partagent le même reproche, une synthèse émerge. Ce que les cas individuels ne montrent pas, le cluster le révèle.</span></div></div>
+      <div class="pourquoi-item fi d3"><div class="pourquoi-icon">⚖️</div><div class="pourquoi-txt"><strong>Neutre et apartisan</strong><span>Aucune prescription législative, aucun parti politique. La plateforme documente et analyse. Elle ne prescrit pas.</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-chiffres">
+  <div class="s-inner" style="text-align:center">
+    <div class="s-label fi">En chiffres</div>
+    <h2 class="s-title fi d1">La réglementation française en données</h2>
+    <div class="chiffres-grid">
+      <div class="chiffre-item fi d1"><div class="chiffre-num">400 000</div><div class="chiffre-label">normes en vigueur en France</div></div>
+      <div class="chiffre-item fi d2"><div class="chiffre-num">9</div><div class="chiffre-label">domaines réglementaires documentés</div></div>
+      <div class="chiffre-item fi d3"><div class="chiffre-num">48h</div><div class="chiffre-label">délai de modération maximum</div></div>
+      <div class="chiffre-item fi d4"><div class="chiffre-num">100%</div><div class="chiffre-label">consultation publique, sans compte</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section-cta">
+  <div class="cta-inner">
+    <h2 class="cta-title fi">Votre expérience <em>compte.</em><br>Documenter, c'est agir.</h2>
+    <p class="cta-desc fi d1">Dix minutes. Un enregistrement vocal. Un document structuré prêt à rejoindre une archive qui révèle ce que les cas isolés ne montrent pas.</p>
+    <a href="temoigner.html" class="btn-primary fi d2" style="display:inline-flex;margin:0 auto"><span>🎙️</span> Déposer mon témoignage</a>
+    <p class="cta-note fi d3">🔒 Anonymat garanti &nbsp;·&nbsp; Consultation libre &nbsp;·&nbsp; Données personnelles jamais publiées sans votre accord</p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">moi <span class="et">&</span> <span class="loi">loi</span></div>
+        <p class="footer-tagline">Archive civique de témoignages sur les dysfonctionnements administratifs et réglementaires en France.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Plateforme</h4>
+        <a href="temoigner.html">Déposer un témoignage</a>
+        <a href="/temoignages/">Consulter la base</a>
+        <a href="/clusters/">Clusters analytiques</a>
+        <a href="/compte/">Mon espace</a>
+      </div>
+      <div class="footer-col">
+        <h4>À propos</h4>
+        <a href="/charte/">Charte éditoriale</a>
+        <a href="/api/temoignages">API publique</a>
+        <a href="/llms.txt">llms.txt</a>
+        <a href="/sitemap.xml">Sitemap</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 moietloi.fr — Archive civique française</span>
+      <span><a href="/charte/">Charte</a> · <a href="#">Mentions légales</a> · <a href="#">RGPD</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+function toggleNav(){document.getElementById('navMobile').classList.toggle('open')}
+document.querySelectorAll('.nav-mobile a').forEach(a=>{a.addEventListener('click',()=>document.getElementById('navMobile').classList.remove('open'))});
+window.addEventListener('scroll',()=>{document.getElementById('mainNav').style.boxShadow=window.scrollY>10?'0 2px 12px rgba(0,0,0,0.07)':'none'},{passive:true});
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('v')})},{threshold:0.12,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.fi').forEach(el=>obs.observe(el));
+window.addEventListener('load',()=>{const h=document.getElementById('heroInner');if(h){h.style.cssText='opacity:0;transform:translateY(24px);transition:opacity 0.85s ease,transform 0.85s ease';setTimeout(()=>h.style.cssText='opacity:1;transform:translateY(0);transition:opacity 0.85s ease,transform 0.85s ease',80)}});
+function animateCounter(id,target,suffix=''){const el=document.getElementById(id);if(!el||target===0)return;let v=0;const step=target/(1800/16);const t=setInterval(()=>{v=Math.min(v+step,target);el.textContent=Math.floor(v)+suffix;if(v>=target)clearInterval(t)},16)}
+</script>
+</body>
+</html>
