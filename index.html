@@ -118,7 +118,7 @@
   <header>
     <div class="logo">moi <span class="et">&amp;</span> <span class="loi">loi</span></div>
     <div class="sous-titre">Témoignages citoyens</div>
-    <span class="badge">Test pipeline v6</span>
+    <span class="badge">Test pipeline v6.7</span>
   </header>
 
   <!-- 1. CLÉS API -->
@@ -331,10 +331,8 @@ async function startRec(){
     mr.ondataavailable=e=>{if(e.data.size>0)chunks.push(e.data);};
     mr.onstop=()=>{
       const raw=new Blob(chunks,{type:mime()});
-      // Store this segment for multi-segment transcription
-      allChunks.push(raw);
-      // audioBlob = last recorded segment (for checkReady)
-      audioBlob=raw;
+      audioBlob=buildFinalBlob(raw);
+      allChunks=[];
       G('audPrev').innerHTML=`<audio controls src="${URL.createObjectURL(audioBlob)}"></audio>`;
       G('btnComplement').style.display='block';
       checkReady();
@@ -357,7 +355,7 @@ function stopRec(){
 }
 
 async function ajouterComplement(){
-  // allChunks already has the previous recording (added by onstop)
+  if(audioBlob) allChunks.push(audioBlob);
   audioBlob=null;
   G('btnComplement').style.display='none';
   G('recSt').textContent='Ajoutez votre complément…';
@@ -430,19 +428,12 @@ async function lancer(){
 
   setP('piW','active');
   try{
-    // Send each recorded segment to Whisper separately and join transcriptions
-    const segments = allChunks.length>0 ? allChunks : [audioBlob];
-    const parts=[];
-    for(const seg of segments){
-      const fd=new FormData();
-      fd.append('file',new File([seg],'t.mp4',{type:seg.type}));
-      fd.append('model','whisper-1');fd.append('language','fr');fd.append('response_format','text');
-      const r=await fetch('https://api.openai.com/v1/audio/transcriptions',{method:'POST',headers:{'Authorization':`Bearer ${okey}`},body:fd});
-      if(!r.ok){const e=await r.json();throw new Error(e.error?.message||'Erreur Whisper');}
-      parts.push((await r.text()).trim());
-    }
-    transcript=parts.join(' ');
-    allChunks=[];
+    const fd=new FormData();
+    fd.append('file',new File([audioBlob],'t.mp4',{type:audioBlob.type}));
+    fd.append('model','whisper-1');fd.append('language','fr');fd.append('response_format','text');
+    const r=await fetch('https://api.openai.com/v1/audio/transcriptions',{method:'POST',headers:{'Authorization':`Bearer ${okey}`},body:fd});
+    if(!r.ok){const e=await r.json();throw new Error(e.error?.message||'Erreur Whisper');}
+    transcript=await r.text();
     setP('piW','done');
   }catch(e){setP('piW','error');showErr('errPipe',`Erreur transcription : ${e.message}`);G('btnLancer').disabled=false;return;}
 
