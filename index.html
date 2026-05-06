@@ -332,7 +332,6 @@ async function startRec(){
     mr.onstop=()=>{
       const raw=new Blob(chunks,{type:mime()});
       audioBlob=buildFinalBlob(raw);
-      allChunks=[];
       G('audPrev').innerHTML=`<audio controls src="${URL.createObjectURL(audioBlob)}"></audio>`;
       G('btnComplement').style.display='block';
       checkReady();
@@ -365,8 +364,10 @@ async function ajouterComplement(){
 }
 
 function buildFinalBlob(newBlob){
-  if(allChunks.length===0) return newBlob;
-  return new Blob([...allChunks, newBlob], {type:newBlob.type});
+  // Store each recording separately — WebM can't be simply concatenated
+  // allChunks will be transcribed individually in lancer()
+  allChunks.push(newBlob);
+  return newBlob; // return last blob for preview only
 }
 
 function mime(){
@@ -428,12 +429,19 @@ async function lancer(){
 
   setP('piW','active');
   try{
-    const fd=new FormData();
-    fd.append('file',new File([audioBlob],'t.mp4',{type:audioBlob.type}));
-    fd.append('model','whisper-1');fd.append('language','fr');fd.append('response_format','text');
-    const r=await fetch('https://api.openai.com/v1/audio/transcriptions',{method:'POST',headers:{'Authorization':`Bearer ${okey}`},body:fd});
-    if(!r.ok){const e=await r.json();throw new Error(e.error?.message||'Erreur Whisper');}
-    transcript=await r.text();
+    // Transcribe all recorded segments (main + complements) and concatenate
+    const blocsATranscrire = allChunks.length>0 ? allChunks : [audioBlob];
+    let transcripts=[];
+    for(const blob of blocsATranscrire){
+      const fd=new FormData();
+      fd.append('file',new File([blob],'t.mp4',{type:blob.type}));
+      fd.append('model','whisper-1');fd.append('language','fr');fd.append('response_format','text');
+      const r=await fetch('https://api.openai.com/v1/audio/transcriptions',{method:'POST',headers:{'Authorization':`Bearer ${okey}`},body:fd});
+      if(!r.ok){const e=await r.json();throw new Error(e.error?.message||'Erreur Whisper');}
+      transcripts.push(await r.text());
+    }
+    transcript=transcripts.join(' ');
+    allChunks=[];
     setP('piW','done');
   }catch(e){setP('piW','error');showErr('errPipe',`Erreur transcription : ${e.message}`);G('btnLancer').disabled=false;return;}
 
