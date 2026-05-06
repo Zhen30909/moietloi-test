@@ -118,7 +118,7 @@
   <header>
     <div class="logo">moi <span class="et">&amp;</span> <span class="loi">loi</span></div>
     <div class="sous-titre">Témoignages citoyens</div>
-    <span class="badge">Test pipeline v6.8</span>
+    <span class="badge">Test pipeline v6.9</span>
   </header>
 
   <!-- 1. CLÉS API -->
@@ -330,9 +330,7 @@ async function startRec(){
     chunks=[];
     mr.ondataavailable=e=>{if(e.data.size>0)chunks.push(e.data);};
     mr.onstop=()=>{
-      const raw=new Blob(chunks,{type:mime()});
-      allChunks.push(raw);
-      audioBlob=raw;
+      audioBlob=new Blob(chunks,{type:mime()});
       G('audPrev').innerHTML=`<audio controls src="${URL.createObjectURL(audioBlob)}"></audio>`;
       G('btnComplement').style.display='block';
       checkReady();
@@ -355,6 +353,7 @@ function stopRec(){
 }
 
 async function ajouterComplement(){
+  if(audioBlob) allChunks.push(audioBlob);
   audioBlob=null;
   G('btnComplement').style.display='none';
   G('recSt').textContent='Ajoutez votre complément…';
@@ -422,7 +421,8 @@ async function lancer(){
 
   setP('piW','active');
   try{
-    const segments=allChunks.length>0?allChunks:[audioBlob];
+    // If complements exist, transcribe each segment separately and join
+    const segments=[...allChunks, audioBlob].filter(Boolean);
     const parts=[];
     for(const seg of segments){
       const fd=new FormData();
