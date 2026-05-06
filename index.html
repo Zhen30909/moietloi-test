@@ -96,7 +96,7 @@
   .submission-title { font-family:'Playfair Display',serif; font-size:1.1rem; color:var(--gris-fonce); margin-bottom:12px; }
   .submission-text { font-size:0.88rem; color:var(--gris-moyen); line-height:1.7; margin-bottom:16px; }
   .submission-text p { margin-bottom:10px; }
-  .checkbox-confirm { display:flex; align-items:flex-start; gap:10px; margin-bottom:16px; cursor:pointer; padding:12px; background:var(--blanc); border-radius:8px; border:1.5px solid #ddd8d0; }
+  .checkbox-confirm { display:flex; align-items:flex-start; gap:10px; margin-bottom:16px; padding:12px; background:var(--blanc); border-radius:8px; border:1.5px solid #ddd8d0; }
   .checkbox-confirm input[type=checkbox] { margin-top:3px; accent-color:var(--vert); width:18px; height:18px; cursor:pointer; flex-shrink:0; }
   .checkbox-confirm span { font-size:0.85rem; color:var(--gris-fonce); line-height:1.5; }
   .confirmation-finale { text-align:center; padding:32px 20px; }
@@ -116,7 +116,7 @@
 <div class="container">
 
   <header>
-    <div class="logo">moi <span class="et">&</span> <span class="loi">loi</span></div>
+    <div class="logo">moi <span class="et">&amp;</span> <span class="loi">loi</span></div>
     <div class="sous-titre">Témoignages citoyens</div>
     <span class="badge">Test pipeline v6</span>
   </header>
@@ -222,9 +222,7 @@
   <!-- 7. ANONYMAT -->
   <div class="card hidden" id="cardAnon" style="margin-top:20px;">
     <div class="card-title"><span class="snum">7</span> Anonymat</div>
-    <p style="font-size:0.9rem;color:var(--gris-moyen);margin-bottom:16px;line-height:1.6;">
-      Choisissez comment vous souhaitez apparaître dans la base publique.
-    </p>
+    <p style="font-size:0.9rem;color:var(--gris-moyen);margin-bottom:16px;line-height:1.6;">Choisissez comment vous souhaitez apparaître dans la base publique.</p>
     <p style="font-size:0.82rem;color:var(--gris-moyen);margin-bottom:12px;font-style:italic;">Cochez les informations que vous souhaitez faire apparaître. Tout le reste restera anonyme.</p>
     <div class="anon-fields">
       <div class="anon-field" id="af_prenom">
@@ -312,7 +310,8 @@
 // ── ÉTAT
 let mr=null, chunks=[], audioBlob=null, isRec=false, timerInt=null, secs=0;
 let docsMain=[], docsQ={}, transcript='', questions=[], docInitial='';
-let miniMR={}, regenCount=0, anonChoice=2;
+let miniMR={}, regenCount=0, anonChoice='Anonyme';
+let allChunks=[];
 
 // ── READY
 function checkReady(){
@@ -357,20 +356,25 @@ function stopRec(){
     G('btnStop').style.display='none';}
 }
 
-function rerecorder(){
-  if(isRec)stopRec();
+async function ajouterComplement(){
+  if(audioBlob) allChunks.push(audioBlob);
   audioBlob=null;
-  G('audPrev').innerHTML='';
   G('btnComplement').style.display='none';
-  G('recSt').textContent='Appuyez pour recommencer';
-  G('timer').textContent='';
-  checkReady();
+  G('recSt').textContent='Ajoutez votre complément…';
+  G('recSt').classList.add('on');
+  G('audPrev').innerHTML='';
+  await startRec();
+}
+
+function buildFinalBlob(newBlob){
+  if(allChunks.length===0) return newBlob;
+  return new Blob([...allChunks, newBlob], {type:newBlob.type});
 }
 
 function mime(){
   const t=['audio/webm;codecs=opus','audio/webm','audio/mp4','audio/ogg'];
   for(const m of t)if(MediaRecorder.isTypeSupported(m))return m;
-  return'audio/webm';
+  return 'audio/webm';
 }
 
 // ── DOCUMENTS
@@ -438,13 +442,10 @@ async function lancer(){
   setP('piD','active');
   let docBlocks=[];
   try{
-    for(const d of docsMain){
-      const b=await readDoc(d.f);
-      if(b)docBlocks.push(b);
-    }
+    for(const d of docsMain){const b=await readDoc(d.f);if(b)docBlocks.push(b);}
     docsMain=[];renderMain();
     setP('piD','done');
-  }catch(e){ setP('piD','done'); }
+  }catch(e){setP('piD','done');}
 
   setP('piC','active');
   try{
@@ -500,7 +501,6 @@ TRANSCRIPTION :
 ${tr}${reps?'\n\nRÉPONSES :\n'+reps:''}`;
 }
 
-// Lecture fichiers pour Claude API
 function readDoc(f){return new Promise(resolve=>{
   const r=new FileReader();
   r.onload=e=>{
@@ -575,7 +575,6 @@ async function finaliser(){
   const btn=G('btnFinal');btn.disabled=true;btn.textContent='Génération en cours…';
   let reps='';
   let qBlocks=[];
-
   for(let i=0;i<questions.length;i++){
     let rep='';
     if(miniMR[i]?.blob){
@@ -594,7 +593,6 @@ async function finaliser(){
     if(!rep)rep='(sans réponse)';
     reps+=`Q${i+1}: ${questions[i]}\nR: ${rep}\n\n`;
   }
-
   const p=`Régénère ce document en intégrant les réponses. Même format, sans section QUESTIONS. N'invente rien.\n\nDOCUMENT INITIAL:\n${docInitial}\n\nRÉPONSES:\n${reps}`;
   try{
     const res=await claude(akey,p,2000,qBlocks);
@@ -668,8 +666,7 @@ function showSoumission(){
   scrollEl('cardSoumission');
 }
 
-// ── SOUMISSION — CORRECTION DU BUG
-// Le onchange sur la checkbox (pas onclick sur le label) évite le double-toggle
+// ── SOUMISSION
 function toggleConfirm(){
   const chk=G('chkConfirm');
   G('btnSoumettre').disabled=!chk.checked;
