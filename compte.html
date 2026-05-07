@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Créer mon compte — moi & loi</title>
+<meta name="description" content="Créez votre compte moietloi.fr pour déposer votre témoignage sur un dysfonctionnement administratif.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --vert:#5a7260; --vert-clair:#8a9e8a; --vert-pale:#eef3ee;
+  --beige:#d4c8b0; --beige-clair:#ede8df;
+  --peche:#d4956a; --peche-pale:#faf0e8;
+  --gris-fonce:#2d2d2d; --gris-moyen:#6b6b6b; --gris-clair:#b0b0b0;
+  --fond:#f7f4ef; --blanc:#ffffff; --rouge:#c0392b;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Source Sans 3',sans-serif;background:var(--fond);color:var(--gris-fonce);min-height:100vh;padding:0 0 60px}
+
+/* NAV */
+nav{background:rgba(247,244,239,0.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--beige);height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 28px;position:sticky;top:0;z-index:100}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--gris-fonce);text-decoration:none;letter-spacing:-0.3px}
+.nav-logo .et{color:var(--peche);font-style:italic}
+.nav-logo .loi{color:var(--vert)}
+.nav-back{font-size:0.85rem;color:var(--gris-moyen);text-decoration:none;display:flex;align-items:center;gap:6px;transition:color 0.2s}
+.nav-back:hover{color:var(--vert)}
+
+/* CONTAINER */
+.container{max-width:520px;margin:0 auto;padding:40px 24px}
+
+/* HEADER PAGE */
+.page-header{text-align:center;margin-bottom:36px}
+.page-eyebrow{font-size:0.72rem;text-transform:uppercase;letter-spacing:2.5px;color:var(--vert);font-weight:500;margin-bottom:12px}
+.page-title{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--gris-fonce);margin-bottom:10px;line-height:1.2}
+.page-desc{font-size:0.9rem;color:var(--gris-moyen);line-height:1.65;font-weight:300}
+
+/* CARDS */
+.card{background:var(--blanc);border-radius:12px;padding:28px;border:1px solid #e8e2d8;box-shadow:0 2px 8px rgba(0,0,0,0.04);margin-bottom:16px}
+.card-title{font-family:'Playfair Display',serif;font-size:1rem;color:var(--gris-fonce);margin-bottom:20px;display:flex;align-items:center;gap:10px}
+.card-num{width:26px;height:26px;border-radius:50%;background:var(--vert);color:white;font-size:0.78rem;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.card-num.opt{background:var(--beige-clair);color:var(--gris-moyen)}
+.card-opt-label{font-size:0.75rem;color:var(--gris-clair);font-style:italic;margin-left:auto}
+
+/* FORM */
+.field{margin-bottom:18px}
+label{display:block;font-size:0.78rem;color:var(--gris-moyen);margin-bottom:6px;letter-spacing:0.5px;text-transform:uppercase;font-weight:500}
+.req{color:var(--peche);margin-left:2px}
+input[type=email],input[type=password],input[type=text],select{width:100%;padding:12px 16px;border:1.5px solid #ddd8d0;border-radius:8px;font-size:0.95rem;font-family:'Source Sans 3',sans-serif;background:var(--fond);color:var(--gris-fonce);transition:border-color 0.2s;-webkit-appearance:none;appearance:none}
+input:focus,select:focus{outline:none;border-color:var(--vert);background:white}
+select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b6b6b' d='M6 8L1 3h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
+.hint{font-size:0.78rem;color:var(--gris-moyen);margin-top:5px;font-style:italic}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+
+/* PASSWORD TOGGLE */
+.pw-wrap{position:relative}
+.pw-wrap input{padding-right:44px}
+.pw-eye{position:absolute;right:14px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:var(--gris-clair);font-size:1rem;padding:0;transition:color 0.2s}
+.pw-eye:hover{color:var(--vert)}
+
+/* PASSWORD STRENGTH */
+.pw-strength{margin-top:8px;display:flex;gap:4px}
+.pw-bar{flex:1;height:3px;border-radius:2px;background:#e8e2d8;transition:background 0.3s}
+.pw-bar.weak{background:var(--rouge)}
+.pw-bar.medium{background:var(--peche)}
+.pw-bar.strong{background:var(--vert)}
+.pw-strength-label{font-size:0.72rem;color:var(--gris-clair);margin-top:4px}
+
+/* DIVIDER */
+.divider{display:flex;align-items:center;gap:12px;margin:8px 0 20px;color:var(--gris-clair);font-size:0.78rem}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--beige)}
+
+/* OPTIONAL BADGE */
+.optional-badge{display:inline-flex;align-items:center;gap:6px;background:var(--beige-clair);color:var(--gris-moyen);font-size:0.72rem;padding:4px 10px;border-radius:12px;font-weight:500;margin-bottom:16px}
+
+/* RADIO GROUP */
+.radio-group{display:flex;flex-wrap:wrap;gap:8px;margin-top:2px}
+.radio-btn{display:flex;align-items:center}
+.radio-btn input[type=radio]{display:none}
+.radio-btn label{padding:7px 14px;border:1.5px solid #ddd8d0;border-radius:20px;font-size:0.82rem;color:var(--gris-moyen);cursor:pointer;transition:all 0.2s;text-transform:none;letter-spacing:0;font-weight:400;margin:0}
+.radio-btn input:checked+label{border-color:var(--vert);background:var(--vert-pale);color:var(--vert);font-weight:500}
+
+/* CGU */
+.cgu-box{display:flex;align-items:flex-start;gap:10px;padding:14px 16px;background:var(--fond);border-radius:8px;border:1.5px solid #ddd8d0;margin-bottom:20px;transition:border-color 0.2s}
+.cgu-box:has(input:checked){border-color:var(--vert);background:var(--vert-pale)}
+.cgu-box input[type=checkbox]{margin-top:3px;accent-color:var(--vert);width:18px;height:18px;cursor:pointer;flex-shrink:0}
+.cgu-box span{font-size:0.85rem;color:var(--gris-fonce);line-height:1.55}
+.cgu-box a{color:var(--vert);text-decoration:underline}
+
+/* BUTTONS */
+.btn-p{width:100%;padding:14px;background:var(--vert);color:white;border:none;border-radius:8px;font-size:1rem;font-family:'Source Sans 3',sans-serif;font-weight:500;cursor:pointer;transition:all 0.2s;margin-top:4px}
+.btn-p:hover{background:#4a6050;transform:translateY(-1px)}
+.btn-p:disabled{background:#b0c0b8;cursor:not-allowed;transform:none}
+
+/* CONNEXION LINK */
+.connexion-link{text-align:center;margin-top:20px;font-size:0.88rem;color:var(--gris-moyen)}
+.connexion-link a{color:var(--vert);text-decoration:none;font-weight:500}
+.connexion-link a:hover{text-decoration:underline}
+
+/* CONFIRMATION */
+.confirmation{display:none;text-align:center;padding:48px 24px}
+.confirm-icon{font-size:3.5rem;margin-bottom:20px}
+.confirm-title{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--vert);margin-bottom:12px}
+.confirm-text{font-size:0.93rem;color:var(--gris-moyen);line-height:1.7;margin-bottom:8px;max-width:420px;margin-left:auto;margin-right:auto}
+.confirm-email{font-weight:600;color:var(--gris-fonce)}
+.confirm-detail{background:var(--vert-pale);border-radius:10px;padding:16px 20px;margin:24px 0;font-size:0.85rem;color:var(--vert);line-height:1.7;text-align:left}
+.confirm-detail strong{display:block;margin-bottom:4px;font-size:0.9rem}
+.btn-continue{display:inline-flex;align-items:center;gap:10px;background:var(--vert);color:white;font-family:'Source Sans 3',sans-serif;font-size:1rem;font-weight:500;padding:15px 32px;border-radius:10px;text-decoration:none;border:none;cursor:pointer;box-shadow:0 4px 20px rgba(90,114,96,0.3);transition:all 0.22s;margin-top:8px}
+.btn-continue:hover{background:#4a6050;transform:translateY(-2px)}
+.btn-skip{display:block;margin-top:14px;font-size:0.85rem;color:var(--gris-moyen);text-decoration:none;transition:color 0.2s}
+.btn-skip:hover{color:var(--vert)}
+
+/* SECURITY NOTE */
+.security-note{display:flex;align-items:flex-start;gap:8px;background:#f0f4f0;border:1px solid var(--vert-clair);border-radius:8px;padding:10px 14px;font-size:0.78rem;color:var(--vert);line-height:1.55;margin-bottom:20px}
+
+/* ERROR */
+.err-box{display:none;background:#fdf0ef;border:1px solid #e8b0ad;border-radius:8px;padding:12px 16px;font-size:0.85rem;color:var(--rouge);margin-top:12px}
+
+@media(max-width:480px){
+  .container{padding:28px 16px}
+  .field-row{grid-template-columns:1fr}
+  nav{padding:0 18px}
+}
+
+/* TOGGLE SWITCH */
+.toggle{position:relative;display:inline-block;width:44px;height:24px;flex-shrink:0}
+.toggle input{opacity:0;width:0;height:0}
+.toggle-slider{position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;background:#ddd8d0;border-radius:24px;transition:0.3s}
+.toggle-slider::before{content:'';position:absolute;height:18px;width:18px;left:3px;bottom:3px;background:white;border-radius:50%;transition:0.3s}
+.toggle input:checked+.toggle-slider{background:var(--vert)}
+.toggle input:checked+.toggle-slider::before{transform:translateX(20px)}
+
+/* NOTIF LIST */
+.notif-list{display:flex;flex-direction:column;gap:0}
+.notif-item{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid var(--beige-clair)}
+.notif-item:last-child{border-bottom:none}
+.notif-txt{flex:1}
+.notif-label{font-size:0.88rem;font-weight:500;color:var(--gris-fonce);margin-bottom:3px}
+.notif-desc{font-size:0.78rem;color:var(--gris-moyen);line-height:1.55}
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">moi <span class="et">&</span> <span class="loi">loi</span></a>
+  <a href="index.html" class="nav-back">← Retour à l'accueil</a>
+</nav>
+
+<!-- FORMULAIRE -->
+<div class="container" id="formZone">
+
+  <div class="page-header">
+    <div class="page-eyebrow">Étape préalable</div>
+    <h1 class="page-title">Créez votre compte</h1>
+    <p class="page-desc">En 30 secondes. Nécessaire pour sauvegarder votre témoignage, être notifié de sa publication et suivre les témoignages similaires.</p>
+  </div>
+
+  <!-- OBLIGATOIRE -->
+  <div class="card">
+    <div class="card-title">
+      <span class="card-num">1</span>
+      Informations de compte
+    </div>
+
+    <div class="field">
+      <label>Email <span class="req">*</span></label>
+      <input type="email" id="email" placeholder="votre@email.com" autocomplete="email" oninput="checkForm()">
+    </div>
+
+    <div class="field">
+      <label>Mot de passe <span class="req">*</span></label>
+      <div class="pw-wrap">
+        <input type="password" id="password" placeholder="8 caractères minimum" autocomplete="new-password" oninput="checkStrength();checkForm()">
+        <button class="pw-eye" type="button" onclick="togglePw()" title="Afficher/masquer">👁</button>
+      </div>
+      <div class="pw-strength" id="pwStrength">
+        <div class="pw-bar" id="bar1"></div>
+        <div class="pw-bar" id="bar2"></div>
+        <div class="pw-bar" id="bar3"></div>
+      </div>
+      <div class="pw-strength-label" id="pwLabel"></div>
+    </div>
+
+    <div class="field">
+      <label>Pseudonyme <span class="req">*</span></label>
+      <input type="text" id="pseudo" placeholder="Comment apparaître sur la plateforme" autocomplete="off" oninput="checkForm()">
+      <div class="hint">Visible publiquement si vous le souhaitez — peut être modifié à tout moment.</div>
+    </div>
+  </div>
+
+  <!-- OPTIONNEL -->
+  <div class="card">
+    <div class="card-title">
+      <span class="card-num opt">2</span>
+      Profil sociologique
+      <span class="card-opt-label">optionnel</span>
+    </div>
+
+    <div class="optional-badge">
+      Ces informations enrichissent l'analyse collective — jamais publiées individuellement
+    </div>
+
+    <div class="field">
+      <label>Tranche d'âge</label>
+      <select id="age" onchange="checkForm()">
+        <option value="">— Sélectionner —</option>
+        <option>Moins de 25 ans</option>
+        <option>25–34 ans</option>
+        <option>35–44 ans</option>
+        <option>45–54 ans</option>
+        <option>55–64 ans</option>
+        <option>65 ans et plus</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>Sexe</label>
+      <div class="radio-group">
+        <div class="radio-btn"><input type="radio" name="sexe" id="s1" value="Femme"><label for="s1">Femme</label></div>
+        <div class="radio-btn"><input type="radio" name="sexe" id="s2" value="Homme"><label for="s2">Homme</label></div>
+        <div class="radio-btn"><input type="radio" name="sexe" id="s3" value="Autre"><label for="s3">Autre</label></div>
+        <div class="radio-btn"><input type="radio" name="sexe" id="s4" value="Non précisé"><label for="s4">Préfère ne pas préciser</label></div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Type de territoire</label>
+      <div class="radio-group">
+        <div class="radio-btn"><input type="radio" name="territoire" id="t1" value="Rural"><label for="t1">Rural</label></div>
+        <div class="radio-btn"><input type="radio" name="territoire" id="t2" value="Périurbain"><label for="t2">Périurbain</label></div>
+        <div class="radio-btn"><input type="radio" name="territoire" id="t3" value="Urbain"><label for="t3">Urbain</label></div>
+        <div class="radio-btn"><input type="radio" name="territoire" id="t4" value="Littoral/Montagne"><label for="t4">Littoral / Montagne</label></div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Département ou région</label>
+      <select id="region">
+        <option value="">— Sélectionner —</option>
+        <option value="01">01 — Ain</option>
+        <option value="02">02 — Aisne</option>
+        <option value="03">03 — Allier</option>
+        <option value="04">04 — Alpes-de-Haute-Provence</option>
+        <option value="05">05 — Hautes-Alpes</option>
+        <option value="06">06 — Alpes-Maritimes</option>
+        <option value="07">07 — Ardèche</option>
+        <option value="08">08 — Ardennes</option>
+        <option value="09">09 — Ariège</option>
+        <option value="10">10 — Aube</option>
+        <option value="11">11 — Aude</option>
+        <option value="12">12 — Aveyron</option>
+        <option value="13">13 — Bouches-du-Rhône</option>
+        <option value="14">14 — Calvados</option>
+        <option value="15">15 — Cantal</option>
+        <option value="16">16 — Charente</option>
+        <option value="17">17 — Charente-Maritime</option>
+        <option value="18">18 — Cher</option>
+        <option value="19">19 — Corrèze</option>
+        <option value="2A">2A — Corse-du-Sud</option>
+        <option value="2B">2B — Haute-Corse</option>
+        <option value="21">21 — Côte-d'Or</option>
+        <option value="22">22 — Côtes-d'Armor</option>
+        <option value="23">23 — Creuse</option>
+        <option value="24">24 — Dordogne</option>
+        <option value="25">25 — Doubs</option>
+        <option value="26">26 — Drôme</option>
+        <option value="27">27 — Eure</option>
+        <option value="28">28 — Eure-et-Loir</option>
+        <option value="29">29 — Finistère</option>
+        <option value="30">30 — Gard</option>
+        <option value="31">31 — Haute-Garonne</option>
+        <option value="32">32 — Gers</option>
+        <option value="33">33 — Gironde</option>
+        <option value="34">34 — Hérault</option>
+        <option value="35">35 — Ille-et-Vilaine</option>
+        <option value="36">36 — Indre</option>
+        <option value="37">37 — Indre-et-Loire</option>
+        <option value="38">38 — Isère</option>
+        <option value="39">39 — Jura</option>
+        <option value="40">40 — Landes</option>
+        <option value="41">41 — Loir-et-Cher</option>
+        <option value="42">42 — Loire</option>
+        <option value="43">43 — Haute-Loire</option>
+        <option value="44">44 — Loire-Atlantique</option>
+        <option value="45">45 — Loiret</option>
+        <option value="46">46 — Lot</option>
+        <option value="47">47 — Lot-et-Garonne</option>
+        <option value="48">48 — Lozère</option>
+        <option value="49">49 — Maine-et-Loire</option>
+        <option value="50">50 — Manche</option>
+        <option value="51">51 — Marne</option>
+        <option value="52">52 — Haute-Marne</option>
+        <option value="53">53 — Mayenne</option>
+        <option value="54">54 — Meurthe-et-Moselle</option>
+        <option value="55">55 — Meuse</option>
+        <option value="56">56 — Morbihan</option>
+        <option value="57">57 — Moselle</option>
+        <option value="58">58 — Nièvre</option>
+        <option value="59">59 — Nord</option>
+        <option value="60">60 — Oise</option>
+        <option value="61">61 — Orne</option>
+        <option value="62">62 — Pas-de-Calais</option>
+        <option value="63">63 — Puy-de-Dôme</option>
+        <option value="64">64 — Pyrénées-Atlantiques</option>
+        <option value="65">65 — Hautes-Pyrénées</option>
+        <option value="66">66 — Pyrénées-Orientales</option>
+        <option value="67">67 — Bas-Rhin</option>
+        <option value="68">68 — Haut-Rhin</option>
+        <option value="69">69 — Rhône</option>
+        <option value="70">70 — Haute-Saône</option>
+        <option value="71">71 — Saône-et-Loire</option>
+        <option value="72">72 — Sarthe</option>
+        <option value="73">73 — Savoie</option>
+        <option value="74">74 — Haute-Savoie</option>
+        <option value="75">75 — Paris</option>
+        <option value="76">76 — Seine-Maritime</option>
+        <option value="77">77 — Seine-et-Marne</option>
+        <option value="78">78 — Yvelines</option>
+        <option value="79">79 — Deux-Sèvres</option>
+        <option value="80">80 — Somme</option>
+        <option value="81">81 — Tarn</option>
+        <option value="82">82 — Tarn-et-Garonne</option>
+        <option value="83">83 — Var</option>
+        <option value="84">84 — Vaucluse</option>
+        <option value="85">85 — Vendée</option>
+        <option value="86">86 — Vienne</option>
+        <option value="87">87 — Haute-Vienne</option>
+        <option value="88">88 — Vosges</option>
+        <option value="89">89 — Yonne</option>
+        <option value="90">90 — Territoire de Belfort</option>
+        <option value="91">91 — Essonne</option>
+        <option value="92">92 — Hauts-de-Seine</option>
+        <option value="93">93 — Seine-Saint-Denis</option>
+        <option value="94">94 — Val-de-Marne</option>
+        <option value="95">95 — Val-d'Oise</option>
+        <option value="971">971 — Guadeloupe</option>
+        <option value="972">972 — Martinique</option>
+        <option value="973">973 — Guyane</option>
+        <option value="974">974 — La Réunion</option>
+        <option value="976">976 — Mayotte</option>
+        <option value="Étranger">Étranger / Non-résident</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>Statut professionnel</label>
+      <select id="statut">
+        <option value="">— Sélectionner —</option>
+        <option>Salarié(e)</option>
+        <option>Indépendant(e) / Freelance</option>
+        <option>Chef(fe) d'entreprise</option>
+        <option>Agriculteur / Exploitant</option>
+        <option>Artisan / Commerçant</option>
+        <option>Profession libérale</option>
+        <option>Fonctionnaire</option>
+        <option>Retraité(e)</option>
+        <option>Demandeur d'emploi</option>
+        <option>Étudiant(e)</option>
+        <option>Autre</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>Secteur d'activité</label>
+      <select id="secteur">
+        <option value="">— Sélectionner —</option>
+        <option>Agriculture / Élevage / Viticulture</option>
+        <option>Activité événementielle en zone rurale</option>
+        <option>Agritourisme / Hébergement rural</option>
+        <option>Artisanat alimentaire</option>
+        <option>Restaurant / Café / Bar</option>
+        <option>Hôtel / Chambre d'hôtes</option>
+        <option>Camping / Tourisme</option>
+        <option>Commerce de détail</option>
+        <option>Services à la personne</option>
+        <option>Profession libérale</option>
+        <option>Artisan bâtiment</option>
+        <option>Immobilier / Construction</option>
+        <option>TPE / PME</option>
+        <option>Industrie</option>
+        <option>Association / Culture / Sport</option>
+        <option>Particulier</option>
+        <option>Autre</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>Avez-vous pu vous faire aider ?</label>
+      <div class="radio-group">
+        <div class="radio-btn"><input type="radio" name="aide" id="a1" value="Avocat"><label for="a1">Avocat</label></div>
+        <div class="radio-btn"><input type="radio" name="aide" id="a2" value="Association"><label for="a2">Association</label></div>
+        <div class="radio-btn"><input type="radio" name="aide" id="a3" value="Entourage"><label for="a3">Entourage</label></div>
+        <div class="radio-btn"><input type="radio" name="aide" id="a4" value="Personne"><label for="a4">Personne</label></div>
+        <div class="radio-btn"><input type="radio" name="aide" id="a5" value="Autre"><label for="a5">Autre</label></div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Avez-vous eu accès aux informations nécessaires ?</label>
+      <div class="radio-group">
+        <div class="radio-btn"><input type="radio" name="info" id="i1" value="Oui facilement"><label for="i1">Oui, facilement</label></div>
+        <div class="radio-btn"><input type="radio" name="info" id="i2" value="Avec difficulté"><label for="i2">Avec difficulté</label></div>
+        <div class="radio-btn"><input type="radio" name="info" id="i3" value="Non"><label for="i3">Non</label></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CGU + SUBMIT -->
+  <div class="security-note">
+    <span>🔒</span>
+    <span>Votre email ne sera jamais publié ni transmis à des tiers. Il sert uniquement à confirmer votre compte et vous notifier de la publication de votre témoignage.</span>
+  </div>
+
+  <div class="cgu-box">
+    <input type="checkbox" id="cgu" onchange="checkForm()">
+    <span>J'accepte les <a href="/charte/">conditions d'utilisation</a> et la <a href="/charte/">charte éditoriale</a> de moietloi.fr. Je confirme avoir au moins 18 ans.</span>
+  </div>
+
+  <button class="btn-p" id="btnCreer" onclick="creerCompte()" disabled>
+    Créer mon compte →
+  </button>
+
+  <div class="err-box" id="errBox"></div>
+
+  <div class="connexion-link">
+    Déjà un compte ? <a href="#">Se connecter</a>
+  </div>
+
+</div>
+
+<!-- CONFIRMATION -->
+<div class="container" id="confirmZone" style="display:none">
+  <div class="confirmation" style="display:block">
+    <div class="confirm-icon">✉️</div>
+    <div class="confirm-title">Vérifiez votre email</div>
+    <p class="confirm-text">Un email de confirmation a été envoyé à <span class="confirm-email" id="confirmEmail">—</span>.</p>
+    <p class="confirm-text" style="margin-top:8px">Vous pouvez déposer votre témoignage maintenant — votre compte sera pleinement activé à la confirmation.</p>
+
+    <div class="confirm-detail">
+      <strong>✓ Ce qui se passe ensuite :</strong>
+      • Vous déposez votre témoignage<br>
+      • Il est examiné par notre équipe (moins de 48h)<br>
+      • À la publication, vous recevrez un email avec votre témoignage complet<br>
+      • Vous pourrez suivre les témoignages similaires depuis votre espace
+    </div>
+
+    <a href="temoigner.html" class="btn-continue">
+      <span>🎙️</span> Déposer mon témoignage
+    </a>
+    <a href="index.html" class="btn-skip">Retour à l'accueil</a>
+  </div>
+</div>
+
+<script>
+// FORM VALIDATION
+function checkForm(){
+  const email=document.getElementById('email').value.trim();
+  const pw=document.getElementById('password').value;
+  const pseudo=document.getElementById('pseudo').value.trim();
+  const cgu=document.getElementById('cgu').checked;
+  const valid=email&&pw.length>=8&&pseudo&&cgu&&isValidEmail(email);
+  document.getElementById('btnCreer').disabled=!valid;
+}
+
+function isValidEmail(e){return/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e)}
+
+// PASSWORD STRENGTH
+function checkStrength(){
+  const pw=document.getElementById('password').value;
+  const bars=[document.getElementById('bar1'),document.getElementById('bar2'),document.getElementById('bar3')];
+  const label=document.getElementById('pwLabel');
+  bars.forEach(b=>{b.className='pw-bar'});
+  if(!pw){label.textContent='';return}
+  let score=0;
+  if(pw.length>=8)score++;
+  if(pw.length>=12)score++;
+  if(/[A-Z]/.test(pw)&&/[0-9]/.test(pw))score++;
+  if(score===1){bars[0].classList.add('weak');label.textContent='Faible';}
+  else if(score===2){bars[0].classList.add('medium');bars[1].classList.add('medium');label.textContent='Moyen';}
+  else if(score>=3){bars.forEach(b=>b.classList.add('strong'));label.textContent='Fort';}
+}
+
+// PASSWORD TOGGLE
+function togglePw(){
+  const pw=document.getElementById('password');
+  pw.type=pw.type==='password'?'text':'password';
+}
+
+// CRÉER COMPTE
+function creerCompte(){
+  const email=document.getElementById('email').value.trim();
+  const pseudo=document.getElementById('pseudo').value.trim();
+  const btn=document.getElementById('btnCreer');
+
+  // Validation finale
+  if(!isValidEmail(email)){showErr('Adresse email invalide.');return;}
+  if(document.getElementById('password').value.length<8){showErr('Le mot de passe doit contenir au moins 8 caractères.');return;}
+
+  btn.disabled=true;
+  btn.textContent='Création en cours…';
+
+  // Simulation création compte (à remplacer par appel API backend)
+  setTimeout(()=>{
+    document.getElementById('confirmEmail').textContent=email;
+    document.getElementById('formZone').style.display='none';
+    document.getElementById('confirmZone').style.display='block';
+    window.scrollTo({top:0,behavior:'smooth'});
+  },1200);
+}
+
+function showErr(msg){
+  const b=document.getElementById('errBox');
+  b.style.display='block';b.textContent=msg;
+  document.getElementById('btnCreer').disabled=false;
+  document.getElementById('btnCreer').textContent='Créer mon compte →';
+}
+</script>
+
+</body>
+</html>
