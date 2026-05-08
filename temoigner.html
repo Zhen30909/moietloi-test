@@ -800,7 +800,7 @@ r.readAsDataURL(f);
 });}
 // ── QUESTIONS
 function extractQ(txt){
-const m=txt.match(/**\*\***QUESTIONS DE CLARIFICATION**\*\***\n([\s\S]*?)(?=\n**\*\***|$)/);
+const m=txt.match(/\*\*QUESTIONS DE CLARIFICATION\*\*\n([\s\S]*?)(?=\n\*\*|$)/);
 if(!m)return[];
 const b=m[1].trim();
 if(/complet|aucune/i.test(b))return[];
