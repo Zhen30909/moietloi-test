@@ -790,7 +790,7 @@ const r=new FileReader();
 r.onload=e=>{
 const b64=e.target.result.split(',')[1];
 const isPdf=f.type==='application/pdf'||f.name.toLowerCase().endsWith('.pdf');
-const isImg=f.type.startsWith('image/')||/**\.**(jpg|jpeg|png)$/i.test(f.name);
+const isImg=f.type.startsWith('image/')||/\.(jpg|jpeg|png)$/i.test(f.name);
 if(isPdf){resolve({type:'document',source:{type:'base64',media_type:'application/pdf',data:b64},title:f.name});}
 else if(isImg){resolve({type:'image',source:{type:'base64',media_type:f.type||'image/jpeg',data:b64}});}
 else{resolve(null);}
@@ -804,7 +804,7 @@ const m=txt.match(/**\*\***QUESTIONS DE CLARIFICATION**\*\***\n([\s\S]*?)(?=\n**
 if(!m)return[];
 const b=m[1].trim();
 if(/complet|aucune/i.test(b))return[];
-return b.split('\n').filter(l=>/^\d+**\.**/.test(l.trim())).map(l=>l.replace(/^\d+**\.**\s*/,'').trim()).filter(Boolean);
+return b.split('\n').filter(l=>/^\d+\./.test(l.trim())).map(l=>l.replace(/^\d+\.\s*/,'').trim()).filter(Boolean);
 }
 function showQ(qs){
 show('cardQ');
