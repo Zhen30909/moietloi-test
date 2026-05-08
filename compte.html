@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -346,72 +347,200 @@ select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/
     </div>
 
     <div class="field">
-      <label>Statut professionnel</label>
-      <select id="statut">
-        <option value="">— Sélectionner —</option>
-        <option>Salarié(e)</option>
-        <option>Indépendant(e) / Freelance</option>
-        <option>Chef(fe) d'entreprise</option>
-        <option>Agriculteur / Exploitant</option>
-        <option>Artisan / Commerçant</option>
-        <option>Profession libérale</option>
-        <option>Fonctionnaire</option>
-        <option>Retraité(e)</option>
-        <option>Demandeur d'emploi</option>
-        <option>Étudiant(e)</option>
-        <option>Autre</option>
-      </select>
-    </div>
-
-    <div class="field">
       <label>Secteur d'activité</label>
       <select id="secteur">
         <option value="">— Sélectionner —</option>
-        <option>Agriculture / Élevage / Viticulture</option>
-        <option>Activité événementielle en zone rurale</option>
-        <option>Agritourisme / Hébergement rural</option>
-        <option>Artisanat alimentaire</option>
-        <option>Restaurant / Café / Bar</option>
-        <option>Hôtel / Chambre d'hôtes</option>
-        <option>Camping / Tourisme</option>
-        <option>Commerce de détail</option>
-        <option>Services à la personne</option>
-        <option>Profession libérale</option>
-        <option>Artisan bâtiment</option>
-        <option>Immobilier / Construction</option>
-        <option>TPE / PME</option>
-        <option>Industrie</option>
-        <option>Association / Culture / Sport</option>
-        <option>Particulier</option>
-        <option>Autre</option>
+        <optgroup label="Agriculture &amp; Rural">
+          <option>Agriculture / Élevage / Viticulture</option>
+          <option>Sylviculture / Exploitation forestière</option>
+          <option>Pêche / Aquaculture</option>
+          <option>Agritourisme / Hébergement rural / Gîtes</option>
+          <option>Activité événementielle en zone rurale</option>
+          <option>Artisanat agricole / Transformation à la ferme</option>
+        </optgroup>
+        <optgroup label="Alimentation &amp; Restauration">
+          <option>Restaurant / Café / Bar / Brasserie</option>
+          <option>Restauration rapide / Traiteur / Cuisine de rue</option>
+          <option>Artisanat alimentaire / Boulangerie / Pâtisserie / Fromagerie</option>
+          <option>Commerce alimentaire de proximité / Épicerie</option>
+          <option>Production agroalimentaire / IAA</option>
+          <option>Marché / Vente directe producteur</option>
+        </optgroup>
+        <optgroup label="Hébergement &amp; Tourisme">
+          <option>Hôtel / Résidence hôtelière</option>
+          <option>Chambre d'hôtes / B&amp;B</option>
+          <option>Camping / Parc résidentiel de loisirs</option>
+          <option>Location saisonnière / Meublé de tourisme / Airbnb</option>
+          <option>Village vacances / Centre de loisirs</option>
+          <option>Agence de voyage / Tour-opérateur</option>
+          <option>Tourisme fluvial / Nautique</option>
+        </optgroup>
+        <optgroup label="Commerce &amp; Distribution">
+          <option>Commerce de détail alimentaire</option>
+          <option>Commerce de détail non-alimentaire</option>
+          <option>Grande distribution / Supermarché / Hypermarché</option>
+          <option>E-commerce / Vente en ligne / Marketplace</option>
+          <option>Commerce de gros / Négoce</option>
+          <option>Franchise / Commerce organisé</option>
+          <option>Vente à distance / Téléachat</option>
+        </optgroup>
+        <optgroup label="BTP &amp; Immobilier">
+          <option>Maçonnerie / Gros œuvre / Terrassement</option>
+          <option>Couverture / Charpente / Étanchéité</option>
+          <option>Électricité / Plomberie / CVC / Climatisation</option>
+          <option>Menuiserie / Serrurerie / Vitrerie</option>
+          <option>Peinture / Revêtements / Décoration intérieure</option>
+          <option>Promotion immobilière / Lotissement</option>
+          <option>Agence immobilière / Transaction</option>
+          <option>Architecture / Maîtrise d'œuvre / Bureau d'études</option>
+          <option>Propriétaire bailleur / Gestion locative</option>
+          <option>Syndic de copropriété / Administrateur de biens</option>
+          <option>Géomètre / Topographe</option>
+        </optgroup>
+        <optgroup label="Industrie &amp; Production">
+          <option>Industrie manufacturière générale</option>
+          <option>Industrie chimique / Pharmaceutique / Cosmétique</option>
+          <option>Énergie / Pétrole / Gaz / Énergies renouvelables</option>
+          <option>Métallurgie / Sidérurgie / Fonderie</option>
+          <option>Industrie du bois / Papier / Carton</option>
+          <option>Textile / Habillement / Maroquinerie</option>
+          <option>Imprimerie / Édition / Reprographie</option>
+          <option>Plastiques / Caoutchouc / Composites</option>
+          <option>Mécanique / Équipements industriels</option>
+          <option>Électronique / Électrotechnique</option>
+          <option>Recyclage / Traitement des déchets / Économie circulaire</option>
+        </optgroup>
+        <optgroup label="Transport &amp; Logistique">
+          <option>Transport routier de marchandises / Déménagement</option>
+          <option>Transport de personnes / VTC / Taxi / Car</option>
+          <option>Logistique / Entreposage / Supply chain</option>
+          <option>Transport aérien / Compagnie aérienne</option>
+          <option>Transport maritime / Fluvial / Ports</option>
+          <option>Coursier / Livraison du dernier kilomètre</option>
+          <option>Location de véhicules</option>
+          <option>Réparation automobile / Garage / Contrôle technique</option>
+        </optgroup>
+        <optgroup label="Services essentiels &amp; Monopoles">
+          <option>Électricité / Gaz (EDF, Engie, fournisseurs alternatifs)</option>
+          <option>Réseau électrique / Gaz (Enedis, GrDF)</option>
+          <option>Eau / Assainissement (Suez, Veolia, Saur, régies)</option>
+          <option>Télécom / Internet / Mobile (Orange, SFR, Free, Bouygues)</option>
+          <option>Poste / Colis / Courrier (La Poste, DHL, UPS, FedEx)</option>
+          <option>Transport ferroviaire (SNCF, Eurostar)</option>
+          <option>Transport collectif urbain (RATP, TER, réseaux urbains)</option>
+          <option>Autoroutes / Péages (Vinci, Sanef, Eiffage)</option>
+          <option>Aéroports / Aéroports de Paris</option>
+        </optgroup>
+        <optgroup label="Services aux entreprises">
+          <option>Conseil / Consulting / Management</option>
+          <option>Expertise comptable / Audit / Commissariat aux comptes</option>
+          <option>Droit / Juridique / Contentieux</option>
+          <option>Publicité / Communication / Marketing / Relations publiques</option>
+          <option>Informatique / Développement logiciel / ESN / SSII</option>
+          <option>Cybersécurité / Protection des données</option>
+          <option>Sécurité privée / Gardiennage</option>
+          <option>Nettoyage / Propreté / Facility management</option>
+          <option>Intérim / Recrutement / Ressources humaines</option>
+          <option>Assurance / Courtage / Mutuelles</option>
+          <option>Banque / Crédit / Financement</option>
+          <option>Études / Recherche / Laboratoire</option>
+        </optgroup>
+        <optgroup label="Santé &amp; Médico-social">
+          <option>Médecin généraliste / Spécialiste</option>
+          <option>Chirurgien / Anesthésiste</option>
+          <option>Dentiste / Orthodontiste</option>
+          <option>Infirmier / Aide-soignant / Kiné / Paramédical</option>
+          <option>Pharmacie / Laboratoire d'analyses</option>
+          <option>Établissement médico-social / EHPAD / IME</option>
+          <option>Clinique / Établissement de santé privé</option>
+          <option>Vétérinaire</option>
+          <option>Bien-être / Esthétique / Coiffure / Tatouage</option>
+          <option>Sport / Coaching / Salle de sport / Fitness</option>
+        </optgroup>
+        <optgroup label="Services à la personne &amp; Éducation">
+          <option>Services à la personne / Aide à domicile / Ménage</option>
+          <option>Garde d'enfants à domicile / Crèche / Micro-crèche</option>
+          <option>Auto-école / École de conduite / Moto</option>
+          <option>Soutien scolaire / Cours particuliers / Tutorat</option>
+          <option>École privée hors contrat / École alternative</option>
+          <option>Formation professionnelle / CFA / Organisme de formation</option>
+          <option>Enseignement supérieur privé / École de commerce / Ingénieurs</option>
+        </optgroup>
+        <optgroup label="Culture, Médias &amp; Loisirs">
+          <option>Spectacle vivant / Théâtre / Concert / Festival</option>
+          <option>Cinéma / Audiovisuel / Production / Streaming</option>
+          <option>Presse / Médias / Journalisme / Podcast</option>
+          <option>Musique / Arts plastiques / Artisanat d'art / Galerie</option>
+          <option>Jeux vidéo / Animation / Numérique créatif</option>
+          <option>Parc d'attractions / Loisirs / Escape game</option>
+          <option>Musée / Patrimoine / Tourisme culturel / Château</option>
+          <option>Librairie / Édition / Bibliothèque</option>
+        </optgroup>
+        <optgroup label="Associations &amp; ESS">
+          <option>Association loi 1901 (générale)</option>
+          <option>Association caritative / Humanitaire / ONG</option>
+          <option>Fondation / Fonds de dotation</option>
+          <option>Coopérative / SCOP / SCIC</option>
+          <option>Structure sportive / Club amateur / Fédération</option>
+          <option>Structure culturelle / Salle de spectacle / Compagnie</option>
+          <option>Association de défense des droits / Syndicat</option>
+        </optgroup>
+        <optgroup label="Professions réglementées &amp; Libérales">
+          <option>Avocat / Notaire / Huissier / Commissaire de justice</option>
+          <option>Expert-comptable / Commissaire aux comptes</option>
+          <option>Agent immobilier / Administrateur de biens</option>
+          <option>Architecte / Urbaniste / Paysagiste</option>
+          <option>Géomètre-expert / Ingénieur conseil</option>
+          <option>Conseiller financier / Gestionnaire de patrimoine</option>
+          <option>Psychologue / Psychothérapeute / Sophrologue</option>
+        </optgroup>
+        <optgroup label="Agriculture connectée &amp; Nouvelles technologies">
+          <option>AgriTech / Agriculture de précision</option>
+          <option>FoodTech / Nouvelles formes alimentaires</option>
+          <option>GreenTech / Environnement / Développement durable</option>
+          <option>PropTech / Immobilier numérique</option>
+          <option>HealthTech / MedTech / Bien-être digital</option>
+          <option>FinTech / Néobanque / Cryptomonnaies</option>
+          <option>EdTech / Formation en ligne</option>
+          <option>Startup / Innovation / Incubateur</option>
+        </optgroup>
+        <optgroup label="Particulier">
+          <option>Particulier construisant ou rénovant</option>
+          <option>Propriétaire occupant</option>
+          <option>Locataire</option>
+          <option>Particulier employeur</option>
+          <option>Retraité / Senior</option>
+          <option>Étudiant</option>
+          <option>Particulier — autre situation</option>
+        </optgroup>
+        <optgroup label="Autre">
+          <option>Secteur non listé — je précise dans mon témoignage</option>
+        </optgroup>
       </select>
     </div>
 
-    <div class="field">
-      <label>Avez-vous pu vous faire aider ?</label>
-      <div class="radio-group">
-        <div class="radio-btn"><input type="radio" name="aide" id="a1" value="Avocat"><label for="a1">Avocat</label></div>
-        <div class="radio-btn"><input type="radio" name="aide" id="a2" value="Association"><label for="a2">Association</label></div>
-        <div class="radio-btn"><input type="radio" name="aide" id="a3" value="Entourage"><label for="a3">Entourage</label></div>
-        <div class="radio-btn"><input type="radio" name="aide" id="a4" value="Personne"><label for="a4">Personne</label></div>
-        <div class="radio-btn"><input type="radio" name="aide" id="a5" value="Autre"><label for="a5">Autre</label></div>
-      </div>
-    </div>
-
-    <div class="field">
-      <label>Avez-vous eu accès aux informations nécessaires ?</label>
-      <div class="radio-group">
-        <div class="radio-btn"><input type="radio" name="info" id="i1" value="Oui facilement"><label for="i1">Oui, facilement</label></div>
-        <div class="radio-btn"><input type="radio" name="info" id="i2" value="Avec difficulté"><label for="i2">Avec difficulté</label></div>
-        <div class="radio-btn"><input type="radio" name="info" id="i3" value="Non"><label for="i3">Non</label></div>
-      </div>
-    </div>
   </div>
 
   <!-- CGU + SUBMIT -->
   <div class="security-note">
     <span>🔒</span>
     <span>Votre email ne sera jamais publié ni transmis à des tiers. Il sert uniquement à confirmer votre compte et vous notifier de la publication de votre témoignage.</span>
+  </div>
+
+  <!-- CONTACT OPT-IN -->
+  <div class="card" style="margin-bottom:16px;">
+    <div class="card-title">
+      <span class="card-num opt">5</span>
+      Messagerie & contact
+      <span class="card-opt-label">votre choix</span>
+    </div>
+    <p style="font-size:0.85rem;color:var(--gris-moyen);line-height:1.65;margin-bottom:16px;">
+      Votre messagerie privée sur moietloi.fr vous permet de recevoir des messages d'autres utilisateurs de la plateforme — témoins, avocats, journalistes, chercheurs, associations. Votre identité réelle n'est jamais révélée. Vous pouvez modifier ce choix à tout moment dans vos réglages.
+    </p>
+    <div class="cgu-box" style="margin-bottom:0;border-color:var(--vert-clair);">
+      <input type="checkbox" id="chkContact">
+      <span>J'accepte d'être contacté via la messagerie de la plateforme. Mon identité réelle reste anonyme — seul mon pseudonyme est visible.</span>
+    </div>
   </div>
 
   <div class="cgu-box">
