@@ -1,0 +1,45 @@
+# robots.txt — moietloi.fr
+# Archive civique française de témoignages sur les dysfonctionnements administratifs
+
+# Autoriser tous les crawlers sur tout le site
+User-agent: *
+Allow: /
+
+# Fichiers AI et SEO
+Allow: /llms.txt
+Allow: /sitemap.xml
+
+# Bloquer les pages privées (compte, pipeline de dépôt)
+Disallow: /compte.html
+Disallow: /temoigner.html
+
+# Crawlers AI majeurs — accès explicitement autorisé
+User-agent: GPTBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+# Sitemap
+Sitemap: https://moietloi.fr/sitemap.xml
+
+# llms.txt pour crawlers AI
+LLMs: https://moietloi.fr/llms.txt
