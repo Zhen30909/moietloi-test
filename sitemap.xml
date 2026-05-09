@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <url>
+    <loc>https://moietloi.fr/</loc>
+    <lastmod>2026-05-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://moietloi.fr/"/>
+  </url>
+
+  <url>
+    <loc>https://moietloi.fr/temoigner.html</loc>
+    <lastmod>2026-05-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://moietloi.fr/temoigner.html"/>
+  </url>
+
+  <url>
+    <loc>https://moietloi.fr/consulter.html</loc>
+    <lastmod>2026-05-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://moietloi.fr/consulter.html"/>
+  </url>
+
+  <url>
+    <loc>https://moietloi.fr/charte.html</loc>
+    <lastmod>2026-05-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://moietloi.fr/charte.html"/>
+  </url>
+
+  <url>
+    <loc>https://moietloi.fr/tarifs.html</loc>
+    <lastmod>2026-05-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://moietloi.fr/tarifs.html"/>
+  </url>
+
+  <url>
+    <loc>https://moietloi.fr/compte.html</loc>
+    <lastmod>2026-05-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://moietloi.fr/compte.html"/>
+  </url>
+
+</urlset>
