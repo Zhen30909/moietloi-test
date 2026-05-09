@@ -1,19 +1,217 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>moi & loi — Témoignages citoyens sur les dysfonctionnements administratifs</title>
-<meta name="description" content="Archive civique de témoignages sur les dysfonctionnements administratifs et réglementaires en France. Déposez votre témoignage vocal, analysé par IA, publié anonymement.">
-<meta property="og:title" content="moi & loi — Témoignages citoyens">
-<meta property="og:description" content="Archive civique de témoignages sur les dysfonctionnements administratifs en France. Votre expérience, documentée et publiée.">
+<title>moi & loi — Témoignages citoyens sur les dysfonctionnements administratifs en France</title>
+<meta name="description" content="Archive civique de témoignages sur les dysfonctionnements administratifs et réglementaires en France. Déposez votre témoignage vocal, analysé par IA, publié anonymement. Urbanisme, fiscalité, droit rural, services essentiels.">
+<meta name="keywords" content="dysfonctionnement administratif France, témoignage citoyen, archive civique, réglementation française, norme contre-productive, droit administratif, recours administratif, silence administratif, urbanisme PLU, ERP, droit rural SAFER, URSSAF, Légifrance, défenseur des droits, service public France">
+<meta name="author" content="moietloi.fr">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<link rel="canonical" href="https://moietloi.fr/">
+
+<!-- Open Graph -->
+<meta property="og:title" content="moi & loi — Témoignages citoyens sur les dysfonctionnements administratifs">
+<meta property="og:description" content="Archive civique de témoignages sur les dysfonctionnements administratifs en France. Votre expérience, documentée et publiée anonymement.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://moietloi.fr/">
 <meta property="og:locale" content="fr_FR">
 <meta property="og:site_name" content="moi & loi">
+<meta property="og:image" content="https://moietloi.fr/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="moi & loi — Archive civique de témoignages citoyens">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="moi & loi — Témoignages citoyens">
+<meta name="twitter:description" content="Archive civique de témoignages sur les dysfonctionnements administratifs en France.">
+<meta name="twitter:image" content="https://moietloi.fr/og-image.png">
+
+<!-- Schema.org — WebSite principal -->
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","name":"moi & loi","alternateName":"moietloi.fr","url":"https://moietloi.fr","description":"Archive civique française de témoignages sur les dysfonctionnements administratifs et réglementaires.","publisher":{"@type":"Organization","name":"moietloi.fr","url":"https://moietloi.fr"},"potentialAction":{"@type":"SearchAction","target":"https://moietloi.fr/temoignages/?q={search_term_string}","query-input":"required name=search_term_string"}}
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "https://moietloi.fr/#website",
+  "name": "moi & loi",
+  "alternateName": ["moietloi.fr", "moi et loi"],
+  "url": "https://moietloi.fr",
+  "description": "Archive civique française de témoignages sur les dysfonctionnements administratifs et réglementaires. Plateforme neutre, apartisane, sans prescription législative.",
+  "inLanguage": "fr-FR",
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://moietloi.fr/#organization",
+    "name": "moietloi.fr",
+    "url": "https://moietloi.fr",
+    "description": "Archive civique française documentant les dysfonctionnements administratifs et réglementaires en France.",
+    "foundingDate": "2026",
+    "areaServed": {
+      "@type": "Country",
+      "name": "France"
+    },
+    "knowsAbout": [
+      "Droit administratif français",
+      "Dysfonctionnements réglementaires",
+      "Témoignages citoyens",
+      "Urbanisme et PLU",
+      "Droit rural",
+      "Fiscalité française",
+      "Services publics français"
+    ]
+  },
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "https://moietloi.fr/consulter.html?q={search_term_string}"
+    },
+    "query-input": "required name=search_term_string"
+  }
+}
 </script>
+
+<!-- Schema.org — Organisation -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://moietloi.fr/#organization",
+  "name": "moi & loi",
+  "url": "https://moietloi.fr",
+  "logo": "https://moietloi.fr/og-image.png",
+  "description": "Archive civique française de témoignages sur les dysfonctionnements administratifs et réglementaires.",
+  "foundingDate": "2026",
+  "areaServed": "France",
+  "knowsLanguage": ["fr", "en"],
+  "sameAs": [
+    "https://moietloi.com",
+    "https://moietloi.org"
+  ]
+}
+</script>
+
+<!-- Schema.org — Dataset (base de témoignages) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Dataset",
+  "name": "Base de témoignages citoyens — dysfonctionnements administratifs France",
+  "description": "Archive structurée de témoignages citoyens sur les dysfonctionnements administratifs et réglementaires en France. Chaque témoignage est transcrit, analysé et classifié par IA, puis modéré avant publication.",
+  "url": "https://moietloi.fr/consulter.html",
+  "creator": {
+    "@type": "Organization",
+    "name": "moietloi.fr"
+  },
+  "inLanguage": "fr-FR",
+  "license": "https://moietloi.fr/charte.html",
+  "isAccessibleForFree": true,
+  "keywords": [
+    "dysfonctionnement administratif",
+    "témoignage citoyen",
+    "droit administratif France",
+    "réglementation française",
+    "norme contre-productive",
+    "urbanisme PLU",
+    "droit rural",
+    "fiscalité française",
+    "service public",
+    "archive civique"
+  ],
+  "spatialCoverage": {
+    "@type": "Place",
+    "name": "France"
+  },
+  "temporalCoverage": "2026/..",
+  "variableMeasured": [
+    "Type de dysfonctionnement",
+    "Domaine réglementaire",
+    "Région géographique",
+    "Profil du témoin"
+  ]
+}
+</script>
+
+<!-- Schema.org — WebPage accueil -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://moietloi.fr/#webpage",
+  "url": "https://moietloi.fr/",
+  "name": "moi & loi — Témoignages citoyens sur les dysfonctionnements administratifs en France",
+  "description": "Archive civique de témoignages sur les dysfonctionnements administratifs et réglementaires en France.",
+  "isPartOf": {"@id": "https://moietloi.fr/#website"},
+  "about": {
+    "@type": "Thing",
+    "name": "Dysfonctionnements administratifs en France",
+    "description": "Situations où la réglementation française s'avère inadaptée, contradictoire, disproportionnée ou mal appliquée."
+  },
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Accueil",
+        "item": "https://moietloi.fr/"
+      }
+    ]
+  }
+}
+</script>
+
+<!-- Schema.org — FAQ (questions fréquentes) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Comment déposer un témoignage sur moietloi.fr ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Enregistrez votre témoignage vocal directement dans le navigateur, joignez des documents optionnels, et laissez l'IA transcrire et structurer votre récit. Vous validez le document final avant soumission. La modération prend moins de 48h."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Mes données personnelles sont-elles protégées ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui. Vous choisissez votre niveau d'anonymat : prénom et région, catégorie professionnelle, ou anonyme complet. Les documents joints sont détruits après analyse. Aucune donnée personnelle n'est publiée sans votre accord explicite."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "moietloi.fr est-il un service juridique ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Non. moietloi.fr est une archive civique neutre. Elle documente et analyse les dysfonctionnements administratifs. Elle ne fournit pas de conseils juridiques et n'est pas affiliée à un parti politique."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Qui peut consulter les témoignages ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tout le monde, sans création de compte. La consultation est libre et gratuite. Les journalistes, chercheurs et avocats peuvent accéder à des analyses approfondies via l'accès Pro."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quels types de dysfonctionnements sont documentés ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Trois volets : 1) Absurdité normative (norme déconnectée, contradictoire, disproportionnée), 2) Abus dans l'application (décision arbitraire, délais abusifs, silence administratif), 3) Verrouillage systémique (recours inefficaces, opacité, coût prohibitif). Ainsi que les dysfonctionnements des services essentiels (énergie, eau, télécom, transport)."
+      }
+    }
+  ]
+}
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -155,9 +353,8 @@ footer{background:var(--gris-fonce);padding:48px 24px 24px;color:#888}
 </head>
 <body>
 
-<!-- NAV — page courante : Accueil (logo actif, aucun lien en surbrillance) -->
-<nav id="mainNav">
-  <a href="index.html" class="nav-logo">moi <span class="et">&</span> <span class="loi">loi</span></a>
+<nav id="mainNav" aria-label="Navigation principale">
+  <a href="index.html" class="nav-logo" aria-label="moi & loi — Accueil">moi <span class="et">&</span> <span class="loi">loi</span></a>
   <ul class="nav-links">
     <li><a href="compte.html" class="nav-cta">🎙️ Déposer</a></li>
     <li><a href="consulter.html">🔍 Consulter</a></li>
@@ -165,11 +362,11 @@ footer{background:var(--gris-fonce);padding:48px 24px 24px;color:#888}
     <li><a href="tarifs.html">💶 Tarifs</a></li>
     <li><a href="compte.html">👤 Connexion</a></li>
   </ul>
-  <button class="nav-burger" onclick="toggleNav()" aria-label="Menu">
+  <button class="nav-burger" onclick="toggleNav()" aria-label="Ouvrir le menu" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
 </nav>
-<div class="nav-mobile" id="navMobile">
+<div class="nav-mobile" id="navMobile" role="navigation" aria-label="Menu mobile">
   <a href="compte.html" class="nav-cta-mob">🎙️ Déposer un témoignage</a>
   <a href="consulter.html">🔍 Consulter les témoignages</a>
   <a href="charte.html">📋 Charte & Règles</a>
@@ -177,9 +374,9 @@ footer{background:var(--gris-fonce);padding:48px 24px 24px;color:#888}
   <a href="compte.html">👤 Connexion / Créer un compte</a>
 </div>
 
-<section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-deco"></div>
+<section class="hero" aria-label="Présentation de moi & loi">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="hero-deco" aria-hidden="true"></div>
   <div class="hero-inner" id="heroInner">
     <div class="hero-eyebrow">Archive civique ouverte</div>
     <h1 class="hero-logo">moi <span class="et">&</span> <span class="loi">loi</span></h1>
@@ -190,7 +387,7 @@ footer{background:var(--gris-fonce);padding:48px 24px 24px;color:#888}
       <a href="compte.html" class="btn-primary"><span>🎙️</span> Déposer mon témoignage</a>
       <a href="consulter.html" class="btn-secondary">Consulter la base &nbsp;<span class="arr">→</span></a>
     </div>
-    <div class="hero-stats">
+    <div class="hero-stats" aria-label="Statistiques de la plateforme">
       <div class="stat-item"><div class="stat-num" id="cntTemoins">—</div><div class="stat-label">Témoignages publiés</div></div>
       <div class="stat-item"><div class="stat-num" id="cntRegions">—</div><div class="stat-label">Régions représentées</div></div>
       <div class="stat-item"><div class="stat-num" id="cntClusters">—</div><div class="stat-label">Clusters identifiés</div></div>
@@ -199,32 +396,32 @@ footer{background:var(--gris-fonce);padding:48px 24px 24px;color:#888}
   </div>
 </section>
 
-<section class="section section-temoins">
+<section class="section section-temoins" aria-label="Témoignages récents">
   <div class="s-inner">
     <div class="s-label fi">Témoignages récents</div>
     <h2 class="s-title fi d1">Ce que vivent les citoyens</h2>
     <p class="s-desc fi d2">Des expériences réelles, structurées par IA, modérées avant publication. Chaque témoignage éclaire un dysfonctionnement précis.</p>
     <div class="temoins-grid">
-      <div class="temoin-card fi d1">
+      <article class="temoin-card fi d1" itemscope itemtype="https://schema.org/Article">
         <div class="temoin-tags"><span class="tag tag-d">ERP / Urbanisme</span><span class="tag tag-t">Norme contradictoire</span><span class="tag tag-r">📍 Vaucluse</span></div>
-        <p class="temoin-resume">"Un domaine événementiel déclaré conforme par le bureau de contrôle, fermé administrativement six mois plus tard pour les mêmes travaux — sans notification préalable."</p>
-        <div class="temoin-meta"><span class="temoin-sig">Une entrepreneuse, Vaucluse</span><span class="temoin-views">👁 142</span></div>
-      </div>
-      <div class="temoin-card fi d2">
+        <p class="temoin-resume" itemprop="description">"Un domaine événementiel déclaré conforme par le bureau de contrôle, fermé administrativement six mois plus tard pour les mêmes travaux — sans notification préalable."</p>
+        <div class="temoin-meta"><span class="temoin-sig" itemprop="author">Une entrepreneuse, Vaucluse</span><span class="temoin-views">👁 142</span></div>
+      </article>
+      <article class="temoin-card fi d2" itemscope itemtype="https://schema.org/Article">
         <div class="temoin-tags"><span class="tag tag-d">Droit rural</span><span class="tag tag-t">Disproportionnalité</span><span class="tag tag-r">📍 Bretagne</span></div>
-        <p class="temoin-resume">"Mon exploitation classée en zone A2 par le PLU révisé. Aucune activité complémentaire tolérée — ni gîte, ni vente directe — malgré un projet validé trois ans avant."</p>
-        <div class="temoin-meta"><span class="temoin-sig">Un agriculteur, Finistère</span><span class="temoin-views">👁 89</span></div>
-      </div>
-      <div class="temoin-card fi d3">
+        <p class="temoin-resume" itemprop="description">"Mon exploitation classée en zone A2 par le PLU révisé. Aucune activité complémentaire tolérée — ni gîte, ni vente directe — malgré un projet validé trois ans avant."</p>
+        <div class="temoin-meta"><span class="temoin-sig" itemprop="author">Un agriculteur, Finistère</span><span class="temoin-views">👁 89</span></div>
+      </article>
+      <article class="temoin-card fi d3" itemscope itemtype="https://schema.org/Article">
         <div class="temoin-tags"><span class="tag tag-d">Normes sanitaires</span><span class="tag tag-t">Détournement de procédure</span><span class="tag tag-r">📍 Occitanie</span></div>
-        <p class="temoin-resume">"Mise aux normes HACCP exigée rétroactivement sur une cuisine existante depuis 1997, délai de 60 jours. Coût estimé : 38 000 €. Résultat : fermeture."</p>
-        <div class="temoin-meta"><span class="temoin-sig">Un restaurateur, Hérault</span><span class="temoin-views">👁 217</span></div>
-      </div>
-      <div class="temoin-card fi d4">
+        <p class="temoin-resume" itemprop="description">"Mise aux normes HACCP exigée rétroactivement sur une cuisine existante depuis 1997, délai de 60 jours. Coût estimé : 38 000 €. Résultat : fermeture."</p>
+        <div class="temoin-meta"><span class="temoin-sig" itemprop="author">Un restaurateur, Hérault</span><span class="temoin-views">👁 217</span></div>
+      </article>
+      <article class="temoin-card fi d4" itemscope itemtype="https://schema.org/Article">
         <div class="temoin-tags"><span class="tag tag-d">Urbanisme / PLU</span><span class="tag tag-t">Vide juridique</span><span class="tag tag-r">📍 PACA</span></div>
-        <p class="temoin-resume">"Permis de construire accordé, travaux engagés, puis annulé sur recours d'un tiers — 18 mois après. Aucune indemnisation possible. Le recours gracieux n'a jamais reçu de réponse."</p>
-        <div class="temoin-meta"><span class="temoin-sig">Un particulier, Var</span><span class="temoin-views">👁 183</span></div>
-      </div>
+        <p class="temoin-resume" itemprop="description">"Permis de construire accordé, travaux engagés, puis annulé sur recours d'un tiers — 18 mois après. Aucune indemnisation possible. Le recours gracieux n'a jamais reçu de réponse."</p>
+        <div class="temoin-meta"><span class="temoin-sig" itemprop="author">Un particulier, Var</span><span class="temoin-views">👁 183</span></div>
+      </article>
     </div>
     <div style="text-align:center;margin-top:32px">
       <a href="consulter.html" class="btn-secondary" style="display:inline-flex">Voir tous les témoignages &nbsp;<span class="arr">→</span></a>
@@ -232,7 +429,7 @@ footer{background:var(--gris-fonce);padding:48px 24px 24px;color:#888}
   </div>
 </section>
 
-<section class="section section-comment">
+<section class="section section-comment" aria-label="Comment ça marche">
   <div class="s-inner">
     <div class="s-label fi">Fonctionnement</div>
     <h2 class="s-title fi d1">Trois étapes, dix minutes</h2>
@@ -260,7 +457,7 @@ footer{background:var(--gris-fonce);padding:48px 24px 24px;color:#888}
   </div>
 </section>
 
-<section class="section-pourquoi">
+<section class="section-pourquoi" aria-label="Mission de moi & loi">
   <div class="pourquoi-inner">
     <div class="pourquoi-left">
       <div class="s-label">Mission</div>
@@ -276,7 +473,7 @@ footer{background:var(--gris-fonce);padding:48px 24px 24px;color:#888}
   </div>
 </section>
 
-<section class="section section-chiffres">
+<section class="section section-chiffres" aria-label="Chiffres clés">
   <div class="s-inner" style="text-align:center">
     <div class="s-label fi">En chiffres</div>
     <h2 class="s-title fi d1">La réglementation française en données</h2>
@@ -289,7 +486,7 @@ footer{background:var(--gris-fonce);padding:48px 24px 24px;color:#888}
   </div>
 </section>
 
-<section class="section-cta">
+<section class="section-cta" aria-label="Appel à témoigner">
   <div class="cta-inner">
     <h2 class="cta-title fi">Votre expérience <em>compte.</em><br>Documenter, c'est agir.</h2>
     <p class="cta-desc fi d1">Dix minutes. Un enregistrement vocal. Un document structuré prêt à rejoindre une archive qui révèle ce que les cas isolés ne montrent pas.</p>
@@ -298,7 +495,7 @@ footer{background:var(--gris-fonce);padding:48px 24px 24px;color:#888}
   </div>
 </section>
 
-<footer>
+<footer aria-label="Pied de page">
   <div class="footer-inner">
     <div class="footer-top">
       <div>
@@ -316,6 +513,8 @@ footer{background:var(--gris-fonce);padding:48px 24px 24px;color:#888}
         <h4>À propos</h4>
         <a href="charte.html">📋 Charte éditoriale</a>
         <a href="charte.html">⚖️ Règles de publication</a>
+        <a href="/sitemap.xml">🗺️ Plan du site</a>
+        <a href="/llms.txt">🤖 Pour les AI</a>
       </div>
     </div>
     <div class="footer-bottom">
@@ -326,12 +525,32 @@ footer{background:var(--gris-fonce);padding:48px 24px 24px;color:#888}
 </footer>
 
 <script>
-function toggleNav(){document.getElementById('navMobile').classList.toggle('open')}
-document.querySelectorAll('.nav-mobile a').forEach(a=>{a.addEventListener('click',()=>document.getElementById('navMobile').classList.remove('open'))});
-window.addEventListener('scroll',()=>{document.getElementById('mainNav').style.boxShadow=window.scrollY>10?'0 2px 12px rgba(0,0,0,0.07)':'none'},{passive:true});
-const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('v')})},{threshold:0.12,rootMargin:'0px 0px -40px 0px'});
+function toggleNav(){
+  const nav=document.getElementById('navMobile');
+  const btn=document.querySelector('.nav-burger');
+  const isOpen=nav.classList.toggle('open');
+  btn.setAttribute('aria-expanded',isOpen);
+}
+document.querySelectorAll('.nav-mobile a').forEach(a=>{
+  a.addEventListener('click',()=>{
+    document.getElementById('navMobile').classList.remove('open');
+    document.querySelector('.nav-burger').setAttribute('aria-expanded','false');
+  });
+});
+window.addEventListener('scroll',()=>{
+  document.getElementById('mainNav').style.boxShadow=window.scrollY>10?'0 2px 12px rgba(0,0,0,0.07)':'none';
+},{passive:true});
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('v')});
+},{threshold:0.12,rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.fi').forEach(el=>obs.observe(el));
-window.addEventListener('load',()=>{const h=document.getElementById('heroInner');if(h){h.style.cssText='opacity:0;transform:translateY(24px);transition:opacity 0.85s ease,transform 0.85s ease';setTimeout(()=>h.style.cssText='opacity:1;transform:translateY(0);transition:opacity 0.85s ease,transform 0.85s ease',80)}});
+window.addEventListener('load',()=>{
+  const h=document.getElementById('heroInner');
+  if(h){
+    h.style.cssText='opacity:0;transform:translateY(24px);transition:opacity 0.85s ease,transform 0.85s ease';
+    setTimeout(()=>h.style.cssText='opacity:1;transform:translateY(0);transition:opacity 0.85s ease,transform 0.85s ease',80);
+  }
+});
 </script>
 </body>
 </html>
