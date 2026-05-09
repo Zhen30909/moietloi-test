@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -53,24 +54,22 @@ nav{background:rgba(247,244,239,0.96);backdrop-filter:blur(10px);border-bottom:1
 .card-title{font-family:'Playfair Display',serif;font-size:1rem;color:var(--gris-fonce);margin-bottom:20px;display:flex;align-items:center;gap:10px}
 .card-num{width:26px;height:26px;border-radius:50%;background:var(--vert);color:white;font-size:0.78rem;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 
-/* FORM */
+/* FORM — deux colonnes pour prénom/nom */
 .field{margin-bottom:18px}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px}
 label{display:block;font-size:0.78rem;color:var(--gris-moyen);margin-bottom:6px;letter-spacing:0.5px;text-transform:uppercase;font-weight:500}
 .req{color:var(--peche);margin-left:2px}
-input[type=email],input[type=password],input[type=text],select{width:100%;padding:12px 16px;border:1.5px solid #ddd8d0;border-radius:8px;font-size:0.95rem;font-family:'Source Sans 3',sans-serif;background:var(--fond);color:var(--gris-fonce);transition:border-color 0.2s;-webkit-appearance:none;appearance:none}
+.opt{color:var(--gris-clair);margin-left:4px;font-size:0.7rem;text-transform:none;letter-spacing:0;font-weight:400;font-style:italic}
+input[type=email],input[type=password],input[type=text],input[type=tel],select{width:100%;padding:12px 16px;border:1.5px solid #ddd8d0;border-radius:8px;font-size:0.95rem;font-family:'Source Sans 3',sans-serif;background:var(--fond);color:var(--gris-fonce);transition:border-color 0.2s;-webkit-appearance:none;appearance:none}
 input:focus,select:focus{outline:none;border-color:var(--vert);background:white}
 select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b6b6b' d='M6 8L1 3h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
 input[list]{width:100%;padding:12px 16px;border:1.5px solid #ddd8d0;border-radius:8px;font-size:0.95rem;font-family:'Source Sans 3',sans-serif;background:var(--fond);color:var(--gris-fonce);transition:border-color 0.2s;-webkit-appearance:none}
 input[list]:focus{outline:none;border-color:var(--vert);background:white}
 .hint{font-size:0.78rem;color:var(--gris-moyen);margin-top:5px;font-style:italic}
 
-/* SECTEUR 2 NIVEAUX */
+/* SECTEUR 2 NIVEAUX — sans bouton "garder catégorie" */
 .secteur-niveau2{display:none;margin-top:10px}
 .secteur-niveau2.visible{display:block}
-.secteur-precision{display:flex;align-items:center;gap:10px;margin-top:10px}
-.btn-rester{padding:8px 14px;background:transparent;border:1.5px solid var(--beige);border-radius:8px;font-size:0.8rem;color:var(--gris-moyen);cursor:pointer;font-family:'Source Sans 3',sans-serif;transition:all 0.2s;white-space:nowrap}
-.btn-rester:hover{border-color:var(--vert);color:var(--vert)}
-.btn-rester.on{background:var(--vert-pale);border-color:var(--vert);color:var(--vert);font-weight:500}
 .secteur-selected{font-size:0.78rem;color:var(--vert);margin-top:6px;font-style:italic;min-height:18px}
 
 /* PASSWORD */
@@ -92,8 +91,12 @@ input[list]:focus{outline:none;border-color:var(--vert);background:white}
 .radio-btn label{padding:7px 14px;border:1.5px solid #ddd8d0;border-radius:20px;font-size:0.82rem;color:var(--gris-moyen);cursor:pointer;transition:all 0.2s;text-transform:none;letter-spacing:0;font-weight:400;margin:0}
 .radio-btn input:checked+label{border-color:var(--vert);background:var(--vert-pale);color:var(--vert);font-weight:500}
 
-/* NOTE OBLIGATOIRE */
+/* NOTE */
 .required-note{font-size:0.78rem;color:var(--gris-moyen);margin-bottom:20px;padding:10px 14px;background:var(--vert-pale);border-radius:8px;border-left:3px solid var(--vert)}
+
+/* NOTE ANONYMAT */
+.anon-note{background:var(--peche-pale);border:1px solid var(--peche);border-radius:8px;padding:12px 16px;font-size:0.8rem;color:var(--gris-fonce);line-height:1.6;margin-bottom:20px}
+.anon-note strong{color:var(--peche)}
 
 /* CGU */
 .cgu-box{display:flex;align-items:flex-start;gap:10px;padding:14px 16px;background:var(--fond);border-radius:8px;border:1.5px solid #ddd8d0;margin-bottom:20px;transition:border-color 0.2s}
@@ -131,12 +134,13 @@ input[list]:focus{outline:none;border-color:var(--vert);background:white}
 @media(max-width:600px){
   nav{padding:0 18px}.nav-links{display:none}.nav-burger{display:flex}
   .container{padding:28px 16px}
+  .field-row{grid-template-columns:1fr}
 }
 </style>
 </head>
 <body>
 
-<!-- NAV — page courante : 👤 Connexion -->
+<!-- NAV -->
 <nav>
   <a href="index.html" class="nav-logo">moi <span class="et">&</span> <span class="loi">loi</span></a>
   <div class="nav-links">
@@ -168,16 +172,38 @@ input[list]:focus{outline:none;border-color:var(--vert);background:white}
   </div>
 
   <div class="required-note">
-    Tous les champs sont obligatoires. Ils restent strictement confidentiels — jamais publiés individuellement, utilisés uniquement pour l'analyse statistique agrégée.
+    Les champs marqués <span style="color:var(--peche);font-weight:600;">*</span> sont obligatoires. Toutes vos données restent strictement confidentielles — jamais publiées individuellement, utilisées uniquement pour l'analyse statistique agrégée.
+  </div>
+
+  <div class="anon-note">
+    <strong>🔒 Anonymat et statistiques :</strong> même si votre témoignage est publié de façon 100% anonyme, les informations de votre profil sont rattachées en privé à votre témoignage pour enrichir les analyses collectives. Ce qui est visible publiquement ≠ ce qui est analysé.
   </div>
 
   <!-- CARTE 1 — COMPTE -->
   <div class="card">
     <div class="card-title"><span class="card-num">1</span> Informations de compte</div>
 
+    <!-- Prénom + Nom côte à côte -->
+    <div class="field-row">
+      <div>
+        <label>Prénom <span class="req">*</span></label>
+        <input type="text" id="prenom" placeholder="Votre prénom" autocomplete="given-name" oninput="checkForm()">
+      </div>
+      <div>
+        <label>Nom <span class="req">*</span></label>
+        <input type="text" id="nom" placeholder="Votre nom" autocomplete="family-name" oninput="checkForm()">
+      </div>
+    </div>
+
     <div class="field">
       <label>Email <span class="req">*</span></label>
       <input type="email" id="email" placeholder="votre@email.com" autocomplete="email" oninput="checkForm()">
+    </div>
+
+    <div class="field">
+      <label>Téléphone <span class="opt">(optionnel)</span></label>
+      <input type="tel" id="telephone" placeholder="+33 6 00 00 00 00" autocomplete="tel">
+      <div class="hint">Jamais publié — uniquement pour vous contacter en cas de besoin de modération</div>
     </div>
 
     <div class="field">
@@ -209,12 +235,12 @@ input[list]:focus{outline:none;border-color:var(--vert);background:white}
       <label>Tranche d'âge <span class="req">*</span></label>
       <select id="age" onchange="checkForm()">
         <option value="">— Sélectionner —</option>
+        <option>Moins de 25 ans</option>
         <option>25–34 ans</option>
         <option>35–44 ans</option>
         <option>45–54 ans</option>
         <option>55–64 ans</option>
         <option>65 ans et plus</option>
-        <option>Moins de 25 ans</option>
       </select>
     </div>
 
@@ -231,16 +257,16 @@ input[list]:focus{outline:none;border-color:var(--vert);background:white}
     <div class="field">
       <label>Type de territoire <span class="req">*</span></label>
       <div class="radio-group">
-        <div class="radio-btn"><input type="radio" name="territoire" id="t1" value="Littoral / Montagne" onchange="checkForm()"><label for="t1">Littoral / Montagne</label></div>
+        <div class="radio-btn"><input type="radio" name="territoire" id="t1" value="Rural" onchange="checkForm()"><label for="t1">Rural</label></div>
         <div class="radio-btn"><input type="radio" name="territoire" id="t2" value="Périurbain" onchange="checkForm()"><label for="t2">Périurbain</label></div>
-        <div class="radio-btn"><input type="radio" name="territoire" id="t3" value="Rural" onchange="checkForm()"><label for="t3">Rural</label></div>
-        <div class="radio-btn"><input type="radio" name="territoire" id="t4" value="Urbain" onchange="checkForm()"><label for="t4">Urbain</label></div>
+        <div class="radio-btn"><input type="radio" name="territoire" id="t3" value="Urbain" onchange="checkForm()"><label for="t3">Urbain</label></div>
+        <div class="radio-btn"><input type="radio" name="territoire" id="t4" value="Littoral / Montagne" onchange="checkForm()"><label for="t4">Littoral / Montagne</label></div>
       </div>
     </div>
 
     <div class="field">
       <label>Département ou région <span class="req">*</span></label>
-      <input type="text" id="region" list="listRegions" placeholder="Tapez ou sélectionnez…" oninput="checkForm()">
+      <input type="text" id="region" list="listRegions" placeholder="Tapez les premiers chiffres ou lettres…" oninput="checkForm()">
       <datalist id="listRegions">
         <option value="01 — Ain"><option value="02 — Aisne"><option value="03 — Allier">
         <option value="04 — Alpes-de-Haute-Provence"><option value="05 — Hautes-Alpes">
@@ -317,7 +343,7 @@ input[list]:focus{outline:none;border-color:var(--vert);background:white}
       <div class="hint">Nomenclature INSEE — tapez pour filtrer</div>
     </div>
 
-    <!-- SECTEUR 2 NIVEAUX -->
+    <!-- SECTEUR 2 NIVEAUX — sans bouton "garder catégorie générale" -->
     <div class="field">
       <label>Secteur d'activité <span class="req">*</span></label>
       <select id="secteurCat" onchange="onSecteurCat()">
@@ -342,15 +368,11 @@ input[list]:focus{outline:none;border-color:var(--vert);background:white}
         <option value="Autre">Autre — non listé</option>
       </select>
 
+      <!-- Niveau 2 — apparaît automatiquement, pas de bouton "garder catégorie" -->
       <div class="secteur-niveau2" id="secteurNiveau2">
         <select id="secteurSub" onchange="onSecteurSub()">
-          <option value="">— Préciser (optionnel) —</option>
+          <option value="">— Préciser votre activité (optionnel) —</option>
         </select>
-        <div class="secteur-precision">
-          <button type="button" class="btn-rester" id="btnRester" onclick="resterCategorie()">
-            Garder la catégorie générale
-          </button>
-        </div>
       </div>
       <div class="secteur-selected" id="secteurSelected"></div>
       <div class="hint">Choisissez d'abord la catégorie, puis précisez si vous le souhaitez</div>
@@ -412,267 +434,80 @@ input[list]:focus{outline:none;border-color:var(--vert);background:white}
 </div>
 
 <script>
-// ── DONNÉES SECTEURS (catégorie → sous-catégories alphabétiques)
+// ── DONNÉES SECTEURS — identiques à V5, intouchables
 const secteurData = {
-  "Agriculture & Rural": [
-    "Activité événementielle en zone rurale",
-    "Agriculture / Élevage",
-    "Apiculture",
-    "Aquaculture",
-    "Arboriculture / Maraîchage",
-    "Artisanat agricole / Transformation à la ferme",
-    "Agritourisme / Hébergement rural / Gîtes",
-    "Pêche",
-    "Sylviculture / Exploitation forestière",
-    "Viticulture / Vins"
-  ],
-  "Alimentation & Restauration": [
-    "Artisanat alimentaire / Boulangerie / Pâtisserie / Fromagerie",
-    "Bar / Café / Brasserie",
-    "Commerce alimentaire de proximité / Épicerie",
-    "Marché / Vente directe producteur",
-    "Production agroalimentaire",
-    "Restaurant",
-    "Restauration rapide / Traiteur / Cuisine de rue"
-  ],
-  "Associations & ESS": [
-    "Association caritative / Humanitaire / ONG",
-    "Association de défense des droits / Syndicat",
-    "Association loi 1901 (générale)",
-    "Association sportive / Club amateur",
-    "Association culturelle / Compagnie",
-    "Coopérative / SCOP / SCIC",
-    "Fondation / Fonds de dotation"
-  ],
-  "BTP & Immobilier": [
-    "Agence immobilière / Transaction",
-    "Architecture / Maîtrise d'œuvre / Bureau d'études",
-    "Couverture / Charpente / Étanchéité",
-    "Électricité / Plomberie / CVC / Climatisation",
-    "Géomètre / Topographe",
-    "Maçonnerie / Gros œuvre / Terrassement",
-    "Menuiserie / Serrurerie / Vitrerie",
-    "Peinture / Revêtements / Décoration",
-    "Promotion immobilière / Lotissement",
-    "Propriétaire bailleur / Gestion locative",
-    "Syndic de copropriété / Administrateur de biens"
-  ],
-  "Commerce & Distribution": [
-    "Commerce de détail alimentaire",
-    "Commerce de détail non-alimentaire",
-    "Commerce de gros / Négoce",
-    "E-commerce / Vente en ligne / Marketplace",
-    "Franchise / Commerce organisé",
-    "Grande distribution / Supermarché",
-    "Vente à distance / Téléachat"
-  ],
-  "Culture, Médias & Loisirs": [
-    "Cinéma / Audiovisuel / Production / Streaming",
-    "Escape game / Jeux / Loisirs",
-    "Jeux vidéo / Animation / Numérique créatif",
-    "Librairie / Édition / Bibliothèque",
-    "Musée / Patrimoine / Tourisme culturel / Château",
-    "Musique / Arts plastiques / Artisanat d'art / Galerie",
-    "Parc d'attractions / Loisirs",
-    "Presse / Médias / Journalisme / Podcast",
-    "Spectacle vivant / Théâtre / Concert / Festival"
-  ],
-  "Éducation & Formation": [
-    "Auto-école / École de conduite",
-    "CFA / Apprentissage",
-    "École de commerce / Ingénieurs / Enseignement supérieur privé",
-    "École privée hors contrat / École alternative",
-    "Formation professionnelle / Organisme de formation",
-    "Garde d'enfants à domicile / Crèche / Micro-crèche",
-    "Soutien scolaire / Cours particuliers"
-  ],
-  "Hébergement & Tourisme": [
-    "Agence de voyage / Tour-opérateur",
-    "Camping / Parc résidentiel de loisirs",
-    "Chambre d'hôtes / B&B",
-    "Hôtel / Résidence hôtelière",
-    "Location saisonnière / Meublé de tourisme / Airbnb",
-    "Tourisme fluvial / Nautique",
-    "Village vacances / Centre de loisirs"
-  ],
-  "Industrie & Production": [
-    "Électronique / Électrotechnique",
-    "Énergie / Pétrole / Gaz / Énergies renouvelables",
-    "Imprimerie / Édition / Reprographie",
-    "Industrie chimique / Pharmaceutique / Cosmétique",
-    "Industrie du bois / Papier / Carton",
-    "Industrie manufacturière générale",
-    "Mécanique / Équipements industriels",
-    "Métallurgie / Sidérurgie / Fonderie",
-    "Plastiques / Caoutchouc / Composites",
-    "Recyclage / Traitement des déchets / Économie circulaire",
-    "Textile / Habillement / Maroquinerie"
-  ],
-  "Particulier": [
-    "Étudiant(e)",
-    "Locataire",
-    "Particulier — autre situation",
-    "Particulier construisant / Rénovant",
-    "Particulier employeur",
-    "Propriétaire occupant",
-    "Retraité / Senior"
-  ],
-  "Professions réglementées & Libérales": [
-    "Agent immobilier / Administrateur de biens",
-    "Architecte / Urbaniste / Paysagiste",
-    "Avocat / Notaire / Huissier / Commissaire de justice",
-    "Conseiller financier / Gestionnaire de patrimoine",
-    "Expert-comptable / Commissaire aux comptes",
-    "Géomètre-expert / Ingénieur conseil",
-    "Psychologue / Psychothérapeute / Sophrologue"
-  ],
-  "Santé & Médico-social": [
-    "Bien-être / Esthétique / Coiffure / Tatouage",
-    "Clinique / Établissement de santé privé",
-    "Dentiste / Orthodontiste",
-    "EHPAD / Établissement médico-social / IME",
-    "Infirmier / Aide-soignant / Kiné / Paramédical",
-    "Médecin généraliste / Spécialiste",
-    "Pharmacie / Laboratoire d'analyses",
-    "Sport / Coaching / Salle de sport / Fitness",
-    "Vétérinaire"
-  ],
-  "Services à la personne": [
-    "Aide à domicile / Ménage",
-    "Garde d'enfants à domicile",
-    "Services à la personne — autre"
-  ],
-  "Services aux entreprises": [
-    "Assurance / Courtage / Mutuelles",
-    "Banque / Crédit / Financement",
-    "Conseil / Consulting / Management",
-    "Cybersécurité / Protection des données",
-    "Études / Recherche / Laboratoire",
-    "Expertise comptable / Audit",
-    "Informatique / Développement logiciel / ESN",
-    "Intérim / Recrutement / Ressources humaines",
-    "Nettoyage / Propreté / Facility management",
-    "Publicité / Communication / Marketing",
-    "Sécurité privée / Gardiennage"
-  ],
-  "Services essentiels & Monopoles": [
-    "Aéroports / Aéroports de Paris",
-    "Autoroutes / Péages (Vinci, Sanef, Eiffage)",
-    "Eau / Assainissement (Suez, Veolia, Saur, régies)",
-    "Électricité / Gaz — fournisseurs (EDF, Engie, TotalEnergies)",
-    "Poste / Colis / Courrier (La Poste, DHL, UPS, FedEx)",
-    "Réseau électrique / Gaz (Enedis, GrDF)",
-    "Télécom / Internet / Mobile (Orange, SFR, Free, Bouygues)",
-    "Transport collectif urbain (RATP, TER, réseaux urbains)",
-    "Transport ferroviaire (SNCF, Eurostar)"
-  ],
-  "Technologies & Innovation": [
-    "AgriTech / Agriculture de précision",
-    "EdTech / Formation en ligne",
-    "FinTech / Néobanque / Cryptomonnaies",
-    "FoodTech / Nouvelles formes alimentaires",
-    "GreenTech / Environnement / Développement durable",
-    "HealthTech / MedTech / Bien-être digital",
-    "PropTech / Immobilier numérique",
-    "Startup / Innovation / Incubateur"
-  ],
-  "Transport & Logistique": [
-    "Coursier / Livraison du dernier kilomètre",
-    "Location de véhicules",
-    "Logistique / Entreposage / Supply chain",
-    "Réparation automobile / Garage / Contrôle technique",
-    "Transport aérien / Compagnie aérienne",
-    "Transport de personnes / VTC / Taxi / Car",
-    "Transport maritime / Fluvial / Ports",
-    "Transport routier de marchandises / Déménagement"
-  ],
+  "Agriculture & Rural": ["Activité événementielle en zone rurale","Agriculture / Élevage","Apiculture","Aquaculture","Arboriculture / Maraîchage","Artisanat agricole / Transformation à la ferme","Agritourisme / Hébergement rural / Gîtes","Pêche","Sylviculture / Exploitation forestière","Viticulture / Vins"],
+  "Alimentation & Restauration": ["Artisanat alimentaire / Boulangerie / Pâtisserie / Fromagerie","Bar / Café / Brasserie","Commerce alimentaire de proximité / Épicerie","Marché / Vente directe producteur","Production agroalimentaire","Restaurant","Restauration rapide / Traiteur / Cuisine de rue"],
+  "Associations & ESS": ["Association caritative / Humanitaire / ONG","Association de défense des droits / Syndicat","Association loi 1901 (générale)","Association sportive / Club amateur","Association culturelle / Compagnie","Coopérative / SCOP / SCIC","Fondation / Fonds de dotation"],
+  "BTP & Immobilier": ["Agence immobilière / Transaction","Architecture / Maîtrise d'œuvre / Bureau d'études","Couverture / Charpente / Étanchéité","Électricité / Plomberie / CVC / Climatisation","Géomètre / Topographe","Maçonnerie / Gros œuvre / Terrassement","Menuiserie / Serrurerie / Vitrerie","Peinture / Revêtements / Décoration","Promotion immobilière / Lotissement","Propriétaire bailleur / Gestion locative","Syndic de copropriété / Administrateur de biens"],
+  "Commerce & Distribution": ["Commerce de détail alimentaire","Commerce de détail non-alimentaire","Commerce de gros / Négoce","E-commerce / Vente en ligne / Marketplace","Franchise / Commerce organisé","Grande distribution / Supermarché","Vente à distance / Téléachat"],
+  "Culture, Médias & Loisirs": ["Cinéma / Audiovisuel / Production / Streaming","Escape game / Jeux / Loisirs","Jeux vidéo / Animation / Numérique créatif","Librairie / Édition / Bibliothèque","Musée / Patrimoine / Tourisme culturel / Château","Musique / Arts plastiques / Artisanat d'art / Galerie","Parc d'attractions / Loisirs","Presse / Médias / Journalisme / Podcast","Spectacle vivant / Théâtre / Concert / Festival"],
+  "Éducation & Formation": ["Auto-école / École de conduite","CFA / Apprentissage","École de commerce / Ingénieurs / Enseignement supérieur privé","École privée hors contrat / École alternative","Formation professionnelle / Organisme de formation","Garde d'enfants à domicile / Crèche / Micro-crèche","Soutien scolaire / Cours particuliers"],
+  "Hébergement & Tourisme": ["Agence de voyage / Tour-opérateur","Camping / Parc résidentiel de loisirs","Chambre d'hôtes / B&B","Hôtel / Résidence hôtelière","Location saisonnière / Meublé de tourisme / Airbnb","Tourisme fluvial / Nautique","Village vacances / Centre de loisirs"],
+  "Industrie & Production": ["Électronique / Électrotechnique","Énergie / Pétrole / Gaz / Énergies renouvelables","Imprimerie / Édition / Reprographie","Industrie chimique / Pharmaceutique / Cosmétique","Industrie du bois / Papier / Carton","Industrie manufacturière générale","Mécanique / Équipements industriels","Métallurgie / Sidérurgie / Fonderie","Plastiques / Caoutchouc / Composites","Recyclage / Traitement des déchets / Économie circulaire","Textile / Habillement / Maroquinerie"],
+  "Particulier": ["Étudiant(e)","Locataire","Particulier — autre situation","Particulier construisant / Rénovant","Particulier employeur","Propriétaire occupant","Retraité / Senior"],
+  "Professions réglementées & Libérales": ["Agent immobilier / Administrateur de biens","Architecte / Urbaniste / Paysagiste","Avocat / Notaire / Huissier / Commissaire de justice","Conseiller financier / Gestionnaire de patrimoine","Expert-comptable / Commissaire aux comptes","Géomètre-expert / Ingénieur conseil","Psychologue / Psychothérapeute / Sophrologue"],
+  "Santé & Médico-social": ["Bien-être / Esthétique / Coiffure / Tatouage","Clinique / Établissement de santé privé","Dentiste / Orthodontiste","EHPAD / Établissement médico-social / IME","Infirmier / Aide-soignant / Kiné / Paramédical","Médecin généraliste / Spécialiste","Pharmacie / Laboratoire d'analyses","Sport / Coaching / Salle de sport / Fitness","Vétérinaire"],
+  "Services à la personne": ["Aide à domicile / Ménage","Garde d'enfants à domicile","Services à la personne — autre"],
+  "Services aux entreprises": ["Assurance / Courtage / Mutuelles","Banque / Crédit / Financement","Conseil / Consulting / Management","Cybersécurité / Protection des données","Études / Recherche / Laboratoire","Expertise comptable / Audit","Informatique / Développement logiciel / ESN","Intérim / Recrutement / Ressources humaines","Nettoyage / Propreté / Facility management","Publicité / Communication / Marketing","Sécurité privée / Gardiennage"],
+  "Services essentiels & Monopoles": ["Aéroports / Aéroports de Paris","Autoroutes / Péages (Vinci, Sanef, Eiffage)","Eau / Assainissement (Suez, Veolia, Saur, régies)","Électricité / Gaz — fournisseurs (EDF, Engie, TotalEnergies)","Poste / Colis / Courrier (La Poste, DHL, UPS, FedEx)","Réseau électrique / Gaz (Enedis, GrDF)","Télécom / Internet / Mobile (Orange, SFR, Free, Bouygues)","Transport collectif urbain (RATP, TER, réseaux urbains)","Transport ferroviaire (SNCF, Eurostar)"],
+  "Technologies & Innovation": ["AgriTech / Agriculture de précision","EdTech / Formation en ligne","FinTech / Néobanque / Cryptomonnaies","FoodTech / Nouvelles formes alimentaires","GreenTech / Environnement / Développement durable","HealthTech / MedTech / Bien-être digital","PropTech / Immobilier numérique","Startup / Innovation / Incubateur"],
+  "Transport & Logistique": ["Coursier / Livraison du dernier kilomètre","Location de véhicules","Logistique / Entreposage / Supply chain","Réparation automobile / Garage / Contrôle technique","Transport aérien / Compagnie aérienne","Transport de personnes / VTC / Taxi / Car","Transport maritime / Fluvial / Ports","Transport routier de marchandises / Déménagement"],
   "Autre": ["Secteur non listé — je précise dans mon témoignage"]
 };
 
-// ── SECTEUR NIVEAU 1 → affiche niveau 2
+// ── SECTEUR NIVEAU 1 → affiche niveau 2 automatiquement
 function onSecteurCat(){
-  const cat = document.getElementById('secteurCat').value;
-  const n2 = document.getElementById('secteurNiveau2');
-  const sub = document.getElementById('secteurSub');
-  const sel = document.getElementById('secteurSelected');
-  const btn = document.getElementById('btnRester');
-
-  if(!cat){
-    n2.classList.remove('visible');
-    sel.textContent = '';
-    btn.classList.remove('on');
-    checkForm();
-    return;
-  }
-
-  // Remplir le select niveau 2
-  const options = secteurData[cat] || [];
-  sub.innerHTML = '<option value="">— Préciser (optionnel) —</option>';
-  options.forEach(o => {
-    const opt = document.createElement('option');
-    opt.value = o; opt.textContent = o;
-    sub.appendChild(opt);
-  });
-
+  const cat=document.getElementById('secteurCat').value;
+  const n2=document.getElementById('secteurNiveau2');
+  const sub=document.getElementById('secteurSub');
+  const sel=document.getElementById('secteurSelected');
+  if(!cat){n2.classList.remove('visible');sel.textContent='';checkForm();return;}
+  const options=secteurData[cat]||[];
+  sub.innerHTML='<option value="">— Préciser votre activité (optionnel) —</option>';
+  options.forEach(o=>{const opt=document.createElement('option');opt.value=o;opt.textContent=o;sub.appendChild(opt);});
   n2.classList.add('visible');
-  btn.classList.remove('on');
-  sel.textContent = '✓ Catégorie sélectionnée : ' + cat;
+  // Catégorie principale sélectionnée automatiquement sans bouton
+  sel.textContent='✓ Catégorie : '+cat;
   checkForm();
 }
 
-// ── SECTEUR NIVEAU 2 → met à jour l'affichage
+// ── SECTEUR NIVEAU 2
 function onSecteurSub(){
-  const cat = document.getElementById('secteurCat').value;
-  const sub = document.getElementById('secteurSub').value;
-  const sel = document.getElementById('secteurSelected');
-  const btn = document.getElementById('btnRester');
-
-  if(sub){
-    sel.textContent = '✓ ' + sub;
-    btn.classList.remove('on');
-  } else {
-    sel.textContent = '✓ Catégorie sélectionnée : ' + cat;
-  }
-  checkForm();
-}
-
-// ── RESTER SUR LA CATÉGORIE GÉNÉRALE
-function resterCategorie(){
-  const cat = document.getElementById('secteurCat').value;
-  const sub = document.getElementById('secteurSub');
-  const sel = document.getElementById('secteurSelected');
-  const btn = document.getElementById('btnRester');
-  sub.value = '';
-  btn.classList.add('on');
-  sel.textContent = '✓ Catégorie générale conservée : ' + cat;
+  const cat=document.getElementById('secteurCat').value;
+  const sub=document.getElementById('secteurSub').value;
+  const sel=document.getElementById('secteurSelected');
+  sel.textContent=sub?'✓ '+sub:'✓ Catégorie : '+cat;
   checkForm();
 }
 
 // ── VALIDATION FORM
 function checkForm(){
-  const email = document.getElementById('email').value.trim();
-  const pw = document.getElementById('password').value;
-  const pseudo = document.getElementById('pseudo').value.trim();
-  const age = document.getElementById('age').value;
-  const sexe = document.querySelector('input[name=sexe]:checked');
-  const territoire = document.querySelector('input[name=territoire]:checked');
-  const region = document.getElementById('region').value.trim();
-  const csp = document.getElementById('csp').value.trim();
-  const secteurCat = document.getElementById('secteurCat').value;
-  const cgu = document.getElementById('cgu').checked;
-  const valid = email && pw.length>=8 && pseudo && age && sexe && territoire && region && csp && secteurCat && cgu && isValidEmail(email);
-  document.getElementById('btnCreer').disabled = !valid;
+  const prenom=document.getElementById('prenom').value.trim();
+  const nom=document.getElementById('nom').value.trim();
+  const email=document.getElementById('email').value.trim();
+  const pw=document.getElementById('password').value;
+  const pseudo=document.getElementById('pseudo').value.trim();
+  const age=document.getElementById('age').value;
+  const sexe=document.querySelector('input[name=sexe]:checked');
+  const territoire=document.querySelector('input[name=territoire]:checked');
+  const region=document.getElementById('region').value.trim();
+  const csp=document.getElementById('csp').value.trim();
+  const secteurCat=document.getElementById('secteurCat').value;
+  const cgu=document.getElementById('cgu').checked;
+  const valid=prenom&&nom&&email&&pw.length>=8&&pseudo&&age&&sexe&&territoire&&region&&csp&&secteurCat&&cgu&&isValidEmail(email);
+  document.getElementById('btnCreer').disabled=!valid;
 }
 
-function isValidEmail(e){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e)}
+function isValidEmail(e){return/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);}
 
-// ── PASSWORD STRENGTH
+// ── PASSWORD STRENGTH — identique à V5
 function checkStrength(){
-  const pw = document.getElementById('password').value;
-  const bars = [document.getElementById('bar1'),document.getElementById('bar2'),document.getElementById('bar3')];
-  const label = document.getElementById('pwLabel');
+  const pw=document.getElementById('password').value;
+  const bars=[document.getElementById('bar1'),document.getElementById('bar2'),document.getElementById('bar3')];
+  const label=document.getElementById('pwLabel');
   bars.forEach(b=>{b.className='pw-bar'});
-  if(!pw){label.textContent='';return}
+  if(!pw){label.textContent='';return;}
   let score=0;
   if(pw.length>=8)score++;
   if(pw.length>=12)score++;
@@ -682,20 +517,43 @@ function checkStrength(){
   else if(score>=3){bars.forEach(b=>b.classList.add('strong'));label.textContent='Fort';}
 }
 
-// ── PASSWORD TOGGLE
+// ── PASSWORD TOGGLE — identique à V5
 function togglePw(){
-  const pw = document.getElementById('password');
-  pw.type = pw.type==='password' ? 'text' : 'password';
+  const pw=document.getElementById('password');
+  pw.type=pw.type==='password'?'text':'password';
 }
 
 // ── CRÉER COMPTE
+// TODO backend : remplacer setTimeout par POST /api/comptes
 function creerCompte(){
-  const email = document.getElementById('email').value.trim();
-  const btn = document.getElementById('btnCreer');
+  const email=document.getElementById('email').value.trim();
+  const btn=document.getElementById('btnCreer');
   if(!isValidEmail(email)){showErr('Adresse email invalide.');return;}
   if(document.getElementById('password').value.length<8){showErr('Le mot de passe doit contenir au moins 8 caractères.');return;}
   btn.disabled=true;
   btn.textContent='Création en cours…';
+
+  // ── SAUVEGARDER LE PROFIL EN LOCALSTORAGE
+  // TODO backend : remplacer par API call quand backend disponible
+  const profil={
+    prenom: document.getElementById('prenom').value.trim(),
+    nom: document.getElementById('nom').value.trim(),
+    email: email,
+    telephone: document.getElementById('telephone').value.trim(),
+    pseudo: document.getElementById('pseudo').value.trim(),
+    age: document.getElementById('age').value,
+    sexe: document.querySelector('input[name=sexe]:checked')?.value||'',
+    territoire: document.querySelector('input[name=territoire]:checked')?.value||'',
+    region: document.getElementById('region').value.trim(),
+    csp: document.getElementById('csp').value.trim(),
+    secteurCat: document.getElementById('secteurCat').value,
+    secteurSub: document.getElementById('secteurSub').value,
+    messagerie: document.getElementById('chkContact').checked,
+    createdAt: new Date().toISOString()
+  };
+  try{localStorage.setItem('moietloi_profil', JSON.stringify(profil));}
+  catch(e){console.warn('localStorage non disponible');}
+
   setTimeout(()=>{
     document.getElementById('confirmEmail').textContent=email;
     document.getElementById('formZone').style.display='none';
