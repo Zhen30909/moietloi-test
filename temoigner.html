@@ -68,8 +68,19 @@ input:focus, textarea:focus { outline:none; border-color:var(--vert); background
 .timer { font-size:1.4rem; font-family:'Playfair Display',serif; color:var(--peche); margin:8px 0; min-height:36px; }
 .btn-stop { display:none; margin:12px auto 0; padding:10px 28px; border:1.5px solid var(--peche); background:transparent; color:var(--peche); border-radius:8px; font-size:0.9rem; cursor:pointer; font-family:'Source Sans 3',sans-serif; transition:all 0.2s; }
 .btn-stop:hover { background:var(--peche); color:white; }
-.btn-complement { display:none; margin:10px auto 0; padding:8px 20px; border:1.5px solid var(--vert); background:transparent; color:var(--vert); border-radius:8px; font-size:0.85rem; cursor:pointer; font-family:'Source Sans 3',sans-serif; transition:all 0.2s; }
+.btn-complement { display:none; margin:10px 6px 0; padding:8px 20px; border:1.5px solid var(--vert); background:transparent; color:var(--vert); border-radius:8px; font-size:0.85rem; cursor:pointer; font-family:'Source Sans 3',sans-serif; transition:all 0.2s; }
 .btn-complement:hover { background:var(--vert); color:white; }
+.btn-recommencer { display:none; margin:10px 6px 0; padding:8px 20px; border:1.5px solid var(--rouge); background:transparent; color:var(--rouge); border-radius:8px; font-size:0.85rem; cursor:pointer; font-family:'Source Sans 3',sans-serif; transition:all 0.2s; }
+.btn-recommencer:hover { background:var(--rouge); color:white; }
+.rec-actions { display:none; justify-content:center; gap:0; flex-wrap:wrap; margin-top:4px; }
+.doc-finale-zone { background:var(--fond); border:1.5px dashed #ddd8d0; border-radius:8px; padding:16px; margin-top:16px; cursor:pointer; text-align:center; transition:all 0.2s; }
+.doc-finale-zone:hover { border-color:var(--vert); background:var(--vert-pale); }
+.classif-display { background:var(--vert-pale); border:1px solid var(--vert-clair); border-radius:8px; padding:14px 16px; margin-bottom:12px; font-size:0.85rem; line-height:1.7; color:var(--gris-fonce); }
+.classif-tag { display:inline-block; background:var(--vert); color:white; font-size:0.72rem; padding:2px 8px; border-radius:10px; margin:2px; font-weight:500; }
+.check-group { display:flex; flex-wrap:wrap; gap:8px; margin-top:6px; }
+.check-btn { display:flex; align-items:center; gap:6px; padding:7px 14px; border:1.5px solid #ddd8d0; border-radius:20px; font-size:0.82rem; color:var(--gris-moyen); cursor:pointer; transition:all 0.2s; background:var(--blanc); font-family:'Source Sans 3',sans-serif; }
+.check-btn input[type=checkbox] { accent-color:var(--vert); width:14px; height:14px; cursor:pointer; }
+.check-btn.on { border-color:var(--vert); background:var(--vert-pale); color:var(--vert); font-weight:500; }
 .upload-zone { border:2px dashed #ddd8d0; border-radius:8px; padding:20px; text-align:center; cursor:pointer; transition:all 0.2s; margin-top:12px; }
 .upload-zone:hover, .upload-zone.over { border-color:var(--vert); background:#f0f4f0; }
 .upload-icon { font-size:1.8rem; margin-bottom:8px; }
@@ -171,7 +182,7 @@ hr { border:none; border-top:1px solid var(--beige); margin:20px 0; }
 <header>
 <a href="index.html" class="logo">moi <span class="et">&amp;</span> <span class="loi">loi</span></a>
 <div class="sous-titre">Témoignages citoyens</div>
-<span class="badge">Pipeline v7.5</span>
+<span class="badge">Pipeline v7.7</span>
 </header>
 
 <!-- 1. CLÉS API -->
@@ -199,8 +210,9 @@ hr { border:none; border-top:1px solid var(--beige); margin:20px 0; }
 <button type="button" class="btn-stop" id="btnStop" onclick="stopRec()">Terminer l'enregistrement</button>
 </div>
 <div id="audPrev"></div>
-<div style="text-align:center;">
-<button type="button" class="btn-complement" id="btnComplement" onclick="ajouterComplement()">+ Ajouter un complément vocal</button>
+<div class="rec-actions" id="recActions">
+<button type="button" class="btn-complement" id="btnComplement" onclick="ajouterComplement()">+ Ajouter un complément</button>
+<button type="button" class="btn-recommencer" id="btnRecommencer" onclick="recommencer()">↺ Recommencer</button>
 </div>
 <div class="err-box" id="errRec"></div>
 </div>
@@ -220,7 +232,7 @@ ondrop="dropDocs(event)">
 <div class="upload-txt">
 <strong>Glissez vos documents ici</strong><br>
 ou cliquez pour sélectionner<br>
-<span style="font-size:0.78rem;">PDF, JPG, PNG uniquement — max 5 fichiers</span>
+<span style="font-size:0.78rem;">PDF, JPG, PNG uniquement — max 10 fichiers</span>
 </div>
 </div>
 <input type="file" id="fiMain" multiple accept=".pdf,.jpg,.jpeg,.png" style="display:none" onchange="selDocs(event)">
@@ -264,6 +276,19 @@ Pour compléter votre dossier. Répondez par écrit, par oral, ou joignez un doc
 <div class="slabel">Document structuré — cliquez pour corriger directement</div>
 <div class="doc-editable" id="docRes" contenteditable="true" spellcheck="true">—</div>
 <div class="edit-hint">✏️ Cliquez dans le texte pour corriger — fautes, imprécisions, oublis</div>
+
+<hr>
+<div class="slabel">Documents supplémentaires (optionnel)</div>
+<p style="font-size:0.82rem;color:var(--gris-moyen);margin-bottom:10px;line-height:1.5;">Joignez des documents additionnels pour enrichir l'analyse — arrêtés, courriers, photos. Claude relira tout.</p>
+<div class="doc-finale-zone" id="uzFinale" onclick="document.getElementById('fiFinale').click()"
+  ondragover="event.preventDefault();this.style.borderColor='var(--vert)'"
+  ondragleave="this.style.borderColor=''"
+  ondrop="dropDocsFinale(event)">
+  📎 Ajouter des documents (PDF, JPG, PNG — max 10 au total)
+</div>
+<input type="file" id="fiFinale" multiple accept=".pdf,.jpg,.jpeg,.png" style="display:none" onchange="selDocsFinale(event)">
+<div class="doc-list" id="dlFinale"></div>
+
 <div class="btn-row">
 <button class="btn-p" onclick="validerDoc()" style="margin-top:0;">✓ Valider ce document</button>
 <button class="btn-s" onclick="regenerer()" id="btnRegen" style="margin-top:0;">🔄 Régénérer avec corrections</button>
@@ -272,136 +297,33 @@ Pour compléter votre dossier. Répondez par écrit, par oral, ou joignez un doc
 <div class="err-box" id="errRes"></div>
 </div>
 
-<!-- 6b. CLASSIFICATION -->
+<!-- 6b. CLASSIFICATION AI -->
 <div class="card hidden" id="cardClassif" style="margin-top:20px;">
-  <div class="card-title"><span class="snum orange">6b</span> Classification de votre situation</div>
-  <p style="font-size:0.9rem;color:var(--gris-moyen);margin-bottom:20px;line-height:1.6;font-style:italic;">
-    Ces informations permettent de connecter votre témoignage aux situations similaires. Tout est optionnel.
+  <div class="card-title"><span class="snum orange">6b</span> Classification par l'IA</div>
+  <p style="font-size:0.9rem;color:var(--gris-moyen);margin-bottom:16px;line-height:1.6;font-style:italic;">
+    L'IA a analysé et classifié votre témoignage. Vérifiez et complétez les informations ci-dessous.
   </p>
+
+  <div class="slabel">Domaines réglementaires identifiés par l'IA</div>
+  <div class="classif-display" id="classifDomaines">Analyse en cours…</div>
+
+  <div class="slabel" style="margin-top:12px;">Types de dysfonctionnement identifiés par l'IA</div>
+  <div class="classif-display" id="classifTypes">Analyse en cours…</div>
+
+  <hr>
   <div class="igrp">
-    <label>Domaine réglementaire concerné</label>
-    <select id="cl_domaine">
-      <option value="">— Sélectionner —</option>
-      <optgroup label="Droit public &amp; Administratif">
-        <option>Droit administratif général</option>
-        <option>Urbanisme / PLU / Permis de construire</option>
-        <option>ERP (Établissements Recevant du Public)</option>
-        <option>Environnement / ICPE / Natura 2000</option>
-        <option>Commande publique / Marchés publics</option>
-        <option>Droit rural / Fermage / SAFER</option>
-        <option>Droit de la chasse et de la pêche</option>
-        <option>Patrimoine / Monuments historiques / ABF</option>
-      </optgroup>
-      <optgroup label="Droit social &amp; Emploi">
-        <option>Droit du travail / Licenciement / Rupture conventionnelle</option>
-        <option>Sécurité sociale / Maladie / Accident du travail</option>
-        <option>Retraite / Pension / CNAV / AGIRC-ARRCO</option>
-        <option>Chômage / France Travail (Pôle Emploi)</option>
-        <option>CAF / Allocations familiales / RSA / APL</option>
-        <option>Handicap / MDPH / AAH</option>
-        <option>Formation professionnelle / CPF / OPCO</option>
-      </optgroup>
-      <optgroup label="Fiscalité &amp; Finances publiques">
-        <option>Impôt sur le revenu / IR</option>
-        <option>TVA / Taxe professionnelle / CFE</option>
-        <option>Impôt sur les sociétés / IS</option>
-        <option>Droits de succession / Donation</option>
-        <option>Taxe foncière / Taxe d'habitation</option>
-        <option>Douanes / Octroi de mer / Accises</option>
-        <option>Contrôle fiscal / Redressement / URSSAF</option>
-      </optgroup>
-      <optgroup label="Normes sanitaires &amp; Sécurité">
-        <option>Normes sanitaires / HACCP / Hygiène alimentaire</option>
-        <option>Sécurité incendie / Sécurité des bâtiments</option>
-        <option>Normes électriques / Gaz / Diagnostics</option>
-        <option>Médicaments / Dispositifs médicaux / ANSM</option>
-        <option>Produits phytosanitaires / Pesticides</option>
-        <option>Normes acoustiques / Bruit</option>
-      </optgroup>
-      <optgroup label="Services essentiels &amp; Monopoles">
-        <option>Électricité / Gaz (EDF, Engie, fournisseurs)</option>
-        <option>Réseau électrique / Gaz (Enedis, GrDF)</option>
-        <option>Eau / Assainissement (Suez, Veolia, Saur)</option>
-        <option>Télécom / Internet / Mobile (Orange, SFR, Free, Bouygues)</option>
-        <option>Poste / Colis (La Poste, DHL, UPS, FedEx)</option>
-        <option>Transport ferroviaire (SNCF)</option>
-        <option>Transport collectif (RATP, TER, réseaux urbains)</option>
-        <option>Autoroutes / Péages</option>
-        <option>Aéroports</option>
-      </optgroup>
-      <optgroup label="Santé &amp; Hôpital public">
-        <option>Hôpital public / CHU / Urgences</option>
-        <option>Médecine de ville / Déserts médicaux</option>
-        <option>Psychiatrie / Santé mentale</option>
-        <option>EHPAD / Établissements médico-sociaux</option>
-        <option>Handicap / Soins palliatifs</option>
-      </optgroup>
-      <optgroup label="Justice &amp; Sécurité">
-        <option>Justice civile / Tribunaux</option>
-        <option>Justice pénale / Police / Gendarmerie</option>
-        <option>Justice administrative / TA / CAA / CE</option>
-        <option>Médiateur / Défenseur des droits</option>
-        <option>Notariat / État civil / Registres</option>
-      </optgroup>
-      <optgroup label="Autre">
-        <option>Domaine non listé — je précise dans mon témoignage</option>
-      </optgroup>
-    </select>
-  </div>
-  <div class="igrp">
-    <label>Type de dysfonctionnement</label>
-    <select id="cl_type">
-      <option value="">— Sélectionner —</option>
-      <optgroup label="Volet 1 — Absurdité normative">
-        <option>1A — Norme déconnectée de la réalité</option>
-        <option>1B — Norme contradictoire</option>
-        <option>1C — Norme contre-productive</option>
-        <option>1D — Norme disproportionnée</option>
-        <option>1E — Vide juridique</option>
-        <option>1F — Norme obsolète non mise à jour</option>
-        <option>1G — Conflit normes nationales / locales</option>
-      </optgroup>
-      <optgroup label="Volet 2 — Abus dans l'application">
-        <option>2A — Détournement de procédure</option>
-        <option>2B — Décision arbitraire</option>
-        <option>2C — Inégalité de traitement</option>
-        <option>2D — Disproportion de la sanction</option>
-        <option>2E — Moyens pénaux pour situation civile</option>
-        <option>2F — Non-respect des procédures obligatoires</option>
-        <option>2G — Délais abusifs</option>
-        <option>2H — Silence administratif / Absence de réponse</option>
-        <option>2I — Mauvaise information donnée par l'administration</option>
-      </optgroup>
-      <optgroup label="Volet 3 — Verrouillage systémique">
-        <option>3A — Doctrine restrictive de l'autorité</option>
-        <option>3B — Recours inefficaces ou impossibles</option>
-        <option>3C — Dissociation institutionnelle (renvoi de balle)</option>
-        <option>3D — Délais impossibles à respecter</option>
-        <option>3E — Coût prohibitif de la contestation</option>
-        <option>3F — Monopole sans recours alternatif</option>
-        <option>3G — Opacité délibérée</option>
-      </optgroup>
-      <optgroup label="Volet 4 — Services essentiels &amp; Monopoles">
-        <option>4A — Non-respect des engagements de service</option>
-        <option>4B — Facturation abusive</option>
-        <option>4C — Coupure / Interruption injustifiée</option>
-        <option>4D — Impossible d'accéder au service</option>
-        <option>4E — Service dégradé sans compensation</option>
-        <option>4F — Abus de position dominante</option>
-      </optgroup>
-    </select>
-  </div>
-  <div class="igrp">
-    <label>Avez-vous pu vous faire aider ?</label>
-    <div class="radio-group">
-      <div class="radio-btn"><input type="radio" name="cl_aide" id="ca1" value="Avocat"><label for="ca1">Avocat</label></div>
-      <div class="radio-btn"><input type="radio" name="cl_aide" id="ca2" value="Association"><label for="ca2">Association</label></div>
-      <div class="radio-btn"><input type="radio" name="cl_aide" id="ca3" value="Entourage"><label for="ca3">Entourage</label></div>
-      <div class="radio-btn"><input type="radio" name="cl_aide" id="ca4" value="Médiateur"><label for="ca4">Médiateur</label></div>
-      <div class="radio-btn"><input type="radio" name="cl_aide" id="ca5" value="Personne"><label for="ca5">Personne</label></div>
-      <div class="radio-btn"><input type="radio" name="cl_aide" id="ca6" value="Autre"><label for="ca6">Autre</label></div>
+    <label>Avez-vous pu vous faire aider ? (plusieurs choix possibles)</label>
+    <div class="check-group" id="aideGroup">
+      <label class="check-btn" id="cb_avocat"><input type="checkbox" value="Avocat" onchange="toggleCheck(this)"> Avocat</label>
+      <label class="check-btn" id="cb_association"><input type="checkbox" value="Association" onchange="toggleCheck(this)"> Association</label>
+      <label class="check-btn" id="cb_entourage"><input type="checkbox" value="Entourage / Amis" onchange="toggleCheck(this)"> Entourage / Amis</label>
+      <label class="check-btn" id="cb_mediateur"><input type="checkbox" value="Médiateur" onchange="toggleCheck(this)"> Médiateur</label>
+      <label class="check-btn" id="cb_defenseur"><input type="checkbox" value="Défenseur des droits" onchange="toggleCheck(this)"> Défenseur des droits</label>
+      <label class="check-btn" id="cb_personne"><input type="checkbox" value="Personne" onchange="toggleCheck(this)"> Personne</label>
+      <label class="check-btn" id="cb_autre"><input type="checkbox" value="Autre" onchange="toggleCheck(this)"> Autre</label>
     </div>
   </div>
+
   <div class="igrp">
     <label>Avez-vous eu accès aux informations nécessaires ?</label>
     <div class="radio-group">
@@ -410,6 +332,7 @@ Pour compléter votre dossier. Répondez par écrit, par oral, ou joignez un doc
       <div class="radio-btn"><input type="radio" name="cl_info" id="ci3" value="Non"><label for="ci3">Non</label></div>
     </div>
   </div>
+
   <button class="btn-p" onclick="showAnon()">Continuer →</button>
 </div>
 
@@ -542,12 +465,32 @@ function stopRec(){
   if(mr&&isRec){mr.stop();isRec=false;clearInterval(timerInt);
     G('btnRec').classList.remove('rec');G('btnRec').textContent='🎙️';
     G('recSt').textContent='✓ Enregistrement terminé';G('recSt').classList.remove('on');
-    G('btnStop').style.display='none';}
+    G('btnStop').style.display='none';
+    // Afficher les deux boutons action
+    const ra=G('recActions');
+    if(ra){ra.style.display='flex';
+      G('btnComplement').style.display='inline-block';
+      G('btnRecommencer').style.display='inline-block';}
+  }
+}
+
+function recommencer(){
+  // Efface tout et repart de zéro
+  audioBlob=null;allChunks=[];
+  G('audPrev').innerHTML='';
+  G('recSt').textContent='Appuyez pour commencer';
+  G('timer').textContent='';
+  G('recActions').style.display='none';
+  G('btnComplement').style.display='none';
+  G('btnRecommencer').style.display='none';
+  checkReady();
 }
 async function ajouterComplement(){
   if(audioBlob) allChunks.push(audioBlob);
   audioBlob=null;
+  G('recActions').style.display='none';
   G('btnComplement').style.display='none';
+  G('btnRecommencer').style.display='none';
   G('recSt').textContent='Ajoutez votre complément…';
   G('recSt').classList.add('on');
   G('audPrev').innerHTML='';
@@ -577,7 +520,7 @@ function addDoc(f,z){
     return;
   }
   if(z==='main'){
-    if(docsMain.length>=5){alert('Maximum 5 documents.');return;}
+    if(docsMain.length>=10){alert('Maximum 10 documents.');return;}
     docsMain.push({id:Date.now()+Math.random(),f});renderMain();
   }else{
     if(!docsQ[z])docsQ[z]=[];
@@ -606,6 +549,8 @@ async function lancer(){
   const okey=G('ok').value.trim(), akey=G('ak').value.trim();
   show('cardProg');hide('cardQ');hide('cardRes');hide('cardClassif');hide('cardAnon');hide('cardSoumission');hide('cardConfirm');
   G('btnComplement').style.display='none';
+  G('btnRecommencer').style.display='none';
+  const ra=G('recActions');if(ra)ra.style.display='none';
   G('btnLancer').disabled=true;
   hideErr('errPipe');
   scrollEl('cardProg');
@@ -654,36 +599,36 @@ RÈGLES ABSOLUES — à respecter avant toute autre consigne :
 5. Ton neutre et factuel — sans jugement sur l'administration ni sur le témoin.
 6. Français clair, 400 mots maximum pour l'ensemble du document.
 7. Si la transcription est insuffisante pour remplir une section, écrire : [information insuffisante]
-8. Pour les domaines réglementaires et types de dysfonctionnement : si tu en déduis un du contexte, le signaler avec (?) pour que le modérateur puisse vérifier.
+8. Si des documents sont joints, les analyser et les intégrer à l'analyse — signaler ce qui vient des documents vs ce qui vient du témoignage oral.
 
 Produis un document structuré avec exactement ces sections :
 
 **RÉSUMÉ**
-[Une phrase claire et neutre — uniquement ce qui est dit explicitement dans la transcription]
+[Une phrase claire et neutre — uniquement ce qui est dit explicitement]
 
 **RÉCIT**
-[Témoignage restructuré, fidèle, sans répétitions — 150 mots max — aucun fait ajouté qui ne soit dans la transcription]
+[Témoignage restructuré, fidèle, sans répétitions — 150 mots max — aucun fait ajouté]
 
 **CE QUI EST REPROCHÉ**
-[La règle ou décision invoquée, en termes simples — si non précisé par le témoin : [non précisé]]
+[La règle ou décision invoquée — si non précisé : [non précisé]]
 
 **JUSTIFICATION OFFICIELLE**
-[Les motifs donnés par l'administration tels que rapportés par le témoin — si non précisé : [non précisé]]
+[Les motifs donnés par l'administration — si non précisé : [non précisé]]
 
 **VOLET 1 — ABSURDITÉ DE LA NORME**
-[En quoi la règle est inadaptée selon ce que dit le témoin — uniquement ce qu'il exprime, pas d'analyse externe]
+[En quoi la règle est inadaptée selon le témoin]
 
 **VOLET 2 — ABUS DANS L'APPLICATION**
-[En quoi l'application est disproportionnée selon le témoin — si non évoqué : Non applicable]
+[En quoi l'application est disproportionnée — si non évoqué : Non applicable]
 
 **VOLET 3 — VERROUILLAGE SYSTÉMIQUE**
-[Si les recours sont bloqués selon le témoin — si non évoqué : Non applicable]
+[Si les recours sont bloqués — si non évoqué : Non applicable]
 
-**DOMAINES RÉGLEMENTAIRES**
-[Domaine(s) concerné(s) — si déduit du contexte, ajouter (?)]
+**CLASSIFICATION — DOMAINES RÉGLEMENTAIRES**
+[Liste tous les domaines concernés parmi : Urbanisme/PLU/Permis de construire · ERP · Droit rural/SAFER · Environnement/ICPE · Commande publique · Patrimoine/ABF · Droit du travail · Sécurité sociale · Retraite · Chômage/France Travail · CAF/Allocations · Handicap/MDPH · Formation/CPF · Impôt sur le revenu · TVA/CFE · Contrôle fiscal/URSSAF · Taxe foncière · Normes sanitaires/HACCP · Sécurité incendie · Normes électriques/DPE · Électricité/Gaz (fournisseurs) · Réseau électrique/Enedis · Eau/Assainissement · Télécom/Internet · Poste/Colis · Transport ferroviaire/SNCF · Transport collectif · Autoroutes · Hôpital public/Urgences · Déserts médicaux · EHPAD · Justice civile · Justice administrative · Médiation/Défenseur des droits · RGPD/CNIL · Droit européen. Indiquer (?) si incertain.]
 
-**TYPE DE DYSFONCTIONNEMENT**
-[Type principal — si déduit du contexte, ajouter (?)]
+**CLASSIFICATION — TYPES DE DYSFONCTIONNEMENT**
+[Liste tous les types concernés parmi — Volet 1 Absurdité normative : 1A Norme déconnectée · 1B Norme contradictoire · 1C Norme contre-productive · 1D Norme disproportionnée · 1E Vide juridique · 1F Norme obsolète · 1G Conflit national/local. Volet 2 Abus applicatif : 2A Détournement procédure · 2B Décision arbitraire · 2C Inégalité traitement · 2D Disproportion sanction · 2E Moyens pénaux/civil · 2F Non-respect procédures · 2G Délais abusifs · 2H Silence administratif · 2I Mauvaise information. Volet 3 Verrouillage : 3A Doctrine restrictive · 3B Recours inefficaces · 3C Dissociation institutionnelle · 3D Délais impossibles · 3E Coût prohibitif · 3F Monopole sans recours · 3G Opacité. Volet 4 Services essentiels : 4A Non-respect engagements · 4B Facturation abusive · 4C Coupure injustifiée · 4D Accès impossible · 4E Service dégradé · 4F Abus position dominante. Indiquer (?) si incertain.]
 
 ${reps?'':`**QUESTIONS DE CLARIFICATION**
 [2 à 4 questions numérotées ciblant les sections marquées [non précisé] ou [information insuffisante], ou écrire exactement : "Témoignage complet — aucune question"]`}
@@ -805,7 +750,38 @@ ${reps}`;
   btn.disabled=false;btn.textContent='Générer mon document final →';
 }
 
-// ── RÉSULTAT
+// ── DOCUMENTS FINAUX (ajout après document généré)
+let docsFinale=[];
+function selDocsFinale(e){Array.from(e.target.files).forEach(f=>addDocFinale(f));e.target.value='';}
+function dropDocsFinale(e){
+  e.preventDefault();
+  Array.from(e.dataTransfer.files).forEach(f=>addDocFinale(f));
+}
+function addDocFinale(f){
+  const totalDocs=docsMain.length+docsFinale.length;
+  if(totalDocs>=10){alert('Maximum 10 documents au total.');return;}
+  const allowed=['application/pdf','image/jpeg','image/jpg','image/png'];
+  const ext=f.name.toLowerCase();
+  if(!allowed.includes(f.type)&&!ext.endsWith('.pdf')&&!ext.endsWith('.jpg')&&!ext.endsWith('.jpeg')&&!ext.endsWith('.png')){
+    alert(`Format non accepté : ${f.name}`);return;
+  }
+  docsFinale.push({id:Date.now()+Math.random(),f});
+  renderDocsFinale();
+}
+function renderDocsFinale(){
+  const l=G('dlFinale');if(!l)return;
+  l.innerHTML=docsFinale.map(d=>`<div class="doc-item"><span>📄 ${d.f.name} <span style="color:var(--gris-moyen);font-size:0.75rem;">(${(d.f.size/1024).toFixed(0)} Ko)</span></span><button class="doc-rm" onclick="rmDocFinale(${d.id})">✕</button></div>`).join('');
+}
+function rmDocFinale(id){docsFinale=docsFinale.filter(d=>d.id!==id);renderDocsFinale();}
+
+// ── MULTI-SÉLECTION AIDE
+function toggleCheck(cb){
+  const lbl=cb.closest('label');
+  if(lbl)lbl.classList.toggle('on',cb.checked);
+}
+function getAideValues(){
+  return Array.from(document.querySelectorAll('#aideGroup input[type=checkbox]:checked')).map(cb=>cb.value);
+}
 function showRes(tr,txt){
   show('cardRes');
   G('trRes').textContent=tr;
@@ -813,7 +789,26 @@ function showRes(tr,txt){
   regenCount=0;
   G('regenCount').textContent='';
   hideErr('errRes');
+  // Extraire la classification pour l'afficher en 6b
+  extractClassif(txt);
   scrollEl('cardRes');
+}
+
+function extractClassif(txt){
+  // Extraire domaines
+  const mD=txt.match(/\*\*CLASSIFICATION — DOMAINES RÉGLEMENTAIRES\*\*\n([\s\S]*?)(?=\n\*\*|$)/);
+  const domaines=mD?mD[1].trim():'[non classifié]';
+  // Extraire types
+  const mT=txt.match(/\*\*CLASSIFICATION — TYPES DE DYSFONCTIONNEMENT\*\*\n([\s\S]*?)(?=\n\*\*|$)/);
+  const types=mT?mT[1].trim():'[non classifié]';
+  // Stocker pour soumission
+  window._classifDomaines=domaines;
+  window._classifTypes=types;
+  // Afficher dans 6b
+  const dEl=G('classifDomaines');
+  const tEl=G('classifTypes');
+  if(dEl)dEl.innerHTML=domaines.split('·').map(d=>d.trim()).filter(Boolean).map(d=>`<span class="classif-tag">${d}</span>`).join(' ');
+  if(tEl)tEl.innerHTML=types.split('·').map(t=>t.trim()).filter(Boolean).map(t=>`<span class="classif-tag">${t}</span>`).join(' ');
 }
 
 async function regenerer(){
@@ -822,20 +817,26 @@ async function regenerer(){
   const texteEdite=G('docRes').innerText;
   const btn=G('btnRegen');
   btn.disabled=true;btn.textContent='Régénération…';
+  // Lire les documents finaux ajoutés
+  let finaleBlocks=[];
+  for(const d of docsFinale){const b=await readDoc(d.f);if(b)finaleBlocks.push(b);}
   const p=`Produis une version finale propre de ce document en respectant strictement les modifications apportées par le témoin.
 Corrige uniquement les fautes de frappe évidentes et améliore la cohérence stylistique.
 Ne jamais ajouter, déduire ou inventer d'informations.
 Conserve les [non précisé] et [information insuffisante] tels quels s'ils n'ont pas été modifiés.
-Même format structuré.
+${finaleBlocks.length>0?'Des documents supplémentaires sont joints — intègre les informations pertinentes qu\'ils contiennent dans l\'analyse, en indiquant leur source.':''}
+Même format structuré avec les sections CLASSIFICATION.
 
 DOCUMENT :
 ${texteEdite}`;
   try{
-    const res=await claude(akey,p,2500);
+    const res=await claude(akey,p,2500,finaleBlocks);
     const txt=res.content[0].text;
     docInitial=txt;
     G('docRes').innerText=txt;
+    extractClassif(txt);
     regenCount++;
+    docsFinale=[];renderDocsFinale();
     G('regenCount').textContent=regenCount>=2?'Maximum atteint — veuillez valider.':`Régénération ${regenCount}/2 effectuée.`;
     if(regenCount>=2)btn.style.display='none';
   }catch(e){showErr('errRes',`Erreur: ${e.message}`);}
