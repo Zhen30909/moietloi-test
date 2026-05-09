@@ -170,7 +170,7 @@ hr { border:none; border-top:1px solid var(--beige); margin:20px 0; }
 <header>
 <a href="index.html" class="logo">moi <span class="et">&amp;</span> <span class="loi">loi</span></a>
 <div class="sous-titre">Témoignages citoyens</div>
-<span class="badge">Pipeline v7.4</span>
+<span class="badge">Pipeline v7.5</span>
 </header>
 
 <!-- 1. CLÉS API -->
@@ -492,8 +492,13 @@ Votre témoignage apparaîtra signé : <strong id="anonSig">Anonyme</strong>
 <button class="btn-s" onclick="location.reload()" style="margin-top:0;">Déposer un nouveau témoignage</button>
 </div>
 </div>
+<<<<<<< HEAD
+</div><!-- fin .container -->
+
+=======
 </div>
 
+>>>>>>> 48632618bbd60fe01d74f98b92a96224d308afdf
 <div class="footer-bar">🔒 <span>Documents détruits automatiquement après analyse.</span> Données personnelles jamais publiées sans votre accord. moietloi.fr</div>
 
 <script>
@@ -602,6 +607,43 @@ function renderQ(qid){
 
 // ── PIPELINE
 async function lancer(){
+<<<<<<< HEAD
+  const okey=G('ok').value.trim(), akey=G('ak').value.trim();
+  show('cardProg');hide('cardQ');hide('cardRes');hide('cardClassif');hide('cardAnon');hide('cardSoumission');hide('cardConfirm');
+  G('btnComplement').style.display='none';
+  G('btnLancer').disabled=true;
+  hideErr('errPipe');
+  scrollEl('cardProg');
+  setP('piW','active');
+  try{
+    const fd=new FormData();
+    fd.append('file',new File([audioBlob],'t.mp4',{type:audioBlob.type}));
+    fd.append('model','whisper-1');fd.append('language','fr');fd.append('response_format','text');
+    const r=await fetch('https://api.openai.com/v1/audio/transcriptions',{method:'POST',headers:{'Authorization':`Bearer ${okey}`},body:fd});
+    if(!r.ok){const e=await r.json();throw new Error(e.error?.message||'Erreur Whisper');}
+    transcript=await r.text();
+    setP('piW','done');
+  }catch(e){setP('piW','error');showErr('errPipe',`Erreur transcription : ${e.message}`);G('btnLancer').disabled=false;return;}
+  setP('piD','active');
+  let docBlocks=[];
+  try{
+    for(const d of docsMain){const b=await readDoc(d.f);if(b)docBlocks.push(b);}
+    docsMain=[];renderMain();
+    setP('piD','done');
+  }catch(e){setP('piD','done');}
+  setP('piC','active');
+  try{
+    const prompt=buildPrompt(transcript,'','');
+    const res=await claude(akey,prompt,2500,docBlocks);
+    const txt=res.content[0].text;
+    docInitial=txt;
+    setP('piC','done');
+    const qs=extractQ(txt);
+    questions=qs;
+    if(qs.length>0)showQ(qs);
+    else showRes(transcript,txt);
+  }catch(e){setP('piC','error');showErr('errPipe',`Erreur Claude : ${e.message}`);G('btnLancer').disabled=false;}
+=======
   const okey=G('ok').value.trim(), akey=G('ak').value.trim();
   show('cardProg');hide('cardQ');hide('cardRes');hide('cardClassif');hide('cardAnon');hide('cardSoumission');hide('cardConfirm');
   G('btnComplement').style.display='none';
@@ -637,31 +679,66 @@ async function lancer(){
     if(qs.length>0)showQ(qs);
     else showRes(transcript,txt);
   }catch(e){setP('piC','error');showErr('errPipe',`Erreur Claude : ${e.message}`);G('btnLancer').disabled=false;}
+>>>>>>> 48632618bbd60fe01d74f98b92a96224d308afdf
 }
+<<<<<<< HEAD
 
+// ── PROMPT — V7-5 : règles anti-hallucination renforcées
+// SEULE FONCTION MODIFIÉE PAR RAPPORT À V7-4
+// Toutes les autres fonctions sont identiques à V7-4
+=======
+
+>>>>>>> 48632618bbd60fe01d74f98b92a96224d308afdf
 function buildPrompt(tr,ctx,reps){
+<<<<<<< HEAD
+  return `Tu es l'assistant de moietloi.fr, plateforme civique documentant les dysfonctionnements administratifs en France.
+
+RÈGLES ABSOLUES — à respecter avant toute autre consigne :
+1. Ne jamais inventer, déduire, inférer ou compléter une information non explicitement dite par le témoin.
+2. Si une information est absente ou non mentionnée, écrire exactement : [non précisé]
+3. Chaque affirmation du document doit pouvoir être attribuée directement à la transcription fournie.
+4. Reformuler fidèlement — jamais paraphraser de façon à changer le sens ou ajouter une nuance absente.
+5. Ton neutre et factuel — sans jugement sur l'administration ni sur le témoin.
+6. Français clair, 400 mots maximum pour l'ensemble du document.
+7. Si la transcription est insuffisante pour remplir une section, écrire : [information insuffisante]
+8. Pour les domaines réglementaires et types de dysfonctionnement : si tu en déduis un du contexte, le signaler avec (?) pour que le modérateur puisse vérifier.
+
+Produis un document structuré avec exactement ces sections :
+
+=======
   return `Tu es l'assistant de moietloi.fr, plateforme civique documentant les dysfonctionnements administratifs en France.
 Produis un document structuré :
+>>>>>>> 48632618bbd60fe01d74f98b92a96224d308afdf
 **RÉSUMÉ**
-[Une phrase claire et neutre]
+[Une phrase claire et neutre — uniquement ce qui est dit explicitement dans la transcription]
+
 **RÉCIT**
-[Témoignage restructuré, fidèle, sans répétitions — 150 mots max]
+[Témoignage restructuré, fidèle, sans répétitions — 150 mots max — aucun fait ajouté qui ne soit dans la transcription]
+
 **CE QUI EST REPROCHÉ**
-[La règle invoquée en termes simples]
+[La règle ou décision invoquée, en termes simples — si non précisé par le témoin : [non précisé]]
+
 **JUSTIFICATION OFFICIELLE**
-[Les motifs de l'administration]
+[Les motifs donnés par l'administration tels que rapportés par le témoin — si non précisé : [non précisé]]
+
 **VOLET 1 — ABSURDITÉ DE LA NORME**
-[En quoi la règle est inadaptée]
+[En quoi la règle est inadaptée selon ce que dit le témoin — uniquement ce qu'il exprime, pas d'analyse externe]
+
 **VOLET 2 — ABUS DANS L'APPLICATION**
-[En quoi l'application est disproportionnée — si applicable]
+[En quoi l'application est disproportionnée selon le témoin — si non évoqué : Non applicable]
+
 **VOLET 3 — VERROUILLAGE SYSTÉMIQUE**
-[Si les recours ne fonctionnent pas — sinon : Non applicable]
+[Si les recours sont bloqués selon le témoin — si non évoqué : Non applicable]
+
 **DOMAINES RÉGLEMENTAIRES**
-[Urbanisme / ERP / Droit rural / etc.]
+[Domaine(s) concerné(s) — si déduit du contexte, ajouter (?)]
+
 **TYPE DE DYSFONCTIONNEMENT**
-[Contradiction / Disproportionnalité / Détournement / etc.]
-${reps?'':'**QUESTIONS DE CLARIFICATION**\n[2 à 4 questions numérotées essentielles, ou "Témoignage complet — aucune question"]'}
-Règles : ne jamais inventer, neutre, français clair, 400 mots max.
+[Type principal — si déduit du contexte, ajouter (?)]
+
+${reps?'':`**QUESTIONS DE CLARIFICATION**
+[2 à 4 questions numérotées ciblant les sections marquées [non précisé] ou [information insuffisante], ou écrire exactement : "Témoignage complet — aucune question"]`}
+
 TRANSCRIPTION :
 ${tr}${reps?'\n\nRÉPONSES :\n'+reps:''}`;
 }
@@ -736,6 +813,49 @@ async function togMini(i){
 
 // ── FINALISER
 async function finaliser(){
+<<<<<<< HEAD
+  const okey=G('ok').value.trim(), akey=G('ak').value.trim();
+  const btn=G('btnFinal');btn.disabled=true;btn.textContent='Génération en cours…';
+  let reps='';
+  let qBlocks=[];
+  for(let i=0;i<questions.length;i++){
+    let rep='';
+    if(miniMR[i]?.blob){
+      try{
+        const fd=new FormData();
+        fd.append('file',new File([miniMR[i].blob],'r.mp4',{type:miniMR[i].blob.type}));
+        fd.append('model','whisper-1');fd.append('language','fr');fd.append('response_format','text');
+        const r=await fetch('https://api.openai.com/v1/audio/transcriptions',{method:'POST',headers:{'Authorization':`Bearer ${okey}`},body:fd});
+        if(r.ok)rep=await r.text();
+      }catch{rep='[réponse vocale non transcrite]';}
+    }
+    const qid=`q${i}`;
+    for(const d of (docsQ[qid]||[])){const b=await readDoc(d.f);if(b)qBlocks.push(b);}
+    const texte=G(`rt_${i}`)?.value?.trim();
+    if(texte)rep+=(rep?'\n':'')+texte;
+    if(!rep)rep='(sans réponse)';
+    reps+=`Q${i+1}: ${questions[i]}\nR: ${rep}\n\n`;
+  }
+  const p=`Régénère ce document en intégrant les réponses aux questions de clarification.
+Même format structuré, sans section QUESTIONS DE CLARIFICATION dans le résultat final.
+RÈGLE ABSOLUE : n'invente rien — utilise uniquement les informations du document initial et des réponses fournies.
+Remplace les [non précisé] et [information insuffisante] uniquement si la réponse apporte l'information manquante.
+Si la réponse est "(sans réponse)", laisse [non précisé] tel quel.
+
+DOCUMENT INITIAL :
+${docInitial}
+
+RÉPONSES :
+${reps}`;
+  try{
+    const res=await claude(akey,p,2500,qBlocks);
+    const txt=res.content[0].text;
+    docInitial=txt;
+    hide('cardQ');
+    showRes(transcript,txt);
+  }catch(e){alert(`Erreur: ${e.message}`);}
+  btn.disabled=false;btn.textContent='Générer mon document final →';
+=======
   const okey=G('ok').value.trim(), akey=G('ak').value.trim();
   const btn=G('btnFinal');btn.disabled=true;btn.textContent='Génération en cours…';
   let reps='';
@@ -767,6 +887,7 @@ async function finaliser(){
     showRes(transcript,txt);
   }catch(e){alert(`Erreur: ${e.message}`);}
   btn.disabled=false;btn.textContent='Générer mon document final →';
+>>>>>>> 48632618bbd60fe01d74f98b92a96224d308afdf
 }
 
 // ── RÉSULTAT
@@ -781,6 +902,31 @@ function showRes(tr,txt){
 }
 
 async function regenerer(){
+<<<<<<< HEAD
+  if(regenCount>=2){alert('Maximum 2 régénérations atteint.');return;}
+  const akey=G('ak').value.trim();
+  const texteEdite=G('docRes').innerText;
+  const btn=G('btnRegen');
+  btn.disabled=true;btn.textContent='Régénération…';
+  const p=`Produis une version finale propre de ce document en respectant strictement les modifications apportées par le témoin.
+Corrige uniquement les fautes de frappe évidentes et améliore la cohérence stylistique.
+Ne jamais ajouter, déduire ou inventer d'informations.
+Conserve les [non précisé] et [information insuffisante] tels quels s'ils n'ont pas été modifiés.
+Même format structuré.
+
+DOCUMENT :
+${texteEdite}`;
+  try{
+    const res=await claude(akey,p,2500);
+    const txt=res.content[0].text;
+    docInitial=txt;
+    G('docRes').innerText=txt;
+    regenCount++;
+    G('regenCount').textContent=regenCount>=2?'Maximum atteint — veuillez valider.':`Régénération ${regenCount}/2 effectuée.`;
+    if(regenCount>=2)btn.style.display='none';
+  }catch(e){showErr('errRes',`Erreur: ${e.message}`);}
+  btn.disabled=false;btn.textContent='🔄 Régénérer avec corrections';
+=======
   if(regenCount>=2){alert('Maximum 2 régénérations atteint.');return;}
   const akey=G('ak').value.trim();
   const texteEdite=G('docRes').innerText;
@@ -797,6 +943,7 @@ async function regenerer(){
     if(regenCount>=2)btn.style.display='none';
   }catch(e){showErr('errRes',`Erreur: ${e.message}`);}
   btn.disabled=false;btn.textContent='🔄 Régénérer avec corrections';
+>>>>>>> 48632618bbd60fe01d74f98b92a96224d308afdf
 }
 
 function validerDoc(){
