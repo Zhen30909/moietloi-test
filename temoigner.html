@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -9,19 +8,43 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Source+Sans+3:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root {
---vert: #5a7260; --vert-clair: #8a9e8a; --beige: #d4c8b0;
+--vert: #5a7260; --vert-clair: #8a9e8a; --vert-pale: #eef3ee; --beige: #d4c8b0;
 --peche: #d4956a; --gris-fonce: #2d2d2d; --gris-moyen: #6b6b6b;
 --fond: #f7f4ef; --blanc: #ffffff; --rouge: #c0392b;
 }
 * { margin:0; padding:0; box-sizing:border-box; }
-body { font-family:'Source Sans 3',sans-serif; background:var(--fond); color:var(--gris-fonce); min-height:100vh; padding:20px 20px 80px; }
-.container { max-width:720px; margin:0 auto; }
-header { text-align:center; padding:40px 0 32px; border-bottom:1px solid var(--beige); margin-bottom:32px; }
-.logo { font-family:'Playfair Display',serif; font-size:2.4rem; color:var(--gris-fonce); }
+body { font-family:'Source Sans 3',sans-serif; background:var(--fond); color:var(--gris-fonce); min-height:100vh; padding:0 0 80px; }
+.container { max-width:720px; margin:0 auto; padding:20px 20px 0; }
+
+/* NAV */
+nav{background:rgba(247,244,239,0.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--beige);height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 28px;position:sticky;top:0;z-index:100}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--gris-fonce);text-decoration:none}
+.nav-logo .et{color:var(--peche);font-style:italic}
+.nav-logo .loi{color:var(--vert)}
+.nav-links{display:flex;gap:4px;align-items:center}
+.nav-links a{font-size:0.85rem;color:var(--gris-moyen);text-decoration:none;padding:7px 12px;border-radius:6px;transition:all 0.2s}
+.nav-links a:hover{color:var(--vert);background:var(--vert-pale)}
+.nav-links a.active{color:var(--vert);font-weight:600;background:var(--vert-pale);pointer-events:none}
+.nav-cta{background:var(--vert)!important;color:white!important;font-weight:500!important}
+.nav-cta:hover{background:#4a6050!important}
+.nav-burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+.nav-burger span{display:block;width:22px;height:2px;background:var(--gris-fonce);border-radius:2px}
+.nav-mob{display:none;position:fixed;top:58px;left:0;right:0;background:var(--blanc);border-bottom:1px solid var(--beige);padding:16px 24px 20px;z-index:190;flex-direction:column;gap:4px;box-shadow:0 8px 24px rgba(0,0,0,0.07)}
+.nav-mob.open{display:flex}
+.nav-mob a{font-size:0.95rem;color:var(--gris-fonce);text-decoration:none;padding:10px 12px;border-radius:8px}
+.nav-mob a:hover{background:var(--fond)}
+.nav-mob a.active{color:var(--vert);font-weight:600;background:var(--vert-pale)}
+.nav-cta-mob{background:var(--vert);color:white!important;font-weight:500;margin-bottom:4px}
+
+/* HEADER */
+header { text-align:center; padding:32px 0 28px; border-bottom:1px solid var(--beige); margin-bottom:32px; }
+.logo { font-family:'Playfair Display',serif; font-size:2.4rem; color:var(--gris-fonce); text-decoration:none; display:inline-block; }
 .logo .et { color:var(--peche); font-style:italic; }
 .logo .loi { color:var(--vert); }
 .sous-titre { font-size:0.85rem; color:var(--gris-moyen); letter-spacing:2px; text-transform:uppercase; margin-top:6px; font-weight:300; }
 .badge { display:inline-block; background:var(--beige); color:var(--gris-moyen); font-size:0.75rem; padding:4px 12px; border-radius:20px; margin-top:12px; letter-spacing:1px; text-transform:uppercase; }
+
+/* CARDS */
 .card { background:var(--blanc); border-radius:12px; padding:28px; margin-bottom:20px; border:1px solid #e8e2d8; box-shadow:0 2px 8px rgba(0,0,0,0.04); }
 .card-title { font-family:'Playfair Display',serif; font-size:1.1rem; color:var(--gris-fonce); margin-bottom:18px; display:flex; align-items:center; gap:10px; }
 .snum { width:28px; height:28px; border-radius:50%; background:var(--vert); color:white; font-size:0.8rem; font-weight:500; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
@@ -109,21 +132,47 @@ audio { width:100%; margin-top:10px; border-radius:8px; }
 hr { border:none; border-top:1px solid var(--beige); margin:20px 0; }
 .footer-bar { position:fixed; bottom:0; left:0; right:0; background:var(--gris-fonce); color:#888; font-size:0.75rem; text-align:center; padding:10px 20px; z-index:100; }
 .footer-bar span { color:#8a9e8a; }
-@media (max-width:480px) { .logo { font-size:2rem; } .card { padding:20px; } .btn-row { flex-direction:column; } }
-
-  .radio-group{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
-  .radio-btn input[type=radio]{display:none}
-  .radio-btn label{padding:7px 14px;border:1.5px solid #ddd8d0;border-radius:20px;font-size:0.82rem;color:var(--gris-moyen);cursor:pointer;transition:all 0.2s;text-transform:none;letter-spacing:0;font-weight:400;margin:0}
-  .radio-btn input:checked+label{border-color:var(--vert);background:var(--vert-pale);color:var(--vert);font-weight:500}
+.radio-group{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.radio-btn input[type=radio]{display:none}
+.radio-btn label{padding:7px 14px;border:1.5px solid #ddd8d0;border-radius:20px;font-size:0.82rem;color:var(--gris-moyen);cursor:pointer;transition:all 0.2s;text-transform:none;letter-spacing:0;font-weight:400;margin:0}
+.radio-btn input:checked+label{border-color:var(--vert);background:var(--vert-pale);color:var(--vert);font-weight:500}
+@media(max-width:480px){
+  .logo{font-size:2rem}.card{padding:20px}.btn-row{flex-direction:column}
+  nav{padding:0 18px}.nav-links{display:none}.nav-burger{display:flex}
+}
 </style>
 </head>
 <body>
+
+<!-- NAV — page courante : 🎙️ Déposer -->
+<nav>
+  <a href="index.html" class="nav-logo">moi <span class="et">&</span> <span class="loi">loi</span></a>
+  <div class="nav-links">
+    <a href="temoigner.html" class="nav-cta active">🎙️ Déposer</a>
+    <a href="consulter.html">🔍 Consulter</a>
+    <a href="charte.html">📋 Charte</a>
+    <a href="tarifs.html">💶 Tarifs</a>
+    <a href="compte.html">👤 Connexion</a>
+  </div>
+  <button class="nav-burger" onclick="document.getElementById('nm').classList.toggle('open')" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="nav-mob" id="nm">
+  <a href="temoigner.html" class="nav-cta-mob active">🎙️ Déposer un témoignage</a>
+  <a href="consulter.html">🔍 Consulter les témoignages</a>
+  <a href="charte.html">📋 Charte & Règles</a>
+  <a href="tarifs.html">💶 Tarifs</a>
+  <a href="compte.html">👤 Connexion / Créer un compte</a>
+</div>
+
 <div class="container">
 <header>
-<div class="logo">moi <span class="et">&amp;</span> <span class="loi">loi</span></div>
+<a href="index.html" class="logo">moi <span class="et">&amp;</span> <span class="loi">loi</span></a>
 <div class="sous-titre">Témoignages citoyens</div>
-<span class="badge">Pipeline v7.1</span>
+<span class="badge">Pipeline v7.4</span>
 </header>
+
 <!-- 1. CLÉS API -->
 <div class="card">
 <div class="card-title"><span class="snum">1</span> Vos clés API</div>
@@ -137,6 +186,7 @@ hr { border:none; border-top:1px solid var(--beige); margin:20px 0; }
 </div>
 <div class="hint">🔒 Ces clés restent dans votre navigateur — jamais transmises ni stockées.</div>
 </div>
+
 <!-- 2. ENREGISTREMENT -->
 <div class="card">
 <div class="card-title"><span class="snum">2</span> Votre témoignage</div>
@@ -153,6 +203,7 @@ hr { border:none; border-top:1px solid var(--beige); margin:20px 0; }
 </div>
 <div class="err-box" id="errRec"></div>
 </div>
+
 <!-- 3. DOCUMENTS -->
 <div class="card">
 <div class="card-title">
@@ -178,9 +229,11 @@ ou cliquez pour sélectionner<br>
 <span>Ces documents sont lus par l'AI pour enrichir votre témoignage puis <strong>détruits automatiquement</strong>. Jamais stockés ni publiés.</span>
 </div>
 </div>
+
 <button class="btn-p" id="btnLancer" onclick="lancer()" disabled style="margin-top:0;">
 Analyser mon témoignage →
 </button>
+
 <!-- 4. TRAITEMENT -->
 <div class="card hidden" id="cardProg" style="margin-top:20px;">
 <div class="card-title"><span class="snum">4</span> Traitement en cours…</div>
@@ -189,6 +242,7 @@ Analyser mon témoignage →
 <div class="pstep"><div class="picon" id="piC">3</div><span>Structuration par Claude…</span></div>
 <div class="err-box" id="errPipe"></div>
 </div>
+
 <!-- 5. QUESTIONS -->
 <div class="card hidden" id="cardQ" style="margin-top:20px;">
 <div class="card-title"><span class="snum orange">5</span> Questions de clarification</div>
@@ -198,6 +252,7 @@ Pour compléter votre dossier. Répondez par écrit, par oral, ou joignez un doc
 <div id="qContainer"></div>
 <button class="btn-p" id="btnFinal" onclick="finaliser()">Générer mon document final →</button>
 </div>
+
 <!-- 6. DOCUMENT FINAL -->
 <div class="card hidden" id="cardRes" style="margin-top:20px;">
 <div class="card-title"><span class="snum">✓</span> Votre témoignage structuré</div>
@@ -220,10 +275,8 @@ Pour compléter votre dossier. Répondez par écrit, par oral, ou joignez un doc
 <div class="card hidden" id="cardClassif" style="margin-top:20px;">
   <div class="card-title"><span class="snum orange">6b</span> Classification de votre situation</div>
   <p style="font-size:0.9rem;color:var(--gris-moyen);margin-bottom:20px;line-height:1.6;font-style:italic;">
-    Ces informations permettent de connecter votre témoignage aux situations similaires et d'identifier des patterns systémiques. Tout est optionnel.
+    Ces informations permettent de connecter votre témoignage aux situations similaires. Tout est optionnel.
   </p>
-
-  <!-- DOMAINE REGLEMENTAIRE -->
   <div class="igrp">
     <label>Domaine réglementaire concerné</label>
     <select id="cl_domaine">
@@ -282,12 +335,6 @@ Pour compléter votre dossier. Répondez par écrit, par oral, ou joignez un doc
         <option>EHPAD / Établissements médico-sociaux</option>
         <option>Handicap / Soins palliatifs</option>
       </optgroup>
-      <optgroup label="Éducation &amp; Recherche">
-        <option>Éducation nationale / Scolarisation</option>
-        <option>Enseignement supérieur / Université / Parcoursup</option>
-        <option>Recherche / CNRS / ANR</option>
-        <option>Formation professionnelle / Apprentissage</option>
-      </optgroup>
       <optgroup label="Justice &amp; Sécurité">
         <option>Justice civile / Tribunaux</option>
         <option>Justice pénale / Police / Gendarmerie</option>
@@ -295,32 +342,11 @@ Pour compléter votre dossier. Répondez par écrit, par oral, ou joignez un doc
         <option>Médiateur / Défenseur des droits</option>
         <option>Notariat / État civil / Registres</option>
       </optgroup>
-      <optgroup label="Immigration &amp; Nationalité">
-        <option>Titre de séjour / Visa / Préfecture</option>
-        <option>Naturalisation / Nationalité</option>
-        <option>Asile / Réfugiés / OFPRA</option>
-        <option>Regroupement familial</option>
-      </optgroup>
-      <optgroup label="Droit de la famille &amp; Personnes">
-        <option>Divorce / Séparation / Garde d'enfants</option>
-        <option>Succession / Héritage / Testament</option>
-        <option>Tutelle / Curatelle / Majeurs protégés</option>
-        <option>État civil / Mariage / PACS</option>
-        <option>Protection de l'enfance / ASE</option>
-      </optgroup>
-      <optgroup label="Numérique &amp; Données">
-        <option>RGPD / Protection des données / CNIL</option>
-        <option>Plateformes numériques / Algorithmes</option>
-        <option>Cybermalveillance / Fraude en ligne</option>
-        <option>Droit d'auteur / Propriété intellectuelle</option>
-      </optgroup>
       <optgroup label="Autre">
         <option>Domaine non listé — je précise dans mon témoignage</option>
       </optgroup>
     </select>
   </div>
-
-  <!-- TYPE DE DYSFONCTIONNEMENT -->
   <div class="igrp">
     <label>Type de dysfonctionnement</label>
     <select id="cl_type">
@@ -364,158 +390,6 @@ Pour compléter votre dossier. Répondez par écrit, par oral, ou joignez un doc
       </optgroup>
     </select>
   </div>
-
-  <!-- SECTEUR D'ACTIVITE -->
-  <div class="igrp">
-    <label>Secteur d'activité concerné par le problème</label>
-    <select id="cl_secteur">
-      <option value="">— Sélectionner —</option>
-      <optgroup label="Agriculture &amp; Rural">
-        <option>Agriculture / Élevage / Viticulture</option>
-        <option>Sylviculture / Exploitation forestière</option>
-        <option>Pêche / Aquaculture</option>
-        <option>Agritourisme / Hébergement rural / Gîtes</option>
-        <option>Activité événementielle en zone rurale</option>
-        <option>Artisanat agricole / Transformation à la ferme</option>
-      </optgroup>
-      <optgroup label="Alimentation &amp; Restauration">
-        <option>Restaurant / Café / Bar / Brasserie</option>
-        <option>Restauration rapide / Traiteur</option>
-        <option>Artisanat alimentaire / Boulangerie / Pâtisserie</option>
-        <option>Commerce alimentaire de proximité</option>
-        <option>Production agroalimentaire</option>
-      </optgroup>
-      <optgroup label="Hébergement &amp; Tourisme">
-        <option>Hôtel / Résidence hôtelière</option>
-        <option>Chambre d'hôtes / B&amp;B</option>
-        <option>Camping / Parc résidentiel de loisirs</option>
-        <option>Location saisonnière / Meublé de tourisme</option>
-        <option>Village vacances / Centre de loisirs</option>
-        <option>Agence de voyage / Tour-opérateur</option>
-      </optgroup>
-      <optgroup label="Commerce &amp; Distribution">
-        <option>Commerce de détail alimentaire</option>
-        <option>Commerce de détail non-alimentaire</option>
-        <option>Grande distribution / Supermarché</option>
-        <option>E-commerce / Vente en ligne</option>
-        <option>Commerce de gros / Négoce</option>
-        <option>Franchise / Commerce organisé</option>
-      </optgroup>
-      <optgroup label="BTP &amp; Immobilier">
-        <option>Maçonnerie / Gros œuvre / Terrassement</option>
-        <option>Couverture / Charpente / Étanchéité</option>
-        <option>Électricité / Plomberie / CVC</option>
-        <option>Menuiserie / Serrurerie / Vitrerie</option>
-        <option>Peinture / Revêtements / Décoration</option>
-        <option>Promotion immobilière / Lotissement</option>
-        <option>Agence immobilière / Transaction</option>
-        <option>Architecture / Maîtrise d'œuvre</option>
-        <option>Propriétaire bailleur / Gestion locative</option>
-        <option>Syndic de copropriété</option>
-      </optgroup>
-      <optgroup label="Industrie &amp; Production">
-        <option>Industrie manufacturière</option>
-        <option>Industrie chimique / Pharmaceutique</option>
-        <option>Énergie / Pétrole / Gaz / Renouvelables</option>
-        <option>Métallurgie / Sidérurgie</option>
-        <option>Textile / Habillement</option>
-        <option>Recyclage / Traitement des déchets</option>
-      </optgroup>
-      <optgroup label="Transport &amp; Logistique">
-        <option>Transport routier de marchandises</option>
-        <option>Transport de personnes / VTC / Taxi</option>
-        <option>Logistique / Entreposage</option>
-        <option>Transport aérien / Maritime / Fluvial</option>
-        <option>Coursier / Livraison dernière kilomètre</option>
-        <option>Réparation auto / Garage / CT</option>
-      </optgroup>
-      <optgroup label="Services essentiels &amp; Monopoles">
-        <option>Électricité / Gaz (EDF, Engie, fournisseurs)</option>
-        <option>Réseau électrique / Gaz (Enedis, GrDF)</option>
-        <option>Eau / Assainissement (Suez, Veolia, Saur)</option>
-        <option>Télécom / Internet / Mobile</option>
-        <option>Poste / Colis / Courrier</option>
-        <option>Transport ferroviaire (SNCF)</option>
-        <option>Transport collectif (RATP, TER, urbains)</option>
-        <option>Autoroutes / Péages</option>
-        <option>Aéroports</option>
-      </optgroup>
-      <optgroup label="Services aux entreprises">
-        <option>Conseil / Consulting</option>
-        <option>Expertise comptable / Audit</option>
-        <option>Informatique / Numérique / ESN</option>
-        <option>Assurance / Banque / Finance</option>
-        <option>Sécurité / Nettoyage / Facility</option>
-        <option>Intérim / Recrutement / RH</option>
-      </optgroup>
-      <optgroup label="Santé &amp; Médico-social">
-        <option>Médecin / Spécialiste / Chirurgien</option>
-        <option>Infirmier / Paramédical</option>
-        <option>Pharmacie / Laboratoire</option>
-        <option>EHPAD / Établissement médico-social</option>
-        <option>Clinique privée</option>
-        <option>Bien-être / Esthétique / Coiffure</option>
-        <option>Sport / Coaching / Salle de sport</option>
-      </optgroup>
-      <optgroup label="Culture, Médias &amp; Loisirs">
-        <option>Spectacle vivant / Événementiel</option>
-        <option>Cinéma / Audiovisuel / Production</option>
-        <option>Presse / Médias / Journalisme</option>
-        <option>Musique / Arts / Artisanat d'art</option>
-        <option>Parc d'attractions / Loisirs</option>
-        <option>Musée / Patrimoine / Tourisme culturel</option>
-      </optgroup>
-      <optgroup label="Associations &amp; ESS">
-        <option>Association loi 1901</option>
-        <option>Fondation / Fonds de dotation</option>
-        <option>Coopérative / SCOP / SCIC</option>
-        <option>Structure sportive / Club</option>
-        <option>Structure culturelle / Compagnie</option>
-        <option>ONG / Humanitaire</option>
-      </optgroup>
-      <optgroup label="Professions réglementées">
-        <option>Avocat / Notaire / Huissier</option>
-        <option>Expert-comptable / CAC</option>
-        <option>Agent immobilier / Administrateur de biens</option>
-        <option>Architecte / Géomètre / Ingénieur conseil</option>
-        <option>Conseiller financier / Patrimoine</option>
-      </optgroup>
-      <optgroup label="Particulier">
-        <option>Particulier construisant / Rénovant</option>
-        <option>Propriétaire occupant</option>
-        <option>Locataire</option>
-        <option>Particulier employeur</option>
-        <option>Retraité / Senior</option>
-        <option>Étudiant</option>
-        <option>Particulier — autre situation</option>
-      </optgroup>
-      <optgroup label="Autre">
-        <option>Secteur non listé — je précise dans mon témoignage</option>
-      </optgroup>
-    </select>
-  </div>
-
-  <!-- STATUT PROFESSIONNEL -->
-  <div class="igrp">
-    <label>Votre statut au moment des faits</label>
-    <select id="cl_statut">
-      <option value="">— Sélectionner —</option>
-      <option>Salarié(e)</option>
-      <option>Indépendant(e) / Freelance</option>
-      <option>Chef(fe) d'entreprise / Dirigeant(e)</option>
-      <option>Agriculteur / Exploitant</option>
-      <option>Artisan / Commerçant</option>
-      <option>Profession libérale</option>
-      <option>Fonctionnaire / Agent public</option>
-      <option>Retraité(e)</option>
-      <option>Demandeur(se) d'emploi</option>
-      <option>Étudiant(e)</option>
-      <option>Particulier sans activité professionnelle liée</option>
-      <option>Autre</option>
-    </select>
-  </div>
-
-  <!-- AIDE OBTENUE -->
   <div class="igrp">
     <label>Avez-vous pu vous faire aider ?</label>
     <div class="radio-group">
@@ -527,8 +401,6 @@ Pour compléter votre dossier. Répondez par écrit, par oral, ou joignez un doc
       <div class="radio-btn"><input type="radio" name="cl_aide" id="ca6" value="Autre"><label for="ca6">Autre</label></div>
     </div>
   </div>
-
-  <!-- ACCES INFO -->
   <div class="igrp">
     <label>Avez-vous eu accès aux informations nécessaires ?</label>
     <div class="radio-group">
@@ -537,7 +409,6 @@ Pour compléter votre dossier. Répondez par écrit, par oral, ou joignez un doc
       <div class="radio-btn"><input type="radio" name="cl_info" id="ci3" value="Non"><label for="ci3">Non</label></div>
     </div>
   </div>
-
   <button class="btn-p" onclick="showAnon()">Continuer →</button>
 </div>
 
@@ -578,6 +449,7 @@ Votre témoignage apparaîtra signé : <strong id="anonSig">Anonyme</strong>
 </div>
 <button class="btn-p" onclick="showSoumission()">Continuer →</button>
 </div>
+
 <!-- 8. SOUMISSION -->
 <div class="card hidden" id="cardSoumission" style="margin-top:20px;">
 <div class="card-title"><span class="snum">8</span> Soumettre votre témoignage</div>
@@ -586,7 +458,7 @@ Votre témoignage apparaîtra signé : <strong id="anonSig">Anonyme</strong>
 <div class="submission-text">
 <p>Votre témoignage sera examiné par notre équipe de modération avant publication.</p>
 <p>Cette vérification garantit le respect de notre charte — absence de données personnelles non souhaitées, absence de propos diffamatoires, conformité éditoriale.</p>
-<p>Ce processus prend généralement <strong>moins de 48 heures</strong>. Vous recevrez un email de confirmation à la publication, avec votre témoignage intégré dans le corps du message.</p>
+<p>Ce processus prend généralement <strong>moins de 48 heures</strong>. Vous recevrez un email de confirmation à la publication.</p>
 </div>
 <div class="checkbox-confirm">
 <input type="checkbox" id="chkConfirm" onchange="toggleConfirm()">
@@ -599,6 +471,7 @@ Votre témoignage apparaîtra signé : <strong id="anonSig">Anonyme</strong>
 </div>
 <div class="err-box" id="errSoumission"></div>
 </div>
+
 <!-- 9. CONFIRMATION -->
 <div class="card hidden" id="cardConfirm" style="margin-top:20px;">
 <div class="confirmation-finale">
@@ -620,147 +493,154 @@ Votre témoignage apparaîtra signé : <strong id="anonSig">Anonyme</strong>
 </div>
 </div>
 </div>
+
 <div class="footer-bar">🔒 <span>Documents détruits automatiquement après analyse.</span> Données personnelles jamais publiées sans votre accord. moietloi.fr</div>
+
 <script>
 // ── ÉTAT
 let mr=null, chunks=[], audioBlob=null, isRec=false, timerInt=null, secs=0;
 let docsMain=[], docsQ={}, transcript='', questions=[], docInitial='';
 let miniMR={}, regenCount=0, anonChoice='Anonyme';
 let allChunks=[];
+
 // ── READY
 function checkReady(){
-const ok=G('ok').value.trim()&&G('ak').value.trim()&&audioBlob;
-G('btnLancer').disabled=!ok;
+  const ok=G('ok').value.trim()&&G('ak').value.trim()&&audioBlob;
+  G('btnLancer').disabled=!ok;
 }
 G('ok').addEventListener('input',checkReady);
 G('ak').addEventListener('input',checkReady);
+
 // ── ENREGISTREMENT
 async function toggleRec(){ isRec?stopRec():await startRec(); }
 async function startRec(){
-hideErr('errRec');
-try{
-const stream=await navigator.mediaDevices.getUserMedia({audio:true});
-mr=new MediaRecorder(stream,{mimeType:mime()});
-chunks=[];
-mr.ondataavailable=e=>{if(e.data.size>0)chunks.push(e.data);};
-mr.onstop=()=>{
-const raw=new Blob(chunks,{type:mime()});
-audioBlob=buildFinalBlob(raw);
-allChunks=[];
-G('audPrev').innerHTML=`<audio controls src="${URL.createObjectURL(audioBlob)}"></audio>`;
-G('btnComplement').style.display='block';
-checkReady();
-stream.getTracks().forEach(t=>t.stop());
-};
-mr.start(100); isRec=true; secs=0;
-G('btnRec').classList.add('rec'); G('btnRec').textContent='⏸';
-G('recSt').textContent='Enregistrement en cours…'; G('recSt').classList.add('on');
-G('btnStop').style.display='block';
-G('btnComplement').style.display='none';
-timerInt=setInterval(()=>{secs++;const m=Math.floor(secs/60).toString().padStart(2,'0'),s=(secs%60).toString().padStart(2,'0');G('timer').textContent=m+':'+s;},1000);
-}catch(e){showErr('errRec','⚠️ Accès au microphone refusé. Autorisez le microphone dans Chrome.');}
+  hideErr('errRec');
+  try{
+    const stream=await navigator.mediaDevices.getUserMedia({audio:true});
+    mr=new MediaRecorder(stream,{mimeType:mime()});
+    chunks=[];
+    mr.ondataavailable=e=>{if(e.data.size>0)chunks.push(e.data);};
+    mr.onstop=()=>{
+      const raw=new Blob(chunks,{type:mime()});
+      audioBlob=buildFinalBlob(raw);
+      allChunks=[];
+      G('audPrev').innerHTML=`<audio controls src="${URL.createObjectURL(audioBlob)}"></audio>`;
+      G('btnComplement').style.display='block';
+      checkReady();
+      stream.getTracks().forEach(t=>t.stop());
+    };
+    mr.start(100); isRec=true; secs=0;
+    G('btnRec').classList.add('rec'); G('btnRec').textContent='⏸';
+    G('recSt').textContent='Enregistrement en cours…'; G('recSt').classList.add('on');
+    G('btnStop').style.display='block';
+    G('btnComplement').style.display='none';
+    timerInt=setInterval(()=>{secs++;const m=Math.floor(secs/60).toString().padStart(2,'0'),s=(secs%60).toString().padStart(2,'0');G('timer').textContent=m+':'+s;},1000);
+  }catch(e){showErr('errRec','⚠️ Accès au microphone refusé. Autorisez le microphone dans Chrome.');}
 }
 function stopRec(){
-if(mr&&isRec){mr.stop();isRec=false;clearInterval(timerInt);
-G('btnRec').classList.remove('rec');G('btnRec').textContent='🎙️';
-G('recSt').textContent='✓ Enregistrement terminé';G('recSt').classList.remove('on');
-G('btnStop').style.display='none';}
+  if(mr&&isRec){mr.stop();isRec=false;clearInterval(timerInt);
+    G('btnRec').classList.remove('rec');G('btnRec').textContent='🎙️';
+    G('recSt').textContent='✓ Enregistrement terminé';G('recSt').classList.remove('on');
+    G('btnStop').style.display='none';}
 }
 async function ajouterComplement(){
-if(audioBlob) allChunks.push(audioBlob);
-audioBlob=null;
-G('btnComplement').style.display='none';
-G('recSt').textContent='Ajoutez votre complément…';
-G('recSt').classList.add('on');
-G('audPrev').innerHTML='';
-await startRec();
+  if(audioBlob) allChunks.push(audioBlob);
+  audioBlob=null;
+  G('btnComplement').style.display='none';
+  G('recSt').textContent='Ajoutez votre complément…';
+  G('recSt').classList.add('on');
+  G('audPrev').innerHTML='';
+  await startRec();
 }
 function buildFinalBlob(newBlob){
-if(allChunks.length===0) return newBlob;
-return new Blob([...allChunks, newBlob], {type:newBlob.type});
+  if(allChunks.length===0) return newBlob;
+  return new Blob([...allChunks, newBlob], {type:newBlob.type});
 }
 function mime(){
-const t=['audio/webm;codecs=opus','audio/webm','audio/mp4','audio/ogg'];
-for(const m of t)if(MediaRecorder.isTypeSupported(m))return m;
-return 'audio/webm';
+  const t=['audio/webm;codecs=opus','audio/webm','audio/mp4','audio/ogg'];
+  for(const m of t)if(MediaRecorder.isTypeSupported(m))return m;
+  return 'audio/webm';
 }
+
 // ── DOCUMENTS
 function selDocs(e){Array.from(e.target.files).forEach(f=>addDoc(f,'main'));e.target.value='';}
 function dropDocs(e){
-e.preventDefault();G('uzMain').classList.remove('over');
-Array.from(e.dataTransfer.files).forEach(f=>addDoc(f,'main'));
+  e.preventDefault();G('uzMain').classList.remove('over');
+  Array.from(e.dataTransfer.files).forEach(f=>addDoc(f,'main'));
 }
 function addDoc(f,z){
-const allowed=['application/pdf','image/jpeg','image/jpg','image/png'];
-const ext=f.name.toLowerCase();
-if(!allowed.includes(f.type)&&!ext.endsWith('.pdf')&&!ext.endsWith('.jpg')&&!ext.endsWith('.jpeg')&&!ext.endsWith('.png')){
-alert(`Format non accepté : ${f.name}\nSeuls les PDF, JPG et PNG sont acceptés.`);
-return;
-}
-if(z==='main'){
-if(docsMain.length>=5){alert('Maximum 5 documents.');return;}
-docsMain.push({id:Date.now()+Math.random(),f});renderMain();
-}else{
-if(!docsQ[z])docsQ[z]=[];
-if(docsQ[z].length>=3){alert('Maximum 3 documents par question.');return;}
-docsQ[z].push({id:Date.now()+Math.random(),f});renderQ(z);
-}
+  const allowed=['application/pdf','image/jpeg','image/jpg','image/png'];
+  const ext=f.name.toLowerCase();
+  if(!allowed.includes(f.type)&&!ext.endsWith('.pdf')&&!ext.endsWith('.jpg')&&!ext.endsWith('.jpeg')&&!ext.endsWith('.png')){
+    alert(`Format non accepté : ${f.name}\nSeuls les PDF, JPG et PNG sont acceptés.`);
+    return;
+  }
+  if(z==='main'){
+    if(docsMain.length>=5){alert('Maximum 5 documents.');return;}
+    docsMain.push({id:Date.now()+Math.random(),f});renderMain();
+  }else{
+    if(!docsQ[z])docsQ[z]=[];
+    if(docsQ[z].length>=3){alert('Maximum 3 documents par question.');return;}
+    docsQ[z].push({id:Date.now()+Math.random(),f});renderQ(z);
+  }
 }
 function rmDoc(id,z){
-if(z==='main'){docsMain=docsMain.filter(d=>d.id!==id);renderMain();}
-else{docsQ[z]=(docsQ[z]||[]).filter(d=>d.id!==id);renderQ(z);}
+  if(z==='main'){docsMain=docsMain.filter(d=>d.id!==id);renderMain();}
+  else{docsQ[z]=(docsQ[z]||[]).filter(d=>d.id!==id);renderQ(z);}
 }
 function renderMain(){
-const l=G('dlMain'),c=G('confMain');
-if(!docsMain.length){l.innerHTML='';c.classList.add('hidden');return;}
-c.classList.remove('hidden');
-l.innerHTML=docsMain.map(d=>`<div class="doc-item"><span>📄 ${d.f.name} <span style="color:var(--gris-moyen);font-size:0.75rem;">(${(d.f.size/1024).toFixed(0)} Ko)</span></span><button class="doc-rm" onclick="rmDoc(${d.id},'main')">✕</button></div>`).join('');
+  const l=G('dlMain'),c=G('confMain');
+  if(!docsMain.length){l.innerHTML='';c.classList.add('hidden');return;}
+  c.classList.remove('hidden');
+  l.innerHTML=docsMain.map(d=>`<div class="doc-item"><span>📄 ${d.f.name} <span style="color:var(--gris-moyen);font-size:0.75rem;">(${(d.f.size/1024).toFixed(0)} Ko)</span></span><button class="doc-rm" onclick="rmDoc(${d.id},'main')">✕</button></div>`).join('');
 }
 function renderQ(qid){
-const l=G(`dlQ_${qid}`);if(!l)return;
-const docs=docsQ[qid]||[];
-l.innerHTML=docs.map(d=>`<div class="doc-item" style="font-size:0.8rem;"><span>📄 ${d.f.name}</span><button class="doc-rm" onclick="rmDoc(${d.id},'${qid}')">✕</button></div>`).join('');
+  const l=G(`dlQ_${qid}`);if(!l)return;
+  const docs=docsQ[qid]||[];
+  l.innerHTML=docs.map(d=>`<div class="doc-item" style="font-size:0.8rem;"><span>📄 ${d.f.name}</span><button class="doc-rm" onclick="rmDoc(${d.id},'${qid}')">✕</button></div>`).join('');
 }
+
 // ── PIPELINE
 async function lancer(){
-const okey=G('ok').value.trim(), akey=G('ak').value.trim();
-show('cardProg');hide('cardQ');hide('cardRes');hide('cardClassif');hide('cardAnon');hide('cardSoumission');hide('cardConfirm');
-G('btnComplement').style.display='none';
-G('btnLancer').disabled=true;
-hideErr('errPipe');
-scrollEl('cardProg');
-setP('piW','active');
-try{
-const fd=new FormData();
-fd.append('file',new File([audioBlob],'t.mp4',{type:audioBlob.type}));
-fd.append('model','whisper-1');fd.append('language','fr');fd.append('response_format','text');
-const r=await fetch('https://api.openai.com/v1/audio/transcriptions',{method:'POST',headers:{'Authorization':`Bearer ${okey}`},body:fd});
-if(!r.ok){const e=await r.json();throw new Error(e.error?.message||'Erreur Whisper');}
-transcript=await r.text();
-setP('piW','done');
-}catch(e){setP('piW','error');showErr('errPipe',`Erreur transcription : ${e.message}`);G('btnLancer').disabled=false;return;}
-setP('piD','active');
-let docBlocks=[];
-try{
-for(const d of docsMain){const b=await readDoc(d.f);if(b)docBlocks.push(b);}
-docsMain=[];renderMain();
-setP('piD','done');
-}catch(e){setP('piD','done');}
-setP('piC','active');
-try{
-const prompt=buildPrompt(transcript,'','');
-const res=await claude(akey,prompt,2000,docBlocks);
-const txt=res.content[0].text;
-docInitial=txt;
-setP('piC','done');
-const qs=extractQ(txt);
-questions=qs;
-if(qs.length>0)showQ(qs);
-else showRes(transcript,txt);
-}catch(e){setP('piC','error');showErr('errPipe',`Erreur Claude : ${e.message}`);G('btnLancer').disabled=false;}
+  const okey=G('ok').value.trim(), akey=G('ak').value.trim();
+  show('cardProg');hide('cardQ');hide('cardRes');hide('cardClassif');hide('cardAnon');hide('cardSoumission');hide('cardConfirm');
+  G('btnComplement').style.display='none';
+  G('btnLancer').disabled=true;
+  hideErr('errPipe');
+  scrollEl('cardProg');
+  setP('piW','active');
+  try{
+    const fd=new FormData();
+    fd.append('file',new File([audioBlob],'t.mp4',{type:audioBlob.type}));
+    fd.append('model','whisper-1');fd.append('language','fr');fd.append('response_format','text');
+    const r=await fetch('https://api.openai.com/v1/audio/transcriptions',{method:'POST',headers:{'Authorization':`Bearer ${okey}`},body:fd});
+    if(!r.ok){const e=await r.json();throw new Error(e.error?.message||'Erreur Whisper');}
+    transcript=await r.text();
+    setP('piW','done');
+  }catch(e){setP('piW','error');showErr('errPipe',`Erreur transcription : ${e.message}`);G('btnLancer').disabled=false;return;}
+  setP('piD','active');
+  let docBlocks=[];
+  try{
+    for(const d of docsMain){const b=await readDoc(d.f);if(b)docBlocks.push(b);}
+    docsMain=[];renderMain();
+    setP('piD','done');
+  }catch(e){setP('piD','done');}
+  setP('piC','active');
+  try{
+    const prompt=buildPrompt(transcript,'','');
+    const res=await claude(akey,prompt,2000,docBlocks);
+    const txt=res.content[0].text;
+    docInitial=txt;
+    setP('piC','done');
+    const qs=extractQ(txt);
+    questions=qs;
+    if(qs.length>0)showQ(qs);
+    else showRes(transcript,txt);
+  }catch(e){setP('piC','error');showErr('errPipe',`Erreur Claude : ${e.message}`);G('btnLancer').disabled=false;}
 }
+
 function buildPrompt(tr,ctx,reps){
-return `Tu es l'assistant de moietloi.fr, plateforme civique documentant les dysfonctionnements administratifs en France.
+  return `Tu es l'assistant de moietloi.fr, plateforme civique documentant les dysfonctionnements administratifs en France.
 Produis un document structuré :
 **RÉSUMÉ**
 [Une phrase claire et neutre]
@@ -785,190 +665,204 @@ Règles : ne jamais inventer, neutre, français clair, 400 mots max.
 TRANSCRIPTION :
 ${tr}${reps?'\n\nRÉPONSES :\n'+reps:''}`;
 }
+
 function readDoc(f){return new Promise(resolve=>{
-const r=new FileReader();
-r.onload=e=>{
-const b64=e.target.result.split(',')[1];
-const isPdf=f.type==='application/pdf'||f.name.toLowerCase().endsWith('.pdf');
-const isImg=f.type.startsWith('image/')||/\.(jpg|jpeg|png)$/i.test(f.name);
-if(isPdf){resolve({type:'document',source:{type:'base64',media_type:'application/pdf',data:b64},title:f.name});}
-else if(isImg){resolve({type:'image',source:{type:'base64',media_type:f.type||'image/jpeg',data:b64}});}
-else{resolve(null);}
-};
-r.onerror=()=>resolve(null);
-r.readAsDataURL(f);
+  const r=new FileReader();
+  r.onload=e=>{
+    const b64=e.target.result.split(',')[1];
+    const isPdf=f.type==='application/pdf'||f.name.toLowerCase().endsWith('.pdf');
+    const isImg=f.type.startsWith('image/')||/\.(jpg|jpeg|png)$/i.test(f.name);
+    if(isPdf){resolve({type:'document',source:{type:'base64',media_type:'application/pdf',data:b64},title:f.name});}
+    else if(isImg){resolve({type:'image',source:{type:'base64',media_type:f.type||'image/jpeg',data:b64}});}
+    else{resolve(null);}
+  };
+  r.onerror=()=>resolve(null);
+  r.readAsDataURL(f);
 });}
+
 // ── QUESTIONS
 function extractQ(txt){
-const m=txt.match(/\*\*QUESTIONS DE CLARIFICATION\*\*\n([\s\S]*?)(?=\n\*\*|$)/);
-if(!m)return[];
-const b=m[1].trim();
-if(/complet|aucune/i.test(b))return[];
-return b.split('\n').filter(l=>/^\d+\./.test(l.trim())).map(l=>l.replace(/^\d+\.\s*/,'').trim()).filter(Boolean);
+  const m=txt.match(/\*\*QUESTIONS DE CLARIFICATION\*\*\n([\s\S]*?)(?=\n\*\*|$)/);
+  if(!m)return[];
+  const b=m[1].trim();
+  if(/complet|aucune/i.test(b))return[];
+  return b.split('\n').filter(l=>/^\d+\./.test(l.trim())).map(l=>l.replace(/^\d+\.\s*/,'').trim()).filter(Boolean);
 }
+
 function showQ(qs){
-show('cardQ');
-G('qContainer').innerHTML=qs.map((q,i)=>{
-const qid=`q${i}`;
-return `<div class="qitem">
-<div class="qtxt">${i+1}. ${q}</div>
-<div class="q-response-zone">
-<textarea placeholder="Votre réponse écrite…" id="rt_${i}" rows="3"></textarea>
-<div class="mini-rec">
-<button class="btn-mr" id="bmr_${i}" onclick="togMini(${i})">🎙️</button>
-<div>
-<div class="mr-status" id="ms_${i}">Ou enregistrez une réponse vocale</div>
-<div id="mp_${i}"></div>
-</div>
-</div>
-<div class="mini-up" onclick="document.getElementById('fiq_${i}').click()">📎 Ou joignez un document (PDF, JPG, PNG)</div>
-<input type="file" id="fiq_${i}" style="display:none" accept=".pdf,.jpg,.jpeg,.png" onchange="selDocQ(event,'${qid}')">
-<div class="doc-list" id="dlQ_${qid}"></div>
-</div>
-</div>`;
-}).join('');
-scrollEl('cardQ');
+  show('cardQ');
+  G('qContainer').innerHTML=qs.map((q,i)=>{
+    const qid=`q${i}`;
+    return `<div class="qitem">
+      <div class="qtxt">${i+1}. ${q}</div>
+      <div class="q-response-zone">
+        <textarea placeholder="Votre réponse écrite…" id="rt_${i}" rows="3"></textarea>
+        <div class="mini-rec">
+          <button class="btn-mr" id="bmr_${i}" onclick="togMini(${i})">🎙️</button>
+          <div>
+            <div class="mr-status" id="ms_${i}">Ou enregistrez une réponse vocale</div>
+            <div id="mp_${i}"></div>
+          </div>
+        </div>
+        <div class="mini-up" onclick="document.getElementById('fiq_${i}').click()">📎 Ou joignez un document (PDF, JPG, PNG)</div>
+        <input type="file" id="fiq_${i}" style="display:none" accept=".pdf,.jpg,.jpeg,.png" onchange="selDocQ(event,'${qid}')">
+        <div class="doc-list" id="dlQ_${qid}"></div>
+      </div>
+    </div>`;
+  }).join('');
+  scrollEl('cardQ');
 }
+
 function selDocQ(e,qid){Array.from(e.target.files).forEach(f=>addDoc(f,qid));e.target.value='';}
+
 async function togMini(i){
-if(miniMR[i]?.on){miniMR[i].mr.stop();miniMR[i].on=false;return;}
-try{
-const stream=await navigator.mediaDevices.getUserMedia({audio:true});
-const m=new MediaRecorder(stream,{mimeType:mime()});const c=[];
-m.ondataavailable=e=>{if(e.data.size>0)c.push(e.data);};
-m.onstop=()=>{
-const b=new Blob(c,{type:mime()});miniMR[i].blob=b;
-G(`mp_${i}`).innerHTML=`<audio controls src="${URL.createObjectURL(b)}" style="width:100%;margin-top:6px;"></audio>`;
-G(`ms_${i}`).textContent='✓ Réponse vocale enregistrée';
-G(`bmr_${i}`).classList.remove('rec');G(`bmr_${i}`).textContent='🔄';
-stream.getTracks().forEach(t=>t.stop());
-};
-m.start(100);miniMR[i]={mr:m,on:true,blob:null};
-G(`bmr_${i}`).classList.add('rec');G(`bmr_${i}`).textContent='⏹';
-G(`ms_${i}`).textContent='Enregistrement…';
-}catch{G(`ms_${i}`).textContent='⚠️ Micro non accessible';}
+  if(miniMR[i]?.on){miniMR[i].mr.stop();miniMR[i].on=false;return;}
+  try{
+    const stream=await navigator.mediaDevices.getUserMedia({audio:true});
+    const m=new MediaRecorder(stream,{mimeType:mime()});const c=[];
+    m.ondataavailable=e=>{if(e.data.size>0)c.push(e.data);};
+    m.onstop=()=>{
+      const b=new Blob(c,{type:mime()});miniMR[i].blob=b;
+      G(`mp_${i}`).innerHTML=`<audio controls src="${URL.createObjectURL(b)}" style="width:100%;margin-top:6px;"></audio>`;
+      G(`ms_${i}`).textContent='✓ Réponse vocale enregistrée';
+      G(`bmr_${i}`).classList.remove('rec');G(`bmr_${i}`).textContent='🔄';
+      stream.getTracks().forEach(t=>t.stop());
+    };
+    m.start(100);miniMR[i]={mr:m,on:true,blob:null};
+    G(`bmr_${i}`).classList.add('rec');G(`bmr_${i}`).textContent='⏹';
+    G(`ms_${i}`).textContent='Enregistrement…';
+  }catch{G(`ms_${i}`).textContent='⚠️ Micro non accessible';}
 }
+
 // ── FINALISER
 async function finaliser(){
-const okey=G('ok').value.trim(), akey=G('ak').value.trim();
-const btn=G('btnFinal');btn.disabled=true;btn.textContent='Génération en cours…';
-let reps='';
-let qBlocks=[];
-for(let i=0;i<questions.length;i++){
-let rep='';
-if(miniMR[i]?.blob){
-try{
-const fd=new FormData();
-fd.append('file',new File([miniMR[i].blob],'r.mp4',{type:miniMR[i].blob.type}));
-fd.append('model','whisper-1');fd.append('language','fr');fd.append('response_format','text');
-const r=await fetch('https://api.openai.com/v1/audio/transcriptions',{method:'POST',headers:{'Authorization':`Bearer ${okey}`},body:fd});
-if(r.ok)rep=await r.text();
-}catch{rep='[réponse vocale non transcrite]';}
+  const okey=G('ok').value.trim(), akey=G('ak').value.trim();
+  const btn=G('btnFinal');btn.disabled=true;btn.textContent='Génération en cours…';
+  let reps='';
+  let qBlocks=[];
+  for(let i=0;i<questions.length;i++){
+    let rep='';
+    if(miniMR[i]?.blob){
+      try{
+        const fd=new FormData();
+        fd.append('file',new File([miniMR[i].blob],'r.mp4',{type:miniMR[i].blob.type}));
+        fd.append('model','whisper-1');fd.append('language','fr');fd.append('response_format','text');
+        const r=await fetch('https://api.openai.com/v1/audio/transcriptions',{method:'POST',headers:{'Authorization':`Bearer ${okey}`},body:fd});
+        if(r.ok)rep=await r.text();
+      }catch{rep='[réponse vocale non transcrite]';}
+    }
+    const qid=`q${i}`;
+    for(const d of (docsQ[qid]||[])){const b=await readDoc(d.f);if(b)qBlocks.push(b);}
+    const texte=G(`rt_${i}`)?.value?.trim();
+    if(texte)rep+=(rep?'\n':'')+texte;
+    if(!rep)rep='(sans réponse)';
+    reps+=`Q${i+1}: ${questions[i]}\nR: ${rep}\n\n`;
+  }
+  const p=`Régénère ce document en intégrant les réponses. Même format, sans section QUESTIONS. N'invente rien.\n\nDOCUMENT INITIAL:\n${docInitial}\n\nRÉPONSES:\n${reps}`;
+  try{
+    const res=await claude(akey,p,2000,qBlocks);
+    const txt=res.content[0].text;
+    docInitial=txt;
+    hide('cardQ');
+    showRes(transcript,txt);
+  }catch(e){alert(`Erreur: ${e.message}`);}
+  btn.disabled=false;btn.textContent='Générer mon document final →';
 }
-const qid=`q${i}`;
-for(const d of (docsQ[qid]||[])){const b=await readDoc(d.f);if(b)qBlocks.push(b);}
-const texte=G(`rt_${i}`)?.value?.trim();
-if(texte)rep+=(rep?'\n':'')+texte;
-if(!rep)rep='(sans réponse)';
-reps+=`Q${i+1}: ${questions[i]}\nR: ${rep}\n\n`;
-}
-const p=`Régénère ce document en intégrant les réponses. Même format, sans section QUESTIONS. N'invente rien.\n\nDOCUMENT INITIAL:\n${docInitial}\n\nRÉPONSES:\n${reps}`;
-try{
-const res=await claude(akey,p,2000,qBlocks);
-const txt=res.content[0].text;
-docInitial=txt;
-hide('cardQ');
-showRes(transcript,txt);
-}catch(e){alert(`Erreur: ${e.message}`);}
-btn.disabled=false;btn.textContent='Générer mon document final →';
-}
+
 // ── RÉSULTAT
 function showRes(tr,txt){
-show('cardRes');
-G('trRes').textContent=tr;
-G('docRes').innerText=txt;
-regenCount=0;
-G('regenCount').textContent='';
-hideErr('errRes');
-scrollEl('cardRes');
+  show('cardRes');
+  G('trRes').textContent=tr;
+  G('docRes').innerText=txt;
+  regenCount=0;
+  G('regenCount').textContent='';
+  hideErr('errRes');
+  scrollEl('cardRes');
 }
+
 async function regenerer(){
-if(regenCount>=2){alert('Maximum 2 régénérations atteint.');return;}
-const akey=G('ak').value.trim();
-const texteEdite=G('docRes').innerText;
-const btn=G('btnRegen');
-btn.disabled=true;btn.textContent='Régénération…';
-const p=`Produis une version finale propre de ce document en respectant les modifications du témoin. Corrige uniquement les fautes de frappe, améliore la cohérence stylistique. Même format structuré.\n\nDOCUMENT:\n${texteEdite}`;
-try{
-const res=await claude(akey,p,2000);
-const txt=res.content[0].text;
-docInitial=txt;
-G('docRes').innerText=txt;
-regenCount++;
-G('regenCount').textContent=regenCount>=2?'Maximum atteint — veuillez valider.':`Régénération ${regenCount}/2 effectuée.`;
-if(regenCount>=2)btn.style.display='none';
-}catch(e){showErr('errRes',`Erreur: ${e.message}`);}
-btn.disabled=false;btn.textContent='🔄 Régénérer avec corrections';
+  if(regenCount>=2){alert('Maximum 2 régénérations atteint.');return;}
+  const akey=G('ak').value.trim();
+  const texteEdite=G('docRes').innerText;
+  const btn=G('btnRegen');
+  btn.disabled=true;btn.textContent='Régénération…';
+  const p=`Produis une version finale propre de ce document en respectant les modifications du témoin. Corrige uniquement les fautes de frappe, améliore la cohérence stylistique. Même format structuré.\n\nDOCUMENT:\n${texteEdite}`;
+  try{
+    const res=await claude(akey,p,2000);
+    const txt=res.content[0].text;
+    docInitial=txt;
+    G('docRes').innerText=txt;
+    regenCount++;
+    G('regenCount').textContent=regenCount>=2?'Maximum atteint — veuillez valider.':`Régénération ${regenCount}/2 effectuée.`;
+    if(regenCount>=2)btn.style.display='none';
+  }catch(e){showErr('errRes',`Erreur: ${e.message}`);}
+  btn.disabled=false;btn.textContent='🔄 Régénérer avec corrections';
 }
+
 function validerDoc(){
-docInitial=G('docRes').innerText;
-hide('cardRes');
-show('cardClassif');
-scrollEl('cardClassif');
+  docInitial=G('docRes').innerText;
+  hide('cardRes');
+  show('cardClassif');
+  scrollEl('cardClassif');
 }
 
 function showAnon(){
-hide('cardClassif');
-show('cardAnon');
-scrollEl('cardAnon');
+  hide('cardClassif');
+  show('cardAnon');
+  scrollEl('cardAnon');
 }
+
 // ── ANONYMAT
 function updateAnonPreview(){
-const fields=['prenom','nom','profession','age','region'];
-const parts=[];
-fields.forEach(f=>{
-const chk=G('chk_'+f);
-const val=G('val_'+f);
-const af=G('af_'+f);
-if(chk&&chk.checked){
-af&&af.classList.add('checked');
-if(val&&val.value.trim())parts.push(val.value.trim());
-}else{
-af&&af.classList.remove('checked');
+  const fields=['prenom','nom','profession','age','region'];
+  const parts=[];
+  fields.forEach(f=>{
+    const chk=G('chk_'+f);
+    const val=G('val_'+f);
+    const af=G('af_'+f);
+    if(chk&&chk.checked){
+      af&&af.classList.add('checked');
+      if(val&&val.value.trim())parts.push(val.value.trim());
+    }else{
+      af&&af.classList.remove('checked');
+    }
+  });
+  anonChoice=parts.length>0?parts.join(', '):'Anonyme';
+  G('anonSig').textContent='"'+anonChoice+'"';
 }
-});
-anonChoice=parts.length>0?parts.join(', '):'Anonyme';
-G('anonSig').textContent='"'+anonChoice+'"';
-}
+
 function showSoumission(){
-hide('cardAnon');
-show('cardSoumission');
-scrollEl('cardSoumission');
+  hide('cardAnon');
+  show('cardSoumission');
+  scrollEl('cardSoumission');
 }
+
 // ── SOUMISSION
 function toggleConfirm(){
-const chk=G('chkConfirm');
-G('btnSoumettre').disabled=!chk.checked;
+  const chk=G('chkConfirm');
+  G('btnSoumettre').disabled=!chk.checked;
 }
 function soumettre(){
-const ref='TEM-'+new Date().getFullYear()+'-'+Math.floor(Math.random()*9000+1000);
-G('confirmAnon').textContent=typeof anonChoice==='string'?anonChoice:'Anonyme';
-G('confirmRef').textContent=ref;
-hide('cardSoumission');
-show('cardConfirm');
-scrollEl('cardConfirm');
+  const ref='TEM-'+new Date().getFullYear()+'-'+Math.floor(Math.random()*9000+1000);
+  G('confirmAnon').textContent=typeof anonChoice==='string'?anonChoice:'Anonyme';
+  G('confirmRef').textContent=ref;
+  hide('cardSoumission');
+  show('cardConfirm');
+  scrollEl('cardConfirm');
 }
+
 // ── CLAUDE API
 async function claude(key,prompt,max,blocks=[]){
-const content=[...blocks,{type:'text',text:prompt}];
-const r=await fetch('https://api.anthropic.com/v1/messages',{
-method:'POST',
-headers:{'Content-Type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
-body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:max,messages:[{role:'user',content}]})
-});
-if(!r.ok){const e=await r.json();throw new Error(e.error?.message||'Erreur API');}
-return r.json();
+  const content=[...blocks,{type:'text',text:prompt}];
+  const r=await fetch('https://api.anthropic.com/v1/messages',{
+    method:'POST',
+    headers:{'Content-Type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
+    body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:max,messages:[{role:'user',content}]})
+  });
+  if(!r.ok){const e=await r.json();throw new Error(e.error?.message||'Erreur API');}
+  return r.json();
 }
+
 // ── UTILS
 function G(id){return document.getElementById(id);}
 function show(id){G(id)?.classList.remove('hidden');}
