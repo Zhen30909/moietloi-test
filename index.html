@@ -12,7 +12,7 @@
 <meta property="og:locale" content="fr_FR">
 <meta property="og:site_name" content="moi & loi">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","name":"moi & loi","alternateName":"moietloi.fr","url":"https://moietloi.fr","description":"Archive civique française de témoignages sur les dysfonctionnements administratifs et réglementaires. Plateforme bilingue français/anglais.","publisher":{"@type":"Organization","name":"moietloi.fr","url":"https://moietloi.fr"},"potentialAction":{"@type":"SearchAction","target":"https://moietloi.fr/temoignages/?q={search_term_string}","query-input":"required name=search_term_string"}}
+{"@context":"https://schema.org","@type":"WebSite","name":"moi & loi","alternateName":"moietloi.fr","url":"https://moietloi.fr","description":"Archive civique française de témoignages sur les dysfonctionnements administratifs et réglementaires.","publisher":{"@type":"Organization","name":"moietloi.fr","url":"https://moietloi.fr"},"potentialAction":{"@type":"SearchAction","target":"https://moietloi.fr/temoignages/?q={search_term_string}","query-input":"required name=search_term_string"}}
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -27,28 +27,24 @@
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{font-family:'Source Sans 3',sans-serif;background:var(--fond);color:var(--gris-fonce);overflow-x:hidden}
-
-/* ── NAV ── */
 nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(247,244,239,0.96);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--beige);height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 28px;transition:box-shadow 0.3s}
 .nav-logo{font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--gris-fonce);text-decoration:none;letter-spacing:-0.3px}
 .nav-logo .et{color:var(--peche);font-style:italic}
 .nav-logo .loi{color:var(--vert)}
 .nav-links{display:flex;align-items:center;gap:4px;list-style:none}
-.nav-links a{font-size:0.85rem;color:var(--gris-moyen);text-decoration:none;font-weight:400;padding:7px 12px;border-radius:6px;transition:color 0.2s,background 0.2s;white-space:nowrap;display:flex;align-items:center;gap:5px}
+.nav-links a{font-size:0.85rem;color:var(--gris-moyen);text-decoration:none;font-weight:400;padding:7px 12px;border-radius:6px;transition:color 0.2s,background 0.2s;white-space:nowrap}
 .nav-links a:hover{color:var(--vert);background:var(--vert-pale)}
-.nav-links a.active{color:var(--vert);font-weight:600;background:var(--vert-pale)}
+.nav-links a.active{color:var(--vert);font-weight:600;background:var(--vert-pale);pointer-events:none}
 .nav-cta{background:var(--vert)!important;color:white!important;font-weight:500!important}
 .nav-cta:hover{background:#4a6050!important;color:white!important}
 .nav-burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
 .nav-burger span{display:block;width:22px;height:2px;background:var(--gris-fonce);border-radius:2px;transition:all 0.3s}
 .nav-mobile{display:none;position:fixed;top:58px;left:0;right:0;background:var(--blanc);border-bottom:1px solid var(--beige);padding:16px 24px 20px;z-index:190;flex-direction:column;gap:4px;box-shadow:0 8px 24px rgba(0,0,0,0.08)}
 .nav-mobile.open{display:flex}
-.nav-mobile a{font-size:0.95rem;color:var(--gris-fonce);text-decoration:none;padding:10px 12px;border-radius:8px;transition:background 0.2s;display:flex;align-items:center;gap:8px}
+.nav-mobile a{font-size:0.95rem;color:var(--gris-fonce);text-decoration:none;padding:10px 12px;border-radius:8px;transition:background 0.2s}
 .nav-mobile a:hover{background:var(--fond)}
 .nav-mobile a.active{color:var(--vert);font-weight:600;background:var(--vert-pale)}
 .nav-cta-mob{background:var(--vert);color:white!important;font-weight:500;text-align:center;margin-bottom:4px}
-
-/* ── HERO ── */
 .hero{min-height:100vh;padding:58px 24px 60px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
 .hero-bg{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 70% 55% at 85% 15%,rgba(90,114,96,0.08) 0%,transparent 55%),radial-gradient(ellipse 55% 45% at 10% 80%,rgba(212,149,106,0.07) 0%,transparent 55%),radial-gradient(ellipse 40% 30% at 50% 50%,rgba(212,200,176,0.12) 0%,transparent 60%)}
 .hero-deco{position:absolute;top:0;bottom:0;right:22%;width:1px;background:linear-gradient(to bottom,transparent 0%,var(--beige) 25%,var(--beige) 75%,transparent 100%);opacity:0.35;pointer-events:none}
@@ -73,8 +69,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(247,244,239,
 .stat-item{text-align:center}
 .stat-num{font-family:'Playfair Display',serif;font-size:2rem;font-weight:600;color:var(--vert);line-height:1;margin-bottom:4px}
 .stat-label{font-size:0.72rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--gris-moyen);font-weight:400}
-
-/* ── SECTIONS ── */
 .section{padding:80px 24px}
 .s-inner{max-width:860px;margin:0 auto}
 .s-label{font-size:0.7rem;text-transform:uppercase;letter-spacing:3px;color:var(--vert);font-weight:500;margin-bottom:12px}
@@ -125,8 +119,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(247,244,239,
 .cta-title em{color:var(--vert);font-style:italic}
 .cta-desc{font-size:0.95rem;color:var(--gris-moyen);line-height:1.7;margin-bottom:36px;font-weight:300}
 .cta-note{margin-top:16px;font-size:0.78rem;color:var(--gris-clair);display:flex;align-items:center;justify-content:center;gap:4px;flex-wrap:wrap}
-
-/* ── FOOTER ── */
 footer{background:var(--gris-fonce);padding:48px 24px 24px;color:#888}
 .footer-inner{max-width:860px;margin:0 auto}
 .footer-top{display:grid;grid-template-columns:1fr 1fr 1fr;gap:40px;margin-bottom:40px}
@@ -140,13 +132,9 @@ footer{background:var(--gris-fonce);padding:48px 24px 24px;color:#888}
 .footer-bottom{border-top:1px solid #3a3a3a;padding-top:20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:0.75rem;color:#555}
 .footer-bottom a{color:#555;text-decoration:none}
 .footer-bottom a:hover{color:var(--vert-clair)}
-
-/* ── ANIMATIONS ── */
 .fi{opacity:0;transform:translateY(22px);transition:opacity 0.65s ease,transform 0.65s ease}
 .fi.v{opacity:1;transform:translateY(0)}
 .fi.d1{transition-delay:0.1s}.fi.d2{transition-delay:0.2s}.fi.d3{transition-delay:0.3s}.fi.d4{transition-delay:0.4s}
-
-/* ── MOBILE ── */
 @media(max-width:700px){
   nav{padding:0 18px}
   .nav-links{display:none}
@@ -167,28 +155,28 @@ footer{background:var(--gris-fonce);padding:48px 24px 24px;color:#888}
 </head>
 <body>
 
-<!-- NAV — page courante : Accueil -->
+<!-- NAV — page courante : Accueil (logo actif, aucun lien en surbrillance) -->
 <nav id="mainNav">
   <a href="index.html" class="nav-logo">moi <span class="et">&</span> <span class="loi">loi</span></a>
   <ul class="nav-links">
-    <li><a href="compte.html" class="nav-cta">🎙️ Déposer mon témoignage</a></li>
+    <li><a href="compte.html" class="nav-cta">🎙️ Déposer</a></li>
     <li><a href="consulter.html">🔍 Consulter</a></li>
     <li><a href="charte.html">📋 Charte</a></li>
+    <li><a href="tarifs.html">💶 Tarifs</a></li>
     <li><a href="compte.html">👤 Connexion</a></li>
   </ul>
   <button class="nav-burger" onclick="toggleNav()" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
 </nav>
-
 <div class="nav-mobile" id="navMobile">
-  <a href="compte.html" class="nav-cta-mob">🎙️ Déposer mon témoignage</a>
+  <a href="compte.html" class="nav-cta-mob">🎙️ Déposer un témoignage</a>
   <a href="consulter.html">🔍 Consulter les témoignages</a>
   <a href="charte.html">📋 Charte & Règles</a>
+  <a href="tarifs.html">💶 Tarifs</a>
   <a href="compte.html">👤 Connexion / Créer un compte</a>
 </div>
 
-<!-- HERO -->
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-deco"></div>
@@ -211,7 +199,6 @@ footer{background:var(--gris-fonce);padding:48px 24px 24px;color:#888}
   </div>
 </section>
 
-<!-- TÉMOIGNAGES RÉCENTS -->
 <section class="section section-temoins">
   <div class="s-inner">
     <div class="s-label fi">Témoignages récents</div>
@@ -245,7 +232,6 @@ footer{background:var(--gris-fonce);padding:48px 24px 24px;color:#888}
   </div>
 </section>
 
-<!-- COMMENT ÇA MARCHE -->
 <section class="section section-comment">
   <div class="s-inner">
     <div class="s-label fi">Fonctionnement</div>
@@ -274,7 +260,6 @@ footer{background:var(--gris-fonce);padding:48px 24px 24px;color:#888}
   </div>
 </section>
 
-<!-- POURQUOI -->
 <section class="section-pourquoi">
   <div class="pourquoi-inner">
     <div class="pourquoi-left">
@@ -291,7 +276,6 @@ footer{background:var(--gris-fonce);padding:48px 24px 24px;color:#888}
   </div>
 </section>
 
-<!-- CHIFFRES -->
 <section class="section section-chiffres">
   <div class="s-inner" style="text-align:center">
     <div class="s-label fi">En chiffres</div>
@@ -305,7 +289,6 @@ footer{background:var(--gris-fonce);padding:48px 24px 24px;color:#888}
   </div>
 </section>
 
-<!-- CTA FINAL -->
 <section class="section-cta">
   <div class="cta-inner">
     <h2 class="cta-title fi">Votre expérience <em>compte.</em><br>Documenter, c'est agir.</h2>
@@ -315,7 +298,6 @@ footer{background:var(--gris-fonce);padding:48px 24px 24px;color:#888}
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-inner">
     <div class="footer-top">
@@ -327,6 +309,7 @@ footer{background:var(--gris-fonce);padding:48px 24px 24px;color:#888}
         <h4>Plateforme</h4>
         <a href="compte.html">🎙️ Déposer un témoignage</a>
         <a href="consulter.html">🔍 Consulter la base</a>
+        <a href="tarifs.html">💶 Tarifs</a>
         <a href="compte.html">👤 Mon espace</a>
       </div>
       <div class="footer-col">
