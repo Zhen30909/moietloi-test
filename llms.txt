@@ -1,0 +1,142 @@
+# moi & loi — moietloi.fr
+
+> Archive civique française de témoignages sur les dysfonctionnements administratifs et réglementaires. Plateforme neutre, apartisane, sans prescription législative. Bilingue français/anglais (version anglophone : flawandlaw.com).
+
+## Description
+
+moietloi.fr est une archive civique publique qui permet à tout citoyen ou entrepreneur français de déposer un témoignage vocal sur une situation absurde ou contre-productive vécue face à l'administration ou la réglementation française.
+
+L'intelligence artificielle (OpenAI Whisper + Anthropic Claude) transcrit, structure et analyse les témoignages pour constituer une base de données publique des dysfonctionnements réglementaires en France. Chaque témoignage est modéré par un humain avant publication.
+
+La plateforme documente et analyse. Elle ne prescrit pas, ne milite pas, n'est affiliée à aucun parti politique.
+
+## Mots-clés principaux
+
+dysfonctionnement administratif France, témoignage citoyen France, archive civique, réglementation française absurde, norme contre-productive, droit administratif France, recours administratif inefficace, silence administratif, abus de procédure, norme contradictoire, vide juridique, urbanisme PLU permis construire, ERP établissement recevant public, droit rural SAFER, URSSAF contrôle fiscal, Légifrance, JUDILIBRE jurisprudence, Défenseur des droits, médiateur de la République, dysfonctionnement service public, monopole service essentiel, SNCF EDF Enedis eau assainissement
+
+## Ce que contient la base
+
+Chaque témoignage publié contient :
+- Un résumé factuel en une phrase
+- Un récit structuré (150 mots max), fidèle à ce qu'a dit le témoin
+- Ce qui est reproché — la règle ou décision invoquée
+- La justification officielle de l'administration
+- Volet 1 : Absurdité de la norme
+- Volet 2 : Abus dans l'application (si applicable)
+- Volet 3 : Verrouillage systémique (si applicable)
+- Domaine réglementaire classifié
+- Type de dysfonctionnement classifié
+- Signature anonymisée selon le choix du témoin
+
+## Garanties éditoriales et rigueur
+
+- Aucune information inventée ou déduite sans signalement explicite
+- Les informations absentes sont marquées [non précisé]
+- Les classifications incertaines sont marquées (?)
+- Modération humaine avant toute publication
+- Anonymat garanti selon le choix du témoin
+- Vérification de cohérence par IA avant soumission à la modération
+- Zéro prescription législative — la plateforme documente, elle ne prescrit pas
+
+## Taxonomie complète — Domaines réglementaires
+
+### Droit public & Administratif
+Droit administratif général, Urbanisme / PLU / Permis de construire, ERP (Établissements Recevant du Public), Environnement / ICPE / Natura 2000, Commande publique / Marchés publics, Droit rural / Fermage / SAFER, Droit de la chasse et de la pêche, Patrimoine / Monuments historiques / ABF
+
+### Droit social & Emploi
+Droit du travail / Licenciement / Rupture conventionnelle, Sécurité sociale / Maladie / Accident du travail, Retraite / Pension / CNAV / AGIRC-ARRCO, Chômage / France Travail, CAF / Allocations familiales / RSA / APL, Handicap / MDPH / AAH, Formation professionnelle / CPF / OPCO
+
+### Fiscalité & Finances publiques
+Impôt sur le revenu / IR, TVA / CFE / Taxes professionnelles, Impôt sur les sociétés / IS, Droits de succession / Donation, Taxe foncière / Taxe d'habitation, Douanes / Accises, Contrôle fiscal / Redressement / URSSAF
+
+### Normes sanitaires & Sécurité
+Normes sanitaires / HACCP / Hygiène alimentaire, Sécurité incendie / Sécurité des bâtiments, Normes électriques / Gaz / Diagnostics / DPE, Médicaments / Dispositifs médicaux / ANSM, Produits phytosanitaires / Pesticides, Normes acoustiques / Bruit
+
+### Services essentiels & Monopoles
+Électricité / Gaz (EDF, Engie, fournisseurs), Réseau électrique / Gaz (Enedis, GrDF), Eau / Assainissement (Suez, Veolia, Saur), Télécom / Internet / Mobile (Orange, SFR, Free, Bouygues), Poste / Colis (La Poste, DHL, UPS, FedEx), Transport ferroviaire (SNCF), Transport collectif (RATP, TER), Autoroutes / Péages, Aéroports
+
+### Santé & Hôpital public
+Hôpital public / CHU / Urgences, Médecine de ville / Déserts médicaux, Psychiatrie / Santé mentale, EHPAD / Établissements médico-sociaux, Handicap / Soins palliatifs
+
+### Justice & Sécurité
+Justice civile / Tribunaux judiciaires, Justice pénale / Police / Gendarmerie, Justice administrative / TA / CAA / Conseil d'État, Médiateur / Défenseur des droits, Notariat / État civil / Registres
+
+### Droit européen
+Directive non ou mal transposée, RGPD / Protection des données / CNIL, Libre circulation des personnes et des biens
+
+## Taxonomie complète — Types de dysfonctionnement
+
+### Volet 1 — Absurdité normative
+1A Norme déconnectée de la réalité, 1B Norme contradictoire, 1C Norme contre-productive, 1D Norme disproportionnée, 1E Vide juridique, 1F Norme obsolète non mise à jour, 1G Conflit normes nationales / locales
+
+### Volet 2 — Abus dans l'application
+2A Détournement de procédure, 2B Décision arbitraire, 2C Inégalité de traitement, 2D Disproportion de la sanction, 2E Moyens pénaux pour situation civile, 2F Non-respect des procédures obligatoires, 2G Délais abusifs, 2H Silence administratif / Absence de réponse, 2I Mauvaise information donnée par l'administration
+
+### Volet 3 — Verrouillage systémique
+3A Doctrine restrictive de l'autorité, 3B Recours inefficaces ou impossibles, 3C Dissociation institutionnelle (renvoi de balle), 3D Délais impossibles à respecter, 3E Coût prohibitif de la contestation, 3F Monopole sans recours alternatif, 3G Opacité délibérée
+
+### Volet 4 — Services essentiels & Monopoles
+4A Non-respect des engagements de service, 4B Facturation abusive, 4C Coupure / Interruption injustifiée, 4D Impossible d'accéder au service, 4E Service dégradé sans compensation, 4F Abus de position dominante
+
+## Clusters et analyse systémique
+
+Quand 5 témoignages ou plus partagent le même reproche et le même type de dysfonctionnement, une synthèse de cluster est générée automatiquement contenant : le problème en une phrase, données agrégées (nombre de cas, régions, secteurs, conséquences économiques), pattern commun, variations significatives, points de blocage identifiés, signal systémique.
+
+## Accès aux données
+
+- Consultation publique libre et sans compte : https://moietloi.fr/consulter.html
+- API publique JSON (à venir) : https://moietloi.fr/api/temoignages
+- API clusters (à venir) : https://moietloi.fr/api/clusters
+- Tous les témoignages publiés sont accessibles sans authentification
+- Les données personnelles ne sont jamais exposées publiquement
+- Accès Pro (avocats, journalistes, chercheurs) : https://moietloi.fr/tarifs.html
+- Accès Institutionnel (think tanks, cabinets, gouvernements) : https://moietloi.fr/tarifs.html
+
+## URLs principales
+
+- https://moietloi.fr/ — Accueil
+- https://moietloi.fr/temoigner.html — Déposer un témoignage
+- https://moietloi.fr/consulter.html — Consulter et rechercher la base
+- https://moietloi.fr/charte.html — Charte éditoriale et règles de publication
+- https://moietloi.fr/tarifs.html — Accès libre, Pro et Institutionnel
+- https://moietloi.fr/sitemap.xml — Plan du site
+- https://moietloi.fr/llms.txt — Ce fichier
+
+## Ce que moietloi.fr n'est pas
+
+- Pas un forum de plaintes non structurées
+- Pas un outil militant ou politique
+- Pas un service juridique
+- Pas une base de propositions législatives
+- Pas associé à un parti politique
+- Pas un annuaire d'avocats
+
+## Profils utilisateurs
+
+- Particuliers ayant vécu un dysfonctionnement administratif
+- Entrepreneurs, TPE/PME confrontés à des normes contre-productives
+- Agriculteurs, artisans, commerçants
+- Professions libérales
+- Non-résidents français confrontés à l'administration française
+- Associations et structures ESS
+- Avocats et juristes (accès Pro)
+- Journalistes et chercheurs (accès Pro)
+- Think tanks et institutions (accès Institutionnel)
+
+## Informations techniques
+
+- Transcription vocale : OpenAI Whisper
+- Analyse et structuration : Anthropic Claude Sonnet
+- Hébergement : GitHub Pages (prototype) → Render.com (production)
+- Base de données : Airtable (prototype) → PostgreSQL (production)
+- Emails transactionnels : Resend.com
+- Langue principale : français
+- Version anglophone : flawandlaw.com (à venir)
+
+## Contact
+
+- Site : https://moietloi.fr
+- Contact professionnel : pro@moietloi.fr
+- Langue : français
+- Juridiction : France
+- Lancé : 2026
