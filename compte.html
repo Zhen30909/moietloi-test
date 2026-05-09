@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -25,8 +24,20 @@ nav{background:rgba(247,244,239,0.96);backdrop-filter:blur(10px);border-bottom:1
 .nav-logo{font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--gris-fonce);text-decoration:none;letter-spacing:-0.3px}
 .nav-logo .et{color:var(--peche);font-style:italic}
 .nav-logo .loi{color:var(--vert)}
-.nav-back{font-size:0.85rem;color:var(--gris-moyen);text-decoration:none;display:flex;align-items:center;gap:6px;transition:color 0.2s}
-.nav-back:hover{color:var(--vert)}
+.nav-links{display:flex;gap:4px;align-items:center}
+.nav-links a{font-size:0.85rem;color:var(--gris-moyen);text-decoration:none;padding:7px 12px;border-radius:6px;transition:all 0.2s}
+.nav-links a:hover{color:var(--vert);background:var(--vert-pale)}
+.nav-links a.active{color:var(--vert);font-weight:600;background:var(--vert-pale);pointer-events:none}
+.nav-cta{background:var(--vert)!important;color:white!important;font-weight:500!important}
+.nav-cta:hover{background:#4a6050!important}
+.nav-burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+.nav-burger span{display:block;width:22px;height:2px;background:var(--gris-fonce);border-radius:2px}
+.nav-mob{display:none;position:fixed;top:58px;left:0;right:0;background:var(--blanc);border-bottom:1px solid var(--beige);padding:16px 24px 20px;z-index:190;flex-direction:column;gap:4px;box-shadow:0 8px 24px rgba(0,0,0,0.07)}
+.nav-mob.open{display:flex}
+.nav-mob a{font-size:0.95rem;color:var(--gris-fonce);text-decoration:none;padding:10px 12px;border-radius:8px}
+.nav-mob a:hover{background:var(--fond)}
+.nav-mob a.active{color:var(--vert);font-weight:600;background:var(--vert-pale)}
+.nav-cta-mob{background:var(--vert);color:white!important;font-weight:500;margin-bottom:4px}
 
 /* CONTAINER */
 .container{max-width:520px;margin:0 auto;padding:40px 24px}
@@ -41,8 +52,6 @@ nav{background:rgba(247,244,239,0.96);backdrop-filter:blur(10px);border-bottom:1
 .card{background:var(--blanc);border-radius:12px;padding:28px;border:1px solid #e8e2d8;box-shadow:0 2px 8px rgba(0,0,0,0.04);margin-bottom:16px}
 .card-title{font-family:'Playfair Display',serif;font-size:1rem;color:var(--gris-fonce);margin-bottom:20px;display:flex;align-items:center;gap:10px}
 .card-num{width:26px;height:26px;border-radius:50%;background:var(--vert);color:white;font-size:0.78rem;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.card-num.opt{background:var(--beige-clair);color:var(--gris-moyen)}
-.card-opt-label{font-size:0.75rem;color:var(--gris-clair);font-style:italic;margin-left:auto}
 
 /* FORM */
 .field{margin-bottom:18px}
@@ -51,16 +60,16 @@ label{display:block;font-size:0.78rem;color:var(--gris-moyen);margin-bottom:6px;
 input[type=email],input[type=password],input[type=text],select{width:100%;padding:12px 16px;border:1.5px solid #ddd8d0;border-radius:8px;font-size:0.95rem;font-family:'Source Sans 3',sans-serif;background:var(--fond);color:var(--gris-fonce);transition:border-color 0.2s;-webkit-appearance:none;appearance:none}
 input:focus,select:focus{outline:none;border-color:var(--vert);background:white}
 select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b6b6b' d='M6 8L1 3h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
+/* datalist input — même style que les autres inputs */
+input[list]{width:100%;padding:12px 16px;border:1.5px solid #ddd8d0;border-radius:8px;font-size:0.95rem;font-family:'Source Sans 3',sans-serif;background:var(--fond);color:var(--gris-fonce);transition:border-color 0.2s;-webkit-appearance:none}
+input[list]:focus{outline:none;border-color:var(--vert);background:white}
 .hint{font-size:0.78rem;color:var(--gris-moyen);margin-top:5px;font-style:italic}
-.field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 
-/* PASSWORD TOGGLE */
+/* PASSWORD */
 .pw-wrap{position:relative}
 .pw-wrap input{padding-right:44px}
 .pw-eye{position:absolute;right:14px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:var(--gris-clair);font-size:1rem;padding:0;transition:color 0.2s}
 .pw-eye:hover{color:var(--vert)}
-
-/* PASSWORD STRENGTH */
 .pw-strength{margin-top:8px;display:flex;gap:4px}
 .pw-bar{flex:1;height:3px;border-radius:2px;background:#e8e2d8;transition:background 0.3s}
 .pw-bar.weak{background:var(--rouge)}
@@ -68,19 +77,15 @@ select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/
 .pw-bar.strong{background:var(--vert)}
 .pw-strength-label{font-size:0.72rem;color:var(--gris-clair);margin-top:4px}
 
-/* DIVIDER */
-.divider{display:flex;align-items:center;gap:12px;margin:8px 0 20px;color:var(--gris-clair);font-size:0.78rem}
-.divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--beige)}
-
-/* OPTIONAL BADGE */
-.optional-badge{display:inline-flex;align-items:center;gap:6px;background:var(--beige-clair);color:var(--gris-moyen);font-size:0.72rem;padding:4px 10px;border-radius:12px;font-weight:500;margin-bottom:16px}
-
-/* RADIO GROUP */
+/* RADIO */
 .radio-group{display:flex;flex-wrap:wrap;gap:8px;margin-top:2px}
 .radio-btn{display:flex;align-items:center}
 .radio-btn input[type=radio]{display:none}
 .radio-btn label{padding:7px 14px;border:1.5px solid #ddd8d0;border-radius:20px;font-size:0.82rem;color:var(--gris-moyen);cursor:pointer;transition:all 0.2s;text-transform:none;letter-spacing:0;font-weight:400;margin:0}
 .radio-btn input:checked+label{border-color:var(--vert);background:var(--vert-pale);color:var(--vert);font-weight:500}
+
+/* NOTE OBLIGATOIRE */
+.required-note{font-size:0.78rem;color:var(--gris-moyen);margin-bottom:20px;padding:10px 14px;background:var(--vert-pale);border-radius:8px;border-left:3px solid var(--vert)}
 
 /* CGU */
 .cgu-box{display:flex;align-items:flex-start;gap:10px;padding:14px 16px;background:var(--fond);border-radius:8px;border:1.5px solid #ddd8d0;margin-bottom:20px;transition:border-color 0.2s}
@@ -89,12 +94,10 @@ select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/
 .cgu-box span{font-size:0.85rem;color:var(--gris-fonce);line-height:1.55}
 .cgu-box a{color:var(--vert);text-decoration:underline}
 
-/* BUTTONS */
+/* BOUTONS */
 .btn-p{width:100%;padding:14px;background:var(--vert);color:white;border:none;border-radius:8px;font-size:1rem;font-family:'Source Sans 3',sans-serif;font-weight:500;cursor:pointer;transition:all 0.2s;margin-top:4px}
 .btn-p:hover{background:#4a6050;transform:translateY(-1px)}
 .btn-p:disabled{background:#b0c0b8;cursor:not-allowed;transform:none}
-
-/* CONNEXION LINK */
 .connexion-link{text-align:center;margin-top:20px;font-size:0.88rem;color:var(--gris-moyen)}
 .connexion-link a{color:var(--vert);text-decoration:none;font-weight:500}
 .connexion-link a:hover{text-decoration:underline}
@@ -112,19 +115,13 @@ select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/
 .btn-skip{display:block;margin-top:14px;font-size:0.85rem;color:var(--gris-moyen);text-decoration:none;transition:color 0.2s}
 .btn-skip:hover{color:var(--vert)}
 
-/* SECURITY NOTE */
+/* SECURITY */
 .security-note{display:flex;align-items:flex-start;gap:8px;background:#f0f4f0;border:1px solid var(--vert-clair);border-radius:8px;padding:10px 14px;font-size:0.78rem;color:var(--vert);line-height:1.55;margin-bottom:20px}
 
 /* ERROR */
 .err-box{display:none;background:#fdf0ef;border:1px solid #e8b0ad;border-radius:8px;padding:12px 16px;font-size:0.85rem;color:var(--rouge);margin-top:12px}
 
-@media(max-width:480px){
-  .container{padding:28px 16px}
-  .field-row{grid-template-columns:1fr}
-  nav{padding:0 18px}
-}
-
-/* TOGGLE SWITCH */
+/* CONTACT OPT-IN */
 .toggle{position:relative;display:inline-block;width:44px;height:24px;flex-shrink:0}
 .toggle input{opacity:0;width:0;height:0}
 .toggle-slider{position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;background:#ddd8d0;border-radius:24px;transition:0.3s}
@@ -132,23 +129,35 @@ select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/
 .toggle input:checked+.toggle-slider{background:var(--vert)}
 .toggle input:checked+.toggle-slider::before{transform:translateX(20px)}
 
-/* NOTIF LIST */
-.notif-list{display:flex;flex-direction:column;gap:0}
-.notif-item{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid var(--beige-clair)}
-.notif-item:last-child{border-bottom:none}
-.notif-txt{flex:1}
-.notif-label{font-size:0.88rem;font-weight:500;color:var(--gris-fonce);margin-bottom:3px}
-.notif-desc{font-size:0.78rem;color:var(--gris-moyen);line-height:1.55}
-
+@media(max-width:600px){
+  nav{padding:0 18px}.nav-links{display:none}.nav-burger{display:flex}
+  .container{padding:28px 16px}
+}
 </style>
 </head>
 <body>
 
-<!-- NAV -->
+<!-- NAV — page courante : 👤 Connexion -->
 <nav>
   <a href="index.html" class="nav-logo">moi <span class="et">&</span> <span class="loi">loi</span></a>
-  <a href="index.html" class="nav-back">← Retour à l'accueil</a>
+  <div class="nav-links">
+    <a href="compte.html" class="nav-cta">🎙️ Déposer</a>
+    <a href="consulter.html">🔍 Consulter</a>
+    <a href="charte.html">📋 Charte</a>
+    <a href="tarifs.html">💶 Tarifs</a>
+    <a href="compte.html" class="active">👤 Connexion</a>
+  </div>
+  <button class="nav-burger" onclick="document.getElementById('nm').classList.toggle('open')" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+<div class="nav-mob" id="nm">
+  <a href="compte.html" class="nav-cta-mob">🎙️ Déposer un témoignage</a>
+  <a href="consulter.html">🔍 Consulter les témoignages</a>
+  <a href="charte.html">📋 Charte & Règles</a>
+  <a href="tarifs.html">💶 Tarifs</a>
+  <a href="compte.html" class="active">👤 Connexion / Créer un compte</a>
+</div>
 
 <!-- FORMULAIRE -->
 <div class="container" id="formZone">
@@ -156,10 +165,14 @@ select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/
   <div class="page-header">
     <div class="page-eyebrow">Étape préalable</div>
     <h1 class="page-title">Créez votre compte</h1>
-    <p class="page-desc">En 30 secondes. Nécessaire pour sauvegarder votre témoignage, être notifié de sa publication et suivre les témoignages similaires.</p>
+    <p class="page-desc">En deux minutes. Ces informations permettent de donner une voix statistique à votre témoignage et de révéler des patterns collectifs.</p>
   </div>
 
-  <!-- OBLIGATOIRE -->
+  <div class="required-note">
+    Tous les champs sont obligatoires. Ils restent strictement confidentiels — jamais publiés individuellement, utilisés uniquement pour l'analyse statistique agrégée.
+  </div>
+
+  <!-- CARTE 1 — COMPTE -->
   <div class="card">
     <div class="card-title">
       <span class="card-num">1</span>
@@ -188,24 +201,19 @@ select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/
     <div class="field">
       <label>Pseudonyme <span class="req">*</span></label>
       <input type="text" id="pseudo" placeholder="Comment apparaître sur la plateforme" autocomplete="off" oninput="checkForm()">
-      <div class="hint">Visible publiquement si vous le souhaitez — peut être modifié à tout moment.</div>
+      <div class="hint">Visible publiquement si vous le souhaitez — modifiable à tout moment.</div>
     </div>
   </div>
 
-  <!-- OPTIONNEL -->
+  <!-- CARTE 2 — PROFIL -->
   <div class="card">
     <div class="card-title">
-      <span class="card-num opt">2</span>
-      Profil sociologique
-      <span class="card-opt-label">optionnel</span>
-    </div>
-
-    <div class="optional-badge">
-      Ces informations enrichissent l'analyse collective — jamais publiées individuellement
+      <span class="card-num">2</span>
+      Votre profil
     </div>
 
     <div class="field">
-      <label>Tranche d'âge</label>
+      <label>Tranche d'âge <span class="req">*</span></label>
       <select id="age" onchange="checkForm()">
         <option value="">— Sélectionner —</option>
         <option>Moins de 25 ans</option>
@@ -218,324 +226,181 @@ select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/
     </div>
 
     <div class="field">
-      <label>Sexe</label>
+      <label>Sexe <span class="req">*</span></label>
       <div class="radio-group">
-        <div class="radio-btn"><input type="radio" name="sexe" id="s1" value="Femme"><label for="s1">Femme</label></div>
-        <div class="radio-btn"><input type="radio" name="sexe" id="s2" value="Homme"><label for="s2">Homme</label></div>
-        <div class="radio-btn"><input type="radio" name="sexe" id="s3" value="Autre"><label for="s3">Autre</label></div>
-        <div class="radio-btn"><input type="radio" name="sexe" id="s4" value="Non précisé"><label for="s4">Préfère ne pas préciser</label></div>
+        <div class="radio-btn"><input type="radio" name="sexe" id="s1" value="Femme" onchange="checkForm()"><label for="s1">Femme</label></div>
+        <div class="radio-btn"><input type="radio" name="sexe" id="s2" value="Homme" onchange="checkForm()"><label for="s2">Homme</label></div>
+        <div class="radio-btn"><input type="radio" name="sexe" id="s3" value="Autre" onchange="checkForm()"><label for="s3">Autre</label></div>
+        <div class="radio-btn"><input type="radio" name="sexe" id="s4" value="Non précisé" onchange="checkForm()"><label for="s4">Préfère ne pas préciser</label></div>
       </div>
     </div>
 
     <div class="field">
-      <label>Type de territoire</label>
+      <label>Type de territoire <span class="req">*</span></label>
       <div class="radio-group">
-        <div class="radio-btn"><input type="radio" name="territoire" id="t1" value="Rural"><label for="t1">Rural</label></div>
-        <div class="radio-btn"><input type="radio" name="territoire" id="t2" value="Périurbain"><label for="t2">Périurbain</label></div>
-        <div class="radio-btn"><input type="radio" name="territoire" id="t3" value="Urbain"><label for="t3">Urbain</label></div>
-        <div class="radio-btn"><input type="radio" name="territoire" id="t4" value="Littoral/Montagne"><label for="t4">Littoral / Montagne</label></div>
+        <div class="radio-btn"><input type="radio" name="territoire" id="t1" value="Rural" onchange="checkForm()"><label for="t1">Rural</label></div>
+        <div class="radio-btn"><input type="radio" name="territoire" id="t2" value="Périurbain" onchange="checkForm()"><label for="t2">Périurbain</label></div>
+        <div class="radio-btn"><input type="radio" name="territoire" id="t3" value="Urbain" onchange="checkForm()"><label for="t3">Urbain</label></div>
+        <div class="radio-btn"><input type="radio" name="territoire" id="t4" value="Littoral/Montagne" onchange="checkForm()"><label for="t4">Littoral / Montagne</label></div>
       </div>
     </div>
 
     <div class="field">
-      <label>Département ou région</label>
-      <select id="region">
-        <option value="">— Sélectionner —</option>
-        <option value="01">01 — Ain</option>
-        <option value="02">02 — Aisne</option>
-        <option value="03">03 — Allier</option>
-        <option value="04">04 — Alpes-de-Haute-Provence</option>
-        <option value="05">05 — Hautes-Alpes</option>
-        <option value="06">06 — Alpes-Maritimes</option>
-        <option value="07">07 — Ardèche</option>
-        <option value="08">08 — Ardennes</option>
-        <option value="09">09 — Ariège</option>
-        <option value="10">10 — Aube</option>
-        <option value="11">11 — Aude</option>
-        <option value="12">12 — Aveyron</option>
-        <option value="13">13 — Bouches-du-Rhône</option>
-        <option value="14">14 — Calvados</option>
-        <option value="15">15 — Cantal</option>
-        <option value="16">16 — Charente</option>
-        <option value="17">17 — Charente-Maritime</option>
-        <option value="18">18 — Cher</option>
-        <option value="19">19 — Corrèze</option>
-        <option value="2A">2A — Corse-du-Sud</option>
-        <option value="2B">2B — Haute-Corse</option>
-        <option value="21">21 — Côte-d'Or</option>
-        <option value="22">22 — Côtes-d'Armor</option>
-        <option value="23">23 — Creuse</option>
-        <option value="24">24 — Dordogne</option>
-        <option value="25">25 — Doubs</option>
-        <option value="26">26 — Drôme</option>
-        <option value="27">27 — Eure</option>
-        <option value="28">28 — Eure-et-Loir</option>
-        <option value="29">29 — Finistère</option>
-        <option value="30">30 — Gard</option>
-        <option value="31">31 — Haute-Garonne</option>
-        <option value="32">32 — Gers</option>
-        <option value="33">33 — Gironde</option>
-        <option value="34">34 — Hérault</option>
-        <option value="35">35 — Ille-et-Vilaine</option>
-        <option value="36">36 — Indre</option>
-        <option value="37">37 — Indre-et-Loire</option>
-        <option value="38">38 — Isère</option>
-        <option value="39">39 — Jura</option>
-        <option value="40">40 — Landes</option>
-        <option value="41">41 — Loir-et-Cher</option>
-        <option value="42">42 — Loire</option>
-        <option value="43">43 — Haute-Loire</option>
-        <option value="44">44 — Loire-Atlantique</option>
-        <option value="45">45 — Loiret</option>
-        <option value="46">46 — Lot</option>
-        <option value="47">47 — Lot-et-Garonne</option>
-        <option value="48">48 — Lozère</option>
-        <option value="49">49 — Maine-et-Loire</option>
-        <option value="50">50 — Manche</option>
-        <option value="51">51 — Marne</option>
-        <option value="52">52 — Haute-Marne</option>
-        <option value="53">53 — Mayenne</option>
-        <option value="54">54 — Meurthe-et-Moselle</option>
-        <option value="55">55 — Meuse</option>
-        <option value="56">56 — Morbihan</option>
-        <option value="57">57 — Moselle</option>
-        <option value="58">58 — Nièvre</option>
-        <option value="59">59 — Nord</option>
-        <option value="60">60 — Oise</option>
-        <option value="61">61 — Orne</option>
-        <option value="62">62 — Pas-de-Calais</option>
-        <option value="63">63 — Puy-de-Dôme</option>
-        <option value="64">64 — Pyrénées-Atlantiques</option>
-        <option value="65">65 — Hautes-Pyrénées</option>
-        <option value="66">66 — Pyrénées-Orientales</option>
-        <option value="67">67 — Bas-Rhin</option>
-        <option value="68">68 — Haut-Rhin</option>
-        <option value="69">69 — Rhône</option>
-        <option value="70">70 — Haute-Saône</option>
-        <option value="71">71 — Saône-et-Loire</option>
-        <option value="72">72 — Sarthe</option>
-        <option value="73">73 — Savoie</option>
-        <option value="74">74 — Haute-Savoie</option>
-        <option value="75">75 — Paris</option>
-        <option value="76">76 — Seine-Maritime</option>
-        <option value="77">77 — Seine-et-Marne</option>
-        <option value="78">78 — Yvelines</option>
-        <option value="79">79 — Deux-Sèvres</option>
-        <option value="80">80 — Somme</option>
-        <option value="81">81 — Tarn</option>
-        <option value="82">82 — Tarn-et-Garonne</option>
-        <option value="83">83 — Var</option>
-        <option value="84">84 — Vaucluse</option>
-        <option value="85">85 — Vendée</option>
-        <option value="86">86 — Vienne</option>
-        <option value="87">87 — Haute-Vienne</option>
-        <option value="88">88 — Vosges</option>
-        <option value="89">89 — Yonne</option>
-        <option value="90">90 — Territoire de Belfort</option>
-        <option value="91">91 — Essonne</option>
-        <option value="92">92 — Hauts-de-Seine</option>
-        <option value="93">93 — Seine-Saint-Denis</option>
-        <option value="94">94 — Val-de-Marne</option>
-        <option value="95">95 — Val-d'Oise</option>
-        <option value="971">971 — Guadeloupe</option>
-        <option value="972">972 — Martinique</option>
-        <option value="973">973 — Guyane</option>
-        <option value="974">974 — La Réunion</option>
-        <option value="976">976 — Mayotte</option>
-        <option value="Étranger">Étranger / Non-résident</option>
-      </select>
+      <label>Département ou région <span class="req">*</span></label>
+      <input type="text" id="region" list="listRegions" placeholder="Tapez ou sélectionnez…" oninput="checkForm()">
+      <datalist id="listRegions">
+        <option value="01 — Ain"><option value="02 — Aisne"><option value="03 — Allier">
+        <option value="04 — Alpes-de-Haute-Provence"><option value="05 — Hautes-Alpes">
+        <option value="06 — Alpes-Maritimes"><option value="07 — Ardèche"><option value="08 — Ardennes">
+        <option value="09 — Ariège"><option value="10 — Aube"><option value="11 — Aude">
+        <option value="12 — Aveyron"><option value="13 — Bouches-du-Rhône"><option value="14 — Calvados">
+        <option value="15 — Cantal"><option value="16 — Charente"><option value="17 — Charente-Maritime">
+        <option value="18 — Cher"><option value="19 — Corrèze"><option value="2A — Corse-du-Sud">
+        <option value="2B — Haute-Corse"><option value="21 — Côte-d'Or"><option value="22 — Côtes-d'Armor">
+        <option value="23 — Creuse"><option value="24 — Dordogne"><option value="25 — Doubs">
+        <option value="26 — Drôme"><option value="27 — Eure"><option value="28 — Eure-et-Loir">
+        <option value="29 — Finistère"><option value="30 — Gard"><option value="31 — Haute-Garonne">
+        <option value="32 — Gers"><option value="33 — Gironde"><option value="34 — Hérault">
+        <option value="35 — Ille-et-Vilaine"><option value="36 — Indre"><option value="37 — Indre-et-Loire">
+        <option value="38 — Isère"><option value="39 — Jura"><option value="40 — Landes">
+        <option value="41 — Loir-et-Cher"><option value="42 — Loire"><option value="43 — Haute-Loire">
+        <option value="44 — Loire-Atlantique"><option value="45 — Loiret"><option value="46 — Lot">
+        <option value="47 — Lot-et-Garonne"><option value="48 — Lozère"><option value="49 — Maine-et-Loire">
+        <option value="50 — Manche"><option value="51 — Marne"><option value="52 — Haute-Marne">
+        <option value="53 — Mayenne"><option value="54 — Meurthe-et-Moselle"><option value="55 — Meuse">
+        <option value="56 — Morbihan"><option value="57 — Moselle"><option value="58 — Nièvre">
+        <option value="59 — Nord"><option value="60 — Oise"><option value="61 — Orne">
+        <option value="62 — Pas-de-Calais"><option value="63 — Puy-de-Dôme">
+        <option value="64 — Pyrénées-Atlantiques"><option value="65 — Hautes-Pyrénées">
+        <option value="66 — Pyrénées-Orientales"><option value="67 — Bas-Rhin"><option value="68 — Haut-Rhin">
+        <option value="69 — Rhône"><option value="70 — Haute-Saône"><option value="71 — Saône-et-Loire">
+        <option value="72 — Sarthe"><option value="73 — Savoie"><option value="74 — Haute-Savoie">
+        <option value="75 — Paris"><option value="76 — Seine-Maritime"><option value="77 — Seine-et-Marne">
+        <option value="78 — Yvelines"><option value="79 — Deux-Sèvres"><option value="80 — Somme">
+        <option value="81 — Tarn"><option value="82 — Tarn-et-Garonne"><option value="83 — Var">
+        <option value="84 — Vaucluse"><option value="85 — Vendée"><option value="86 — Vienne">
+        <option value="87 — Haute-Vienne"><option value="88 — Vosges"><option value="89 — Yonne">
+        <option value="90 — Territoire de Belfort"><option value="91 — Essonne">
+        <option value="92 — Hauts-de-Seine"><option value="93 — Seine-Saint-Denis">
+        <option value="94 — Val-de-Marne"><option value="95 — Val-d'Oise">
+        <option value="971 — Guadeloupe"><option value="972 — Martinique"><option value="973 — Guyane">
+        <option value="974 — La Réunion"><option value="976 — Mayotte">
+        <option value="Étranger / Non-résident">
+      </datalist>
+      <div class="hint">Tapez les premiers chiffres ou lettres pour filtrer</div>
     </div>
 
     <div class="field">
-      <label>Secteur d'activité</label>
-      <select id="secteur">
-        <option value="">— Sélectionner —</option>
-        <optgroup label="Agriculture &amp; Rural">
-          <option>Agriculture / Élevage / Viticulture</option>
-          <option>Sylviculture / Exploitation forestière</option>
-          <option>Pêche / Aquaculture</option>
-          <option>Agritourisme / Hébergement rural / Gîtes</option>
-          <option>Activité événementielle en zone rurale</option>
-          <option>Artisanat agricole / Transformation à la ferme</option>
-        </optgroup>
-        <optgroup label="Alimentation &amp; Restauration">
-          <option>Restaurant / Café / Bar / Brasserie</option>
-          <option>Restauration rapide / Traiteur / Cuisine de rue</option>
-          <option>Artisanat alimentaire / Boulangerie / Pâtisserie / Fromagerie</option>
-          <option>Commerce alimentaire de proximité / Épicerie</option>
-          <option>Production agroalimentaire / IAA</option>
-          <option>Marché / Vente directe producteur</option>
-        </optgroup>
-        <optgroup label="Hébergement &amp; Tourisme">
-          <option>Hôtel / Résidence hôtelière</option>
-          <option>Chambre d'hôtes / B&amp;B</option>
-          <option>Camping / Parc résidentiel de loisirs</option>
-          <option>Location saisonnière / Meublé de tourisme / Airbnb</option>
-          <option>Village vacances / Centre de loisirs</option>
-          <option>Agence de voyage / Tour-opérateur</option>
-          <option>Tourisme fluvial / Nautique</option>
-        </optgroup>
-        <optgroup label="Commerce &amp; Distribution">
-          <option>Commerce de détail alimentaire</option>
-          <option>Commerce de détail non-alimentaire</option>
-          <option>Grande distribution / Supermarché / Hypermarché</option>
-          <option>E-commerce / Vente en ligne / Marketplace</option>
-          <option>Commerce de gros / Négoce</option>
-          <option>Franchise / Commerce organisé</option>
-          <option>Vente à distance / Téléachat</option>
-        </optgroup>
-        <optgroup label="BTP &amp; Immobilier">
-          <option>Maçonnerie / Gros œuvre / Terrassement</option>
-          <option>Couverture / Charpente / Étanchéité</option>
-          <option>Électricité / Plomberie / CVC / Climatisation</option>
-          <option>Menuiserie / Serrurerie / Vitrerie</option>
-          <option>Peinture / Revêtements / Décoration intérieure</option>
-          <option>Promotion immobilière / Lotissement</option>
-          <option>Agence immobilière / Transaction</option>
-          <option>Architecture / Maîtrise d'œuvre / Bureau d'études</option>
-          <option>Propriétaire bailleur / Gestion locative</option>
-          <option>Syndic de copropriété / Administrateur de biens</option>
-          <option>Géomètre / Topographe</option>
-        </optgroup>
-        <optgroup label="Industrie &amp; Production">
-          <option>Industrie manufacturière générale</option>
-          <option>Industrie chimique / Pharmaceutique / Cosmétique</option>
-          <option>Énergie / Pétrole / Gaz / Énergies renouvelables</option>
-          <option>Métallurgie / Sidérurgie / Fonderie</option>
-          <option>Industrie du bois / Papier / Carton</option>
-          <option>Textile / Habillement / Maroquinerie</option>
-          <option>Imprimerie / Édition / Reprographie</option>
-          <option>Plastiques / Caoutchouc / Composites</option>
-          <option>Mécanique / Équipements industriels</option>
-          <option>Électronique / Électrotechnique</option>
-          <option>Recyclage / Traitement des déchets / Économie circulaire</option>
-        </optgroup>
-        <optgroup label="Transport &amp; Logistique">
-          <option>Transport routier de marchandises / Déménagement</option>
-          <option>Transport de personnes / VTC / Taxi / Car</option>
-          <option>Logistique / Entreposage / Supply chain</option>
-          <option>Transport aérien / Compagnie aérienne</option>
-          <option>Transport maritime / Fluvial / Ports</option>
-          <option>Coursier / Livraison du dernier kilomètre</option>
-          <option>Location de véhicules</option>
-          <option>Réparation automobile / Garage / Contrôle technique</option>
-        </optgroup>
-        <optgroup label="Services essentiels &amp; Monopoles">
-          <option>Électricité / Gaz (EDF, Engie, fournisseurs alternatifs)</option>
-          <option>Réseau électrique / Gaz (Enedis, GrDF)</option>
-          <option>Eau / Assainissement (Suez, Veolia, Saur, régies)</option>
-          <option>Télécom / Internet / Mobile (Orange, SFR, Free, Bouygues)</option>
-          <option>Poste / Colis / Courrier (La Poste, DHL, UPS, FedEx)</option>
-          <option>Transport ferroviaire (SNCF, Eurostar)</option>
-          <option>Transport collectif urbain (RATP, TER, réseaux urbains)</option>
-          <option>Autoroutes / Péages (Vinci, Sanef, Eiffage)</option>
-          <option>Aéroports / Aéroports de Paris</option>
-        </optgroup>
-        <optgroup label="Services aux entreprises">
-          <option>Conseil / Consulting / Management</option>
-          <option>Expertise comptable / Audit / Commissariat aux comptes</option>
-          <option>Droit / Juridique / Contentieux</option>
-          <option>Publicité / Communication / Marketing / Relations publiques</option>
-          <option>Informatique / Développement logiciel / ESN / SSII</option>
-          <option>Cybersécurité / Protection des données</option>
-          <option>Sécurité privée / Gardiennage</option>
-          <option>Nettoyage / Propreté / Facility management</option>
-          <option>Intérim / Recrutement / Ressources humaines</option>
-          <option>Assurance / Courtage / Mutuelles</option>
-          <option>Banque / Crédit / Financement</option>
-          <option>Études / Recherche / Laboratoire</option>
-        </optgroup>
-        <optgroup label="Santé &amp; Médico-social">
-          <option>Médecin généraliste / Spécialiste</option>
-          <option>Chirurgien / Anesthésiste</option>
-          <option>Dentiste / Orthodontiste</option>
-          <option>Infirmier / Aide-soignant / Kiné / Paramédical</option>
-          <option>Pharmacie / Laboratoire d'analyses</option>
-          <option>Établissement médico-social / EHPAD / IME</option>
-          <option>Clinique / Établissement de santé privé</option>
-          <option>Vétérinaire</option>
-          <option>Bien-être / Esthétique / Coiffure / Tatouage</option>
-          <option>Sport / Coaching / Salle de sport / Fitness</option>
-        </optgroup>
-        <optgroup label="Services à la personne &amp; Éducation">
-          <option>Services à la personne / Aide à domicile / Ménage</option>
-          <option>Garde d'enfants à domicile / Crèche / Micro-crèche</option>
-          <option>Auto-école / École de conduite / Moto</option>
-          <option>Soutien scolaire / Cours particuliers / Tutorat</option>
-          <option>École privée hors contrat / École alternative</option>
-          <option>Formation professionnelle / CFA / Organisme de formation</option>
-          <option>Enseignement supérieur privé / École de commerce / Ingénieurs</option>
-        </optgroup>
-        <optgroup label="Culture, Médias &amp; Loisirs">
-          <option>Spectacle vivant / Théâtre / Concert / Festival</option>
-          <option>Cinéma / Audiovisuel / Production / Streaming</option>
-          <option>Presse / Médias / Journalisme / Podcast</option>
-          <option>Musique / Arts plastiques / Artisanat d'art / Galerie</option>
-          <option>Jeux vidéo / Animation / Numérique créatif</option>
-          <option>Parc d'attractions / Loisirs / Escape game</option>
-          <option>Musée / Patrimoine / Tourisme culturel / Château</option>
-          <option>Librairie / Édition / Bibliothèque</option>
-        </optgroup>
-        <optgroup label="Associations &amp; ESS">
-          <option>Association loi 1901 (générale)</option>
-          <option>Association caritative / Humanitaire / ONG</option>
-          <option>Fondation / Fonds de dotation</option>
-          <option>Coopérative / SCOP / SCIC</option>
-          <option>Structure sportive / Club amateur / Fédération</option>
-          <option>Structure culturelle / Salle de spectacle / Compagnie</option>
-          <option>Association de défense des droits / Syndicat</option>
-        </optgroup>
-        <optgroup label="Professions réglementées &amp; Libérales">
-          <option>Avocat / Notaire / Huissier / Commissaire de justice</option>
-          <option>Expert-comptable / Commissaire aux comptes</option>
-          <option>Agent immobilier / Administrateur de biens</option>
-          <option>Architecte / Urbaniste / Paysagiste</option>
-          <option>Géomètre-expert / Ingénieur conseil</option>
-          <option>Conseiller financier / Gestionnaire de patrimoine</option>
-          <option>Psychologue / Psychothérapeute / Sophrologue</option>
-        </optgroup>
-        <optgroup label="Agriculture connectée &amp; Nouvelles technologies">
-          <option>AgriTech / Agriculture de précision</option>
-          <option>FoodTech / Nouvelles formes alimentaires</option>
-          <option>GreenTech / Environnement / Développement durable</option>
-          <option>PropTech / Immobilier numérique</option>
-          <option>HealthTech / MedTech / Bien-être digital</option>
-          <option>FinTech / Néobanque / Cryptomonnaies</option>
-          <option>EdTech / Formation en ligne</option>
-          <option>Startup / Innovation / Incubateur</option>
-        </optgroup>
-        <optgroup label="Particulier">
-          <option>Particulier construisant ou rénovant</option>
-          <option>Propriétaire occupant</option>
-          <option>Locataire</option>
-          <option>Particulier employeur</option>
-          <option>Retraité / Senior</option>
-          <option>Étudiant</option>
-          <option>Particulier — autre situation</option>
-        </optgroup>
-        <optgroup label="Autre">
-          <option>Secteur non listé — je précise dans mon témoignage</option>
-        </optgroup>
-      </select>
+      <label>Catégorie socio-professionnelle <span class="req">*</span></label>
+      <input type="text" id="csp" list="listCSP" placeholder="Tapez ou sélectionnez…" oninput="checkForm()">
+      <datalist id="listCSP">
+        <option value="Agriculteur exploitant">
+        <option value="Artisan">
+        <option value="Commerçant">
+        <option value="Chef d'entreprise (10 salariés et plus)">
+        <option value="Profession libérale">
+        <option value="Cadre de la fonction publique">
+        <option value="Cadre d'entreprise">
+        <option value="Ingénieur">
+        <option value="Professeur / Chercheur">
+        <option value="Profession intermédiaire de l'enseignement">
+        <option value="Profession intermédiaire de la santé">
+        <option value="Technicien">
+        <option value="Contremaître / Agent de maîtrise">
+        <option value="Employé de la fonction publique">
+        <option value="Employé administratif d'entreprise">
+        <option value="Employé de commerce">
+        <option value="Personnel des services directs aux particuliers">
+        <option value="Ouvrier qualifié">
+        <option value="Ouvrier non qualifié">
+        <option value="Ouvrier agricole">
+        <option value="Retraité ancien cadre">
+        <option value="Retraité ancien employé / ouvrier">
+        <option value="Chômeur n'ayant jamais travaillé">
+        <option value="Étudiant(e)">
+        <option value="Sans activité professionnelle (autre)">
+        <option value="Non-résident / Étranger">
+      </datalist>
+      <div class="hint">Nomenclature INSEE — tapez pour filtrer ou choisissez dans la liste</div>
+    </div>
+
+    <div class="field">
+      <label>Secteur d'activité <span class="req">*</span></label>
+      <input type="text" id="secteur" list="listSecteurs" placeholder="Tapez ou sélectionnez…" oninput="checkForm()">
+      <datalist id="listSecteurs">
+        <option value="Agriculture / Élevage / Viticulture">
+        <option value="Sylviculture / Exploitation forestière">
+        <option value="Pêche / Aquaculture">
+        <option value="Agritourisme / Hébergement rural / Gîtes">
+        <option value="Activité événementielle en zone rurale">
+        <option value="Artisanat agricole / Transformation à la ferme">
+        <option value="Restaurant / Café / Bar / Brasserie">
+        <option value="Restauration rapide / Traiteur">
+        <option value="Artisanat alimentaire / Boulangerie / Pâtisserie">
+        <option value="Commerce alimentaire de proximité">
+        <option value="Production agroalimentaire">
+        <option value="Hôtel / Résidence hôtelière">
+        <option value="Chambre d'hôtes / B&B">
+        <option value="Camping / Parc résidentiel de loisirs">
+        <option value="Location saisonnière / Meublé de tourisme">
+        <option value="Agence de voyage / Tour-opérateur">
+        <option value="Commerce de détail alimentaire">
+        <option value="Commerce de détail non-alimentaire">
+        <option value="E-commerce / Vente en ligne">
+        <option value="Commerce de gros / Négoce">
+        <option value="Maçonnerie / Gros œuvre / Terrassement">
+        <option value="Couverture / Charpente / Étanchéité">
+        <option value="Électricité / Plomberie / CVC">
+        <option value="Promotion immobilière / Lotissement">
+        <option value="Agence immobilière / Transaction">
+        <option value="Architecture / Maîtrise d'œuvre">
+        <option value="Propriétaire bailleur / Gestion locative">
+        <option value="Industrie manufacturière">
+        <option value="Énergie / Pétrole / Gaz / Renouvelables">
+        <option value="Transport routier de marchandises">
+        <option value="Transport de personnes / VTC / Taxi">
+        <option value="Logistique / Entreposage">
+        <option value="Électricité / Gaz (EDF, Engie, fournisseurs)">
+        <option value="Réseau électrique / Gaz (Enedis, GrDF)">
+        <option value="Eau / Assainissement (Suez, Veolia, Saur)">
+        <option value="Télécom / Internet / Mobile">
+        <option value="Transport ferroviaire (SNCF)">
+        <option value="Conseil / Consulting">
+        <option value="Expertise comptable / Audit">
+        <option value="Informatique / Numérique / ESN">
+        <option value="Assurance / Banque / Finance">
+        <option value="Médecin / Spécialiste / Chirurgien">
+        <option value="Infirmier / Paramédical">
+        <option value="Pharmacie / Laboratoire">
+        <option value="EHPAD / Établissement médico-social">
+        <option value="Spectacle vivant / Événementiel">
+        <option value="Presse / Médias / Journalisme">
+        <option value="Association loi 1901">
+        <option value="Fondation / Fonds de dotation">
+        <option value="Coopérative / SCOP / SCIC">
+        <option value="Avocat / Notaire / Huissier">
+        <option value="Architecte / Géomètre / Ingénieur conseil">
+        <option value="Particulier construisant / Rénovant">
+        <option value="Propriétaire occupant">
+        <option value="Locataire">
+        <option value="Retraité / Senior">
+        <option value="Étudiant(e)">
+        <option value="Particulier — autre situation">
+        <option value="Secteur non listé — je précise dans mon témoignage">
+      </datalist>
+      <div class="hint">Tapez pour filtrer ou choisissez dans la liste</div>
     </div>
 
   </div>
 
-  <!-- CGU + SUBMIT -->
-  <div class="security-note">
-    <span>🔒</span>
-    <span>Votre email ne sera jamais publié ni transmis à des tiers. Il sert uniquement à confirmer votre compte et vous notifier de la publication de votre témoignage.</span>
-  </div>
-
-  <!-- CONTACT OPT-IN -->
-  <div class="card" style="margin-bottom:16px;">
+  <!-- CARTE 3 — MESSAGERIE -->
+  <div class="card">
     <div class="card-title">
-      <span class="card-num opt">5</span>
+      <span class="card-num">3</span>
       Messagerie & contact
-      <span class="card-opt-label">votre choix</span>
     </div>
     <p style="font-size:0.85rem;color:var(--gris-moyen);line-height:1.65;margin-bottom:16px;">
-      Votre messagerie privée sur moietloi.fr vous permet de recevoir des messages d'autres utilisateurs de la plateforme — témoins, avocats, journalistes, chercheurs, associations. Votre identité réelle n'est jamais révélée. Vous pouvez modifier ce choix à tout moment dans vos réglages.
+      Votre messagerie privée vous permet de recevoir des messages d'autres utilisateurs — témoins, avocats, journalistes, associations. Votre identité réelle n'est jamais révélée. Modifiable à tout moment.
     </p>
     <div class="cgu-box" style="margin-bottom:0;border-color:var(--vert-clair);">
       <input type="checkbox" id="chkContact">
@@ -543,9 +408,15 @@ select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/
     </div>
   </div>
 
+  <!-- SÉCURITÉ + CGU -->
+  <div class="security-note">
+    <span>🔒</span>
+    <span>Votre email ne sera jamais publié ni transmis à des tiers. Il sert uniquement à confirmer votre compte et vous notifier de la publication de votre témoignage.</span>
+  </div>
+
   <div class="cgu-box">
     <input type="checkbox" id="cgu" onchange="checkForm()">
-    <span>J'accepte les <a href="/charte/">conditions d'utilisation</a> et la <a href="/charte/">charte éditoriale</a> de moietloi.fr. Je confirme avoir au moins 18 ans.</span>
+    <span>J'accepte les <a href="charte.html">conditions d'utilisation</a> et la <a href="charte.html">charte éditoriale</a> de moietloi.fr. Je confirme avoir au moins 18 ans.</span>
   </div>
 
   <button class="btn-p" id="btnCreer" onclick="creerCompte()" disabled>
@@ -567,7 +438,6 @@ select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/
     <div class="confirm-title">Vérifiez votre email</div>
     <p class="confirm-text">Un email de confirmation a été envoyé à <span class="confirm-email" id="confirmEmail">—</span>.</p>
     <p class="confirm-text" style="margin-top:8px">Vous pouvez déposer votre témoignage maintenant — votre compte sera pleinement activé à la confirmation.</p>
-
     <div class="confirm-detail">
       <strong>✓ Ce qui se passe ensuite :</strong>
       • Vous déposez votre témoignage<br>
@@ -575,7 +445,6 @@ select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/
       • À la publication, vous recevrez un email avec votre témoignage complet<br>
       • Vous pourrez suivre les témoignages similaires depuis votre espace
     </div>
-
     <a href="temoigner.html" class="btn-continue">
       <span>🎙️</span> Déposer mon témoignage
     </a>
@@ -584,13 +453,19 @@ select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/
 </div>
 
 <script>
-// FORM VALIDATION
+// VALIDATION FORM
 function checkForm(){
   const email=document.getElementById('email').value.trim();
   const pw=document.getElementById('password').value;
   const pseudo=document.getElementById('pseudo').value.trim();
+  const age=document.getElementById('age').value;
+  const sexe=document.querySelector('input[name=sexe]:checked');
+  const territoire=document.querySelector('input[name=territoire]:checked');
+  const region=document.getElementById('region').value.trim();
+  const csp=document.getElementById('csp').value.trim();
+  const secteur=document.getElementById('secteur').value.trim();
   const cgu=document.getElementById('cgu').checked;
-  const valid=email&&pw.length>=8&&pseudo&&cgu&&isValidEmail(email);
+  const valid=email&&pw.length>=8&&pseudo&&age&&sexe&&territoire&&region&&csp&&secteur&&cgu&&isValidEmail(email);
   document.getElementById('btnCreer').disabled=!valid;
 }
 
@@ -621,16 +496,11 @@ function togglePw(){
 // CRÉER COMPTE
 function creerCompte(){
   const email=document.getElementById('email').value.trim();
-  const pseudo=document.getElementById('pseudo').value.trim();
   const btn=document.getElementById('btnCreer');
-
-  // Validation finale
   if(!isValidEmail(email)){showErr('Adresse email invalide.');return;}
   if(document.getElementById('password').value.length<8){showErr('Le mot de passe doit contenir au moins 8 caractères.');return;}
-
   btn.disabled=true;
   btn.textContent='Création en cours…';
-
   // Simulation création compte (à remplacer par appel API backend)
   setTimeout(()=>{
     document.getElementById('confirmEmail').textContent=email;
