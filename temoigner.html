@@ -853,6 +853,21 @@ function validerDoc(){
 function showAnon(){
   hide('cardClassif');
   show('cardAnon');
+  // Pré-remplir depuis le profil sauvegardé (localStorage)
+  // TODO backend : remplacer par GET /api/comptes/:id/profil
+  try{
+    const raw=localStorage.getItem('moietloi_profil');
+    if(raw){
+      const p=JSON.parse(raw);
+      // Pré-remplir les champs si disponibles
+      if(p.prenom){G('val_prenom').value=p.prenom;}
+      if(p.nom){G('val_nom').value=p.nom;}
+      if(p.csp){G('val_profession').value=p.csp;}
+      if(p.region){G('val_region').value=p.region;}
+      // Mettre à jour l'aperçu
+      updateAnonPreview();
+    }
+  }catch(e){console.warn('Profil non disponible');}
   scrollEl('cardAnon');
 }
 
@@ -890,6 +905,30 @@ function soumettre(){
   const ref='TEM-'+new Date().getFullYear()+'-'+Math.floor(Math.random()*9000+1000);
   G('confirmAnon').textContent=typeof anonChoice==='string'?anonChoice:'Anonyme';
   G('confirmRef').textContent=ref;
+  // Rattacher les données du profil au témoignage pour statistiques privées
+  // TODO backend : envoyer profil+témoignage ensemble à l'API
+  try{
+    const raw=localStorage.getItem('moietloi_profil');
+    const profil=raw?JSON.parse(raw):{};
+    const temoignage={
+      ref,
+      anonPublic: anonChoice,
+      // Données privées pour statistiques — jamais publiées
+      profilPrive:{
+        age: profil.age||'',
+        sexe: profil.sexe||'',
+        territoire: profil.territoire||'',
+        region: profil.region||'',
+        csp: profil.csp||'',
+        secteur: profil.secteurSub||profil.secteurCat||'',
+      },
+      classifDomaines: window._classifDomaines||'',
+      classifTypes: window._classifTypes||'',
+      aideRecue: getAideValues(),
+      createdAt: new Date().toISOString()
+    };
+    localStorage.setItem('moietloi_last_temoignage', JSON.stringify(temoignage));
+  }catch(e){console.warn('Stockage non disponible');}
   hide('cardSoumission');
   show('cardConfirm');
   scrollEl('cardConfirm');
