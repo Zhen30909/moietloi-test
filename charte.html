@@ -19,52 +19,41 @@
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{font-family:'Source Sans 3',sans-serif;background:var(--fond);color:var(--gris-fonce);min-height:100vh}
-
-/* NAV */
 nav{background:rgba(247,244,239,0.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--beige);height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 28px;position:sticky;top:0;z-index:100}
 .nav-logo{font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--gris-fonce);text-decoration:none}
 .nav-logo .et{color:var(--peche);font-style:italic}
 .nav-logo .loi{color:var(--vert)}
-.nav-links{display:flex;gap:6px;align-items:center}
+.nav-links{display:flex;gap:4px;align-items:center}
 .nav-links a{font-size:0.85rem;color:var(--gris-moyen);text-decoration:none;padding:7px 12px;border-radius:6px;transition:all 0.2s}
 .nav-links a:hover{color:var(--vert);background:var(--vert-pale)}
+.nav-links a.active{color:var(--vert);font-weight:600;background:var(--vert-pale);pointer-events:none}
 .nav-cta{background:var(--vert)!important;color:white!important;font-weight:500!important}
-.nav-here{font-size:0.85rem;color:var(--vert);font-weight:500;padding:7px 12px}
+.nav-cta:hover{background:#4a6050!important}
 .nav-burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
 .nav-burger span{display:block;width:22px;height:2px;background:var(--gris-fonce);border-radius:2px}
 .nav-mob{display:none;position:fixed;top:58px;left:0;right:0;background:var(--blanc);border-bottom:1px solid var(--beige);padding:16px 24px 20px;z-index:190;flex-direction:column;gap:4px;box-shadow:0 8px 24px rgba(0,0,0,0.07)}
 .nav-mob.open{display:flex}
 .nav-mob a{font-size:0.95rem;color:var(--gris-fonce);text-decoration:none;padding:10px 12px;border-radius:8px}
-
-/* PAGE */
+.nav-mob a:hover{background:var(--fond)}
+.nav-mob a.active{color:var(--vert);font-weight:600;background:var(--vert-pale)}
+.nav-cta-mob{background:var(--vert);color:white!important;font-weight:500;margin-bottom:4px}
 .page{max-width:760px;margin:0 auto;padding:48px 24px 80px}
-
-/* EN-TÊTE */
 .page-eyebrow{font-size:0.7rem;text-transform:uppercase;letter-spacing:2.5px;color:var(--vert);font-weight:500;margin-bottom:10px}
 .page-title{font-family:'Playfair Display',serif;font-size:2rem;color:var(--gris-fonce);margin-bottom:14px;line-height:1.2}
 .page-intro{font-size:1rem;color:var(--gris-moyen);line-height:1.75;margin-bottom:48px;font-weight:300;border-left:3px solid var(--beige);padding-left:20px}
-
-/* NAVIGATION SECTIONS */
 .section-nav{display:flex;gap:8px;margin-bottom:40px;flex-wrap:wrap}
 .snav-btn{padding:9px 20px;border:1.5px solid var(--beige);border-radius:8px;background:var(--blanc);font-size:0.85rem;color:var(--gris-moyen);cursor:pointer;font-family:'Source Sans 3',sans-serif;transition:all 0.2s;text-decoration:none}
 .snav-btn:hover,.snav-btn.active{border-color:var(--vert);background:var(--vert-pale);color:var(--vert)}
-
-/* SECTIONS */
 .section{margin-bottom:56px}
 .section-label{font-size:0.68rem;text-transform:uppercase;letter-spacing:2.5px;color:var(--vert);font-weight:500;margin-bottom:10px}
 .section-title{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--gris-fonce);margin-bottom:24px;padding-bottom:14px;border-bottom:2px solid var(--beige)}
-
-/* BLOCS DE CONTENU */
 .content-block{margin-bottom:28px}
 .block-title{font-size:1rem;font-weight:600;color:var(--gris-fonce);margin-bottom:10px;display:flex;align-items:center;gap:10px}
 .block-title .bi{font-size:1.1rem}
 .block-text{font-size:0.92rem;color:var(--gris-moyen);line-height:1.8}
 .block-text p{margin-bottom:10px}
 .block-text p:last-child{margin-bottom:0}
-
-/* LISTES OUI / NON */
-.yes-no-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px}
-.yn-block{border-radius:10px;padding:20px}
+.yn-block{border-radius:10px;padding:20px;margin-bottom:16px}
 .yn-block.yes{background:var(--vert-pale);border:1.5px solid var(--vert-clair)}
 .yn-block.no{background:var(--rouge-pale);border:1.5px solid #e8b0ad}
 .yn-title{font-size:0.78rem;text-transform:uppercase;letter-spacing:1.5px;font-weight:600;margin-bottom:12px;display:flex;align-items:center;gap:8px}
@@ -74,54 +63,39 @@ nav{background:rgba(247,244,239,0.96);backdrop-filter:blur(10px);border-bottom:1
 .yn-item:last-child{border-bottom:none}
 .yi{color:var(--vert);font-weight:600;flex-shrink:0;margin-top:1px}
 .ni{color:var(--rouge);font-weight:600;flex-shrink:0;margin-top:1px}
-
-/* ÉTAPES MODÉRATION */
 .steps{display:flex;flex-direction:column;gap:0;margin-bottom:28px}
 .step{display:flex;gap:16px;padding:16px 0;border-bottom:1px solid var(--beige-clair)}
 .step:last-child{border-bottom:none}
 .step-num{width:32px;height:32px;border-radius:50%;background:var(--vert);color:white;font-size:0.82rem;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
 .step-num.orange{background:var(--peche)}
 .step-num.rouge{background:var(--rouge)}
-.step-content{}
 .step-title{font-size:0.92rem;font-weight:600;color:var(--gris-fonce);margin-bottom:4px}
 .step-desc{font-size:0.85rem;color:var(--gris-moyen);line-height:1.6}
 .step-badge{display:inline-flex;align-items:center;gap:4px;padding:2px 9px;border-radius:10px;font-size:0.72rem;font-weight:500;margin-left:8px}
 .step-badge.vert{background:var(--vert-pale);color:var(--vert)}
 .step-badge.orange{background:var(--peche-pale);color:var(--peche)}
 .step-badge.rouge{background:var(--rouge-pale);color:var(--rouge)}
-
-/* DROITS TÉMOIN */
 .rights-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:28px}
 .right-item{background:var(--blanc);border:1px solid #e8e2d8;border-radius:10px;padding:16px}
 .right-icon{font-size:1.3rem;margin-bottom:8px}
 .right-title{font-size:0.87rem;font-weight:600;color:var(--gris-fonce);margin-bottom:4px}
 .right-desc{font-size:0.8rem;color:var(--gris-moyen);line-height:1.55}
-
-/* VALEURS */
 .values{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:28px}
 .value{background:var(--blanc);border:1px solid #e8e2d8;border-radius:10px;padding:18px;text-align:center}
 .value-icon{font-size:1.5rem;margin-bottom:10px}
 .value-title{font-size:0.87rem;font-weight:600;color:var(--gris-fonce);margin-bottom:6px}
 .value-desc{font-size:0.78rem;color:var(--gris-moyen);line-height:1.55}
-
-/* ENCART CONTACT */
 .contact-box{background:var(--vert-pale);border:1.5px solid var(--vert-clair);border-radius:12px;padding:24px;text-align:center;margin-top:40px}
 .contact-box-title{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--gris-fonce);margin-bottom:8px}
 .contact-box-desc{font-size:0.87rem;color:var(--gris-moyen);line-height:1.6;margin-bottom:16px}
 .btn-contact{display:inline-block;padding:11px 24px;background:var(--vert);color:white;border:none;border-radius:8px;font-size:0.9rem;font-family:'Source Sans 3',sans-serif;font-weight:500;cursor:pointer;transition:all 0.2s;text-decoration:none}
 .btn-contact:hover{background:#4a6050}
-
-/* MISE EN AVANT */
 .highlight-box{background:var(--blanc);border-left:4px solid var(--vert);border-radius:0 10px 10px 0;padding:16px 20px;margin-bottom:20px;font-size:0.9rem;color:var(--gris-fonce);line-height:1.7;font-style:italic}
 .highlight-box.orange{border-left-color:var(--peche)}
-
-/* DATE */
 .page-date{font-size:0.78rem;color:var(--gris-clair);text-align:right;margin-top:48px;padding-top:20px;border-top:1px solid var(--beige)}
-
 @media(max-width:600px){
   nav{padding:0 18px}.nav-links{display:none}.nav-burger{display:flex}
   .page{padding:32px 16px 60px}
-  .yes-no-grid{grid-template-columns:1fr}
   .rights-grid{grid-template-columns:1fr}
   .values{grid-template-columns:1fr 1fr}
   .section-nav{gap:6px}
@@ -134,24 +108,25 @@ nav{background:rgba(247,244,239,0.96);backdrop-filter:blur(10px);border-bottom:1
 <nav>
   <a href="index.html" class="nav-logo">moi <span class="et">&</span> <span class="loi">loi</span></a>
   <div class="nav-links">
-    <a href="compte-v1-2.html" class="nav-cta">🎙️ Déposer</a>
-    <a href="recherche-v1-7.html">Consulter</a>
-    <span class="nav-here">Charte</span>
-    <a href="tarifs-v1.html">Tarifs</a>
+    <a href="compte.html" class="nav-cta">🎙️ Déposer</a>
+    <a href="consulter.html">🔍 Consulter</a>
+    <a href="charte.html" class="active">📋 Charte</a>
+    <a href="tarifs.html">💶 Tarifs</a>
+    <a href="compte.html">👤 Connexion</a>
   </div>
   <button class="nav-burger" onclick="document.getElementById('nm').classList.toggle('open')" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
 </nav>
 <div class="nav-mob" id="nm">
-  <a href="compte-v1-2.html">🎙️ Déposer un témoignage</a>
-  <a href="recherche-v1-7.html">Consulter la base</a>
-  <a href="charte-v1.html">Charte & Règles</a>
-  <a href="tarifs-v1.html">Tarifs</a>
+  <a href="compte.html" class="nav-cta-mob">🎙️ Déposer un témoignage</a>
+  <a href="consulter.html">🔍 Consulter les témoignages</a>
+  <a href="charte.html" class="active">📋 Charte & Règles</a>
+  <a href="tarifs.html">💶 Tarifs</a>
+  <a href="compte.html">👤 Connexion / Créer un compte</a>
 </div>
 
 <div class="page">
-
   <div class="page-eyebrow">Transparence & Engagement</div>
   <h1 class="page-title">Charte éditoriale & Règles de publication</h1>
   <p class="page-intro">moietloi.fr est une archive civique neutre. Ce document définit ce que nous sommes, ce que nous ne sommes pas, et les règles qui gouvernent la publication de chaque témoignage. La lire avant de déposer est recommandée.</p>
@@ -163,13 +138,9 @@ nav{background:rgba(247,244,239,0.96);backdrop-filter:blur(10px);border-bottom:1
     <a href="#droits" class="snav-btn">Vos droits</a>
   </div>
 
-  <!-- ═══════════════════════════════════
-       SECTION 1 — CHARTE ÉDITORIALE
-  ═══════════════════════════════════ -->
   <div class="section" id="charte">
     <div class="section-label">Section 1</div>
     <h2 class="section-title">Notre charte éditoriale</h2>
-
     <div class="content-block">
       <div class="block-title"><span class="bi">🎯</span> Notre mission</div>
       <div class="block-text">
@@ -177,50 +148,23 @@ nav{background:rgba(247,244,239,0.96);backdrop-filter:blur(10px);border-bottom:1
         <p>Notre objectif est de constituer une base de données structurée, factuelle et publiquement accessible, permettant d'identifier des patterns et des tendances dans le fonctionnement des règles et de leur application — sans jamais porter de jugement sur les personnes ou les institutions impliquées.</p>
       </div>
     </div>
-
     <div class="values">
-      <div class="value">
-        <div class="value-icon">⚖️</div>
-        <div class="value-title">Neutralité</div>
-        <div class="value-desc">Aucun parti pris politique, idéologique ou partisan. La plateforme est utilisable par tous, de tous bords.</div>
-      </div>
-      <div class="value">
-        <div class="value-icon">📋</div>
-        <div class="value-title">Factualité</div>
-        <div class="value-desc">Seuls les faits explicitement mentionnés par le témoin sont documentés. Rien n'est déduit, inventé ou interprété.</div>
-      </div>
-      <div class="value">
-        <div class="value-icon">🔍</div>
-        <div class="value-title">Rigueur</div>
-        <div class="value-desc">Chaque témoignage est vérifié par notre système AI avant publication. Les incohérences internes sont signalées.</div>
-      </div>
-      <div class="value">
-        <div class="value-icon">🔒</div>
-        <div class="value-title">Protection</div>
-        <div class="value-desc">L'anonymat du témoin est garanti. Les documents joints sont détruits après analyse. Aucune donnée personnelle n'est exposée.</div>
-      </div>
-      <div class="value">
-        <div class="value-icon">📖</div>
-        <div class="value-title">Transparence</div>
-        <div class="value-desc">Les critères de modération sont publics. Chaque décision de refus est motivée et accompagnée d'une possibilité de recours.</div>
-      </div>
-      <div class="value">
-        <div class="value-icon">🌐</div>
-        <div class="value-title">Accessibilité</div>
-        <div class="value-desc">La consultation est libre et gratuite pour tous, sans inscription. Déposer un témoignage nécessite la création d'un compte.</div>
-      </div>
+      <div class="value"><div class="value-icon">⚖️</div><div class="value-title">Neutralité</div><div class="value-desc">Aucun parti pris politique, idéologique ou partisan. La plateforme est utilisable par tous, de tous bords.</div></div>
+      <div class="value"><div class="value-icon">📋</div><div class="value-title">Factualité</div><div class="value-desc">Seuls les faits explicitement mentionnés par le témoin sont documentés. Rien n'est déduit, inventé ou interprété.</div></div>
+      <div class="value"><div class="value-icon">🔍</div><div class="value-title">Rigueur</div><div class="value-desc">Chaque témoignage est vérifié par notre système AI avant publication. Les incohérences internes sont signalées.</div></div>
+      <div class="value"><div class="value-icon">🔒</div><div class="value-title">Protection</div><div class="value-desc">L'anonymat du témoin est garanti. Les documents joints sont détruits après analyse. Aucune donnée personnelle n'est exposée.</div></div>
+      <div class="value"><div class="value-icon">📖</div><div class="value-title">Transparence</div><div class="value-desc">Les critères de modération sont publics. Chaque décision de refus est motivée et accompagnée d'une possibilité de recours.</div></div>
+      <div class="value"><div class="value-icon">🌐</div><div class="value-title">Accessibilité</div><div class="value-desc">La consultation est libre et gratuite pour tous, sans inscription. Déposer un témoignage nécessite la création d'un compte.</div></div>
     </div>
-
     <div class="content-block">
       <div class="block-title"><span class="bi">✅</span> Ce que nous sommes</div>
       <div class="block-text">
         <p><strong>Une archive civique</strong> — nous documentons des situations vécues, structurées et vérifiées.</p>
         <p><strong>Un outil d'analyse statistique</strong> — nous identifions des patterns, des clusters, des tendances à partir des témoignages agrégés.</p>
-        <p><strong>Une base de données publique</strong> — consultable librement par tous, sans inscription ni abonnement, exploitable par les citoyens, chercheurs, journalistes et institutions.</p>
+        <p><strong>Une base de données publique</strong> — consultable librement par tous, sans inscription ni abonnement.</p>
         <p><strong>Un espace de parole protégé</strong> — chaque témoin bénéficie de l'anonymat et de la garantie que son témoignage sera traité avec respect et rigueur.</p>
       </div>
     </div>
-
     <div class="content-block">
       <div class="block-title"><span class="bi">🚫</span> Ce que nous ne sommes pas</div>
       <div class="block-text">
@@ -231,28 +175,16 @@ nav{background:rgba(247,244,239,0.96);backdrop-filter:blur(10px);border-bottom:1
         <p><strong>Pas un lieu d'accusations personnelles</strong> — nous documentons des situations réglementaires et institutionnelles, jamais le comportement d'individus nommément identifiés.</p>
       </div>
     </div>
-
-    <div class="highlight-box">
-      "Les données parlent d'elles-mêmes. Quand cinquante témoignages documentent la même difficulté dans huit régions différentes, ce n'est pas une opinion — c'est un fait statistique."
-    </div>
-
+    <div class="highlight-box">"Les données parlent d'elles-mêmes. Quand cinquante témoignages documentent la même difficulté dans huit régions différentes, ce n'est pas une opinion — c'est un fait statistique."</div>
   </div>
 
-  <!-- ═══════════════════════════════════
-       SECTION 2 — RÈGLES DE PUBLICATION
-  ═══════════════════════════════════ -->
   <div class="section" id="regles">
     <div class="section-label">Section 2</div>
     <h2 class="section-title">Règles de publication</h2>
-
     <div class="content-block">
       <div class="block-title"><span class="bi">📌</span> Principe général</div>
-      <div class="block-text">
-        <p>Un témoignage publié sur moietloi.fr décrit une situation réelle vécue personnellement, de façon factuelle et sans identifier nommément des personnes physiques. Ces règles protègent à la fois le témoin, les tiers concernés et la crédibilité de la plateforme.</p>
-      </div>
+      <div class="block-text"><p>Un témoignage publié sur moietloi.fr décrit une situation réelle vécue personnellement, de façon factuelle et sans identifier nommément des personnes physiques.</p></div>
     </div>
-
-    <!-- CE QU'ON PUBLIE -->
     <div class="yn-block yes" style="margin-bottom:16px;">
       <div class="yn-title yes">✓ Ce qu'on publie</div>
       <div class="yn-item"><span class="yi">✓</span>Une situation administrative, réglementaire ou de service public vécue personnellement</div>
@@ -263,218 +195,141 @@ nav{background:rgba(247,244,239,0.96);backdrop-filter:blur(10px);border-bottom:1
       <div class="yn-item"><span class="yi">✓</span>Les recours tentés et leur issue</div>
       <div class="yn-item"><span class="yi">✓</span>Des documents officiels à l'appui — courriers, arrêtés, refus, décisions (non publiés, traités en mémoire temporaire)</div>
     </div>
-
-    <!-- MOTIFS DE REFUS — exhaustifs -->
     <div style="margin-bottom:24px;">
       <div style="font-size:0.8rem;font-weight:600;color:var(--rouge);text-transform:uppercase;letter-spacing:1px;margin-bottom:14px;">✕ Motifs de refus — liste complète</div>
-      <p style="font-size:0.85rem;color:var(--gris-moyen);line-height:1.6;margin-bottom:14px;">Un témoignage est refusé s'il contient l'un des éléments suivants. Cette liste est exhaustive — elle constitue la référence en cas de refus.</p>
-
       <div style="display:flex;flex-direction:column;gap:10px;">
-
         <div style="background:var(--rouge-pale);border:1px solid #e8b0ad;border-radius:8px;padding:14px 16px;">
           <div style="font-size:0.75rem;text-transform:uppercase;letter-spacing:1px;color:var(--rouge);font-weight:600;margin-bottom:8px;">Identification de personnes</div>
           <div class="yn-item"><span class="ni">✕</span>Nom, prénom ou initiales d'une personne physique identifiable</div>
-          <div class="yn-item"><span class="ni">✕</span>Fonction précise permettant d'identifier une personne (ex : "le directeur de l'urbanisme de la commune X")</div>
+          <div class="yn-item"><span class="ni">✕</span>Fonction précise permettant d'identifier une personne</div>
           <div class="yn-item"><span class="ni">✕</span>Adresse personnelle, email, numéro de téléphone d'un individu</div>
           <div class="yn-item"><span class="ni">✕</span>Photo ou description physique permettant l'identification</div>
         </div>
-
         <div style="background:var(--rouge-pale);border:1px solid #e8b0ad;border-radius:8px;padding:14px 16px;">
           <div style="font-size:0.75rem;text-transform:uppercase;letter-spacing:1px;color:var(--rouge);font-weight:600;margin-bottom:8px;">Accusations et jugements</div>
-          <div class="yn-item"><span class="ni">✕</span>Accusations personnelles contre un agent, fonctionnaire ou employé nommément désigné</div>
-          <div class="yn-item"><span class="ni">✕</span>Imputations d'intentions, de motivations ou de comportements personnels</div>
-          <div class="yn-item"><span class="ni">✕</span>Qualifications juridiques non établies (corruption, abus de pouvoir, discrimination…) sans éléments factuels</div>
+          <div class="yn-item"><span class="ni">✕</span>Accusations personnelles contre un agent nommément désigné</div>
+          <div class="yn-item"><span class="ni">✕</span>Imputations d'intentions ou de motivations personnelles</div>
+          <div class="yn-item"><span class="ni">✕</span>Qualifications juridiques non établies (corruption, abus de pouvoir…)</div>
           <div class="yn-item"><span class="ni">✕</span>Propos diffamatoires au sens du droit français</div>
         </div>
-
         <div style="background:var(--rouge-pale);border:1px solid #e8b0ad;border-radius:8px;padding:14px 16px;">
           <div style="font-size:0.75rem;text-transform:uppercase;letter-spacing:1px;color:var(--rouge);font-weight:600;margin-bottom:8px;">Contenu non factuel</div>
-          <div class="yn-item"><span class="ni">✕</span>Opinions, ressentis, jugements subjectifs non appuyés sur des faits précis</div>
+          <div class="yn-item"><span class="ni">✕</span>Opinions, ressentis, jugements subjectifs non appuyés sur des faits</div>
           <div class="yn-item"><span class="ni">✕</span>Suppositions ou interprétations présentées comme des faits</div>
           <div class="yn-item"><span class="ni">✕</span>Éléments impossibles à vérifier ou manifestement inexacts</div>
           <div class="yn-item"><span class="ni">✕</span>Situation non vécue personnellement par le témoin</div>
         </div>
-
         <div style="background:var(--rouge-pale);border:1px solid #e8b0ad;border-radius:8px;padding:14px 16px;">
           <div style="font-size:0.75rem;text-transform:uppercase;letter-spacing:1px;color:var(--rouge);font-weight:600;margin-bottom:8px;">Langage et forme</div>
           <div class="yn-item"><span class="ni">✕</span>Propos injurieux, vulgaires ou menaçants</div>
-          <div class="yn-item"><span class="ni">✕</span>Propos discriminatoires fondés sur l'origine, le genre, la religion ou toute autre caractéristique personnelle</div>
+          <div class="yn-item"><span class="ni">✕</span>Propos discriminatoires fondés sur l'origine, le genre, la religion</div>
           <div class="yn-item"><span class="ni">✕</span>Incitation à la haine ou à la violence</div>
           <div class="yn-item"><span class="ni">✕</span>Contenu à caractère politique partisan ou militant</div>
         </div>
-
         <div style="background:var(--rouge-pale);border:1px solid #e8b0ad;border-radius:8px;padding:14px 16px;">
           <div style="font-size:0.75rem;text-transform:uppercase;letter-spacing:1px;color:var(--rouge);font-weight:600;margin-bottom:8px;">Hors périmètre</div>
-          <div class="yn-item"><span class="ni">✕</span>Situation sans lien avec l'administration, la réglementation ou un service public/essentiel</div>
-          <div class="yn-item"><span class="ni">✕</span>Litige purement privé (entre particuliers, sans intervention d'une autorité publique ou d'un monopole)</div>
+          <div class="yn-item"><span class="ni">✕</span>Situation sans lien avec l'administration ou la réglementation</div>
+          <div class="yn-item"><span class="ni">✕</span>Litige purement privé sans intervention d'une autorité publique</div>
           <div class="yn-item"><span class="ni">✕</span>Contenu publicitaire ou promotionnel</div>
           <div class="yn-item"><span class="ni">✕</span>Témoignage déjà publié sur la plateforme (doublon)</div>
         </div>
-
         <div style="background:var(--rouge-pale);border:1px solid #e8b0ad;border-radius:8px;padding:14px 16px;">
           <div style="font-size:0.75rem;text-transform:uppercase;letter-spacing:1px;color:var(--rouge);font-weight:600;margin-bottom:8px;">Incohérence interne</div>
-          <div class="yn-item"><span class="ni">✕</span>Témoignage présentant des contradictions factuelles internes non explicables</div>
+          <div class="yn-item"><span class="ni">✕</span>Témoignage présentant des contradictions factuelles internes</div>
           <div class="yn-item"><span class="ni">✕</span>Dates, lieux ou acteurs incompatibles entre eux</div>
-          <div class="yn-item"><span class="ni">✕</span>Score de vérification AI inférieur au seuil requis après relecture humaine</div>
+          <div class="yn-item"><span class="ni">✕</span>Score de vérification AI inférieur au seuil requis après relecture</div>
         </div>
-
       </div>
     </div>
-
     <div class="content-block">
       <div class="block-title"><span class="bi">👤</span> Anonymat et identification</div>
       <div class="block-text">
         <p>Le témoin choisit son niveau d'anonymat au moment de la soumission. Quatre niveaux sont disponibles : nom complet visible, prénom et région, catégorie professionnelle et région, ou anonyme complet.</p>
         <p><strong>Aucun nom de personne physique ne peut apparaître dans le corps du témoignage</strong> — ni le nom du témoin, ni celui d'agents ou de fonctionnaires impliqués. Les organismes, administrations et entreprises peuvent être nommés car ce sont des personnes morales.</p>
-        <p>Exemples acceptés : "la préfecture de…", "le service de l'urbanisme de la commune", "l'agent du guichet", "le contrôleur". Exemples refusés : "Monsieur Dupont, chef de service", "l'inspectrice Marie X".</p>
       </div>
     </div>
-
     <div class="content-block">
       <div class="block-title"><span class="bi">📄</span> Documents joints</div>
       <div class="block-text">
-        <p>Les documents joints (courriers, arrêtés, refus, échanges) sont lus par notre système AI pour enrichir l'analyse du témoignage. Ils sont ensuite <strong>détruits automatiquement</strong> et ne sont jamais stockés ni publiés.</p>
-        <p>Si un document contient des noms de personnes physiques, ceux-ci ne seront jamais reproduits dans le témoignage publié.</p>
+        <p>Les documents joints sont lus par notre système AI pour enrichir l'analyse du témoignage. Ils sont ensuite <strong>détruits automatiquement</strong> et ne sont jamais stockés ni publiés.</p>
       </div>
     </div>
-
-    <div class="highlight-box orange">
-      En cas de doute sur ce qu'il est possible de publier, notre équipe de modération reste disponible à l'adresse <strong>moderation@moietloi.fr</strong> avant même le dépôt d'un témoignage.
-    </div>
+    <div class="highlight-box orange">En cas de doute, notre équipe de modération reste disponible à l'adresse <strong>moderation@moietloi.fr</strong> avant même le dépôt d'un témoignage.</div>
   </div>
 
-  <!-- ═══════════════════════════════════
-       SECTION 3 — MODÉRATION
-  ═══════════════════════════════════ -->
   <div class="section" id="moderation">
     <div class="section-label">Section 3</div>
     <h2 class="section-title">Processus de modération</h2>
-
     <div class="content-block">
       <div class="block-title"><span class="bi">🔄</span> Un système en deux niveaux</div>
-      <div class="block-text">
-        <p>Chaque témoignage passe d'abord par une vérification automatique par intelligence artificielle, puis par une revue humaine si nécessaire. Ce système vise à combiner rapidité et fiabilité.</p>
-      </div>
+      <div class="block-text"><p>Chaque témoignage passe d'abord par une vérification automatique par intelligence artificielle, puis par une revue humaine si nécessaire.</p></div>
     </div>
-
     <div class="steps">
       <div class="step">
         <div class="step-num">1</div>
         <div class="step-content">
           <div class="step-title">Vérification AI automatique <span class="step-badge vert">~80% des cas</span></div>
-          <div class="step-desc">Notre système analyse le témoignage en trois passes : extraction des faits, structuration du document, vérification de cohérence. Un score de confiance est attribué. Les témoignages avec un score élevé sont publiés directement. Les autres passent en revue humaine.</div>
+          <div class="step-desc">Notre système analyse le témoignage en trois passes : extraction des faits, structuration du document, vérification de cohérence. Un score de confiance est attribué. Les témoignages avec un score élevé sont publiés directement.</div>
         </div>
       </div>
       <div class="step">
         <div class="step-num orange">2</div>
         <div class="step-content">
           <div class="step-title">Revue humaine <span class="step-badge orange">cas ambigus</span></div>
-          <div class="step-desc">Notre équipe examine les témoignages signalés par l'AI — ceux qui contiennent des ambiguïtés, des éléments potentiellement identifiants ou des incohérences. Délai : 48h ouvrées maximum. Le témoin est notifié par email.</div>
+          <div class="step-desc">Notre équipe examine les témoignages signalés par l'AI. Délai : 48h ouvrées maximum. Le témoin est notifié par email.</div>
         </div>
       </div>
       <div class="step">
         <div class="step-num rouge">3</div>
         <div class="step-content">
           <div class="step-title">Refus <span class="step-badge rouge">cas non conformes</span></div>
-          <div class="step-desc">Si un témoignage ne respecte pas les règles de publication, il est refusé et le témoin en est notifié par email. Le message de notification invite à consulter les règles de publication pour identifier ce qui doit être corrigé. <strong>Le témoin peut redéposer une version modifiée à tout moment</strong>, sans limite de tentatives, depuis son espace personnel. Les règles de publication listent l'ensemble des motifs de refus possibles.</div>
+          <div class="step-desc">Si un témoignage ne respecte pas les règles de publication, il est refusé et le témoin en est notifié par email. <strong>Le témoin peut redéposer une version modifiée à tout moment</strong>, sans limite de tentatives, depuis son espace personnel.</div>
         </div>
       </div>
     </div>
-
-    <div class="content-block">
-      <div class="block-title"><span class="bi">🤖</span> Ce que l'AI détecte automatiquement</div>
-      <div class="block-text">
-        <p>Notre système vérifie automatiquement la présence de noms de personnes physiques identifiables, de langage injurieux ou diffamatoire, de contenus hors sujet, d'incohérences internes, de contenus dupliqués et de tout élément susceptible de compromettre l'anonymat du témoin ou de tiers.</p>
-      </div>
-    </div>
-
     <div class="content-block">
       <div class="block-title"><span class="bi">📣</span> Signalement</div>
-      <div class="block-text">
-        <p>Tout visiteur peut signaler un témoignage publié qui lui semble non conforme à notre charte via le bouton "Signaler" présent sur chaque page de témoignage. Chaque signalement est examiné par notre équipe sous 48h.</p>
-      </div>
+      <div class="block-text"><p>Tout visiteur peut signaler un témoignage publié qui lui semble non conforme à notre charte via le bouton "Signaler" présent sur chaque page de témoignage. Chaque signalement est examiné sous 48h.</p></div>
     </div>
   </div>
 
-  <!-- ═══════════════════════════════════
-       SECTION 4 — DROITS DU TÉMOIN
-  ═══════════════════════════════════ -->
   <div class="section" id="droits">
     <div class="section-label">Section 4</div>
     <h2 class="section-title">Vos droits en tant que témoin</h2>
-
-    <div class="content-block">
-      <div class="block-title"><span class="bi">🛡️</span> Droits garantis</div>
-    </div>
-
     <div class="rights-grid">
-      <div class="right-item">
-        <div class="right-icon">✏️</div>
-        <div class="right-title">Modifier votre témoignage</div>
-        <div class="right-desc">Vous pouvez demander la modification de votre témoignage à tout moment depuis votre espace personnel, tant qu'il n'a pas été intégré dans une étude institutionnelle.</div>
-      </div>
-      <div class="right-item">
-        <div class="right-icon">🗑️</div>
-        <div class="right-title">Retirer votre témoignage</div>
-        <div class="right-desc">Vous pouvez demander la suppression complète de votre témoignage à tout moment. La suppression est effective sous 48h et irréversible.</div>
-      </div>
-      <div class="right-item">
-        <div class="right-icon">🔒</div>
-        <div class="right-title">Changer votre niveau d'anonymat</div>
-        <div class="right-desc">Vous pouvez modifier votre niveau d'anonymat à tout moment — passer de "prénom et région" à "anonyme complet" par exemple — depuis vos réglages de compte.</div>
-      </div>
-      <div class="right-item">
-        <div class="right-icon">✉️</div>
-        <div class="right-title">Contrôler la messagerie</div>
-        <div class="right-desc">Vous choisissez si vous acceptez d'être contacté via la messagerie interne. Ce choix est modifiable à tout moment et ne conditionne pas la publication de votre témoignage.</div>
-      </div>
-      <div class="right-item">
-        <div class="right-icon">🔔</div>
-        <div class="right-title">Gérer vos notifications</div>
-        <div class="right-desc">Toutes les notifications sont désactivables individuellement depuis vos réglages. Seule la confirmation de publication est envoyée par défaut.</div>
-      </div>
-      <div class="right-item">
-        <div class="right-icon">📋</div>
-        <div class="right-title">Accéder à vos données</div>
-        <div class="right-desc">Conformément au RGPD, vous pouvez demander l'accès à l'ensemble des données que nous détenons vous concernant, leur rectification ou leur suppression complète.</div>
-      </div>
+      <div class="right-item"><div class="right-icon">✏️</div><div class="right-title">Modifier votre témoignage</div><div class="right-desc">Vous pouvez demander la modification de votre témoignage à tout moment depuis votre espace personnel.</div></div>
+      <div class="right-item"><div class="right-icon">🗑️</div><div class="right-title">Retirer votre témoignage</div><div class="right-desc">Vous pouvez demander la suppression complète de votre témoignage à tout moment. Effective sous 48h et irréversible.</div></div>
+      <div class="right-item"><div class="right-icon">🔒</div><div class="right-title">Changer votre anonymat</div><div class="right-desc">Vous pouvez modifier votre niveau d'anonymat à tout moment depuis vos réglages de compte.</div></div>
+      <div class="right-item"><div class="right-icon">✉️</div><div class="right-title">Contrôler la messagerie</div><div class="right-desc">Vous choisissez si vous acceptez d'être contacté via la messagerie interne. Modifiable à tout moment.</div></div>
+      <div class="right-item"><div class="right-icon">🔔</div><div class="right-title">Gérer vos notifications</div><div class="right-desc">Toutes les notifications sont désactivables individuellement depuis vos réglages.</div></div>
+      <div class="right-item"><div class="right-icon">📋</div><div class="right-title">Accéder à vos données</div><div class="right-desc">Conformément au RGPD, vous pouvez demander l'accès, la rectification ou la suppression de vos données.</div></div>
     </div>
-
     <div class="content-block">
       <div class="block-title"><span class="bi">⚖️</span> Recours</div>
       <div class="block-text">
-        <p>Si votre témoignage a été refusé, consultez la liste des motifs de refus dans la section "Règles de publication" ci-dessus pour identifier ce qui doit être modifié. Vous pouvez soumettre une nouvelle version corrigée à tout moment depuis votre espace personnel.</p>
-<p>Pour toute question sur la conformité de votre témoignage avant redépôt, vous pouvez écrire à <strong>moderation@moietloi.fr</strong> en indiquant la référence de votre dossier.</p>
-        <p>En cas de désaccord persistant sur le traitement de vos données personnelles, vous pouvez saisir la <strong>CNIL</strong> (Commission Nationale de l'Informatique et des Libertés).</p>
+        <p>Si votre témoignage a été refusé, consultez la liste des motifs de refus ci-dessus. Vous pouvez soumettre une nouvelle version corrigée à tout moment depuis votre espace personnel.</p>
+        <p>Pour toute question avant redépôt, écrivez à <strong>moderation@moietloi.fr</strong>.</p>
+        <p>En cas de désaccord persistant sur vos données personnelles, vous pouvez saisir la <strong>CNIL</strong>.</p>
       </div>
     </div>
-
   </div>
 
-  <!-- CONTACT -->
   <div class="contact-box">
     <div class="contact-box-title">Une question sur cette charte ?</div>
     <div class="contact-box-desc">Notre équipe éditoriale est disponible pour répondre à toute question sur nos règles de publication, notre processus de modération ou vos droits en tant que témoin.</div>
     <a href="mailto:charte@moietloi.fr" class="btn-contact">Nous écrire →</a>
   </div>
 
-  <div class="page-date">Charte éditoriale moietloi.fr — Version 1.0 · Mai 2026<br>Prochaine révision prévue : décembre 2026</div>
-
+  <div class="page-date">Charte éditoriale moietloi.fr — Version 3.0 · Mai 2026<br>Prochaine révision prévue : décembre 2026</div>
 </div>
 
 <script>
-// Navigation sections active state
-const snavBtns = document.querySelectorAll('.snav-btn');
-const sections = document.querySelectorAll('.section');
-
+const snavBtns=document.querySelectorAll('.snav-btn');
+const sections=document.querySelectorAll('.section');
 window.addEventListener('scroll',()=>{
   let current='';
-  sections.forEach(s=>{
-    if(window.scrollY>=s.offsetTop-100) current=s.id;
-  });
-  snavBtns.forEach(b=>{
-    b.classList.toggle('active',b.getAttribute('href')==='#'+current);
-  });
+  sections.forEach(s=>{if(window.scrollY>=s.offsetTop-100)current=s.id;});
+  snavBtns.forEach(b=>{b.classList.toggle('active',b.getAttribute('href')==='#'+current);});
 });
 </script>
 </body>
