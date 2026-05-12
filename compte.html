@@ -54,20 +54,30 @@ nav{background:rgba(247,244,239,0.96);backdrop-filter:blur(10px);border-bottom:1
 .card-title{font-family:'Playfair Display',serif;font-size:1rem;color:var(--gris-fonce);margin-bottom:20px;display:flex;align-items:center;gap:10px}
 .card-num{width:26px;height:26px;border-radius:50%;background:var(--vert);color:white;font-size:0.78rem;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 
-/* FORM — deux colonnes pour prénom/nom */
+/* FORM */
 .field{margin-bottom:18px}
 .field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px}
+.field-row-3{display:grid;grid-template-columns:auto 1fr 1fr;gap:14px;margin-bottom:18px;align-items:end}
 label{display:block;font-size:0.78rem;color:var(--gris-moyen);margin-bottom:6px;letter-spacing:0.5px;text-transform:uppercase;font-weight:500}
 .req{color:var(--peche);margin-left:2px}
 .opt{color:var(--gris-clair);margin-left:4px;font-size:0.7rem;text-transform:none;letter-spacing:0;font-weight:400;font-style:italic}
 input[type=email],input[type=password],input[type=text],input[type=tel],select{width:100%;padding:12px 16px;border:1.5px solid #ddd8d0;border-radius:8px;font-size:0.95rem;font-family:'Source Sans 3',sans-serif;background:var(--fond);color:var(--gris-fonce);transition:border-color 0.2s;-webkit-appearance:none;appearance:none}
 input:focus,select:focus{outline:none;border-color:var(--vert);background:white}
+input.error,select.error{border-color:var(--rouge)!important;}
 select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b6b6b' d='M6 8L1 3h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
 input[list]{width:100%;padding:12px 16px;border:1.5px solid #ddd8d0;border-radius:8px;font-size:0.95rem;font-family:'Source Sans 3',sans-serif;background:var(--fond);color:var(--gris-fonce);transition:border-color 0.2s;-webkit-appearance:none}
 input[list]:focus{outline:none;border-color:var(--vert);background:white}
 .hint{font-size:0.78rem;color:var(--gris-moyen);margin-top:5px;font-style:italic}
+.field-error{font-size:0.78rem;color:var(--rouge);margin-top:4px;display:none}
+.field-error.visible{display:block}
 
-/* SECTEUR 2 NIVEAUX — sans bouton "garder catégorie" */
+/* CIVILITE */
+.civilite-group{display:flex;gap:8px;margin-bottom:0}
+.civ-btn input[type=radio]{display:none}
+.civ-btn label{padding:11px 16px;border:1.5px solid #ddd8d0;border-radius:8px;font-size:0.9rem;color:var(--gris-moyen);cursor:pointer;transition:all 0.2s;display:block;text-transform:none;letter-spacing:0;font-weight:400;margin:0;white-space:nowrap}
+.civ-btn input:checked+label{border-color:var(--vert);background:var(--vert-pale);color:var(--vert);font-weight:500}
+
+/* SECTEUR */
 .secteur-niveau2{display:none;margin-top:10px}
 .secteur-niveau2.visible{display:block}
 .secteur-selected{font-size:0.78rem;color:var(--vert);margin-top:6px;font-style:italic;min-height:18px}
@@ -91,10 +101,14 @@ input[list]:focus{outline:none;border-color:var(--vert);background:white}
 .radio-btn label{padding:7px 14px;border:1.5px solid #ddd8d0;border-radius:20px;font-size:0.82rem;color:var(--gris-moyen);cursor:pointer;transition:all 0.2s;text-transform:none;letter-spacing:0;font-weight:400;margin:0}
 .radio-btn input:checked+label{border-color:var(--vert);background:var(--vert-pale);color:var(--vert);font-weight:500}
 
+/* VALIDATION SUMMARY */
+.validation-summary{display:none;background:#fdf0ef;border:1.5px solid #e8b0ad;border-radius:8px;padding:14px 16px;margin-bottom:16px;font-size:0.85rem;color:var(--rouge);line-height:1.7}
+.validation-summary.visible{display:block}
+.validation-summary ul{margin-left:16px;margin-top:4px}
+.validation-summary li{margin-bottom:2px}
+
 /* NOTE */
 .required-note{font-size:0.78rem;color:var(--gris-moyen);margin-bottom:20px;padding:10px 14px;background:var(--vert-pale);border-radius:8px;border-left:3px solid var(--vert)}
-
-/* NOTE ANONYMAT */
 .anon-note{background:var(--peche-pale);border:1px solid var(--peche);border-radius:8px;padding:12px 16px;font-size:0.8rem;color:var(--gris-fonce);line-height:1.6;margin-bottom:20px}
 .anon-note strong{color:var(--peche)}
 
@@ -135,6 +149,7 @@ input[list]:focus{outline:none;border-color:var(--vert);background:white}
   nav{padding:0 18px}.nav-links{display:none}.nav-burger{display:flex}
   .container{padding:28px 16px}
   .field-row{grid-template-columns:1fr}
+  .field-row-3{grid-template-columns:1fr;gap:10px}
 }
 </style>
 </head>
@@ -144,18 +159,18 @@ input[list]:focus{outline:none;border-color:var(--vert);background:white}
 <nav>
   <a href="index.html" class="nav-logo">moi <span class="et">&</span> <span class="loi">loi</span></a>
   <div class="nav-links">
-    <a href="compte.html" class="nav-cta">🎙️ Déposer</a>
+    <a href="temoigner.html" class="nav-cta">🎙️ Déposer</a>
     <a href="consulter.html">🔍 Consulter</a>
     <a href="charte.html">📋 Charte</a>
     <a href="tarifs.html">💶 Tarifs</a>
-    <a href="compte.html" class="active">👤 Connexion</a>
+    <a href="compte.html" class="active">👤 Connexion / Créer un compte</a>
   </div>
   <button class="nav-burger" onclick="document.getElementById('nm').classList.toggle('open')" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
 </nav>
 <div class="nav-mob" id="nm">
-  <a href="compte.html" class="nav-cta-mob">🎙️ Déposer un témoignage</a>
+  <a href="temoigner.html" class="nav-cta-mob">🎙️ Déposer un témoignage</a>
   <a href="consulter.html">🔍 Consulter les témoignages</a>
   <a href="charte.html">📋 Charte & Règles</a>
   <a href="tarifs.html">💶 Tarifs</a>
@@ -164,7 +179,6 @@ input[list]:focus{outline:none;border-color:var(--vert);background:white}
 
 <!-- FORMULAIRE -->
 <div class="container" id="formZone">
-
   <div class="page-header">
     <div class="page-eyebrow">Étape préalable</div>
     <h1 class="page-title">Créez votre compte</h1>
@@ -172,32 +186,51 @@ input[list]:focus{outline:none;border-color:var(--vert);background:white}
   </div>
 
   <div class="required-note">
-    Les champs marqués <span style="color:var(--peche);font-weight:600;">*</span> sont obligatoires. Toutes vos données restent strictement confidentielles — jamais publiées individuellement, utilisées uniquement pour l'analyse statistique agrégée.
+    Les champs marqués <span style="color:var(--peche);font-weight:600;">*</span> sont obligatoires. Toutes vos données restent strictement confidentielles — jamais publiées individuellement.
   </div>
 
   <div class="anon-note">
-    <strong>🔒 Anonymat et statistiques :</strong> même si votre témoignage est publié de façon 100% anonyme, les informations de votre profil sont rattachées en privé à votre témoignage pour enrichir les analyses collectives. Ce qui est visible publiquement ≠ ce qui est analysé.
+    <strong>Anonymat et statistiques :</strong> même si votre témoignage est publié de façon 100% anonyme, les informations de votre profil sont rattachées en privé à votre témoignage pour enrichir les analyses collectives.
+  </div>
+
+  <!-- RÉSUMÉ ERREURS -->
+  <div class="validation-summary" id="validationSummary">
+    Merci de compléter les champs obligatoires suivants :
+    <ul id="validationList"></ul>
   </div>
 
   <!-- CARTE 1 — COMPTE -->
   <div class="card">
     <div class="card-title"><span class="card-num">1</span> Informations de compte</div>
 
-    <!-- Prénom + Nom côte à côte -->
+    <!-- CIVILITÉ + PRÉNOM + NOM -->
+    <div class="field">
+      <label>Civilité <span class="req">*</span></label>
+      <div class="civilite-group">
+        <div class="civ-btn"><input type="radio" name="civilite" id="civM" value="M."><label for="civM">M.</label></div>
+        <div class="civ-btn"><input type="radio" name="civilite" id="civMme" value="Mme"><label for="civMme">Mme</label></div>
+        <div class="civ-btn"><input type="radio" name="civilite" id="civAutre" value="Autre"><label for="civAutre">Autre</label></div>
+      </div>
+      <div class="field-error" id="err_civilite">Veuillez sélectionner une civilité</div>
+    </div>
+
     <div class="field-row">
       <div>
         <label>Prénom <span class="req">*</span></label>
         <input type="text" id="prenom" placeholder="Votre prénom" autocomplete="given-name" oninput="checkForm()">
+        <div class="field-error" id="err_prenom">Prénom requis</div>
       </div>
       <div>
         <label>Nom <span class="req">*</span></label>
         <input type="text" id="nom" placeholder="Votre nom" autocomplete="family-name" oninput="checkForm()">
+        <div class="field-error" id="err_nom">Nom requis</div>
       </div>
     </div>
 
     <div class="field">
       <label>Email <span class="req">*</span></label>
       <input type="email" id="email" placeholder="votre@email.com" autocomplete="email" oninput="checkForm()">
+      <div class="field-error" id="err_email">Adresse email invalide</div>
     </div>
 
     <div class="field">
@@ -218,12 +251,14 @@ input[list]:focus{outline:none;border-color:var(--vert);background:white}
         <div class="pw-bar" id="bar3"></div>
       </div>
       <div class="pw-strength-label" id="pwLabel"></div>
+      <div class="field-error" id="err_password">Mot de passe de 8 caractères minimum requis</div>
     </div>
 
     <div class="field">
       <label>Pseudonyme <span class="req">*</span></label>
       <input type="text" id="pseudo" placeholder="Comment apparaître sur la plateforme" autocomplete="off" oninput="checkForm()">
       <div class="hint">Visible publiquement si vous le souhaitez — modifiable à tout moment.</div>
+      <div class="field-error" id="err_pseudo">Pseudonyme requis</div>
     </div>
   </div>
 
@@ -242,6 +277,7 @@ input[list]:focus{outline:none;border-color:var(--vert);background:white}
         <option>55–64 ans</option>
         <option>65 ans et plus</option>
       </select>
+      <div class="field-error" id="err_age">Tranche d'âge requise</div>
     </div>
 
     <div class="field">
@@ -252,6 +288,7 @@ input[list]:focus{outline:none;border-color:var(--vert);background:white}
         <div class="radio-btn"><input type="radio" name="sexe" id="s3" value="Autre" onchange="checkForm()"><label for="s3">Autre</label></div>
         <div class="radio-btn"><input type="radio" name="sexe" id="s4" value="Non précisé" onchange="checkForm()"><label for="s4">Préfère ne pas préciser</label></div>
       </div>
+      <div class="field-error" id="err_sexe">Veuillez sélectionner une option</div>
     </div>
 
     <div class="field">
@@ -262,6 +299,7 @@ input[list]:focus{outline:none;border-color:var(--vert);background:white}
         <div class="radio-btn"><input type="radio" name="territoire" id="t3" value="Urbain" onchange="checkForm()"><label for="t3">Urbain</label></div>
         <div class="radio-btn"><input type="radio" name="territoire" id="t4" value="Littoral / Montagne" onchange="checkForm()"><label for="t4">Littoral / Montagne</label></div>
       </div>
+      <div class="field-error" id="err_territoire">Veuillez sélectionner un type de territoire</div>
     </div>
 
     <div class="field">
@@ -307,6 +345,7 @@ input[list]:focus{outline:none;border-color:var(--vert);background:white}
         <option value="Étranger / Non-résident">
       </datalist>
       <div class="hint">Tapez les premiers chiffres ou lettres pour filtrer</div>
+      <div class="field-error" id="err_region">Département ou région requis</div>
     </div>
 
     <div class="field">
@@ -341,9 +380,10 @@ input[list]:focus{outline:none;border-color:var(--vert);background:white}
         <option value="Chercheur / Scientifique">
       </datalist>
       <div class="hint">Nomenclature INSEE — tapez pour filtrer</div>
+      <div class="field-error" id="err_csp">Catégorie socio-professionnelle requise</div>
     </div>
 
-    <!-- SECTEUR 2 NIVEAUX — sans bouton "garder catégorie générale" -->
+    <!-- SECTEUR 2 NIVEAUX -->
     <div class="field">
       <label>Secteur d'activité <span class="req">*</span></label>
       <select id="secteurCat" onchange="onSecteurCat()">
@@ -367,8 +407,6 @@ input[list]:focus{outline:none;border-color:var(--vert);background:white}
         <option value="Transport & Logistique">Transport & Logistique</option>
         <option value="Autre">Autre — non listé</option>
       </select>
-
-      <!-- Niveau 2 — apparaît automatiquement, pas de bouton "garder catégorie" -->
       <div class="secteur-niveau2" id="secteurNiveau2">
         <select id="secteurSub" onchange="onSecteurSub()">
           <option value="">— Préciser votre activité (optionnel) —</option>
@@ -376,15 +414,15 @@ input[list]:focus{outline:none;border-color:var(--vert);background:white}
       </div>
       <div class="secteur-selected" id="secteurSelected"></div>
       <div class="hint">Choisissez d'abord la catégorie, puis précisez si vous le souhaitez</div>
+      <div class="field-error" id="err_secteur">Secteur d'activité requis</div>
     </div>
-
   </div>
 
   <!-- CARTE 3 — MESSAGERIE -->
   <div class="card">
     <div class="card-title"><span class="card-num">3</span> Messagerie & contact</div>
     <p style="font-size:0.85rem;color:var(--gris-moyen);line-height:1.65;margin-bottom:16px;">
-      Votre messagerie privée vous permet de recevoir des messages d'autres utilisateurs — témoins, avocats, journalistes, associations. Votre identité réelle n'est jamais révélée. Modifiable à tout moment.
+      Votre messagerie privée vous permet de recevoir des messages d'autres utilisateurs — témoins, avocats, journalistes, associations. Votre identité réelle n'est jamais révélée.
     </p>
     <div class="cgu-box" style="margin-bottom:0;border-color:var(--vert-clair);">
       <input type="checkbox" id="chkContact">
@@ -411,7 +449,6 @@ input[list]:focus{outline:none;border-color:var(--vert);background:white}
   <div class="connexion-link">
     Déjà un compte ? <a href="#">Se connecter</a>
   </div>
-
 </div>
 
 <!-- CONFIRMATION -->
@@ -428,13 +465,13 @@ input[list]:focus{outline:none;border-color:var(--vert);background:white}
       • À la publication, vous recevrez un email avec votre témoignage complet<br>
       • Vous pourrez suivre les témoignages similaires depuis votre espace
     </div>
-    <a href="temoigner.html" class="btn-continue"><span>🎙️</span> Déposer mon témoignage</a>
+    <a href="temoigner.html" class="btn-continue">🎙️ Déposer mon témoignage</a>
     <a href="index.html" class="btn-skip">Retour à l'accueil</a>
   </div>
 </div>
 
 <script>
-// ── DONNÉES SECTEURS — identiques à V5, intouchables
+// ── DONNÉES SECTEURS — identiques v6
 const secteurData = {
   "Agriculture & Rural": ["Activité événementielle en zone rurale","Agriculture / Élevage","Apiculture","Aquaculture","Arboriculture / Maraîchage","Artisanat agricole / Transformation à la ferme","Agritourisme / Hébergement rural / Gîtes","Pêche","Sylviculture / Exploitation forestière","Viticulture / Vins"],
   "Alimentation & Restauration": ["Artisanat alimentaire / Boulangerie / Pâtisserie / Fromagerie","Bar / Café / Brasserie","Commerce alimentaire de proximité / Épicerie","Marché / Vente directe producteur","Production agroalimentaire","Restaurant","Restauration rapide / Traiteur / Cuisine de rue"],
@@ -456,7 +493,7 @@ const secteurData = {
   "Autre": ["Secteur non listé — je précise dans mon témoignage"]
 };
 
-// ── SECTEUR NIVEAU 1 → affiche niveau 2 automatiquement
+// ── SECTEUR
 function onSecteurCat(){
   const cat=document.getElementById('secteurCat').value;
   const n2=document.getElementById('secteurNiveau2');
@@ -467,12 +504,9 @@ function onSecteurCat(){
   sub.innerHTML='<option value="">— Préciser votre activité (optionnel) —</option>';
   options.forEach(o=>{const opt=document.createElement('option');opt.value=o;opt.textContent=o;sub.appendChild(opt);});
   n2.classList.add('visible');
-  // Catégorie principale sélectionnée automatiquement sans bouton
   sel.textContent='✓ Catégorie : '+cat;
   checkForm();
 }
-
-// ── SECTEUR NIVEAU 2
 function onSecteurSub(){
   const cat=document.getElementById('secteurCat').value;
   const sub=document.getElementById('secteurSub').value;
@@ -481,27 +515,54 @@ function onSecteurSub(){
   checkForm();
 }
 
-// ── VALIDATION FORM
+// ── VALIDATION — liste des champs obligatoires
+const REQUIRED_FIELDS = [
+  {id:'civilite', type:'radio', name:'civilite', label:'Civilité'},
+  {id:'prenom', type:'text', label:'Prénom'},
+  {id:'nom', type:'text', label:'Nom'},
+  {id:'email', type:'email', label:'Email'},
+  {id:'password', type:'password', label:'Mot de passe (8 caractères minimum)', minLen:8},
+  {id:'pseudo', type:'text', label:'Pseudonyme'},
+  {id:'age', type:'select', label:'Tranche d\'âge'},
+  {id:'sexe', type:'radio', name:'sexe', label:'Sexe'},
+  {id:'territoire', type:'radio', name:'territoire', label:'Type de territoire'},
+  {id:'region', type:'text', label:'Département ou région'},
+  {id:'csp', type:'text', label:'Catégorie socio-professionnelle'},
+  {id:'secteurCat', type:'select', label:'Secteur d\'activité'},
+  {id:'cgu', type:'checkbox', label:'Acceptation des conditions d\'utilisation'},
+];
+
 function checkForm(){
-  const prenom=document.getElementById('prenom').value.trim();
-  const nom=document.getElementById('nom').value.trim();
-  const email=document.getElementById('email').value.trim();
-  const pw=document.getElementById('password').value;
-  const pseudo=document.getElementById('pseudo').value.trim();
-  const age=document.getElementById('age').value;
-  const sexe=document.querySelector('input[name=sexe]:checked');
-  const territoire=document.querySelector('input[name=territoire]:checked');
-  const region=document.getElementById('region').value.trim();
-  const csp=document.getElementById('csp').value.trim();
-  const secteurCat=document.getElementById('secteurCat').value;
-  const cgu=document.getElementById('cgu').checked;
-  const valid=prenom&&nom&&email&&pw.length>=8&&pseudo&&age&&sexe&&territoire&&region&&csp&&secteurCat&&cgu&&isValidEmail(email);
-  document.getElementById('btnCreer').disabled=!valid;
+  const errors=[];
+  let allValid=true;
+
+  REQUIRED_FIELDS.forEach(f=>{
+    let valid=false;
+    if(f.type==='radio'){
+      valid=!!document.querySelector(`input[name=${f.name}]:checked`);
+    }else if(f.type==='checkbox'){
+      valid=document.getElementById(f.id)?.checked;
+    }else if(f.type==='select'){
+      valid=!!document.getElementById(f.id)?.value;
+    }else if(f.type==='email'){
+      const v=document.getElementById(f.id)?.value.trim();
+      valid=isValidEmail(v);
+    }else if(f.minLen){
+      valid=(document.getElementById(f.id)?.value||'').length>=f.minLen;
+    }else{
+      valid=!!(document.getElementById(f.id)?.value.trim());
+    }
+    if(!valid)errors.push(f.label);
+  });
+
+  allValid=errors.length===0;
+  document.getElementById('btnCreer').disabled=!allValid;
+  return {valid:allValid, errors};
 }
 
 function isValidEmail(e){return/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);}
 
-// ── PASSWORD STRENGTH — identique à V5
+// ── PASSWORD STRENGTH
 function checkStrength(){
   const pw=document.getElementById('password').value;
   const bars=[document.getElementById('bar1'),document.getElementById('bar2'),document.getElementById('bar3')];
@@ -517,28 +578,36 @@ function checkStrength(){
   else if(score>=3){bars.forEach(b=>b.classList.add('strong'));label.textContent='Fort';}
 }
 
-// ── PASSWORD TOGGLE — identique à V5
 function togglePw(){
   const pw=document.getElementById('password');
   pw.type=pw.type==='password'?'text':'password';
 }
 
 // ── CRÉER COMPTE
-// TODO backend : remplacer setTimeout par POST /api/comptes
 function creerCompte(){
+  const {valid,errors}=checkForm();
+  if(!valid){
+    // Afficher le résumé des erreurs
+    const summary=document.getElementById('validationSummary');
+    const list=document.getElementById('validationList');
+    list.innerHTML=errors.map(e=>`<li>${e}</li>`).join('');
+    summary.classList.add('visible');
+    summary.scrollIntoView({behavior:'smooth',block:'center'});
+    return;
+  }
+
   const email=document.getElementById('email').value.trim();
   const btn=document.getElementById('btnCreer');
-  if(!isValidEmail(email)){showErr('Adresse email invalide.');return;}
-  if(document.getElementById('password').value.length<8){showErr('Le mot de passe doit contenir au moins 8 caractères.');return;}
-  btn.disabled=true;
-  btn.textContent='Création en cours…';
+  btn.disabled=true;btn.textContent='Création en cours…';
+  document.getElementById('validationSummary').classList.remove('visible');
 
-  // ── SAUVEGARDER LE PROFIL EN LOCALSTORAGE
-  // TODO backend : remplacer par API call quand backend disponible
+  // Sauvegarder profil
+  const civilite=document.querySelector('input[name=civilite]:checked')?.value||'';
   const profil={
+    civilite,
     prenom: document.getElementById('prenom').value.trim(),
     nom: document.getElementById('nom').value.trim(),
-    email: email,
+    email,
     telephone: document.getElementById('telephone').value.trim(),
     pseudo: document.getElementById('pseudo').value.trim(),
     age: document.getElementById('age').value,
@@ -568,6 +637,9 @@ function showErr(msg){
   document.getElementById('btnCreer').disabled=false;
   document.getElementById('btnCreer').textContent='Créer mon compte →';
 }
+
+// Initialiser checkForm au chargement
+document.addEventListener('DOMContentLoaded',checkForm);
 </script>
 </body>
 </html>
