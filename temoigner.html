@@ -50,6 +50,9 @@ header { text-align:center; padding:32px 0 28px; border-bottom:1px solid var(--b
 .card-title { font-family:'Playfair Display',serif; font-size:1.1rem; color:var(--gris-fonce); margin-bottom:18px; display:flex; align-items:center; gap:10px; }
 .snum { width:28px; height:28px; border-radius:50%; background:var(--vert); color:white; font-size:0.8rem; font-weight:500; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
 .snum.orange { background:var(--peche); }
+.snum.violet { background:#7c6b9e; }
+.snum.indigo { background:#4a6090; }
+
 label { display:block; font-size:0.8rem; color:var(--gris-moyen); margin-bottom:6px; letter-spacing:0.5px; text-transform:uppercase; font-weight:500; }
 input[type=password], input[type=text], textarea { width:100%; padding:12px 16px; border:1.5px solid #ddd8d0; border-radius:8px; font-size:0.95rem; font-family:'Source Sans 3',sans-serif; background:var(--fond); color:var(--gris-fonce); transition:border-color 0.2s; -webkit-appearance:none; }
 textarea { resize:vertical; min-height:80px; line-height:1.6; }
@@ -57,6 +60,8 @@ input:focus, textarea:focus { outline:none; border-color:var(--vert); background
 .igrp { margin-bottom:16px; }
 .hint { font-size:0.78rem; color:var(--gris-moyen); margin-top:5px; font-style:italic; }
 .confidentiel { background:#f0f4f0; border:1px solid var(--vert-clair); border-radius:8px; padding:10px 14px; font-size:0.8rem; color:var(--vert); display:flex; align-items:flex-start; gap:8px; margin-top:12px; line-height:1.5; }
+
+/* ENREGISTREMENT */
 .record-zone { text-align:center; padding:20px 0; }
 .record-instr { font-size:0.95rem; color:var(--gris-moyen); margin-bottom:24px; line-height:1.6; font-style:italic; }
 .btn-rec { width:80px; height:80px; border-radius:50%; border:none; background:var(--vert); color:white; cursor:pointer; font-size:2rem; display:flex; align-items:center; justify-content:center; margin:0 auto 16px; box-shadow:0 4px 16px rgba(90,114,96,0.3); transition:all 0.2s; }
@@ -68,19 +73,13 @@ input:focus, textarea:focus { outline:none; border-color:var(--vert); background
 .timer { font-size:1.4rem; font-family:'Playfair Display',serif; color:var(--peche); margin:8px 0; min-height:36px; }
 .btn-stop { display:none; margin:12px auto 0; padding:10px 28px; border:1.5px solid var(--peche); background:transparent; color:var(--peche); border-radius:8px; font-size:0.9rem; cursor:pointer; font-family:'Source Sans 3',sans-serif; transition:all 0.2s; }
 .btn-stop:hover { background:var(--peche); color:white; }
-.btn-complement { display:none; margin:10px 6px 0; padding:8px 20px; border:1.5px solid var(--vert); background:transparent; color:var(--vert); border-radius:8px; font-size:0.85rem; cursor:pointer; font-family:'Source Sans 3',sans-serif; transition:all 0.2s; }
+.btn-complement { margin:10px 6px 0; padding:8px 20px; border:1.5px solid var(--vert); background:transparent; color:var(--vert); border-radius:8px; font-size:0.85rem; cursor:pointer; font-family:'Source Sans 3',sans-serif; transition:all 0.2s; }
 .btn-complement:hover { background:var(--vert); color:white; }
-.btn-recommencer { display:none; margin:10px 6px 0; padding:8px 20px; border:1.5px solid var(--rouge); background:transparent; color:var(--rouge); border-radius:8px; font-size:0.85rem; cursor:pointer; font-family:'Source Sans 3',sans-serif; transition:all 0.2s; }
+.btn-recommencer { margin:10px 6px 0; padding:8px 20px; border:1.5px solid var(--rouge); background:transparent; color:var(--rouge); border-radius:8px; font-size:0.85rem; cursor:pointer; font-family:'Source Sans 3',sans-serif; transition:all 0.2s; }
 .btn-recommencer:hover { background:var(--rouge); color:white; }
 .rec-actions { display:none; justify-content:center; gap:0; flex-wrap:wrap; margin-top:4px; }
-.doc-finale-zone { background:var(--fond); border:1.5px dashed #ddd8d0; border-radius:8px; padding:16px; margin-top:16px; cursor:pointer; text-align:center; transition:all 0.2s; }
-.doc-finale-zone:hover { border-color:var(--vert); background:var(--vert-pale); }
-.classif-display { background:var(--vert-pale); border:1px solid var(--vert-clair); border-radius:8px; padding:14px 16px; margin-bottom:12px; font-size:0.85rem; line-height:1.7; color:var(--gris-fonce); }
-.classif-tag { display:inline-block; background:var(--vert); color:white; font-size:0.72rem; padding:2px 8px; border-radius:10px; margin:2px; font-weight:500; }
-.check-group { display:flex; flex-wrap:wrap; gap:8px; margin-top:6px; }
-.check-btn { display:flex; align-items:center; gap:6px; padding:7px 14px; border:1.5px solid #ddd8d0; border-radius:20px; font-size:0.82rem; color:var(--gris-moyen); cursor:pointer; transition:all 0.2s; background:var(--blanc); font-family:'Source Sans 3',sans-serif; }
-.check-btn input[type=checkbox] { accent-color:var(--vert); width:14px; height:14px; cursor:pointer; }
-.check-btn.on { border-color:var(--vert); background:var(--vert-pale); color:var(--vert); font-weight:500; }
+
+/* DOCUMENTS */
 .upload-zone { border:2px dashed #ddd8d0; border-radius:8px; padding:20px; text-align:center; cursor:pointer; transition:all 0.2s; margin-top:12px; }
 .upload-zone:hover, .upload-zone.over { border-color:var(--vert); background:#f0f4f0; }
 .upload-icon { font-size:1.8rem; margin-bottom:8px; }
@@ -89,6 +88,10 @@ input:focus, textarea:focus { outline:none; border-color:var(--vert); background
 .doc-list { margin-top:10px; }
 .doc-item { display:flex; align-items:center; justify-content:space-between; padding:8px 12px; background:var(--fond); border-radius:6px; margin-bottom:6px; font-size:0.85rem; }
 .doc-rm { cursor:pointer; color:var(--gris-moyen); background:none; border:none; font-size:1rem; padding:0 4px; }
+.doc-finale-zone { background:var(--fond); border:1.5px dashed #ddd8d0; border-radius:8px; padding:16px; margin-top:16px; cursor:pointer; text-align:center; transition:all 0.2s; }
+.doc-finale-zone:hover { border-color:var(--vert); background:var(--vert-pale); }
+
+/* BOUTONS */
 .btn-p { width:100%; padding:14px; background:var(--vert); color:white; border:none; border-radius:8px; font-size:1rem; font-family:'Source Sans 3',sans-serif; font-weight:500; cursor:pointer; transition:all 0.2s; margin-top:16px; }
 .btn-p:hover { background:#4a6050; }
 .btn-p:disabled { background:#b0c0b8; cursor:not-allowed; }
@@ -96,6 +99,8 @@ input:focus, textarea:focus { outline:none; border-color:var(--vert); background
 .btn-s:hover { background:var(--vert); color:white; }
 .btn-row { display:flex; gap:10px; margin-top:16px; }
 .btn-row .btn-p, .btn-row .btn-s { margin-top:0; }
+
+/* PIPELINE */
 .hidden { display:none !important; }
 .pstep { display:flex; align-items:center; gap:12px; padding:10px 0; border-bottom:1px solid #f0ebe3; font-size:0.9rem; color:var(--gris-moyen); }
 .pstep:last-child { border-bottom:none; }
@@ -104,6 +109,8 @@ input:focus, textarea:focus { outline:none; border-color:var(--vert); background
 .picon.active { background:var(--peche); color:white; animation:blink 1s infinite; }
 .picon.error { background:var(--rouge); color:white; }
 @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.5} }
+
+/* QUESTIONS */
 .qitem { background:var(--fond); border-radius:8px; padding:16px; margin-bottom:16px; border-left:3px solid var(--peche); }
 .qtxt { font-size:0.95rem; color:var(--gris-fonce); margin-bottom:12px; line-height:1.5; font-style:italic; }
 .q-response-zone { display:flex; flex-direction:column; gap:10px; }
@@ -113,6 +120,8 @@ input:focus, textarea:focus { outline:none; border-color:var(--vert); background
 .mr-status { font-size:0.85rem; color:var(--gris-moyen); }
 .mini-up { padding:10px 14px; border:1.5px dashed #ddd8d0; border-radius:8px; font-size:0.82rem; color:var(--gris-moyen); cursor:pointer; text-align:center; transition:all 0.2s; }
 .mini-up:hover { border-color:var(--vert); color:var(--vert); background:#f0f4f0; }
+
+/* DOCUMENT FINAL */
 .doc-editable { background:var(--blanc); border:1.5px solid var(--vert-clair); border-radius:10px; padding:20px; font-size:0.88rem; line-height:1.8; color:var(--gris-fonce); white-space:pre-wrap; min-height:200px; outline:none; transition:border-color 0.2s, box-shadow 0.2s; cursor:text; }
 .doc-editable:focus { border-color:var(--peche); box-shadow:0 0 0 3px rgba(212,149,106,0.15); }
 .edit-hint { font-size:0.78rem; color:var(--gris-moyen); margin-top:8px; display:flex; align-items:center; gap:6px; font-style:italic; }
@@ -120,13 +129,64 @@ input:focus, textarea:focus { outline:none; border-color:var(--vert); background
 .slabel { font-size:0.75rem; text-transform:uppercase; letter-spacing:1.5px; color:var(--gris-moyen); margin-bottom:8px; font-weight:500; }
 .ok-badge { display:inline-flex; align-items:center; gap:6px; background:#eef3ee; color:var(--vert); padding:6px 14px; border-radius:20px; font-size:0.82rem; font-weight:500; margin-bottom:16px; }
 .err-box { display:none; background:#fdf0ef; border:1px solid #e8b0ad; border-radius:8px; padding:14px 16px; font-size:0.88rem; color:var(--rouge); margin-top:12px; }
+
+/* CLASSIFICATION */
+.classif-display { background:var(--vert-pale); border:1px solid var(--vert-clair); border-radius:8px; padding:14px 16px; margin-bottom:12px; font-size:0.85rem; line-height:1.7; color:var(--gris-fonce); }
+.classif-tag { display:inline-block; background:var(--vert); color:white; font-size:0.72rem; padding:2px 8px; border-radius:10px; margin:2px; font-weight:500; }
+.check-group { display:flex; flex-wrap:wrap; gap:8px; margin-top:6px; }
+.check-btn { display:flex; align-items:center; gap:6px; padding:7px 14px; border:1.5px solid #ddd8d0; border-radius:20px; font-size:0.82rem; color:var(--gris-moyen); cursor:pointer; transition:all 0.2s; background:var(--blanc); font-family:'Source Sans 3',sans-serif; }
+.check-btn input[type=checkbox] { accent-color:var(--vert); width:14px; height:14px; cursor:pointer; }
+.check-btn.on { border-color:var(--vert); background:var(--vert-pale); color:var(--vert); font-weight:500; }
+
+/* RADIO GROUP */
+.radio-group{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.radio-btn input[type=radio]{display:none}
+.radio-btn label{padding:7px 14px;border:1.5px solid #ddd8d0;border-radius:20px;font-size:0.82rem;color:var(--gris-moyen);cursor:pointer;transition:all 0.2s;text-transform:none;letter-spacing:0;font-weight:400;margin:0}
+.radio-btn input:checked+label{border-color:var(--vert);background:var(--vert-pale);color:var(--vert);font-weight:500}
+
+/* ANONYMAT */
 .anon-fields { display:flex; flex-direction:column; gap:8px; margin-top:4px; }
 .anon-field { display:flex; align-items:center; gap:12px; padding:12px 16px; border-radius:8px; border:1.5px solid #ddd8d0; background:var(--fond); transition:all 0.2s; }
 .anon-field.checked { border-color:var(--vert); background:#eef3ee; }
+.anon-field.disabled { opacity:0.4; pointer-events:none; }
 .anon-field input[type=checkbox] { accent-color:var(--vert); width:18px; height:18px; cursor:pointer; flex-shrink:0; }
 .anon-field-label { font-size:0.9rem; font-weight:500; color:var(--gris-fonce); flex:1; }
+.anon-field-sub { font-size:0.78rem; color:var(--gris-moyen); }
 .anon-field input[type=text] { width:160px; padding:6px 10px; border:1.5px solid #ddd8d0; border-radius:6px; font-size:0.85rem; background:white; font-family:'Source Sans 3',sans-serif; }
 .anon-field input[type=text]:focus { outline:none; border-color:var(--vert); }
+
+/* RÉSOLUTION & DOMMAGES */
+.bloc-section { margin-bottom:20px; }
+.bloc-title { font-size:0.88rem; font-weight:600; color:var(--gris-fonce); margin-bottom:12px; display:flex; align-items:center; gap:8px; }
+.bloc-tag { font-size:0.7rem; padding:2px 8px; border-radius:10px; background:var(--vert-pale); color:var(--vert); font-weight:500; }
+.toggle-bloc { background:var(--fond); border:1.5px solid #ddd8d0; border-radius:8px; padding:12px 16px; margin-bottom:8px; }
+.toggle-bloc-header { display:flex; align-items:center; gap:10px; cursor:pointer; }
+.toggle-bloc-header input[type=checkbox] { accent-color:var(--vert); width:18px; height:18px; flex-shrink:0; }
+.toggle-bloc-label { font-size:0.9rem; font-weight:500; color:var(--gris-fonce); }
+.toggle-bloc-body { display:none; margin-top:14px; padding-top:14px; border-top:1px solid #e8e2d8; }
+.toggle-bloc.open .toggle-bloc-body { display:block; }
+.toggle-bloc.open { border-color:var(--vert); background:#f5f9f5; }
+.mini-rec-row { display:flex; align-items:center; gap:10px; margin-bottom:10px; }
+.btn-mini-rec { width:38px; height:38px; border-radius:50%; border:none; background:var(--vert); color:white; cursor:pointer; font-size:0.9rem; display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:all 0.2s; }
+.btn-mini-rec.rec { background:var(--peche); animation:pulse 1.5s infinite; }
+.mini-st { font-size:0.82rem; color:var(--gris-moyen); }
+.mini-up-sm { margin-top:8px; padding:8px 12px; border:1.5px dashed #ddd8d0; border-radius:8px; font-size:0.8rem; color:var(--gris-moyen); cursor:pointer; text-align:center; transition:all 0.2s; }
+.mini-up-sm:hover { border-color:var(--vert); color:var(--vert); background:#f0f4f0; }
+.sep { border:none; border-top:1px solid var(--beige); margin:18px 0; }
+
+/* FOURCHETTES */
+.fourchette-group { display:flex; flex-direction:column; gap:6px; margin-bottom:10px; }
+.fourchette-item { display:flex; align-items:center; gap:8px; font-size:0.85rem; color:var(--gris-fonce); }
+.fourchette-item input[type=radio] { accent-color:var(--vert); width:15px; height:15px; flex-shrink:0; }
+.fourchette-item label { margin:0; text-transform:none; letter-spacing:0; font-weight:400; font-size:0.85rem; color:var(--gris-fonce); cursor:pointer; }
+.exact-field { margin-top:8px; }
+.exact-field input[type=text] { font-size:0.88rem; padding:9px 12px; }
+
+/* COMPENSATION */
+.comp-radio { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:10px; }
+.comp-radio .radio-btn label { font-size:0.82rem; }
+
+/* SOUMISSION */
 .submission-box { background:#f8f4ef; border:1.5px solid var(--beige); border-radius:12px; padding:24px; margin-top:4px; }
 .submission-title { font-family:'Playfair Display',serif; font-size:1.1rem; color:var(--gris-fonce); margin-bottom:12px; }
 .submission-text { font-size:0.88rem; color:var(--gris-moyen); line-height:1.7; margin-bottom:16px; }
@@ -134,20 +194,20 @@ input:focus, textarea:focus { outline:none; border-color:var(--vert); background
 .checkbox-confirm { display:flex; align-items:flex-start; gap:10px; margin-bottom:16px; padding:12px; background:var(--blanc); border-radius:8px; border:1.5px solid #ddd8d0; }
 .checkbox-confirm input[type=checkbox] { margin-top:3px; accent-color:var(--vert); width:18px; height:18px; cursor:pointer; flex-shrink:0; }
 .checkbox-confirm span { font-size:0.85rem; color:var(--gris-fonce); line-height:1.5; }
+
+/* CONFIRMATION */
 .confirmation-finale { text-align:center; padding:32px 20px; }
 .confirmation-icon { font-size:3rem; margin-bottom:16px; }
 .confirmation-title { font-family:'Playfair Display',serif; font-size:1.4rem; color:var(--vert); margin-bottom:12px; }
 .confirmation-text { font-size:0.9rem; color:var(--gris-moyen); line-height:1.7; max-width:480px; margin:0 auto 24px; }
 .confirmation-details { background:var(--fond); border-radius:8px; padding:16px; text-align:left; font-size:0.85rem; color:var(--gris-moyen); line-height:1.7; margin-bottom:20px; }
 .confirmation-details strong { color:var(--gris-fonce); }
+
 audio { width:100%; margin-top:10px; border-radius:8px; }
 hr { border:none; border-top:1px solid var(--beige); margin:20px 0; }
 .footer-bar { position:fixed; bottom:0; left:0; right:0; background:var(--gris-fonce); color:#888; font-size:0.75rem; text-align:center; padding:10px 20px; z-index:100; }
 .footer-bar span { color:#8a9e8a; }
-.radio-group{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
-.radio-btn input[type=radio]{display:none}
-.radio-btn label{padding:7px 14px;border:1.5px solid #ddd8d0;border-radius:20px;font-size:0.82rem;color:var(--gris-moyen);cursor:pointer;transition:all 0.2s;text-transform:none;letter-spacing:0;font-weight:400;margin:0}
-.radio-btn input:checked+label{border-color:var(--vert);background:var(--vert-pale);color:var(--vert);font-weight:500}
+
 @media(max-width:480px){
   .logo{font-size:2rem}.card{padding:20px}.btn-row{flex-direction:column}
   nav{padding:0 18px}.nav-links{display:none}.nav-burger{display:flex}
@@ -156,7 +216,7 @@ hr { border:none; border-top:1px solid var(--beige); margin:20px 0; }
 </head>
 <body>
 
-<!-- NAV — page courante : 🎙️ Déposer -->
+<!-- NAV -->
 <nav>
   <a href="index.html" class="nav-logo">moi <span class="et">&</span> <span class="loi">loi</span></a>
   <div class="nav-links">
@@ -164,7 +224,7 @@ hr { border:none; border-top:1px solid var(--beige); margin:20px 0; }
     <a href="consulter.html">🔍 Consulter</a>
     <a href="charte.html">📋 Charte</a>
     <a href="tarifs.html">💶 Tarifs</a>
-    <a href="compte.html">👤 Connexion</a>
+    <a href="compte.html">👤 Connexion / Créer un compte</a>
   </div>
   <button class="nav-burger" onclick="document.getElementById('nm').classList.toggle('open')" aria-label="Menu">
     <span></span><span></span><span></span>
@@ -180,136 +240,291 @@ hr { border:none; border-top:1px solid var(--beige); margin:20px 0; }
 
 <div class="container">
 <header>
-<a href="index.html" class="logo">moi <span class="et">&amp;</span> <span class="loi">loi</span></a>
-<div class="sous-titre">Témoignages citoyens</div>
-<span class="badge">Pipeline v7.7</span>
+  <a href="index.html" class="logo">moi <span class="et">&amp;</span> <span class="loi">loi</span></a>
+  <div class="sous-titre">Témoignages citoyens</div>
+  <span class="badge">Pipeline v7.11</span>
 </header>
 
 <!-- 1. CLÉS API -->
 <div class="card">
-<div class="card-title"><span class="snum">1</span> Vos clés API</div>
-<div class="igrp">
-<label>Clé OpenAI (Whisper)</label>
-<input type="password" id="ok" placeholder="sk-proj-..." autocomplete="off">
-</div>
-<div class="igrp">
-<label>Clé Anthropic (Claude)</label>
-<input type="password" id="ak" placeholder="sk-ant-..." autocomplete="off">
-</div>
-<div class="hint">🔒 Ces clés restent dans votre navigateur — jamais transmises ni stockées.</div>
-</div>
-
-<!-- 2. ENREGISTREMENT -->
-<div class="card">
-<div class="card-title"><span class="snum">2</span> Votre témoignage</div>
-<div class="record-zone">
-<p class="record-instr">Racontez librement une situation absurde vécue avec l'administration.<br>Prenez le temps qu'il vous faut.</p>
-<button type="button" class="btn-rec" id="btnRec" onclick="toggleRec()">🎙️</button>
-<div class="timer" id="timer"></div>
-<div class="rec-status" id="recSt">Appuyez pour commencer</div>
-<button type="button" class="btn-stop" id="btnStop" onclick="stopRec()">Terminer l'enregistrement</button>
-</div>
-<div id="audPrev"></div>
-<div class="rec-actions" id="recActions">
-<button type="button" class="btn-complement" id="btnComplement" onclick="ajouterComplement()">+ Ajouter un complément</button>
-<button type="button" class="btn-recommencer" id="btnRecommencer" onclick="recommencer()">↺ Recommencer</button>
-</div>
-<div class="err-box" id="errRec"></div>
+  <div class="card-title"><span class="snum">1</span> Vos clés API</div>
+  <div class="igrp">
+    <label>Clé OpenAI (Whisper)</label>
+    <input type="password" id="ok" placeholder="sk-proj-..." autocomplete="off">
+  </div>
+  <div class="igrp">
+    <label>Clé Anthropic (Claude)</label>
+    <input type="password" id="ak" placeholder="sk-ant-..." autocomplete="off">
+  </div>
+  <div class="hint">🔒 Ces clés restent dans votre navigateur — jamais transmises ni stockées.</div>
 </div>
 
-<!-- 3. DOCUMENTS -->
+<!-- 2. ENREGISTREMENT — identique v7.7 -->
 <div class="card">
-<div class="card-title">
-<span class="snum">3</span> Documents complémentaires
-<span style="font-size:0.75rem;color:var(--gris-moyen);font-weight:300;margin-left:4px;">(optionnel)</span>
+  <div class="card-title"><span class="snum">2</span> Votre témoignage</div>
+  <div class="record-zone">
+    <p class="record-instr">Racontez librement une situation absurde vécue avec l'administration.<br>Prenez le temps qu'il vous faut.</p>
+    <button type="button" class="btn-rec" id="btnRec" onclick="toggleRec()">🎙️</button>
+    <div class="timer" id="timer"></div>
+    <div class="rec-status" id="recSt">Appuyez pour commencer</div>
+    <button type="button" class="btn-stop" id="btnStop" onclick="stopRec()">Terminer l'enregistrement</button>
+  </div>
+  <div id="audPrev"></div>
+  <div class="rec-actions" id="recActions" style="display:none;">
+    <button type="button" class="btn-complement" id="btnComplement" onclick="ajouterComplement()" style="display:none;">+ Ajouter un complément</button>
+    <button type="button" class="btn-recommencer" id="btnRecommencer" onclick="recommencer()" style="display:none;">↺ Recommencer</button>
+  </div>
+  <div class="err-box" id="errRec"></div>
 </div>
-<p style="font-size:0.9rem;color:var(--gris-moyen);margin-bottom:14px;line-height:1.6;">Courriers, arrêtés, refus, échanges avec l'administration — enrichissent l'analyse.</p>
-<div class="upload-zone" id="uzMain" onclick="document.getElementById('fiMain').click()"
-ondragover="event.preventDefault();this.classList.add('over')"
-ondragleave="this.classList.remove('over')"
-ondrop="dropDocs(event)">
-<div class="upload-icon">📎</div>
-<div class="upload-txt">
-<strong>Glissez vos documents ici</strong><br>
-ou cliquez pour sélectionner<br>
-<span style="font-size:0.78rem;">PDF, JPG, PNG uniquement — max 10 fichiers</span>
+
+<!-- 3. DOCUMENTS — identique v7.7 -->
+<div class="card">
+  <div class="card-title">
+    <span class="snum">3</span> Documents complémentaires
+    <span style="font-size:0.75rem;color:var(--gris-moyen);font-weight:300;margin-left:4px;">(optionnel)</span>
+  </div>
+  <p style="font-size:0.9rem;color:var(--gris-moyen);margin-bottom:14px;line-height:1.6;">Courriers, arrêtés, refus, échanges avec l'administration — enrichissent l'analyse.</p>
+  <div class="upload-zone" id="uzMain" onclick="document.getElementById('fiMain').click()"
+    ondragover="event.preventDefault();this.classList.add('over')"
+    ondragleave="this.classList.remove('over')"
+    ondrop="dropDocs(event)">
+    <div class="upload-icon">📎</div>
+    <div class="upload-txt">
+      <strong>Glissez vos documents ici</strong><br>
+      ou cliquez pour sélectionner<br>
+      <span style="font-size:0.78rem;">PDF, JPG, PNG uniquement — max 10 fichiers</span>
+    </div>
+  </div>
+  <input type="file" id="fiMain" multiple accept=".pdf,.jpg,.jpeg,.png" style="display:none" onchange="selDocs(event)">
+  <div class="doc-list" id="dlMain"></div>
+  <div class="confidentiel hidden" id="confMain">
+    <span>🔒</span>
+    <span>Ces documents sont lus par l'AI pour enrichir votre témoignage puis <strong>détruits automatiquement</strong>. Jamais stockés ni publiés.</span>
+  </div>
 </div>
+
+<!-- 3b. RÉSOLUTION — NOUVEAU -->
+<div class="card">
+  <div class="card-title">
+    <span class="snum violet">3b</span> Résolution du problème
+    <span style="font-size:0.75rem;color:var(--gris-moyen);font-weight:300;margin-left:4px;">(optionnel)</span>
+  </div>
+  <p style="font-size:0.88rem;color:var(--gris-moyen);margin-bottom:20px;line-height:1.6;font-style:italic;">Cochez ce qui s'applique à votre situation — vous pouvez cocher les deux si le problème est partiellement résolu.</p>
+
+  <!-- RÉSOLU -->
+  <div class="toggle-bloc" id="blocResolu">
+    <div class="toggle-bloc-header" onclick="toggleBloc('Resolu')">
+      <input type="checkbox" id="chkResolu" onclick="event.stopPropagation();toggleBloc('Resolu')">
+      <span class="toggle-bloc-label">Mon problème a été résolu (totalement ou partiellement)</span>
+    </div>
+    <div class="toggle-bloc-body">
+      <p style="font-size:0.85rem;color:var(--gris-moyen);margin-bottom:12px;">Racontez comment le problème a été résolu — cela est précieux pour les autres témoins.</p>
+      <div class="record-zone" style="padding:12px 0;">
+        <button type="button" class="btn-rec" id="btnResolRec" onclick="togMiniRec('Resol')">🎙️</button>
+        <div class="timer" id="timerResol"></div>
+        <div class="rec-status" id="stResolRec">Appuyez pour enregistrer</div>
+        <button type="button" class="btn-stop" id="btnStopResol" onclick="stopMiniRec('Resol')">Terminer l'enregistrement</button>
+      </div>
+      <div id="prevResolRec"></div>
+      <div class="rec-actions" id="recActionsResol" style="display:none;justify-content:flex-start;flex-wrap:wrap;margin-top:4px;">
+        <button type="button" class="btn-complement" id="btnComplementResol" onclick="ajouterComplementMini('Resol')" style="display:none;">+ Ajouter un complément</button>
+        <button type="button" class="btn-recommencer" id="btnRecommencerResol" onclick="recommencerMini('Resol')" style="display:none;">↺ Recommencer</button>
+      </div>
+      <textarea id="resolTxt" placeholder="Ou répondez par écrit — démarche, recours, médiation, intervention…" rows="3" style="margin-top:12px;"></textarea>
+      <div class="mini-up-sm" onclick="document.getElementById('fiResol').click()">📎 Joindre un document (PDF, JPG, PNG)</div>
+      <input type="file" id="fiResol" style="display:none" accept=".pdf,.jpg,.jpeg,.png" onchange="selDocMini(event,'Resol')">
+      <div class="doc-list" id="dlResol"></div>
+    </div>
+  </div>
+
+  <!-- PROCHAINES ÉTAPES -->
+  <div class="toggle-bloc" id="blocEtapes" style="margin-top:8px;">
+    <div class="toggle-bloc-header" onclick="toggleBloc('Etapes')">
+      <input type="checkbox" id="chkEtapes" onclick="event.stopPropagation();toggleBloc('Etapes')">
+      <span class="toggle-bloc-label">Des prochaines étapes sont prévues ou j'ai abandonné</span>
+    </div>
+    <div class="toggle-bloc-body">
+      <p style="font-size:0.85rem;color:var(--gris-moyen);margin-bottom:12px;">Décrivez les prochaines étapes envisagées, ou expliquez pourquoi vous avez abandonné les recours.</p>
+      <div class="record-zone" style="padding:12px 0;">
+        <button type="button" class="btn-rec" id="btnEtapesRec" onclick="togMiniRec('Etapes')">🎙️</button>
+        <div class="timer" id="timerEtapes"></div>
+        <div class="rec-status" id="stEtapesRec">Appuyez pour enregistrer</div>
+        <button type="button" class="btn-stop" id="btnStopEtapes" onclick="stopMiniRec('Etapes')">Terminer l'enregistrement</button>
+      </div>
+      <div id="prevEtapesRec"></div>
+      <div class="rec-actions" id="recActionsEtapes" style="display:none;justify-content:flex-start;flex-wrap:wrap;margin-top:4px;">
+        <button type="button" class="btn-complement" id="btnComplementEtapes" onclick="ajouterComplementMini('Etapes')" style="display:none;">+ Ajouter un complément</button>
+        <button type="button" class="btn-recommencer" id="btnRecommencerEtapes" onclick="recommencerMini('Etapes')" style="display:none;">↺ Recommencer</button>
+      </div>
+      <textarea id="etapesTxt" placeholder="Ou répondez par écrit — recours prévu, avocat contacté, abandon des démarches…" rows="3" style="margin-top:12px;"></textarea>
+      <div class="mini-up-sm" onclick="document.getElementById('fiEtapes').click()">📎 Joindre un document (PDF, JPG, PNG)</div>
+      <input type="file" id="fiEtapes" style="display:none" accept=".pdf,.jpg,.jpeg,.png" onchange="selDocMini(event,'Etapes')">
+      <div class="doc-list" id="dlEtapes"></div>
+      <div style="margin-top:12px;display:flex;align-items:center;gap:8px;padding:10px 14px;background:var(--blanc);border-radius:8px;border:1.5px solid #ddd8d0;">
+        <input type="checkbox" id="chkAbandon" style="width:16px;height:16px;accent-color:var(--vert);">
+        <label for="chkAbandon" style="font-size:0.85rem;color:var(--gris-fonce);text-transform:none;letter-spacing:0;font-weight:400;margin:0;cursor:pointer;">J'ai abandonné les recours</label>
+      </div>
+    </div>
+  </div>
 </div>
-<input type="file" id="fiMain" multiple accept=".pdf,.jpg,.jpeg,.png" style="display:none" onchange="selDocs(event)">
-<div class="doc-list" id="dlMain"></div>
-<div class="confidentiel hidden" id="confMain">
-<span>🔒</span>
-<span>Ces documents sont lus par l'AI pour enrichir votre témoignage puis <strong>détruits automatiquement</strong>. Jamais stockés ni publiés.</span>
-</div>
+
+<!-- 3c. DOMMAGES & COMPENSATION — NOUVEAU -->
+<div class="card">
+  <div class="card-title">
+    <span class="snum indigo">3c</span> Dommages & Compensation
+    <span style="font-size:0.75rem;color:var(--gris-moyen);font-weight:300;margin-left:4px;">(optionnel)</span>
+  </div>
+  <p style="font-size:0.88rem;color:var(--gris-moyen);margin-bottom:20px;line-height:1.6;font-style:italic;">Ces données sont interrogeables dans les analyses statistiques. Renseignez ce que vous souhaitez partager.</p>
+
+  <!-- DOMMAGE MONÉTAIRE -->
+  <div class="bloc-section">
+    <div class="bloc-title">Dommage monétaire <span class="bloc-tag">Statistiques</span></div>
+    <div class="fourchette-group">
+      <div class="fourchette-item"><input type="radio" name="dmgMoney" id="dm0" value="aucun"><label for="dm0">Aucun dommage monétaire</label></div>
+      <div class="fourchette-item"><input type="radio" name="dmgMoney" id="dm1" value="<1000"><label for="dm1">Moins de 1 000 €</label></div>
+      <div class="fourchette-item"><input type="radio" name="dmgMoney" id="dm2" value="1000-5000"><label for="dm2">1 000 – 5 000 €</label></div>
+      <div class="fourchette-item"><input type="radio" name="dmgMoney" id="dm3" value="5000-20000"><label for="dm3">5 000 – 20 000 €</label></div>
+      <div class="fourchette-item"><input type="radio" name="dmgMoney" id="dm4" value="20000-50000"><label for="dm4">20 000 – 50 000 €</label></div>
+      <div class="fourchette-item"><input type="radio" name="dmgMoney" id="dm5" value="50000-100000"><label for="dm5">50 000 – 100 000 €</label></div>
+      <div class="fourchette-item"><input type="radio" name="dmgMoney" id="dm6" value="100000-500000"><label for="dm6">100 000 – 500 000 €</label></div>
+      <div class="fourchette-item"><input type="radio" name="dmgMoney" id="dm7" value="500000-1M"><label for="dm7">500 000 € – 1 million €</label></div>
+      <div class="fourchette-item"><input type="radio" name="dmgMoney" id="dm8" value=">1M"><label for="dm8">Plus d'1 million €</label></div>
+      <div class="fourchette-item"><input type="radio" name="dmgMoney" id="dm9" value="nsp"><label for="dm9">Je ne souhaite pas préciser</label></div>
+    </div>
+    <div class="exact-field">
+      <input type="text" id="dmgMoneyExact" placeholder="Montant exact si vous souhaitez le préciser (ex : 34 500 €)">
+    </div>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- DOMMAGE TEMPS -->
+  <div class="bloc-section">
+    <div class="bloc-title">Dommage temps <span class="bloc-tag">Statistiques</span></div>
+    <div class="fourchette-group">
+      <div class="fourchette-item"><input type="radio" name="dmgTime" id="dt1" value="<1mois"><label for="dt1">Moins d'1 mois</label></div>
+      <div class="fourchette-item"><input type="radio" name="dmgTime" id="dt2" value="1-6mois"><label for="dt2">1 à 6 mois</label></div>
+      <div class="fourchette-item"><input type="radio" name="dmgTime" id="dt3" value="6mois-2ans"><label for="dt3">6 mois à 2 ans</label></div>
+      <div class="fourchette-item"><input type="radio" name="dmgTime" id="dt4" value="2-5ans"><label for="dt4">2 à 5 ans</label></div>
+      <div class="fourchette-item"><input type="radio" name="dmgTime" id="dt5" value=">5ans"><label for="dt5">Plus de 5 ans</label></div>
+      <div class="fourchette-item"><input type="radio" name="dmgTime" id="dt6" value="encours"><label for="dt6">En cours — durée indéterminée</label></div>
+      <div class="fourchette-item"><input type="radio" name="dmgTime" id="dt7" value="nsp"><label for="dt7">Je ne souhaite pas préciser</label></div>
+    </div>
+    <div class="exact-field">
+      <input type="text" id="dmgTimeExact" placeholder="Durée exacte si vous souhaitez la préciser (ex : 3 ans et 4 mois)">
+    </div>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- IMPACT PERSONNEL / PROFESSIONNEL -->
+  <div class="bloc-section">
+    <div class="bloc-title">Impact personnel & professionnel</div>
+    <p style="font-size:0.82rem;color:var(--gris-moyen);margin-bottom:12px;">Conséquences sur votre activité, votre santé, votre vie personnelle ou professionnelle.</p>
+    <div class="mini-rec-row">
+      <button type="button" class="btn-mini-rec" id="btnImpactRec" onclick="togMiniRec('Impact')">🎙️</button>
+      <div>
+        <div class="mini-st" id="stImpactRec">Dicter votre réponse</div>
+        <div id="prevImpactRec"></div>
+      </div>
+    </div>
+    <textarea id="impactTxt" placeholder="Ou répondez par écrit…" rows="3"></textarea>
+    <div class="mini-up-sm" onclick="document.getElementById('fiImpact').click()">📎 Joindre un document justificatif (PDF, JPG, PNG)</div>
+    <input type="file" id="fiImpact" style="display:none" accept=".pdf,.jpg,.jpeg,.png" onchange="selDocMini(event,'Impact')">
+    <div class="doc-list" id="dlImpact"></div>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- COMPENSATION -->
+  <div class="bloc-section">
+    <div class="bloc-title">Compensation obtenue <span class="bloc-tag">Statistiques</span></div>
+    <div class="comp-radio radio-group">
+      <div class="radio-btn"><input type="radio" name="comp" id="cp1" value="oui" onchange="showCompDetail(true)"><label for="cp1">Oui</label></div>
+      <div class="radio-btn"><input type="radio" name="comp" id="cp2" value="non" onchange="showCompDetail(false)"><label for="cp2">Non</label></div>
+      <div class="radio-btn"><input type="radio" name="comp" id="cp3" value="nsp" onchange="showCompDetail(false)"><label for="cp3">Ne souhaite pas préciser</label></div>
+    </div>
+    <textarea id="compTxt" placeholder="Décrivez la nature de la compensation obtenue ou refusée — médiation, accord amiable, décision de justice, remboursement partiel…" rows="2" style="margin-top:10px;font-size:0.85rem;"></textarea>
+    <div class="hidden" id="compDetail" style="margin-top:12px;">
+      <div class="fourchette-group">
+        <div class="fourchette-item"><input type="radio" name="compMoney" id="cm1" value="<1000"><label for="cm1">Moins de 1 000 €</label></div>
+        <div class="fourchette-item"><input type="radio" name="compMoney" id="cm2" value="1000-5000"><label for="cm2">1 000 – 5 000 €</label></div>
+        <div class="fourchette-item"><input type="radio" name="compMoney" id="cm3" value="5000-20000"><label for="cm3">5 000 – 20 000 €</label></div>
+        <div class="fourchette-item"><input type="radio" name="compMoney" id="cm4" value="20000-50000"><label for="cm4">20 000 – 50 000 €</label></div>
+        <div class="fourchette-item"><input type="radio" name="compMoney" id="cm5" value="50000-100000"><label for="cm5">50 000 – 100 000 €</label></div>
+        <div class="fourchette-item"><input type="radio" name="compMoney" id="cm6" value="100000-500000"><label for="cm6">100 000 – 500 000 €</label></div>
+        <div class="fourchette-item"><input type="radio" name="compMoney" id="cm7" value="500000-1M"><label for="cm7">500 000 € – 1 million €</label></div>
+        <div class="fourchette-item"><input type="radio" name="compMoney" id="cm8" value=">1M"><label for="cm8">Plus d'1 million €</label></div>
+        <div class="fourchette-item"><input type="radio" name="compMoney" id="cm9" value="nsp"><label for="cm9">Je ne souhaite pas préciser</label></div>
+      </div>
+      <div class="exact-field">
+        <input type="text" id="compMoneyExact" placeholder="Montant exact si vous souhaitez le préciser">
+      </div>
+    </div>
+  </div>
 </div>
 
 <button class="btn-p" id="btnLancer" onclick="lancer()" disabled style="margin-top:0;">
-Analyser mon témoignage →
+  Analyser mon témoignage →
 </button>
 
 <!-- 4. TRAITEMENT -->
 <div class="card hidden" id="cardProg" style="margin-top:20px;">
-<div class="card-title"><span class="snum">4</span> Traitement en cours…</div>
-<div class="pstep"><div class="picon" id="piW">1</div><span>Transcription Whisper en français…</span></div>
-<div class="pstep"><div class="picon" id="piD">2</div><span>Lecture des documents joints…</span></div>
-<div class="pstep"><div class="picon" id="piC">3</div><span>Structuration par Claude…</span></div>
-<div class="err-box" id="errPipe"></div>
+  <div class="card-title"><span class="snum">4</span> Traitement en cours…</div>
+  <div class="pstep"><div class="picon" id="piW">1</div><span>Transcription Whisper en français…</span></div>
+  <div class="pstep"><div class="picon" id="piD">2</div><span>Lecture des documents joints…</span></div>
+  <div class="pstep"><div class="picon" id="piR">3</div><span>Transcription résolution & dommages…</span></div>
+  <div class="pstep"><div class="picon" id="piC">4</div><span>Structuration par Claude…</span></div>
+  <div class="err-box" id="errPipe"></div>
 </div>
 
-<!-- 5. QUESTIONS -->
+<!-- 5. QUESTIONS — identique v7.7 -->
 <div class="card hidden" id="cardQ" style="margin-top:20px;">
-<div class="card-title"><span class="snum orange">5</span> Questions de clarification</div>
-<p style="font-size:0.9rem;color:var(--gris-moyen);margin-bottom:20px;line-height:1.6;font-style:italic;">
-Pour compléter votre dossier. Répondez par écrit, par oral, ou joignez un document (PDF, JPG, PNG).
-</p>
-<div id="qContainer"></div>
-<button class="btn-p" id="btnFinal" onclick="finaliser()">Générer mon document final →</button>
+  <div class="card-title"><span class="snum orange">5</span> Questions de clarification</div>
+  <p style="font-size:0.9rem;color:var(--gris-moyen);margin-bottom:20px;line-height:1.6;font-style:italic;">
+    Pour compléter votre dossier. Répondez par écrit, par oral, ou joignez un document (PDF, JPG, PNG).
+  </p>
+  <div id="qContainer"></div>
+  <button class="btn-p" id="btnFinal" onclick="finaliser()">Générer mon document final →</button>
 </div>
 
-<!-- 6. DOCUMENT FINAL -->
+<!-- 6. DOCUMENT FINAL — identique v7.7 -->
 <div class="card hidden" id="cardRes" style="margin-top:20px;">
-<div class="card-title"><span class="snum">✓</span> Votre témoignage structuré</div>
-<div class="ok-badge">✓ Document généré</div>
-<div class="slabel">Transcription brute (Whisper)</div>
-<div class="tr-box" id="trRes">—</div>
-<hr>
-<div class="slabel">Document structuré — cliquez pour corriger directement</div>
-<div class="doc-editable" id="docRes" contenteditable="true" spellcheck="true">—</div>
-<div class="edit-hint">✏️ Cliquez dans le texte pour corriger — fautes, imprécisions, oublis</div>
-
-<hr>
-<div class="slabel">Documents supplémentaires (optionnel)</div>
-<p style="font-size:0.82rem;color:var(--gris-moyen);margin-bottom:10px;line-height:1.5;">Joignez des documents additionnels pour enrichir l'analyse — arrêtés, courriers, photos. Claude relira tout.</p>
-<div class="doc-finale-zone" id="uzFinale" onclick="document.getElementById('fiFinale').click()"
-  ondragover="event.preventDefault();this.style.borderColor='var(--vert)'"
-  ondragleave="this.style.borderColor=''"
-  ondrop="dropDocsFinale(event)">
-  📎 Ajouter des documents (PDF, JPG, PNG — max 10 au total)
-</div>
-<input type="file" id="fiFinale" multiple accept=".pdf,.jpg,.jpeg,.png" style="display:none" onchange="selDocsFinale(event)">
-<div class="doc-list" id="dlFinale"></div>
-
-<div class="btn-row">
-<button class="btn-p" onclick="validerDoc()" style="margin-top:0;">✓ Valider ce document</button>
-<button class="btn-s" onclick="regenerer()" id="btnRegen" style="margin-top:0;">🔄 Régénérer avec corrections</button>
-</div>
-<div id="regenCount" style="font-size:0.78rem;color:var(--gris-moyen);margin-top:8px;text-align:center;"></div>
-<div class="err-box" id="errRes"></div>
+  <div class="card-title"><span class="snum">✓</span> Votre témoignage structuré</div>
+  <div class="ok-badge">✓ Document généré</div>
+  <div class="slabel">Transcription brute (Whisper)</div>
+  <div class="tr-box" id="trRes">—</div>
+  <hr>
+  <div class="slabel">Document structuré — cliquez pour corriger directement</div>
+  <div class="doc-editable" id="docRes" contenteditable="true" spellcheck="true">—</div>
+  <div class="edit-hint">✏️ Cliquez dans le texte pour corriger — fautes, imprécisions, oublis</div>
+  <hr>
+  <div class="slabel">Documents supplémentaires (optionnel)</div>
+  <p style="font-size:0.82rem;color:var(--gris-moyen);margin-bottom:10px;line-height:1.5;">Joignez des documents additionnels pour enrichir l'analyse.</p>
+  <div class="doc-finale-zone" id="uzFinale" onclick="document.getElementById('fiFinale').click()"
+    ondragover="event.preventDefault();this.style.borderColor='var(--vert)'"
+    ondragleave="this.style.borderColor=''"
+    ondrop="dropDocsFinale(event)">
+    📎 Ajouter des documents (PDF, JPG, PNG — max 10 au total)
+  </div>
+  <input type="file" id="fiFinale" multiple accept=".pdf,.jpg,.jpeg,.png" style="display:none" onchange="selDocsFinale(event)">
+  <div class="doc-list" id="dlFinale"></div>
+  <div class="btn-row">
+    <button class="btn-p" onclick="validerDoc()" style="margin-top:0;">✓ Valider ce document</button>
+    <button class="btn-s" onclick="regenerer()" id="btnRegen" style="margin-top:0;">🔄 Régénérer avec corrections</button>
+  </div>
+  <div id="regenCount" style="font-size:0.78rem;color:var(--gris-moyen);margin-top:8px;text-align:center;"></div>
+  <div class="err-box" id="errRes"></div>
 </div>
 
-<!-- 6b. CLASSIFICATION AI -->
+<!-- 6b. CLASSIFICATION AI — identique v7.7 -->
 <div class="card hidden" id="cardClassif" style="margin-top:20px;">
   <div class="card-title"><span class="snum orange">6b</span> Classification par l'IA</div>
-  <p style="font-size:0.9rem;color:var(--gris-moyen);margin-bottom:16px;line-height:1.6;font-style:italic;">
-    L'IA a analysé et classifié votre témoignage. Vérifiez et complétez les informations ci-dessous.
-  </p>
-
-  <div class="slabel">Domaines réglementaires identifiés par l'IA</div>
+  <p style="font-size:0.9rem;color:var(--gris-moyen);margin-bottom:16px;line-height:1.6;font-style:italic;">L'IA a analysé et classifié votre témoignage. Vérifiez les informations ci-dessous.</p>
+  <div class="slabel">Domaines réglementaires identifiés</div>
   <div class="classif-display" id="classifDomaines">Analyse en cours…</div>
-
-  <div class="slabel" style="margin-top:12px;">Types de dysfonctionnement identifiés par l'IA</div>
+  <div class="slabel" style="margin-top:12px;">Types de dysfonctionnement identifiés</div>
   <div class="classif-display" id="classifTypes">Analyse en cours…</div>
-
   <hr>
   <div class="igrp">
     <label>Avez-vous pu vous faire aider ? (plusieurs choix possibles)</label>
@@ -323,7 +538,6 @@ Pour compléter votre dossier. Répondez par écrit, par oral, ou joignez un doc
       <label class="check-btn" id="cb_autre"><input type="checkbox" value="Autre" onchange="toggleCheck(this)"> Autre</label>
     </div>
   </div>
-
   <div class="igrp">
     <label>Avez-vous eu accès aux informations nécessaires ?</label>
     <div class="radio-group">
@@ -332,102 +546,110 @@ Pour compléter votre dossier. Répondez par écrit, par oral, ou joignez un doc
       <div class="radio-btn"><input type="radio" name="cl_info" id="ci3" value="Non"><label for="ci3">Non</label></div>
     </div>
   </div>
-
   <button class="btn-p" onclick="showAnon()">Continuer →</button>
 </div>
 
-<!-- 7. ANONYMAT -->
+<!-- 7. ANONYMAT — identique v7.7 avec logique pseudo -->
 <div class="card hidden" id="cardAnon" style="margin-top:20px;">
-<div class="card-title"><span class="snum">7</span> Anonymat</div>
-<p style="font-size:0.9rem;color:var(--gris-moyen);margin-bottom:16px;line-height:1.6;">Choisissez comment vous souhaitez apparaître dans la base publique.</p>
-<p style="font-size:0.82rem;color:var(--gris-moyen);margin-bottom:12px;font-style:italic;">Cochez les informations que vous souhaitez faire apparaître. Tout le reste restera anonyme.</p>
-<div class="anon-fields">
-<div class="anon-field" id="af_prenom">
-<input type="checkbox" id="chk_prenom" onchange="updateAnonPreview()">
-<span class="anon-field-label">👤 Prénom</span>
-<input type="text" id="val_prenom" placeholder="Votre prénom" oninput="updateAnonPreview()" onclick="G('chk_prenom').checked=true;updateAnonPreview()">
-</div>
-<div class="anon-field" id="af_nom">
-<input type="checkbox" id="chk_nom" onchange="updateAnonPreview()">
-<span class="anon-field-label">👤 Nom</span>
-<input type="text" id="val_nom" placeholder="Votre nom" oninput="updateAnonPreview()" onclick="G('chk_nom').checked=true;updateAnonPreview()">
-</div>
-<div class="anon-field" id="af_profession">
-<input type="checkbox" id="chk_profession" onchange="updateAnonPreview()">
-<span class="anon-field-label">💼 Profession / Catégorie</span>
-<input type="text" id="val_profession" placeholder="Ex: Entrepreneuse" oninput="updateAnonPreview()" onclick="G('chk_profession').checked=true;updateAnonPreview()">
-</div>
-<div class="anon-field" id="af_age">
-<input type="checkbox" id="chk_age" onchange="updateAnonPreview()">
-<span class="anon-field-label">🎂 Tranche d'âge</span>
-<input type="text" id="val_age" placeholder="Ex: 40-50 ans" oninput="updateAnonPreview()" onclick="G('chk_age').checked=true;updateAnonPreview()">
-</div>
-<div class="anon-field" id="af_region">
-<input type="checkbox" id="chk_region" onchange="updateAnonPreview()">
-<span class="anon-field-label">📍 Région / Département</span>
-<input type="text" id="val_region" placeholder="Ex: Vaucluse" oninput="updateAnonPreview()" onclick="G('chk_region').checked=true;updateAnonPreview()">
-</div>
-</div>
-<div style="margin-top:12px;padding:10px 14px;background:var(--fond);border-radius:8px;border:1px solid #e0dbd0;font-size:0.85rem;color:var(--gris-moyen);">
-Votre témoignage apparaîtra signé : <strong id="anonSig">Anonyme</strong>
-</div>
-<button class="btn-p" onclick="showSoumission()">Continuer →</button>
+  <div class="card-title"><span class="snum">7</span> Anonymat</div>
+  <p style="font-size:0.9rem;color:var(--gris-moyen);margin-bottom:8px;line-height:1.6;">Choisissez comment vous souhaitez apparaître dans la base publique.</p>
+  <p style="font-size:0.8rem;color:var(--gris-moyen);margin-bottom:16px;font-style:italic;">Par défaut votre pseudonyme est utilisé. Si vous décochez le pseudonyme, vous pouvez afficher votre vrai prénom et/ou nom. Les deux options sont exclusives.</p>
+  <div class="anon-fields">
+    <div class="anon-field checked" id="af_pseudo">
+      <input type="checkbox" id="chk_pseudo" checked onchange="onPseudoChange()">
+      <div style="flex:1;">
+        <div class="anon-field-label">🏷️ Pseudonyme</div>
+        <div class="anon-field-sub" id="pseudoDisplay">votre pseudonyme</div>
+      </div>
+    </div>
+    <div class="anon-field disabled" id="af_prenom">
+      <input type="checkbox" id="chk_prenom" onchange="updateAnonPreview()">
+      <span class="anon-field-label">👤 Prénom</span>
+      <input type="text" id="val_prenom" placeholder="Votre prénom" oninput="updateAnonPreview()" onclick="G('chk_prenom').checked=true;updateAnonPreview()">
+    </div>
+    <div class="anon-field disabled" id="af_nom">
+      <input type="checkbox" id="chk_nom" onchange="updateAnonPreview()">
+      <span class="anon-field-label">👤 Nom</span>
+      <input type="text" id="val_nom" placeholder="Votre nom" oninput="updateAnonPreview()" onclick="G('chk_nom').checked=true;updateAnonPreview()">
+    </div>
+    <div class="anon-field" id="af_profession">
+      <input type="checkbox" id="chk_profession" onchange="updateAnonPreview()">
+      <span class="anon-field-label">💼 Profession / Catégorie</span>
+      <input type="text" id="val_profession" placeholder="Ex: Entrepreneuse" oninput="updateAnonPreview()" onclick="G('chk_profession').checked=true;updateAnonPreview()">
+    </div>
+    <div class="anon-field" id="af_age">
+      <input type="checkbox" id="chk_age" onchange="updateAnonPreview()">
+      <span class="anon-field-label">🎂 Tranche d'âge</span>
+      <input type="text" id="val_age" placeholder="Ex: 40-50 ans" oninput="updateAnonPreview()" onclick="G('chk_age').checked=true;updateAnonPreview()">
+    </div>
+    <div class="anon-field" id="af_region">
+      <input type="checkbox" id="chk_region" onchange="updateAnonPreview()">
+      <span class="anon-field-label">📍 Région / Département</span>
+      <input type="text" id="val_region" placeholder="Ex: Vaucluse" oninput="updateAnonPreview()" onclick="G('chk_region').checked=true;updateAnonPreview()">
+    </div>
+  </div>
+  <div style="margin-top:12px;padding:10px 14px;background:var(--fond);border-radius:8px;border:1px solid #e0dbd0;font-size:0.85rem;color:var(--gris-moyen);">
+    Votre témoignage apparaîtra signé : <strong id="anonSig">"votre pseudonyme"</strong>
+  </div>
+  <button class="btn-p" onclick="showSoumission()">Continuer →</button>
 </div>
 
-<!-- 8. SOUMISSION -->
+<!-- 8. SOUMISSION — identique v7.7 -->
 <div class="card hidden" id="cardSoumission" style="margin-top:20px;">
-<div class="card-title"><span class="snum">8</span> Soumettre votre témoignage</div>
-<div class="submission-box">
-<div class="submission-title">Avant publication</div>
-<div class="submission-text">
-<p>Votre témoignage sera examiné par notre équipe de modération avant publication.</p>
-<p>Cette vérification garantit le respect de notre charte — absence de données personnelles non souhaitées, absence de propos diffamatoires, conformité éditoriale.</p>
-<p>Ce processus prend généralement <strong>moins de 48 heures</strong>. Vous recevrez un email de confirmation à la publication.</p>
-</div>
-<div class="checkbox-confirm">
-<input type="checkbox" id="chkConfirm" onchange="toggleConfirm()">
-<span>Je confirme que ce témoignage décrit une expérience personnelle réelle et j'autorise sa publication sur moietloi.fr selon les conditions d'anonymat choisies.</span>
-</div>
-<div class="btn-row">
-<button class="btn-p" id="btnSoumettre" onclick="soumettre()" disabled style="margin-top:0;">✓ Soumettre mon témoignage</button>
-<button class="btn-s" onclick="hide('cardSoumission');show('cardAnon')" style="margin-top:0;">← Revenir</button>
-</div>
-</div>
-<div class="err-box" id="errSoumission"></div>
+  <div class="card-title"><span class="snum">8</span> Soumettre votre témoignage</div>
+  <div class="submission-box">
+    <div class="submission-title">Avant publication</div>
+    <div class="submission-text">
+      <p>Votre témoignage sera examiné par notre équipe de modération avant publication.</p>
+      <p>Ce processus prend généralement <strong>moins de 48 heures</strong>. Vous recevrez un email de confirmation à la publication.</p>
+    </div>
+    <div class="checkbox-confirm">
+      <input type="checkbox" id="chkConfirm" onchange="toggleConfirm()">
+      <span>Je confirme que ce témoignage décrit une expérience personnelle réelle et j'autorise sa publication sur moietloi.fr selon les conditions d'anonymat choisies.</span>
+    </div>
+    <div class="btn-row">
+      <button class="btn-p" id="btnSoumettre" onclick="soumettre()" disabled style="margin-top:0;">✓ Soumettre mon témoignage</button>
+      <button class="btn-s" onclick="hide('cardSoumission');show('cardAnon')" style="margin-top:0;">← Revenir</button>
+    </div>
+  </div>
+  <div class="err-box" id="errSoumission"></div>
 </div>
 
-<!-- 9. CONFIRMATION -->
+<!-- 9. CONFIRMATION — identique v7.7 -->
 <div class="card hidden" id="cardConfirm" style="margin-top:20px;">
-<div class="confirmation-finale">
-<div class="confirmation-icon">✓</div>
-<div class="confirmation-title">Témoignage soumis</div>
-<div class="confirmation-text">Merci. Votre témoignage a été reçu et sera examiné dans les 48 heures.</div>
-<div class="confirmation-details">
-<strong>Ce qui se passe maintenant :</strong><br>
-• Votre témoignage est examiné par notre équipe de modération<br>
-• S'il respecte notre charte, il sera publié dans les 48h<br>
-• Vous recevrez un email de confirmation avec votre témoignage complet<br><br>
-<strong>Anonymat choisi :</strong> <span id="confirmAnon">—</span><br>
-<strong>Référence :</strong> <span id="confirmRef">—</span>
+  <div class="confirmation-finale">
+    <div class="confirmation-icon">✓</div>
+    <div class="confirmation-title">Témoignage soumis</div>
+    <div class="confirmation-text">Merci. Votre témoignage a été reçu et sera examiné dans les 48 heures.</div>
+    <div class="confirmation-details">
+      <strong>Ce qui se passe maintenant :</strong><br>
+      • Votre témoignage est examiné par notre équipe de modération<br>
+      • S'il respecte notre charte, il sera publié dans les 48h<br>
+      • Vous recevrez un email de confirmation avec votre témoignage complet<br><br>
+      <strong>Anonymat choisi :</strong> <span id="confirmAnon">—</span><br>
+      <strong>Référence :</strong> <span id="confirmRef">—</span>
+    </div>
+    <div style="background:#eef3ee;border-radius:8px;padding:16px;margin-bottom:20px;font-size:0.88rem;color:var(--vert);line-height:1.6;">
+      ✓ <strong>Votre compte a été créé</strong> lors de votre inscription. Vous recevrez un email de confirmation de publication dès que votre témoignage sera examiné.
+    </div>
+    <button class="btn-s" onclick="location.reload()" style="margin-top:0;">Déposer un nouveau témoignage</button>
+  </div>
 </div>
-<div style="background:#eef3ee;border-radius:8px;padding:16px;margin-bottom:20px;font-size:0.88rem;color:var(--vert);line-height:1.6;">
-✓ <strong>Votre compte a été créé</strong> lors de votre inscription. Vous recevrez un email de confirmation de publication dès que votre témoignage sera examiné.
-</div>
-<button class="btn-s" onclick="location.reload()" style="margin-top:0;">Déposer un nouveau témoignage</button>
-</div>
-</div>
-</div><!-- fin .container -->
 
+</div><!-- fin .container -->
 <div class="footer-bar">🔒 <span>Documents détruits automatiquement après analyse.</span> Données personnelles jamais publiées sans votre accord. moietloi.fr</div>
 
 <script>
-// ── ÉTAT
+// ── ÉTAT — identique v7.7
 let mr=null, chunks=[], audioBlob=null, isRec=false, timerInt=null, secs=0;
 let docsMain=[], docsQ={}, transcript='', questions=[], docInitial='';
 let miniMR={}, regenCount=0, anonChoice='Anonyme';
 let allChunks=[];
+// Nouveaux états 3b / 3c
+let miniRecs={Resol:null,Etapes:null,Impact:null};
+let miniDocs={Resol:[],Etapes:[],Impact:[]};
 
-// ── READY
+// ── READY — identique v7.7
 function checkReady(){
   const ok=G('ok').value.trim()&&G('ak').value.trim()&&audioBlob;
   G('btnLancer').disabled=!ok;
@@ -435,7 +657,7 @@ function checkReady(){
 G('ok').addEventListener('input',checkReady);
 G('ak').addEventListener('input',checkReady);
 
-// ── ENREGISTREMENT
+// ── ENREGISTREMENT PRINCIPAL — identique v7.7
 async function toggleRec(){ isRec?stopRec():await startRec(); }
 async function startRec(){
   hideErr('errRec');
@@ -466,16 +688,13 @@ function stopRec(){
     G('btnRec').classList.remove('rec');G('btnRec').textContent='🎙️';
     G('recSt').textContent='✓ Enregistrement terminé';G('recSt').classList.remove('on');
     G('btnStop').style.display='none';
-    // Afficher les deux boutons action
     const ra=G('recActions');
     if(ra){ra.style.display='flex';
       G('btnComplement').style.display='inline-block';
       G('btnRecommencer').style.display='inline-block';}
   }
 }
-
 function recommencer(){
-  // Efface tout et repart de zéro
   audioBlob=null;allChunks=[];
   G('audPrev').innerHTML='';
   G('recSt').textContent='Appuyez pour commencer';
@@ -506,18 +725,124 @@ function mime(){
   return 'audio/webm';
 }
 
-// ── DOCUMENTS
-function selDocs(e){Array.from(e.target.files).forEach(f=>addDoc(f,'main'));e.target.value='';}
-function dropDocs(e){
-  e.preventDefault();G('uzMain').classList.remove('over');
-  Array.from(e.dataTransfer.files).forEach(f=>addDoc(f,'main'));
+// ── TOGGLE BLOCS 3b
+function toggleBloc(key){
+  const bloc=G(`bloc${key}`);
+  const chk=G(`chk${key}`);
+  const isOpen=bloc.classList.toggle('open');
+  chk.checked=isOpen;
 }
+
+// ── MINI ENREGISTREURS 3b — système complet avec timer, stop, complément, recommencer
+let miniAllChunks={Resol:[],Etapes:[]};
+let miniTimers={Resol:null,Etapes:null};
+let miniSecs={Resol:0,Etapes:0};
+let miniIsRec={Resol:false,Etapes:false};
+
+async function togMiniRec(key){
+  if(miniIsRec[key]){stopMiniRec(key);return;}
+  try{
+    const stream=await navigator.mediaDevices.getUserMedia({audio:true});
+    const m=new MediaRecorder(stream,{mimeType:mime()});const c=[];
+    m.ondataavailable=e=>{if(e.data.size>0)c.push(e.data);};
+    m.onstop=()=>{
+      const raw=new Blob(c,{type:mime()});
+      const finalBlob=miniAllChunks[key].length>0?new Blob([...miniAllChunks[key],raw],{type:mime()}):raw;
+      miniAllChunks[key]=[];
+      miniRecs[key]={...miniRecs[key],blob:finalBlob,on:false};
+      G(`prev${key}Rec`).innerHTML=`<audio controls src="${URL.createObjectURL(finalBlob)}" style="width:100%;margin-top:6px;"></audio>`;
+      G(`st${key}Rec`).textContent='✓ Enregistrement terminé';
+      G(`st${key}Rec`).classList.remove('on');
+      G(`btn${key}Rec`).classList.remove('rec');
+      G(`btn${key}Rec`).textContent='🎙️';
+      if(G(`btnStop${key}`))G(`btnStop${key}`).style.display='none';
+      clearInterval(miniTimers[key]);
+      stream.getTracks().forEach(t=>t.stop());
+      const ra=G(`recActions${key}`);
+      const bc=G(`btnComplement${key}`);
+      const br=G(`btnRecommencer${key}`);
+      if(ra&&bc&&br){ra.style.display='flex';bc.style.display='inline-block';br.style.display='inline-block';}
+    };
+    m.start(100);
+    miniRecs[key]={mr:m,on:true,blob:null};
+    miniIsRec[key]=true;
+    miniSecs[key]=0;
+    G(`btn${key}Rec`).classList.add('rec');
+    G(`btn${key}Rec`).textContent='⏸';
+    G(`st${key}Rec`).textContent='Enregistrement en cours…';
+    G(`st${key}Rec`).classList.add('on');
+    if(G(`btnStop${key}`))G(`btnStop${key}`).style.display='block';
+    const bc=G(`btnComplement${key}`);const br=G(`btnRecommencer${key}`);
+    if(bc)bc.style.display='none';if(br)br.style.display='none';
+    miniTimers[key]=setInterval(()=>{
+      miniSecs[key]++;
+      const mm=Math.floor(miniSecs[key]/60).toString().padStart(2,'0');
+      const ss=(miniSecs[key]%60).toString().padStart(2,'0');
+      if(G(`timer${key}`))G(`timer${key}`).textContent=mm+':'+ss;
+    },1000);
+  }catch{if(G(`st${key}Rec`))G(`st${key}Rec`).textContent='⚠️ Micro non accessible';}
+}
+
+function stopMiniRec(key){
+  if(miniRecs[key]?.mr&&miniIsRec[key]){
+    miniRecs[key].mr.stop();
+    miniIsRec[key]=false;
+    clearInterval(miniTimers[key]);
+  }
+}
+
+async function ajouterComplementMini(key){
+  if(miniRecs[key]?.blob)miniAllChunks[key].push(miniRecs[key].blob);
+  miniRecs[key]={...miniRecs[key],blob:null};
+  const bc=G(`btnComplement${key}`);const br=G(`btnRecommencer${key}`);
+  if(bc)bc.style.display='none';if(br)br.style.display='none';
+  G(`prev${key}Rec`).innerHTML='';
+  G(`st${key}Rec`).textContent='Ajoutez votre complément…';
+  G(`st${key}Rec`).classList.add('on');
+  if(G(`timer${key}`))G(`timer${key}`).textContent='';
+  miniSecs[key]=0;
+  await togMiniRec(key);
+}
+
+function recommencerMini(key){
+  miniRecs[key]={blob:null,on:false};
+  miniAllChunks[key]=[];
+  miniSecs[key]=0;
+  miniIsRec[key]=false;
+  if(G(`prev${key}Rec`))G(`prev${key}Rec`).innerHTML='';
+  if(G(`st${key}Rec`)){G(`st${key}Rec`).textContent='Appuyez pour enregistrer';G(`st${key}Rec`).classList.remove('on');}
+  if(G(`timer${key}`))G(`timer${key}`).textContent='';
+  if(G(`btnStop${key}`))G(`btnStop${key}`).style.display='none';
+  const ra=G(`recActions${key}`);const bc=G(`btnComplement${key}`);const br=G(`btnRecommencer${key}`);
+  if(ra)ra.style.display='none';if(bc)bc.style.display='none';if(br)br.style.display='none';
+}
+
+// ── DOCUMENTS MINI
+function selDocMini(e,key){
+  Array.from(e.target.files).forEach(f=>{
+    if(miniDocs[key].length<3)miniDocs[key].push({id:Date.now()+Math.random(),f});
+    renderMiniDocs(key);
+  });
+  e.target.value='';
+}
+function renderMiniDocs(key){
+  const l=G(`dl${key}`);if(!l)return;
+  l.innerHTML=miniDocs[key].map(d=>`<div class="doc-item" style="font-size:0.8rem;"><span>📄 ${d.f.name}</span><button class="doc-rm" onclick="miniDocs['${key}']=miniDocs['${key}'].filter(x=>x.id!==${d.id});renderMiniDocs('${key}')">✕</button></div>`).join('');
+}
+
+// ── COMPENSATION
+function showCompDetail(show){
+  G('compDetail').classList.toggle('hidden',!show);
+}
+
+// ── DOCUMENTS PRINCIPAUX — identique v7.7
+function selDocs(e){Array.from(e.target.files).forEach(f=>addDoc(f,'main'));e.target.value='';}
+function dropDocs(e){e.preventDefault();G('uzMain').classList.remove('over');Array.from(e.dataTransfer.files).forEach(f=>addDoc(f,'main'));}
 function addDoc(f,z){
   const allowed=['application/pdf','image/jpeg','image/jpg','image/png'];
   const ext=f.name.toLowerCase();
   if(!allowed.includes(f.type)&&!ext.endsWith('.pdf')&&!ext.endsWith('.jpg')&&!ext.endsWith('.jpeg')&&!ext.endsWith('.png')){
-    alert(`Format non accepté : ${f.name}\nSeuls les PDF, JPG et PNG sont acceptés.`);
-    return;
+    alert(`Format non accepté : ${f.name}\nSeuls les PDF, JPG et PNG sont acceptés.`);return;
   }
   if(z==='main'){
     if(docsMain.length>=10){alert('Maximum 10 documents.');return;}
@@ -548,12 +873,11 @@ function renderQ(qid){
 async function lancer(){
   const okey=G('ok').value.trim(), akey=G('ak').value.trim();
   show('cardProg');hide('cardQ');hide('cardRes');hide('cardClassif');hide('cardAnon');hide('cardSoumission');hide('cardConfirm');
-  G('btnComplement').style.display='none';
-  G('btnRecommencer').style.display='none';
+  G('btnComplement').style.display='none';G('btnRecommencer').style.display='none';
   const ra=G('recActions');if(ra)ra.style.display='none';
-  G('btnLancer').disabled=true;
-  hideErr('errPipe');
-  scrollEl('cardProg');
+  G('btnLancer').disabled=true;hideErr('errPipe');scrollEl('cardProg');
+
+  // WHISPER principal
   setP('piW','active');
   try{
     const fd=new FormData();
@@ -561,53 +885,120 @@ async function lancer(){
     fd.append('model','whisper-1');fd.append('language','fr');fd.append('response_format','text');
     const r=await fetch('https://api.openai.com/v1/audio/transcriptions',{method:'POST',headers:{'Authorization':`Bearer ${okey}`},body:fd});
     if(!r.ok){const e=await r.json();throw new Error(e.error?.message||'Erreur Whisper');}
-    transcript=await r.text();
-    setP('piW','done');
+    transcript=await r.text();setP('piW','done');
   }catch(e){setP('piW','error');showErr('errPipe',`Erreur transcription : ${e.message}`);G('btnLancer').disabled=false;return;}
+
+  // DOCUMENTS
   setP('piD','active');
   let docBlocks=[];
   try{
     for(const d of docsMain){const b=await readDoc(d.f);if(b)docBlocks.push(b);}
-    docsMain=[];renderMain();
-    setP('piD','done');
-  }catch(e){setP('piD','done');}
+    // Docs mini 3b/3c
+    for(const key of ['Resol','Etapes','Impact']){
+      for(const d of miniDocs[key]){const b=await readDoc(d.f);if(b)docBlocks.push(b);}
+    }
+    docsMain=[];renderMain();setP('piD','done');
+  }catch{setP('piD','done');}
+
+  // RÉSOLUTION & DOMMAGES — transcriptions vocales
+  setP('piR','active');
+  let resolTr='',etapesTr='',impactTr='';
+  try{
+    for(const [key,varRef] of [['Resol',()=>resolTr=_],['Etapes',()=>etapesTr=_],['Impact',()=>impactTr=_]]){
+      if(miniRecs[key]?.blob){
+        const fd2=new FormData();
+        fd2.append('file',new File([miniRecs[key].blob],`${key}.mp4`,{type:miniRecs[key].blob.type}));
+        fd2.append('model','whisper-1');fd2.append('language','fr');fd2.append('response_format','text');
+        const r2=await fetch('https://api.openai.com/v1/audio/transcriptions',{method:'POST',headers:{'Authorization':`Bearer ${okey}`},body:fd2});
+        if(r2.ok){
+          const t=await r2.text();
+          if(key==='Resol')resolTr=t;
+          if(key==='Etapes')etapesTr=t;
+          if(key==='Impact')impactTr=t;
+        }
+      }
+    }
+    // Combiner avec texte écrit
+    const rTxt=G('resolTxt').value.trim();if(rTxt)resolTr=(resolTr?resolTr+' ':'')+rTxt;
+    const eTxt=G('etapesTxt').value.trim();if(eTxt)etapesTr=(etapesTr?etapesTr+' ':'')+eTxt;
+    const iTxt=G('impactTxt').value.trim();if(iTxt)impactTr=(impactTr?impactTr+' ':'')+iTxt;
+    setP('piR','done');
+  }catch{setP('piR','done');}
+
+  // Collecter données structurées
+  const resolOui=G('chkResolu').checked;
+  const etapesOui=G('chkEtapes').checked;
+  const abandon=G('chkAbandon').checked;
+  const dmgMoney=document.querySelector('input[name=dmgMoney]:checked')?.value||'';
+  const dmgMoneyExact=G('dmgMoneyExact').value.trim();
+  const dmgTime=document.querySelector('input[name=dmgTime]:checked')?.value||'';
+  const dmgTimeExact=G('dmgTimeExact').value.trim();
+  const comp=document.querySelector('input[name=comp]:checked')?.value||'';
+  const compTxt=G('compTxt')?.value.trim()||'';
+  const compMoney=document.querySelector('input[name=compMoney]:checked')?.value||'';
+  const compExact=G('compMoneyExact')?.value.trim()||'';
+
+  const resolBlock=buildResolBlock(resolOui,resolTr,etapesTr,abandon,dmgMoney,dmgMoneyExact,dmgTime,dmgTimeExact,impactTr,comp,compTxt,compMoney,compExact);
+
+  // CLAUDE
   setP('piC','active');
   try{
-    const prompt=buildPrompt(transcript,'','');
+    const prompt=buildPrompt(transcript,resolBlock,'');
     const res=await claude(akey,prompt,2500,docBlocks);
     const txt=res.content[0].text;
-    docInitial=txt;
-    setP('piC','done');
-    const qs=extractQ(txt);
-    questions=qs;
-    if(qs.length>0)showQ(qs);
-    else showRes(transcript,txt);
+    docInitial=txt;setP('piC','done');
+    const qs=extractQ(txt);questions=qs;
+    if(qs.length>0)showQ(qs);else showRes(transcript,txt);
   }catch(e){setP('piC','error');showErr('errPipe',`Erreur Claude : ${e.message}`);G('btnLancer').disabled=false;}
 }
 
-// ── PROMPT — V7-5 : règles anti-hallucination renforcées
-// SEULE FONCTION MODIFIÉE PAR RAPPORT À V7-4
-// Toutes les autres fonctions sont identiques à V7-4
-function buildPrompt(tr,ctx,reps){
+function buildResolBlock(resolOui,resolTr,etapesTr,abandon,dmgMoney,dmgMoneyExact,dmgTime,dmgTimeExact,impactTr,comp,compTxt,compMoney,compExact){
+  let b='';
+  if(resolOui||etapesTr||abandon){
+    b+='\n\nRÉSOLUTION :\n';
+    if(resolOui)b+=`Résolu : Oui\n${resolTr?'Comment : '+resolTr+'\n':''}`;
+    else b+=`Résolu : Non\n`;
+    if(etapesTr)b+=`Prochaines étapes : ${etapesTr}\n`;
+    if(abandon)b+=`Abandon des recours : Oui\n`;
+  }
+  if(dmgMoney||dmgMoneyExact||dmgTime||dmgTimeExact||impactTr||comp||compTxt){
+    b+='\nDOMMAGES & COMPENSATION :\n';
+    if(dmgMoney)b+=`Dommage monétaire (fourchette) : ${dmgMoney}\n`;
+    if(dmgMoneyExact)b+=`Dommage monétaire (exact) : ${dmgMoneyExact}\n`;
+    if(dmgTime)b+=`Dommage temps (fourchette) : ${dmgTime}\n`;
+    if(dmgTimeExact)b+=`Dommage temps (exact) : ${dmgTimeExact}\n`;
+    if(impactTr)b+=`Impact personnel/professionnel : ${impactTr}\n`;
+    if(comp)b+=`Compensation obtenue : ${comp}\n`;
+    if(compTxt)b+=`Description compensation : ${compTxt}\n`;
+    if(compMoney)b+=`Compensation (fourchette) : ${compMoney}\n`;
+    if(compExact)b+=`Compensation (exact) : ${compExact}\n`;
+  }
+  return b;
+}
+
+// ── PROMPT v7.9
+function buildPrompt(tr,resolBlock,reps){
+  const hasResol=resolBlock.trim().length>0;
   return `Tu es l'assistant de moietloi.fr, plateforme civique documentant les dysfonctionnements administratifs en France.
 
-RÈGLES ABSOLUES — à respecter avant toute autre consigne :
+RÈGLES ABSOLUES :
 1. Ne jamais inventer, déduire, inférer ou compléter une information non explicitement dite par le témoin.
 2. Si une information est absente ou non mentionnée, écrire exactement : [non précisé]
-3. Chaque affirmation du document doit pouvoir être attribuée directement à la transcription fournie.
+3. Chaque affirmation doit pouvoir être attribuée directement à la transcription ou aux documents fournis.
 4. Reformuler fidèlement — jamais paraphraser de façon à changer le sens ou ajouter une nuance absente.
 5. Ton neutre et factuel — sans jugement sur l'administration ni sur le témoin.
-6. Français clair, 400 mots maximum pour l'ensemble du document.
+6. Français clair, 500 mots maximum pour l'ensemble du document.
 7. Si la transcription est insuffisante pour remplir une section, écrire : [information insuffisante]
-8. Si des documents sont joints, les analyser et les intégrer à l'analyse — signaler ce qui vient des documents vs ce qui vient du témoignage oral.
+8. DOCUMENTS JOINTS — RÈGLE CRITIQUE : Lis et analyse TOUS les documents joints avant de rédiger quoi que ce soit. Intègre leur contenu dans chaque section pertinente. Indique entre parenthèses la source : (témoignage oral) ou (document : nom du fichier). Ne pose JAMAIS dans les questions de clarification une question dont la réponse se trouve déjà dans un document joint ou dans la transcription.
+9. Pour RÉSOLUTION et DOMMAGES : utiliser uniquement les données fournies dans le bloc dédié. Ne jamais déduire.
 
 Produis un document structuré avec exactement ces sections :
 
 **RÉSUMÉ**
-[Une phrase claire et neutre — uniquement ce qui est dit explicitement]
+[Une phrase claire et neutre]
 
 **RÉCIT**
-[Témoignage restructuré, fidèle, sans répétitions — 150 mots max — aucun fait ajouté]
+[Témoignage restructuré, fidèle, sans répétitions — 150 mots max]
 
 **CE QUI EST REPROCHÉ**
 [La règle ou décision invoquée — si non précisé : [non précisé]]
@@ -624,17 +1015,30 @@ Produis un document structuré avec exactement ces sections :
 **VOLET 3 — VERROUILLAGE SYSTÉMIQUE**
 [Si les recours sont bloqués — si non évoqué : Non applicable]
 
+**RÉSOLUTION**
+- Statut : [Résolu / Non résolu / Abandonné — selon les données fournies — sinon : [non précisé]]
+- Comment résolu : [si fourni — sinon : [non précisé]]
+- Prochaines étapes : [si fourni — sinon : [non précisé]]
+- Abandon des recours : [Oui / Non — selon les données]
+
+**DOMMAGES & COMPENSATION**
+- Dommage monétaire : [fourchette et/ou montant exact si fourni — sinon : [non précisé]]
+- Dommage temps : [fourchette et/ou durée exacte si fournie — sinon : [non précisé]]
+- Impact personnel/professionnel : [si fourni — sinon : [non précisé]]
+- Compensation obtenue : [Oui / Non / NSP — selon les données]
+- Montant compensation : [si fourni — sinon : [non précisé]]
+
 **CLASSIFICATION — DOMAINES RÉGLEMENTAIRES**
-[Liste tous les domaines concernés parmi : Urbanisme/PLU/Permis de construire · ERP · Droit rural/SAFER · Environnement/ICPE · Commande publique · Patrimoine/ABF · Droit du travail · Sécurité sociale · Retraite · Chômage/France Travail · CAF/Allocations · Handicap/MDPH · Formation/CPF · Impôt sur le revenu · TVA/CFE · Contrôle fiscal/URSSAF · Taxe foncière · Normes sanitaires/HACCP · Sécurité incendie · Normes électriques/DPE · Électricité/Gaz (fournisseurs) · Réseau électrique/Enedis · Eau/Assainissement · Télécom/Internet · Poste/Colis · Transport ferroviaire/SNCF · Transport collectif · Autoroutes · Hôpital public/Urgences · Déserts médicaux · EHPAD · Justice civile · Justice administrative · Médiation/Défenseur des droits · RGPD/CNIL · Droit européen. Indiquer (?) si incertain.]
+[Liste tous les domaines concernés parmi : Urbanisme/PLU/Permis de construire · ERP · Droit rural/SAFER · Environnement/ICPE · Commande publique · Patrimoine/ABF · Droit du travail · Sécurité sociale · Retraite · Chômage/France Travail · CAF/Allocations · Handicap/MDPH · Formation/CPF · Impôt sur le revenu · TVA/CFE · Contrôle fiscal/URSSAF · Taxe foncière · Normes sanitaires/HACCP · Sécurité incendie · Normes électriques/DPE · Électricité/Gaz · Réseau électrique/Enedis · Eau/Assainissement · Télécom/Internet · Poste/Colis · Transport ferroviaire/SNCF · Transport collectif · Autoroutes · Hôpital public/Urgences · Déserts médicaux · EHPAD · Justice civile · Justice administrative · Médiation/Défenseur des droits · RGPD/CNIL · Droit européen. Indiquer (?) si incertain.]
 
 **CLASSIFICATION — TYPES DE DYSFONCTIONNEMENT**
-[Liste tous les types concernés parmi — Volet 1 Absurdité normative : 1A Norme déconnectée · 1B Norme contradictoire · 1C Norme contre-productive · 1D Norme disproportionnée · 1E Vide juridique · 1F Norme obsolète · 1G Conflit national/local. Volet 2 Abus applicatif : 2A Détournement procédure · 2B Décision arbitraire · 2C Inégalité traitement · 2D Disproportion sanction · 2E Moyens pénaux/civil · 2F Non-respect procédures · 2G Délais abusifs · 2H Silence administratif · 2I Mauvaise information. Volet 3 Verrouillage : 3A Doctrine restrictive · 3B Recours inefficaces · 3C Dissociation institutionnelle · 3D Délais impossibles · 3E Coût prohibitif · 3F Monopole sans recours · 3G Opacité. Volet 4 Services essentiels : 4A Non-respect engagements · 4B Facturation abusive · 4C Coupure injustifiée · 4D Accès impossible · 4E Service dégradé · 4F Abus position dominante. Indiquer (?) si incertain.]
+[Liste tous les types concernés — Volet 1 : 1A Norme déconnectée · 1B Norme contradictoire · 1C Norme contre-productive · 1D Norme disproportionnée · 1E Vide juridique · 1F Norme obsolète · 1G Conflit national/local. Volet 2 : 2A Détournement procédure · 2B Décision arbitraire · 2C Inégalité traitement · 2D Disproportion sanction · 2E Moyens pénaux/civil · 2F Non-respect procédures · 2G Délais abusifs · 2H Silence administratif · 2I Mauvaise information. Volet 3 : 3A Doctrine restrictive · 3B Recours inefficaces · 3C Dissociation institutionnelle · 3D Délais impossibles · 3E Coût prohibitif · 3F Monopole sans recours · 3G Opacité. Volet 4 : 4A Non-respect engagements · 4B Facturation abusive · 4C Coupure injustifiée · 4D Accès impossible · 4E Service dégradé · 4F Abus position dominante. Indiquer (?) si incertain.]
 
 ${reps?'':`**QUESTIONS DE CLARIFICATION**
-[2 à 4 questions numérotées ciblant les sections marquées [non précisé] ou [information insuffisante], ou écrire exactement : "Témoignage complet — aucune question"]`}
+[2 à 4 questions numérotées ciblant uniquement les sections marquées [non précisé] ou [information insuffisante] ET dont la réponse n'apparaît ni dans la transcription ni dans les documents joints. Si tout est couvert : écrire exactement "Témoignage complet — aucune question"]`}
 
 TRANSCRIPTION :
-${tr}${reps?'\n\nRÉPONSES :\n'+reps:''}`;
+${tr}${hasResol?resolBlock:''}${reps?'\n\nRÉPONSES :\n'+reps:''}`;
 }
 
 function readDoc(f){return new Promise(resolve=>{
@@ -651,7 +1055,7 @@ function readDoc(f){return new Promise(resolve=>{
   r.readAsDataURL(f);
 });}
 
-// ── QUESTIONS
+// ── QUESTIONS — identique v7.7
 function extractQ(txt){
   const m=txt.match(/\*\*QUESTIONS DE CLARIFICATION\*\*\n([\s\S]*?)(?=\n\*\*|$)/);
   if(!m)return[];
@@ -705,18 +1109,16 @@ async function togMini(i){
   }catch{G(`ms_${i}`).textContent='⚠️ Micro non accessible';}
 }
 
-// ── FINALISER
+// ── FINALISER — identique v7.7
 async function finaliser(){
   const okey=G('ok').value.trim(), akey=G('ak').value.trim();
   const btn=G('btnFinal');btn.disabled=true;btn.textContent='Génération en cours…';
-  let reps='';
-  let qBlocks=[];
+  let reps='';let qBlocks=[];
   for(let i=0;i<questions.length;i++){
     let rep='';
     if(miniMR[i]?.blob){
       try{
-        const fd=new FormData();
-        fd.append('file',new File([miniMR[i].blob],'r.mp4',{type:miniMR[i].blob.type}));
+        const fd=new FormData();fd.append('file',new File([miniMR[i].blob],'r.mp4',{type:miniMR[i].blob.type}));
         fd.append('model','whisper-1');fd.append('language','fr');fd.append('response_format','text');
         const r=await fetch('https://api.openai.com/v1/audio/transcriptions',{method:'POST',headers:{'Authorization':`Bearer ${okey}`},body:fd});
         if(r.ok)rep=await r.text();
@@ -733,7 +1135,6 @@ async function finaliser(){
 Même format structuré, sans section QUESTIONS DE CLARIFICATION dans le résultat final.
 RÈGLE ABSOLUE : n'invente rien — utilise uniquement les informations du document initial et des réponses fournies.
 Remplace les [non précisé] et [information insuffisante] uniquement si la réponse apporte l'information manquante.
-Si la réponse est "(sans réponse)", laisse [non précisé] tel quel.
 
 DOCUMENT INITIAL :
 ${docInitial}
@@ -742,31 +1143,23 @@ RÉPONSES :
 ${reps}`;
   try{
     const res=await claude(akey,p,2500,qBlocks);
-    const txt=res.content[0].text;
-    docInitial=txt;
-    hide('cardQ');
-    showRes(transcript,txt);
+    const txt=res.content[0].text;docInitial=txt;
+    hide('cardQ');showRes(transcript,txt);
   }catch(e){alert(`Erreur: ${e.message}`);}
   btn.disabled=false;btn.textContent='Générer mon document final →';
 }
 
-// ── DOCUMENTS FINAUX (ajout après document généré)
+// ── DOCUMENTS FINAUX — identique v7.7
 let docsFinale=[];
 function selDocsFinale(e){Array.from(e.target.files).forEach(f=>addDocFinale(f));e.target.value='';}
-function dropDocsFinale(e){
-  e.preventDefault();
-  Array.from(e.dataTransfer.files).forEach(f=>addDocFinale(f));
-}
+function dropDocsFinale(e){e.preventDefault();Array.from(e.dataTransfer.files).forEach(f=>addDocFinale(f));}
 function addDocFinale(f){
-  const totalDocs=docsMain.length+docsFinale.length;
-  if(totalDocs>=10){alert('Maximum 10 documents au total.');return;}
-  const allowed=['application/pdf','image/jpeg','image/jpg','image/png'];
+  if(docsFinale.length>=10){alert('Maximum 10 documents au total.');return;}
   const ext=f.name.toLowerCase();
-  if(!allowed.includes(f.type)&&!ext.endsWith('.pdf')&&!ext.endsWith('.jpg')&&!ext.endsWith('.jpeg')&&!ext.endsWith('.png')){
+  if(!['application/pdf','image/jpeg','image/jpg','image/png'].includes(f.type)&&!ext.endsWith('.pdf')&&!ext.endsWith('.jpg')&&!ext.endsWith('.jpeg')&&!ext.endsWith('.png')){
     alert(`Format non accepté : ${f.name}`);return;
   }
-  docsFinale.push({id:Date.now()+Math.random(),f});
-  renderDocsFinale();
+  docsFinale.push({id:Date.now()+Math.random(),f});renderDocsFinale();
 }
 function renderDocsFinale(){
   const l=G('dlFinale');if(!l)return;
@@ -774,39 +1167,27 @@ function renderDocsFinale(){
 }
 function rmDocFinale(id){docsFinale=docsFinale.filter(d=>d.id!==id);renderDocsFinale();}
 
-// ── MULTI-SÉLECTION AIDE
-function toggleCheck(cb){
-  const lbl=cb.closest('label');
-  if(lbl)lbl.classList.toggle('on',cb.checked);
-}
-function getAideValues(){
-  return Array.from(document.querySelectorAll('#aideGroup input[type=checkbox]:checked')).map(cb=>cb.value);
-}
+// ── CLASSIFICATION — identique v7.7
+function toggleCheck(cb){const lbl=cb.closest('label');if(lbl)lbl.classList.toggle('on',cb.checked);}
+function getAideValues(){return Array.from(document.querySelectorAll('#aideGroup input[type=checkbox]:checked')).map(cb=>cb.value);}
+
 function showRes(tr,txt){
   show('cardRes');
   G('trRes').textContent=tr;
   G('docRes').innerText=txt;
-  regenCount=0;
-  G('regenCount').textContent='';
+  regenCount=0;G('regenCount').textContent='';
   hideErr('errRes');
-  // Extraire la classification pour l'afficher en 6b
   extractClassif(txt);
   scrollEl('cardRes');
 }
 
 function extractClassif(txt){
-  // Extraire domaines
   const mD=txt.match(/\*\*CLASSIFICATION — DOMAINES RÉGLEMENTAIRES\*\*\n([\s\S]*?)(?=\n\*\*|$)/);
   const domaines=mD?mD[1].trim():'[non classifié]';
-  // Extraire types
   const mT=txt.match(/\*\*CLASSIFICATION — TYPES DE DYSFONCTIONNEMENT\*\*\n([\s\S]*?)(?=\n\*\*|$)/);
   const types=mT?mT[1].trim():'[non classifié]';
-  // Stocker pour soumission
-  window._classifDomaines=domaines;
-  window._classifTypes=types;
-  // Afficher dans 6b
-  const dEl=G('classifDomaines');
-  const tEl=G('classifTypes');
+  window._classifDomaines=domaines;window._classifTypes=types;
+  const dEl=G('classifDomaines');const tEl=G('classifTypes');
   if(dEl)dEl.innerHTML=domaines.split('·').map(d=>d.trim()).filter(Boolean).map(d=>`<span class="classif-tag">${d}</span>`).join(' ');
   if(tEl)tEl.innerHTML=types.split('·').map(t=>t.trim()).filter(Boolean).map(t=>`<span class="classif-tag">${t}</span>`).join(' ');
 }
@@ -815,28 +1196,23 @@ async function regenerer(){
   if(regenCount>=2){alert('Maximum 2 régénérations atteint.');return;}
   const akey=G('ak').value.trim();
   const texteEdite=G('docRes').innerText;
-  const btn=G('btnRegen');
-  btn.disabled=true;btn.textContent='Régénération…';
-  // Lire les documents finaux ajoutés
+  const btn=G('btnRegen');btn.disabled=true;btn.textContent='Régénération…';
   let finaleBlocks=[];
   for(const d of docsFinale){const b=await readDoc(d.f);if(b)finaleBlocks.push(b);}
   const p=`Produis une version finale propre de ce document en respectant strictement les modifications apportées par le témoin.
 Corrige uniquement les fautes de frappe évidentes et améliore la cohérence stylistique.
 Ne jamais ajouter, déduire ou inventer d'informations.
 Conserve les [non précisé] et [information insuffisante] tels quels s'ils n'ont pas été modifiés.
-${finaleBlocks.length>0?'Des documents supplémentaires sont joints — intègre les informations pertinentes qu\'ils contiennent dans l\'analyse, en indiquant leur source.':''}
-Même format structuré avec les sections CLASSIFICATION.
+${finaleBlocks.length>0?'Des documents supplémentaires sont joints — intègre les informations pertinentes en indiquant leur source.':''}
+Même format structuré avec toutes les sections.
 
 DOCUMENT :
 ${texteEdite}`;
   try{
     const res=await claude(akey,p,2500,finaleBlocks);
-    const txt=res.content[0].text;
-    docInitial=txt;
-    G('docRes').innerText=txt;
-    extractClassif(txt);
-    regenCount++;
-    docsFinale=[];renderDocsFinale();
+    const txt=res.content[0].text;docInitial=txt;
+    G('docRes').innerText=txt;extractClassif(txt);
+    regenCount++;docsFinale=[];renderDocsFinale();
     G('regenCount').textContent=regenCount>=2?'Maximum atteint — veuillez valider.':`Régénération ${regenCount}/2 effectuée.`;
     if(regenCount>=2)btn.style.display='none';
   }catch(e){showErr('errRes',`Erreur: ${e.message}`);}
@@ -845,96 +1221,73 @@ ${texteEdite}`;
 
 function validerDoc(){
   docInitial=G('docRes').innerText;
-  hide('cardRes');
-  show('cardClassif');
-  scrollEl('cardClassif');
+  hide('cardRes');show('cardClassif');scrollEl('cardClassif');
+}
+
+// ── ANONYMAT — logique pseudo/prénom/nom exclusifs
+function onPseudoChange(){
+  const pseudoChecked=G('chk_pseudo').checked;
+  const afPrenom=G('af_prenom');const afNom=G('af_nom');
+  if(pseudoChecked){
+    afPrenom.classList.add('disabled');afNom.classList.add('disabled');
+    G('chk_prenom').checked=false;G('chk_nom').checked=false;
+    afPrenom.classList.remove('checked');afNom.classList.remove('checked');
+  }else{
+    afPrenom.classList.remove('disabled');afNom.classList.remove('disabled');
+  }
+  updateAnonPreview();
 }
 
 function showAnon(){
-  hide('cardClassif');
-  show('cardAnon');
-  // Pré-remplir depuis le profil sauvegardé (localStorage)
-  // TODO backend : remplacer par GET /api/comptes/:id/profil
+  hide('cardClassif');show('cardAnon');
   try{
     const raw=localStorage.getItem('moietloi_profil');
     if(raw){
       const p=JSON.parse(raw);
-      // Pré-remplir les champs si disponibles
-      if(p.prenom){G('val_prenom').value=p.prenom;}
-      if(p.nom){G('val_nom').value=p.nom;}
-      if(p.csp){G('val_profession').value=p.csp;}
-      if(p.region){G('val_region').value=p.region;}
-      // Mettre à jour l'aperçu
-      updateAnonPreview();
+      if(p.pseudo)G('pseudoDisplay').textContent=p.pseudo;
+      if(p.csp)G('val_profession').value=p.csp;
+      if(p.region)G('val_region').value=p.region;
     }
-  }catch(e){console.warn('Profil non disponible');}
+  }catch{}
+  updateAnonPreview();
   scrollEl('cardAnon');
 }
 
-// ── ANONYMAT
 function updateAnonPreview(){
-  const fields=['prenom','nom','profession','age','region'];
+  const pseudoChecked=G('chk_pseudo').checked;
   const parts=[];
-  fields.forEach(f=>{
-    const chk=G('chk_'+f);
-    const val=G('val_'+f);
-    const af=G('af_'+f);
-    if(chk&&chk.checked){
-      af&&af.classList.add('checked');
-      if(val&&val.value.trim())parts.push(val.value.trim());
-    }else{
-      af&&af.classList.remove('checked');
-    }
+  if(pseudoChecked){
+    parts.push(G('pseudoDisplay').textContent||'Pseudonyme');
+    G('af_pseudo').classList.add('checked');
+  }else{
+    G('af_pseudo').classList.remove('checked');
+    ['prenom','nom'].forEach(f=>{
+      const chk=G('chk_'+f);const val=G('val_'+f);const af=G('af_'+f);
+      if(chk?.checked&&val?.value.trim()){af?.classList.add('checked');parts.push(val.value.trim());}
+      else{af?.classList.remove('checked');}
+    });
+  }
+  ['profession','age','region'].forEach(f=>{
+    const chk=G('chk_'+f);const val=G('val_'+f);const af=G('af_'+f);
+    if(chk?.checked&&val?.value.trim()){af?.classList.add('checked');parts.push(val.value.trim());}
+    else{af?.classList.remove('checked');}
   });
   anonChoice=parts.length>0?parts.join(', '):'Anonyme';
   G('anonSig').textContent='"'+anonChoice+'"';
 }
 
-function showSoumission(){
-  hide('cardAnon');
-  show('cardSoumission');
-  scrollEl('cardSoumission');
-}
+function showSoumission(){hide('cardAnon');show('cardSoumission');scrollEl('cardSoumission');}
 
-// ── SOUMISSION
-function toggleConfirm(){
-  const chk=G('chkConfirm');
-  G('btnSoumettre').disabled=!chk.checked;
-}
+// ── SOUMISSION — identique v7.7
+function toggleConfirm(){G('btnSoumettre').disabled=!G('chkConfirm').checked;}
 function soumettre(){
   const ref='TEM-'+new Date().getFullYear()+'-'+Math.floor(Math.random()*9000+1000);
   G('confirmAnon').textContent=typeof anonChoice==='string'?anonChoice:'Anonyme';
   G('confirmRef').textContent=ref;
-  // Rattacher les données du profil au témoignage pour statistiques privées
-  // TODO backend : envoyer profil+témoignage ensemble à l'API
-  try{
-    const raw=localStorage.getItem('moietloi_profil');
-    const profil=raw?JSON.parse(raw):{};
-    const temoignage={
-      ref,
-      anonPublic: anonChoice,
-      // Données privées pour statistiques — jamais publiées
-      profilPrive:{
-        age: profil.age||'',
-        sexe: profil.sexe||'',
-        territoire: profil.territoire||'',
-        region: profil.region||'',
-        csp: profil.csp||'',
-        secteur: profil.secteurSub||profil.secteurCat||'',
-      },
-      classifDomaines: window._classifDomaines||'',
-      classifTypes: window._classifTypes||'',
-      aideRecue: getAideValues(),
-      createdAt: new Date().toISOString()
-    };
-    localStorage.setItem('moietloi_last_temoignage', JSON.stringify(temoignage));
-  }catch(e){console.warn('Stockage non disponible');}
-  hide('cardSoumission');
-  show('cardConfirm');
-  scrollEl('cardConfirm');
+  hide('cardSoumission');show('cardConfirm');scrollEl('cardConfirm');
 }
 
-// ── CLAUDE API
+// ── CLAUDE API — identique v7.7
 async function claude(key,prompt,max,blocks=[]){
   const content=[...blocks,{type:'text',text:prompt}];
   const r=await fetch('https://api.anthropic.com/v1/messages',{
@@ -946,7 +1299,7 @@ async function claude(key,prompt,max,blocks=[]){
   return r.json();
 }
 
-// ── UTILS
+// ── UTILS — identique v7.7
 function G(id){return document.getElementById(id);}
 function show(id){G(id)?.classList.remove('hidden');}
 function hide(id){G(id)?.classList.add('hidden');}
