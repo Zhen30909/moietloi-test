@@ -9,15 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{
-  --vert:#5a7260;--vert-clair:#8a9e8a;--vert-pale:#eef3ee;
-  --beige:#d4c8b0;--beige-clair:#ede8df;
-  --peche:#d4956a;--peche-pale:#faf0e8;
-  --gris-fonce:#2d2d2d;--gris-moyen:#6b6b6b;--gris-clair:#b0b0b0;
-  --fond:#f7f4ef;--blanc:#ffffff;
-  --or:#b8943f;--or-pale:#fdf8ee;--or-clair:#e8d0a0;
-  --bleu:#2c4a6e;--bleu-pale:#eef2f7;--bleu-clair:#c0d0e0;--rouge:#c0392b;
-}
+:root{--vert:#5a7260;--vert-clair:#8a9e8a;--vert-pale:#eef3ee;--beige:#d4c8b0;--beige-clair:#ede8df;--peche:#d4956a;--peche-pale:#faf0e8;--gris-fonce:#2d2d2d;--gris-moyen:#6b6b6b;--gris-clair:#b0b0b0;--fond:#f7f4ef;--blanc:#ffffff;--or:#b8943f;--or-pale:#fdf8ee;--or-clair:#e8d0a0;--bleu:#2c4a6e;--bleu-pale:#eef2f7;--bleu-clair:#c0d0e0;--rouge:#c0392b;}
 *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
 body{font-family:'Source Sans 3',sans-serif;background:var(--fond);color:var(--gris-fonce);min-height:100vh}
 nav{background:rgba(247,244,239,0.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--beige);height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 28px;position:sticky;top:0;z-index:100}
@@ -44,6 +36,7 @@ nav{background:rgba(247,244,239,0.96);backdrop-filter:blur(10px);border-bottom:1
 .tabs{display:flex;gap:0;border-radius:10px;overflow:hidden;border:1.5px solid var(--beige);background:var(--blanc);width:fit-content;margin-bottom:28px}
 .tab{padding:10px 22px;font-size:0.87rem;font-weight:500;cursor:pointer;border:none;font-family:'Source Sans 3',sans-serif;background:transparent;color:var(--gris-moyen);display:flex;align-items:center;gap:6px;transition:all 0.2s;white-space:nowrap}
 .tab.af{background:var(--vert);color:white}.tab.ap{background:var(--or);color:white}.tab.ai{background:var(--bleu);color:white}
+/* SEARCH CARD */
 .search-card{background:var(--blanc);border-radius:14px;padding:22px;border:1px solid #e8e2d8;box-shadow:0 2px 8px rgba(0,0,0,0.04);margin-bottom:20px}
 .search-card.pro{border-color:var(--or-clair);background:var(--or-pale)}
 .search-label{font-size:0.7rem;text-transform:uppercase;letter-spacing:2px;font-weight:500;margin-bottom:10px}
@@ -55,29 +48,41 @@ nav{background:rgba(247,244,239,0.96);backdrop-filter:blur(10px);border-bottom:1
 .bgo{padding:13px 20px;color:white;border:none;border-radius:8px;font-size:0.9rem;font-family:'Source Sans 3',sans-serif;font-weight:500;cursor:pointer;transition:all 0.2s;white-space:nowrap}
 .bgo.f{background:var(--vert)}.bgo.f:hover{background:#4a6050}
 .bgo.p{background:var(--or)}.bgo.p:hover{background:#9a7c30}
-.active-tags{display:flex;flex-wrap:wrap;gap:6px;align-items:center;min-height:0;margin-bottom:4px}
-.active-tags:empty{display:none}
+/* TAGS */
+.active-tags{display:none;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:4px}
 .ftag{display:inline-flex;align-items:center;gap:5px;padding:4px 12px;border-radius:16px;font-size:0.78rem;font-weight:500}
 .ftag.f{background:var(--vert-pale);border:1.5px solid var(--vert-clair);color:var(--vert)}
-.ftag.p{background:var(--or-pale);border:1.5px solid var(--or-clair);color:var(--or)}
+.ftag.p{background:#3d5a3e;border:1.5px solid #2d4a2e;color:white}
 .ftag-rm{background:none;border:none;cursor:pointer;font-size:0.9rem;line-height:1;padding:0;margin-left:2px;opacity:0.6;transition:opacity 0.15s}
 .ftag-rm:hover{opacity:1}
 .clear-all{font-size:0.72rem;color:var(--rouge);background:none;border:none;cursor:pointer;text-decoration:underline;padding:0;margin-left:4px;white-space:nowrap}
+/* SELECTS FILTRES (sans domaine) */
 .filter-selects{display:flex;gap:8px;flex-wrap:wrap;align-items:flex-start;margin-top:14px;padding-top:14px;border-top:1px solid #f0ebe3}
-.fsel{padding:8px 12px;border:1.5px solid #ddd8d0;border-radius:8px;font-size:0.8rem;font-family:'Source Sans 3',sans-serif;background:var(--blanc);color:var(--gris-moyen);cursor:pointer;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'%3E%3Cpath fill='%236b6b6b' d='M5 7L0 2h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;padding-right:28px;transition:all 0.2s;max-width:200px}
+.fsel{padding:8px 12px;border:1.5px solid #ddd8d0;border-radius:8px;font-size:0.8rem;font-family:'Source Sans 3',sans-serif;background:var(--blanc);color:var(--gris-moyen);cursor:pointer;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'%3E%3Cpath fill='%236b6b6b' d='M5 7L0 2h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;padding-right:28px;transition:all 0.2s;max-width:220px}
 .fsel:focus{outline:none;border-color:var(--vert)}.fsel.on{border-color:var(--vert);color:var(--vert)}
 .region-wrap{display:flex;flex-direction:column;gap:4px}
-.fsel-dept{padding:7px 12px;border:1.5px solid var(--vert-clair);border-radius:8px;font-size:0.78rem;font-family:'Source Sans 3',sans-serif;background:var(--vert-pale);color:var(--vert);cursor:pointer;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'%3E%3Cpath fill='%235a7260' d='M5 7L0 2h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;padding-right:28px;display:none;max-width:200px}
+.fsel-dept{padding:7px 12px;border:1.5px solid var(--vert-clair);border-radius:8px;font-size:0.78rem;font-family:'Source Sans 3',sans-serif;background:var(--vert-pale);color:var(--vert);cursor:pointer;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'%3E%3Cpath fill='%235a7260' d='M5 7L0 2h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;padding-right:28px;display:none;max-width:220px}
 .fsel-dept.visible{display:block}.fsel-dept.on{border-color:var(--vert);background:var(--vert);color:white}
 select option,select optgroup{font-size:0.82rem}
 .brst{padding:8px 12px;background:transparent;border:1.5px solid #ddd8d0;border-radius:8px;font-size:0.8rem;color:var(--gris-moyen);cursor:pointer;font-family:'Source Sans 3',sans-serif;transition:all 0.2s;align-self:flex-start}
 .brst:hover{border-color:var(--gris-moyen);color:var(--gris-fonce)}
+/* DOMAINES — grands thèmes + sous-catégories */
 .themes-title{font-size:0.7rem;text-transform:uppercase;letter-spacing:2px;font-weight:500;margin-bottom:12px;color:var(--vert)}
-.themes{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:24px}
+.themes{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:8px}
 .theme{background:var(--blanc);border:1.5px solid #e8e2d8;border-radius:10px;padding:12px 10px;cursor:pointer;transition:all 0.2s;text-align:left}
 .theme:hover{border-color:var(--vert-clair);transform:translateY(-1px);box-shadow:0 3px 10px rgba(90,114,96,0.1)}
 .theme.on{border-color:var(--vert);background:var(--vert-pale)}
 .theme-icon{font-size:1.2rem;margin-bottom:5px}.theme-name{font-size:0.82rem;font-weight:600;color:var(--gris-fonce);line-height:1.3;margin-bottom:2px}.theme-n{font-size:0.68rem;color:var(--gris-clair)}
+/* SOUS-CATÉGORIES — s'affichent sous la grille quand thème cliqué */
+.subcats-panel{display:none;background:var(--vert-pale);border:1.5px solid var(--vert-clair);border-radius:10px;padding:14px 16px;margin-bottom:16px;margin-top:4px}
+.subcats-panel.open{display:block}
+.subcats-title{font-size:0.7rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--vert);font-weight:500;margin-bottom:10px}
+.subcats{display:flex;flex-wrap:wrap;gap:7px}
+.subcat{padding:5px 13px;border:1.5px solid var(--vert-clair);border-radius:16px;font-size:0.8rem;color:var(--vert);cursor:pointer;background:var(--blanc);font-family:'Source Sans 3',sans-serif;transition:all 0.18s}
+.subcat:hover{border-color:var(--vert);background:var(--vert);color:white}
+.subcat.on{border-color:var(--vert);background:var(--vert);color:white}
+.subcat-all{font-weight:600}
+/* RÉSULTATS */
 .rhead{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;gap:8px;flex-wrap:wrap}
 .rcount{font-size:0.85rem;color:var(--gris-moyen)}.rcount strong{color:var(--gris-fonce)}
 .sort-sel{padding:6px 10px;border:1.5px solid #ddd8d0;border-radius:8px;font-size:0.78rem;font-family:'Source Sans 3',sans-serif;background:var(--blanc);color:var(--gris-moyen);cursor:pointer;-webkit-appearance:none}
@@ -100,6 +105,7 @@ select option,select optgroup{font-size:0.82rem}
 .btn-ca{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border:1.5px solid var(--beige);border-radius:20px;background:transparent;font-size:0.75rem;color:var(--gris-moyen);cursor:pointer;font-family:'Source Sans 3',sans-serif;transition:all 0.2s}
 .btn-ca:hover{border-color:var(--vert);color:var(--vert);background:var(--vert-pale)}
 .btn-ca.off{opacity:0.35;cursor:default;pointer-events:none}
+/* PRO */
 .feats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px}
 .feat{border-radius:10px;padding:14px;background:var(--blanc);border:1px solid var(--or-clair)}
 .feat-icon{font-size:1.2rem;margin-bottom:6px}.feat-title{font-size:0.83rem;font-weight:600;color:var(--gris-fonce);margin-bottom:3px}.feat-desc{font-size:0.76rem;color:var(--gris-moyen);line-height:1.5}
@@ -150,6 +156,7 @@ select option,select optgroup{font-size:0.82rem}
 .pages{display:flex;justify-content:center;gap:6px;margin-top:18px}
 .pg{width:32px;height:32px;border-radius:7px;border:1.5px solid #ddd8d0;background:var(--blanc);font-size:0.82rem;color:var(--gris-moyen);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s;font-family:'Source Sans 3',sans-serif}
 .pg:hover,.pg.on{border-color:var(--vert);background:var(--vert);color:white}
+/* MODALS */
 .moverlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:300;align-items:center;justify-content:center;padding:24px}
 .moverlay.open{display:flex}
 .modal{background:var(--blanc);border-radius:14px;padding:28px;max-width:480px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,0.15)}
@@ -170,6 +177,7 @@ select option,select optgroup{font-size:0.82rem}
 .modal-signup-desc{font-size:0.85rem;color:var(--gris-moyen);line-height:1.65;margin-bottom:20px;text-align:center}
 .btn-signup{display:block;width:100%;padding:13px;background:var(--vert);color:white;border:none;border-radius:8px;font-size:0.95rem;font-family:'Source Sans 3',sans-serif;font-weight:500;cursor:pointer;text-decoration:none;text-align:center;transition:all 0.2s}
 .btn-signup:hover{background:#4a6050}
+/* INST */
 .inst-header{background:var(--bleu-pale);border:1.5px solid var(--bleu-clair);border-radius:12px;padding:24px;margin-bottom:24px}
 .inst-badge{display:inline-flex;align-items:center;gap:5px;background:var(--bleu);color:white;font-size:0.7rem;padding:3px 10px;border-radius:10px;font-weight:600;margin-bottom:10px}
 .inst-title{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--bleu);margin-bottom:8px}
@@ -188,6 +196,13 @@ select option,select optgroup{font-size:0.82rem}
 .if-mic-st{font-size:0.75rem;color:var(--gris-moyen);font-style:italic}
 .btn-send-inst{width:100%;padding:13px;background:var(--bleu);color:white;border:none;border-radius:8px;font-size:0.95rem;font-family:'Source Sans 3',sans-serif;font-weight:500;cursor:pointer;transition:all 0.2s;margin-top:4px}
 .btn-send-inst:hover{background:#1e3550}
+/* Bandeau sélection institutionnel */
+.inst-selection{background:var(--bleu-pale);border:1.5px solid var(--bleu-clair);border-radius:10px;padding:14px 16px;margin-bottom:20px;display:none}
+.inst-selection.open{display:block}
+.inst-selection-title{font-size:0.7rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--bleu);font-weight:500;margin-bottom:8px}
+.inst-sel-tags{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.ftag.i{background:var(--bleu-pale);border:1.5px solid var(--bleu-clair);color:var(--bleu)}
+/* TARIFS */
 .tarifs-section{background:var(--blanc);border-top:2px solid var(--beige);padding:60px 24px 80px}
 .tarifs-inner{max-width:1060px;margin:0 auto}
 .tarifs-eyebrow{font-size:0.7rem;text-transform:uppercase;letter-spacing:2.5px;color:var(--vert);font-weight:500;margin-bottom:10px;text-align:center}
@@ -232,9 +247,7 @@ hr{border:none;border-top:1px solid var(--beige);margin:16px 0}
     <a href="tarifs.html">&#128182; Tarifs</a>
     <a href="compte.html">&#128100; Connexion / Cr&eacute;er un compte</a>
   </div>
-  <button class="nav-burger" onclick="document.getElementById('nm').classList.toggle('open')" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
+  <button class="nav-burger" onclick="document.getElementById('nm').classList.toggle('open')" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
 <div class="nav-mob" id="nm">
   <a href="temoigner.html" class="nav-cta-mob">&#127897;&#65039; D&eacute;poser un t&eacute;moignage</a>
@@ -246,24 +259,22 @@ hr{border:none;border-top:1px solid var(--beige);margin:16px 0}
 <div class="moverlay" id="mContact">
   <div class="modal">
     <div class="modal-title">Contacter l'auteur</div>
-    <div class="modal-desc">Votre message sera transmis via la messagerie interne. L'auteur r&eacute;pond sous son pseudonyme &mdash; votre identit&eacute; r&eacute;elle reste anonyme.</div>
+    <div class="modal-desc">Votre message sera transmis via la messagerie interne. L'auteur r&eacute;pond sous son pseudonyme.</div>
     <div class="modal-field"><label>Votre message</label><textarea placeholder="D&eacute;crivez votre situation ou la raison de votre prise de contact&hellip;"></textarea></div>
-    <div class="modal-note">&#128274; Ni votre email, ni votre identit&eacute; r&eacute;elle ne seront communiqu&eacute;s. L'&eacute;change se fait uniquement via la messagerie moietloi.fr.</div>
-    <div class="mbtns">
-      <button class="btn-cancel" onclick="cm('mContact')">Annuler</button>
-      <button class="btn-send" onclick="sendMsg()">Envoyer &rarr;</button>
-    </div>
+    <div class="modal-note">&#128274; Ni votre email, ni votre identit&eacute; r&eacute;elle ne seront communiqu&eacute;s.</div>
+    <div class="mbtns"><button class="btn-cancel" onclick="cm('mContact')">Annuler</button><button class="btn-send" onclick="sendMsg()">Envoyer &rarr;</button></div>
   </div>
 </div>
 <div class="moverlay" id="mSignup">
   <div class="modal">
     <div class="modal-signup-icon">&#9993;&#65039;</div>
     <div class="modal-signup-title">Cr&eacute;ez un compte pour contacter l'auteur</div>
-    <div class="modal-signup-desc">La messagerie interne est r&eacute;serv&eacute;e aux membres. Cr&eacute;er un compte est gratuit et prend 30 secondes.</div>
+    <div class="modal-signup-desc">La messagerie interne est r&eacute;serv&eacute;e aux membres. Gratuit en 30 secondes.</div>
     <a href="compte.html" class="btn-signup">Cr&eacute;er mon compte gratuitement &rarr;</a>
     <button class="btn-cancel" style="width:100%;margin-top:10px;" onclick="cm('mSignup')">Annuler</button>
   </div>
 </div>
+
 <div class="page">
   <div class="page-eyebrow">Base de t&eacute;moignages</div>
   <h1 class="page-title">Consulter &amp; Rechercher</h1>
@@ -274,7 +285,7 @@ hr{border:none;border-top:1px solid var(--beige);margin:16px 0}
     <button class="tab" id="t2" onclick="switchTab(2)">&#127963;&#65039; Institutionnel</button>
   </div>
 
-  <!-- ZONE LIBRE -->
+  <!-- ══ ZONE LIBRE ══ -->
   <div id="z0">
     <div class="search-card">
       <div class="search-label f">Recherche</div>
@@ -284,65 +295,6 @@ hr{border:none;border-top:1px solid var(--beige);margin:16px 0}
       </div>
       <div class="active-tags" id="tags0"></div>
       <div class="filter-selects">
-        <select class="fsel" id="fd0" onchange="selFilter('fd0')">
-          <option value="">Domaine</option>
-          <optgroup label="Droit public &amp; Administratif">
-            <option>Urbanisme / PLU / Permis de construire</option>
-            <option>ERP / S&eacute;curit&eacute; des b&acirc;timents</option>
-            <option>Droit rural / SAFER / Foncier agricole</option>
-            <option>Environnement / ICPE / Natura 2000</option>
-            <option>Commande publique / March&eacute;s publics</option>
-            <option>Patrimoine / Monuments historiques / ABF</option>
-          </optgroup>
-          <optgroup label="Droit social &amp; Emploi">
-            <option>Droit du travail / Rupture de contrat</option>
-            <option>S&eacute;curit&eacute; sociale / Maladie / AT-MP</option>
-            <option>Retraite / Pension</option>
-            <option>Ch&ocirc;mage / France Travail</option>
-            <option>CAF / Allocations familiales / RSA / APL</option>
-            <option>Handicap / MDPH / AAH / RQTH</option>
-          </optgroup>
-          <optgroup label="Fiscalit&eacute;">
-            <option>Imp&ocirc;t sur le revenu / IR</option>
-            <option>TVA / CFE / Taxes professionnelles</option>
-            <option>Taxe fonci&egrave;re / Taxe d'habitation</option>
-            <option>Contr&ocirc;le fiscal / Redressement / URSSAF</option>
-          </optgroup>
-          <optgroup label="Normes &amp; Conformit&eacute;">
-            <option>Normes sanitaires / HACCP / Hygi&egrave;ne alimentaire</option>
-            <option>S&eacute;curit&eacute; incendie / S&eacute;curit&eacute; des b&acirc;timents</option>
-            <option>Normes &eacute;lectriques / Gaz / Diagnostics / DPE</option>
-          </optgroup>
-          <optgroup label="Services essentiels">
-            <option>Electricit&eacute; (EDF, Engie, Enedis&hellip;)</option>
-            <option>Eau / Assainissement</option>
-            <option>T&eacute;l&eacute;com / Internet / Mobile</option>
-            <option>Poste / Colis / Courrier</option>
-            <option>Transport ferroviaire (SNCF)</option>
-            <option>Transport collectif urbain</option>
-            <option>Autoroutes / P&eacute;ages</option>
-          </optgroup>
-          <optgroup label="Sant&eacute; &amp; M&eacute;dico-social">
-            <option>H&ocirc;pital public / CHU / Urgences</option>
-            <option>Acc&egrave;s aux soins / D&eacute;serts m&eacute;dicaux</option>
-            <option>EHPAD / &Eacute;tablissements m&eacute;dico-sociaux</option>
-            <option>Remboursements Assurance maladie / CPAM</option>
-          </optgroup>
-          <optgroup label="Justice &amp; Proc&eacute;dures">
-            <option>Justice civile / Tribunaux judiciaires</option>
-            <option>Justice administrative / TA / CAA</option>
-            <option>M&eacute;diateur / D&eacute;fenseur des droits</option>
-          </optgroup>
-          <optgroup label="Immigration &amp; Nationalit&eacute;">
-            <option>Titre de s&eacute;jour / Visa / Pr&eacute;fecture</option>
-            <option>Naturalisation / Nationalit&eacute; fran&ccedil;aise</option>
-            <option>Asile / R&eacute;fugi&eacute;s / OFPRA</option>
-          </optgroup>
-          <optgroup label="Droit europ&eacute;en">
-            <option>Directive non ou mal transpos&eacute;e</option>
-            <option>RGPD / Protection des donn&eacute;es / CNIL</option>
-          </optgroup>
-        </select>
         <select class="fsel" id="ft0" onchange="selFilter('ft0')">
           <option value="">Type de situation</option>
           <optgroup label="Sur la norme">
@@ -398,43 +350,151 @@ hr{border:none;border-top:1px solid var(--beige);margin:16px 0}
             <option value="">Tous les d&eacute;partements</option>
           </select>
         </div>
-        <select class="fsel" id="fp0" onchange="selFilter('fp0')">
-          <option value="">P&eacute;riode</option>
-          <option>Ce mois</option>
-          <option>3 derniers mois</option>
-          <option>Cette ann&eacute;e</option>
-          <option>2024</option><option>2023</option><option>2022</option>
-          <option>2021 et avant</option>
-        </select>
+
+        <div style="display:flex;align-items:center;gap:6px;flex-wrap:nowrap">
+          <span style="font-size:0.78rem;color:var(--gris-moyen);white-space:nowrap">Faits de</span>
+          <select class="fsel" id="fde0" onchange="selPeriode()" style="max-width:90px;padding-right:24px">
+            <option value="">—</option>
+            <option>Avant 2021</option>
+            <option>2021</option>
+            <option>2022</option>
+            <option>2023</option>
+            <option>2024</option>
+            <option>2025</option>
+            <option>2026</option>
+          </select>
+          <span style="font-size:0.78rem;color:var(--gris-moyen);white-space:nowrap">à</span>
+          <select class="fsel" id="fa0" onchange="selPeriode()" style="max-width:90px;padding-right:24px">
+            <option value="">—</option>
+            <option>Avant 2021</option>
+            <option>2021</option>
+            <option>2022</option>
+            <option>2023</option>
+            <option>2024</option>
+            <option>2025</option>
+            <option>2026</option>
+          </select>
+        </div>
         <button class="brst" onclick="clearAll()">R&eacute;initialiser</button>
       </div>
     </div>
 
-    <div class="themes-title">Parcourir par th&egrave;me &mdash; cliquez pour filtrer</div>
+    <!-- GRANDS DOMAINES + SOUS-CATÉGORIES -->
+    <div class="themes-title">Domaines &mdash; cliquez pour filtrer, cliquez encore pour les sous-cat&eacute;gories</div>
     <div class="themes">
-      <div class="theme" id="th0" onclick="toggleTheme(this,'Urbanisme &amp; R&eacute;glementation locale','PLU urbanisme ERP droit rural environnement')">
+      <div class="theme" id="th0" onclick="clickTheme(this,'Urbanisme &amp; R&eacute;glementation locale','sc0')">
         <div class="theme-icon">&#127963;&#65039;</div><div class="theme-name">Urbanisme &amp; R&eacute;glementation locale</div><div class="theme-n">47 t&eacute;moignages</div>
       </div>
-      <div class="theme" id="th1" onclick="toggleTheme(this,'Fiscalit&eacute; &amp; Cotisations','URSSAF cotisations fiscalit&eacute; imp&ocirc;t TVA')">
+      <div class="theme" id="th1" onclick="clickTheme(this,'Fiscalit&eacute; &amp; Cotisations','sc1')">
         <div class="theme-icon">&#128182;</div><div class="theme-name">Fiscalit&eacute; &amp; Cotisations</div><div class="theme-n">38 t&eacute;moignages</div>
       </div>
-      <div class="theme" id="th2" onclick="toggleTheme(this,'Services essentiels &amp; R&eacute;seaux','&eacute;lectricit&eacute; eau SNCF t&eacute;l&eacute;com r&eacute;seau')">
+      <div class="theme" id="th2" onclick="clickTheme(this,'Services essentiels &amp; R&eacute;seaux','sc2')">
         <div class="theme-icon">&#9889;</div><div class="theme-name">Services essentiels &amp; R&eacute;seaux</div><div class="theme-n">52 t&eacute;moignages</div>
       </div>
-      <div class="theme" id="th3" onclick="toggleTheme(this,'Droit social &amp; Emploi','travail licenciement CAF allocations ch&ocirc;mage retraite')">
+      <div class="theme" id="th3" onclick="clickTheme(this,'Droit social &amp; Emploi','sc3')">
         <div class="theme-icon">&#128119;</div><div class="theme-name">Droit social &amp; Emploi</div><div class="theme-n">34 t&eacute;moignages</div>
       </div>
-      <div class="theme" id="th4" onclick="toggleTheme(this,'Sant&eacute; &amp; Services de soins','h&ocirc;pital urgences m&eacute;decin EHPAD handicap MDPH')">
+      <div class="theme" id="th4" onclick="clickTheme(this,'Sant&eacute; &amp; Services de soins','sc4')">
         <div class="theme-icon">&#127973;&#65039;</div><div class="theme-name">Sant&eacute; &amp; Services de soins</div><div class="theme-n">29 t&eacute;moignages</div>
       </div>
-      <div class="theme" id="th5" onclick="toggleTheme(this,'Normes &amp; Conformit&eacute;','normes HACCP s&eacute;curit&eacute; incendie DPE diagnostic')">
+      <div class="theme" id="th5" onclick="clickTheme(this,'Normes &amp; Conformit&eacute;','sc5')">
         <div class="theme-icon">&#128203;</div><div class="theme-name">Normes &amp; Conformit&eacute;</div><div class="theme-n">23 t&eacute;moignages</div>
       </div>
-      <div class="theme" id="th6" onclick="toggleTheme(this,'Justice &amp; Proc&eacute;dures','tribunal judiciaire administratif m&eacute;diateur recours')">
+      <div class="theme" id="th6" onclick="clickTheme(this,'Justice &amp; Proc&eacute;dures','sc6')">
         <div class="theme-icon">&#9878;&#65039;</div><div class="theme-name">Justice &amp; Proc&eacute;dures</div><div class="theme-n">19 t&eacute;moignages</div>
       </div>
-      <div class="theme" id="th7" onclick="toggleTheme(this,'Droit europ&eacute;en','directive europ&eacute;enne RGPD CNIL libre circulation')">
+      <div class="theme" id="th7" onclick="clickTheme(this,'Droit europ&eacute;en','sc7')">
         <div class="theme-icon">&#127466;&#127482;</div><div class="theme-name">Droit europ&eacute;en</div><div class="theme-n">11 t&eacute;moignages</div>
+      </div>
+    </div>
+
+    <!-- PANNEAUX SOUS-CATÉGORIES -->
+    <div class="subcats-panel" id="sc0" data-theme="th0">
+      <div class="subcats-title">Urbanisme &amp; R&eacute;glementation locale</div>
+      <div class="subcats">
+        <button class="subcat subcat-all on" data-parent="th0" onclick="clickSubcatAll(this,'th0','Urbanisme &amp; R&eacute;glementation locale')">Toutes</button>
+        <button class="subcat" data-parent="th0" onclick="clickSubcat(this)">PLU / Zonage / Permis de construire</button>
+        <button class="subcat" data-parent="th0" onclick="clickSubcat(this)">ERP / S&eacute;curit&eacute; des b&acirc;timents</button>
+        <button class="subcat" data-parent="th0" onclick="clickSubcat(this)">Droit rural / SAFER / Foncier agricole</button>
+        <button class="subcat" data-parent="th0" onclick="clickSubcat(this)">Environnement / ICPE / Natura 2000</button>
+        <button class="subcat" data-parent="th0" onclick="clickSubcat(this)">Commande publique / March&eacute;s publics</button>
+        <button class="subcat" data-parent="th0" onclick="clickSubcat(this)">Patrimoine / Monuments historiques / ABF</button>
+      </div>
+    </div>
+    <div class="subcats-panel" id="sc1" data-theme="th1">
+      <div class="subcats-title">Fiscalit&eacute; &amp; Cotisations</div>
+      <div class="subcats">
+        <button class="subcat subcat-all on" data-parent="th1" onclick="clickSubcatAll(this,'th1','Fiscalit&eacute; &amp; Cotisations')">Toutes</button>
+        <button class="subcat" data-parent="th1" onclick="clickSubcat(this)">Imp&ocirc;t sur le revenu / IR</button>
+        <button class="subcat" data-parent="th1" onclick="clickSubcat(this)">TVA / CFE / Taxes professionnelles</button>
+        <button class="subcat" data-parent="th1" onclick="clickSubcat(this)">Taxe fonci&egrave;re / Taxe d'habitation</button>
+        <button class="subcat" data-parent="th1" onclick="clickSubcat(this)">Contr&ocirc;le fiscal / Redressement</button>
+        <button class="subcat" data-parent="th1" onclick="clickSubcat(this)">URSSAF / Cotisations sociales</button>
+      </div>
+    </div>
+    <div class="subcats-panel" id="sc2" data-theme="th2">
+      <div class="subcats-title">Services essentiels &amp; R&eacute;seaux</div>
+      <div class="subcats">
+        <button class="subcat subcat-all on" data-parent="th2" onclick="clickSubcatAll(this,'th2','Services essentiels &amp; R&eacute;seaux')">Toutes</button>
+        <button class="subcat" data-parent="th2" onclick="clickSubcat(this)">Electricit&eacute; (EDF, Engie, Enedis&hellip;)</button>
+        <button class="subcat" data-parent="th2" onclick="clickSubcat(this)">Eau / Assainissement</button>
+        <button class="subcat" data-parent="th2" onclick="clickSubcat(this)">T&eacute;l&eacute;com / Internet / Mobile</button>
+        <button class="subcat" data-parent="th2" onclick="clickSubcat(this)">Transport ferroviaire (SNCF)</button>
+        <button class="subcat" data-parent="th2" onclick="clickSubcat(this)">Transport collectif urbain (RATP, TER)</button>
+        <button class="subcat" data-parent="th2" onclick="clickSubcat(this)">Poste / Colis / Courrier</button>
+        <button class="subcat" data-parent="th2" onclick="clickSubcat(this)">Autoroutes / P&eacute;ages</button>
+      </div>
+    </div>
+    <div class="subcats-panel" id="sc3" data-theme="th3">
+      <div class="subcats-title">Droit social &amp; Emploi</div>
+      <div class="subcats">
+        <button class="subcat subcat-all on" data-parent="th3" onclick="clickSubcatAll(this,'th3','Droit social &amp; Emploi')">Toutes</button>
+        <button class="subcat" data-parent="th3" onclick="clickSubcat(this)">Droit du travail / Rupture de contrat</button>
+        <button class="subcat" data-parent="th3" onclick="clickSubcat(this)">S&eacute;curit&eacute; sociale / Maladie / AT-MP</button>
+        <button class="subcat" data-parent="th3" onclick="clickSubcat(this)">Retraite / Pension</button>
+        <button class="subcat" data-parent="th3" onclick="clickSubcat(this)">Ch&ocirc;mage / France Travail</button>
+        <button class="subcat" data-parent="th3" onclick="clickSubcat(this)">CAF / Allocations / RSA / APL</button>
+        <button class="subcat" data-parent="th3" onclick="clickSubcat(this)">Handicap / MDPH / AAH / RQTH</button>
+        <button class="subcat" data-parent="th3" onclick="clickSubcat(this)">Formation professionnelle / CPF</button>
+      </div>
+    </div>
+    <div class="subcats-panel" id="sc4" data-theme="th4">
+      <div class="subcats-title">Sant&eacute; &amp; Services de soins</div>
+      <div class="subcats">
+        <button class="subcat subcat-all on" data-parent="th4" onclick="clickSubcatAll(this,'th4','Sant&eacute; &amp; Services de soins')">Toutes</button>
+        <button class="subcat" data-parent="th4" onclick="clickSubcat(this)">H&ocirc;pital public / CHU / Urgences</button>
+        <button class="subcat" data-parent="th4" onclick="clickSubcat(this)">Acc&egrave;s aux soins / D&eacute;serts m&eacute;dicaux</button>
+        <button class="subcat" data-parent="th4" onclick="clickSubcat(this)">EHPAD / &Eacute;tablissements m&eacute;dico-sociaux</button>
+        <button class="subcat" data-parent="th4" onclick="clickSubcat(this)">Remboursements / CPAM / Assurance maladie</button>
+      </div>
+    </div>
+    <div class="subcats-panel" id="sc5" data-theme="th5">
+      <div class="subcats-title">Normes &amp; Conformit&eacute;</div>
+      <div class="subcats">
+        <button class="subcat subcat-all on" data-parent="th5" onclick="clickSubcatAll(this,'th5','Normes &amp; Conformit&eacute;')">Toutes</button>
+        <button class="subcat" data-parent="th5" onclick="clickSubcat(this)">Normes sanitaires / HACCP / Hygi&egrave;ne alimentaire</button>
+        <button class="subcat" data-parent="th5" onclick="clickSubcat(this)">S&eacute;curit&eacute; incendie / S&eacute;curit&eacute; des b&acirc;timents</button>
+        <button class="subcat" data-parent="th5" onclick="clickSubcat(this)">Normes &eacute;lectriques / Gaz / Diagnostics / DPE</button>
+      </div>
+    </div>
+    <div class="subcats-panel" id="sc6" data-theme="th6">
+      <div class="subcats-title">Justice &amp; Proc&eacute;dures</div>
+      <div class="subcats">
+        <button class="subcat subcat-all on" data-parent="th6" onclick="clickSubcatAll(this,'th6','Justice &amp; Proc&eacute;dures')">Toutes</button>
+        <button class="subcat" data-parent="th6" onclick="clickSubcat(this)">Justice civile / Tribunaux judiciaires</button>
+        <button class="subcat" data-parent="th6" onclick="clickSubcat(this)">Justice administrative / TA / CAA / Conseil d'Etat</button>
+        <button class="subcat" data-parent="th6" onclick="clickSubcat(this)">M&eacute;diateur / D&eacute;fenseur des droits</button>
+        <button class="subcat" data-parent="th6" onclick="clickSubcat(this)">Titre de s&eacute;jour / Visa / Pr&eacute;fecture</button>
+        <button class="subcat" data-parent="th6" onclick="clickSubcat(this)">Naturalisation / Nationalit&eacute; fran&ccedil;aise</button>
+      </div>
+    </div>
+    <div class="subcats-panel" id="sc7" data-theme="th7">
+      <div class="subcats-title">Droit europ&eacute;en</div>
+      <div class="subcats">
+        <button class="subcat subcat-all on" data-parent="th7" onclick="clickSubcatAll(this,'th7','Droit europ&eacute;en')">Toutes</button>
+        <button class="subcat" data-parent="th7" onclick="clickSubcat(this)">Directive non ou mal transpos&eacute;e</button>
+        <button class="subcat" data-parent="th7" onclick="clickSubcat(this)">RGPD / Protection des donn&eacute;es / CNIL</button>
+        <button class="subcat" data-parent="th7" onclick="clickSubcat(this)">Libre circulation / Droits citoyens europ&eacute;ens</button>
       </div>
     </div>
 
@@ -446,43 +506,18 @@ hr{border:none;border-top:1px solid var(--beige);margin:16px 0}
       <div class="cl-badge">&#128202; 12 situations similaires</div>
       <div class="cl-title">Coh&eacute;rence des avis de conformit&eacute; ERP en zones agricoles</div>
       <div class="cl-resume">Douze t&eacute;moignages documentent des situations o&ugrave; un avis de conformit&eacute; d&eacute;livr&eacute; par un organisme de contr&ocirc;le agr&eacute;&eacute; a &eacute;t&eacute; suivi d'une d&eacute;cision administrative diff&eacute;rente, portant sur les m&ecirc;mes travaux ou installations.</div>
-      <div class="cl-stats">
-        <span class="cs">&#128205; <strong>8 r&eacute;gions</strong></span>
-        <span class="cs">&#128197; <strong>2023&ndash;2026</strong></span>
-        <span class="cs">&#9878;&#65039; <strong>3 recours</strong> en cours</span>
-        <span class="cs">&#128065; <strong>1&nbsp;247</strong> lectures</span>
-      </div>
+      <div class="cl-stats"><span class="cs">&#128205; <strong>8 r&eacute;gions</strong></span><span class="cs">&#128197; <strong>2023&ndash;2026</strong></span><span class="cs">&#9878;&#65039; <strong>3 recours</strong> en cours</span><span class="cs">&#128065; <strong>1&nbsp;247</strong> lectures</span></div>
     </div>
     <hr>
-    <div class="tc">
-      <div class="ttags"><span class="tag tag-d">ERP / Urbanisme</span><span class="tag tag-t">Norme contradictoire</span><span class="tag tag-r">&#128205; Vaucluse</span><span class="tag tag-c">&times;12 similaires</span></div>
-      <div class="tresume">&ldquo;Un &eacute;tablissement ayant re&ccedil;u un avis de conformit&eacute; d'un organisme agr&eacute;&eacute; s'est vu notifier une d&eacute;cision administrative diff&eacute;rente six mois plus tard, portant sur les m&ecirc;mes travaux.&rdquo;</div>
-      <div class="tmeta"><span class="tsig">Une entrepreneuse, Vaucluse</span><div style="display:flex;align-items:center;gap:10px"><span class="tviews">&#128065; 342</span><button class="btn-ca" onclick="oc(true)">&#9993;&#65039; Contacter</button></div></div>
-    </div>
-    <div class="tc">
-      <div class="ttags"><span class="tag tag-d">Droit rural</span><span class="tag tag-t">Application disproportionn&eacute;e</span><span class="tag tag-r">&#128205; Bretagne</span></div>
-      <div class="tresume">&ldquo;Suite &agrave; la r&eacute;vision du PLU communal, une exploitation s'est retrouv&eacute;e en zone A2, rendant in&eacute;ligibles des activit&eacute;s pour lesquelles un accompagnement avait &eacute;t&eacute; initi&eacute; trois ans auparavant.&rdquo;</div>
-      <div class="tmeta"><span class="tsig">Un agriculteur, Finist&egrave;re</span><div style="display:flex;align-items:center;gap:10px"><span class="tviews">&#128065; 189</span><button class="btn-ca off">&#9993;&#65039; Non souhait&eacute;</button></div></div>
-    </div>
-    <div class="tc">
-      <div class="ttags"><span class="tag tag-d">Normes / Conformit&eacute;</span><span class="tag tag-t">D&eacute;lai de traitement excessif</span><span class="tag tag-r">&#128205; Occitanie</span></div>
-      <div class="tresume">&ldquo;Une cuisine en activit&eacute; depuis 1997 a fait l'objet d'une injonction de mise aux normes avec un d&eacute;lai de 60 jours, sans possibilit&eacute; d'&eacute;talement malgr&eacute; des travaux engag&eacute;s.&rdquo;</div>
-      <div class="tmeta"><span class="tsig">Un restaurateur, H&eacute;rault</span><div style="display:flex;align-items:center;gap:10px"><span class="tviews">&#128065; 217</span><button class="btn-ca" onclick="oc(false)">&#9993;&#65039; Contacter</button></div></div>
-    </div>
-    <div class="tc">
-      <div class="ttags"><span class="tag tag-d">Services essentiels</span><span class="tag tag-t">Interruption de service</span><span class="tag tag-r">&#128205; Normandie</span></div>
-      <div class="tresume">&ldquo;Une interruption de 11 jours a suivi une erreur dans les fichiers du gestionnaire de r&eacute;seau. Les interlocuteurs successifs ont orient&eacute; vers d'autres services sans r&eacute;solution.&rdquo;</div>
-      <div class="tmeta"><span class="tsig">Un exploitant, Seine-Maritime</span><div style="display:flex;align-items:center;gap:10px"><span class="tviews">&#128065; 156</span><button class="btn-ca" onclick="oc(false)">&#9993;&#65039; Contacter</button></div></div>
-    </div>
-    <div class="tc">
-      <div class="ttags"><span class="tag tag-d">Fiscalit&eacute; / Cotisations</span><span class="tag tag-t">D&eacute;cision contest&eacute;e</span><span class="tag tag-r">&#128205; Ile-de-France</span></div>
-      <div class="tresume">&ldquo;Un contr&ocirc;le a abouti &agrave; une requalification de contrats sur la base d'une circulaire interne non publi&eacute;e. La d&eacute;cision a &eacute;t&eacute; annul&eacute;e plusieurs ann&eacute;es plus tard par le tribunal.&rdquo;</div>
-      <div class="tmeta"><span class="tsig">Une dirigeante TPE, Paris</span><div style="display:flex;align-items:center;gap:10px"><span class="tviews">&#128065; 298</span><button class="btn-ca" onclick="oc(false)">&#9993;&#65039; Contacter</button></div></div>
-    </div>
+    <div class="tc"><div class="ttags"><span class="tag tag-d">ERP / Urbanisme</span><span class="tag tag-t">Norme contradictoire</span><span class="tag tag-r">&#128205; Vaucluse</span><span class="tag tag-c">&times;12 similaires</span></div><div class="tresume">&ldquo;Un &eacute;tablissement ayant re&ccedil;u un avis de conformit&eacute; d'un organisme agr&eacute;&eacute; s'est vu notifier une d&eacute;cision administrative diff&eacute;rente six mois plus tard, portant sur les m&ecirc;mes travaux.&rdquo;</div><div class="tmeta"><span class="tsig">Une entrepreneuse, Vaucluse</span><div style="display:flex;align-items:center;gap:10px"><span class="tviews">&#128065; 342</span><button class="btn-ca" onclick="oc(true)">&#9993;&#65039; Contacter</button></div></div></div>
+    <div class="tc"><div class="ttags"><span class="tag tag-d">Droit rural</span><span class="tag tag-t">Application disproportionn&eacute;e</span><span class="tag tag-r">&#128205; Bretagne</span></div><div class="tresume">&ldquo;Suite &agrave; la r&eacute;vision du PLU communal, une exploitation s'est retrouv&eacute;e en zone A2, rendant in&eacute;ligibles des activit&eacute;s pour lesquelles un accompagnement avait &eacute;t&eacute; initi&eacute; trois ans auparavant.&rdquo;</div><div class="tmeta"><span class="tsig">Un agriculteur, Finist&egrave;re</span><div style="display:flex;align-items:center;gap:10px"><span class="tviews">&#128065; 189</span><button class="btn-ca off">&#9993;&#65039; Non souhait&eacute;</button></div></div></div>
+    <div class="tc"><div class="ttags"><span class="tag tag-d">Normes / Conformit&eacute;</span><span class="tag tag-t">D&eacute;lai de traitement excessif</span><span class="tag tag-r">&#128205; Occitanie</span></div><div class="tresume">&ldquo;Une cuisine en activit&eacute; depuis 1997 a fait l'objet d'une injonction de mise aux normes avec un d&eacute;lai de 60 jours, sans possibilit&eacute; d'&eacute;talement malgr&eacute; des travaux engag&eacute;s.&rdquo;</div><div class="tmeta"><span class="tsig">Un restaurateur, H&eacute;rault</span><div style="display:flex;align-items:center;gap:10px"><span class="tviews">&#128065; 217</span><button class="btn-ca" onclick="oc(false)">&#9993;&#65039; Contacter</button></div></div></div>
+    <div class="tc"><div class="ttags"><span class="tag tag-d">Services essentiels</span><span class="tag tag-t">Interruption de service</span><span class="tag tag-r">&#128205; Normandie</span></div><div class="tresume">&ldquo;Une interruption de 11 jours a suivi une erreur dans les fichiers du gestionnaire de r&eacute;seau. Les interlocuteurs successifs ont orient&eacute; vers d'autres services sans r&eacute;solution.&rdquo;</div><div class="tmeta"><span class="tsig">Un exploitant, Seine-Maritime</span><div style="display:flex;align-items:center;gap:10px"><span class="tviews">&#128065; 156</span><button class="btn-ca" onclick="oc(false)">&#9993;&#65039; Contacter</button></div></div></div>
+    <div class="tc"><div class="ttags"><span class="tag tag-d">Fiscalit&eacute; / Cotisations</span><span class="tag tag-t">D&eacute;cision contest&eacute;e</span><span class="tag tag-r">&#128205; Ile-de-France</span></div><div class="tresume">&ldquo;Un contr&ocirc;le a abouti &agrave; une requalification de contrats sur la base d'une circulaire interne non publi&eacute;e. La d&eacute;cision a &eacute;t&eacute; annul&eacute;e plusieurs ann&eacute;es plus tard par le tribunal.&rdquo;</div><div class="tmeta"><span class="tsig">Une dirigeante TPE, Paris</span><div style="display:flex;align-items:center;gap:10px"><span class="tviews">&#128065; 298</span><button class="btn-ca" onclick="oc(false)">&#9993;&#65039; Contacter</button></div></div></div>
     <div class="pages"><button class="pg on">1</button><button class="pg">2</button><button class="pg">3</button><button class="pg">&hellip;</button><button class="pg">19</button></div>
   </div>
 
-  <!-- ZONE PRO -->
+  <!-- ══ ZONE PRO ══ -->
   <div id="z1" class="hidden">
     <div class="feats">
       <div class="feat"><div class="feat-icon">&#129504;</div><div class="feat-title">Recherche s&eacute;mantique AI</div><div class="feat-desc">D&eacute;crivez en langage naturel. L'AI reformule, affine et dialogue pour pr&eacute;ciser votre recherche.</div></div>
@@ -503,6 +538,565 @@ hr{border:none;border-top:1px solid var(--beige);margin:16px 0}
       <div class="active-tags" id="tags1"></div>
       <div class="pro-adv">
         <div class="pro-adv-title">Filtres avanc&eacute;s &mdash; cliquez pour ouvrir</div>
+
+        <!-- DOMAINES — blocs visuels comme gratuit -->
+        <div class="themes-title">Domaine r&eacute;glementaire</div>
+        <div class="themes">
+          <div class="theme" id="pth0" onclick="clickProTheme(this,'Urbanisme &amp; R&eacute;glementation locale','psc0')">
+            <div class="theme-icon">&#127963;&#65039;</div>
+            <div class="theme-name">Urbanisme &amp; R&eacute;glementation locale</div>
+          </div>
+          <div class="theme" id="pth1" onclick="clickProTheme(this,'Fiscalit&eacute; &amp; Cotisations','psc1')">
+            <div class="theme-icon">&#128182;</div>
+            <div class="theme-name">Fiscalit&eacute; &amp; Cotisations</div>
+          </div>
+          <div class="theme" id="pth2" onclick="clickProTheme(this,'Services essentiels &amp; R&eacute;seaux','psc2')">
+            <div class="theme-icon">&#9889;</div>
+            <div class="theme-name">Services essentiels &amp; R&eacute;seaux</div>
+          </div>
+          <div class="theme" id="pth3" onclick="clickProTheme(this,'Droit social &amp; Emploi','psc3')">
+            <div class="theme-icon">&#128119;</div>
+            <div class="theme-name">Droit social &amp; Emploi</div>
+          </div>
+          <div class="theme" id="pth4" onclick="clickProTheme(this,'Sant&eacute; &amp; Services de soins','psc4')">
+            <div class="theme-icon">&#127973;&#65039;</div>
+            <div class="theme-name">Sant&eacute; &amp; Services de soins</div>
+          </div>
+          <div class="theme" id="pth5" onclick="clickProTheme(this,'Normes &amp; Conformit&eacute;','psc5')">
+            <div class="theme-icon">&#128203;</div>
+            <div class="theme-name">Normes &amp; Conformit&eacute;</div>
+          </div>
+          <div class="theme" id="pth6" onclick="clickProTheme(this,'Justice &amp; Proc&eacute;dures','psc6')">
+            <div class="theme-icon">&#9878;&#65039;</div>
+            <div class="theme-name">Justice &amp; Proc&eacute;dures</div>
+          </div>
+          <div class="theme" id="pth7" onclick="clickProTheme(this,'Droit europ&eacute;en','psc7')">
+            <div class="theme-icon">&#127466;&#127482;</div>
+            <div class="theme-name">Droit europ&eacute;en</div>
+          </div>
+        </div>
+
+        <!-- SOUS-CATÉGORIES PRO -->
+        <div class="subcats-panel" id="psc0" data-theme="pth0">
+          <div class="subcats-title">Urbanisme &amp; R&eacute;glementation locale</div>
+          <div class="subcats">
+            <button class="subcat subcat-all on" onclick="clickProSubcatAll(this,'pth0','Urbanisme &amp; Reglementation locale')">Toutes</button>
+            <button class="subcat" onclick="clickProSubcat(this)">PLU / Zonage / Permis de construire</button>
+            <button class="subcat" onclick="clickProSubcat(this)">ERP / S&eacute;curit&eacute; des b&acirc;timents</button>
+            <button class="subcat" onclick="clickProSubcat(this)">Droit rural / SAFER / Foncier agricole</button>
+            <button class="subcat" onclick="clickProSubcat(this)">Environnement / ICPE / Natura 2000</button>
+            <button class="subcat" onclick="clickProSubcat(this)">Commande publique / March&eacute;s publics</button>
+            <button class="subcat" onclick="clickProSubcat(this)">Patrimoine / Monuments historiques / ABF</button>
+          </div>
+        </div>
+        <div class="subcats-panel" id="psc1" data-theme="pth1">
+          <div class="subcats-title">Fiscalit&eacute; &amp; Cotisations</div>
+          <div class="subcats">
+            <button class="subcat subcat-all on" onclick="clickProSubcatAll(this,'pth1','Fiscalite et Cotisations')">Toutes</button>
+            <button class="subcat" onclick="clickProSubcat(this)">Imp&ocirc;t sur le revenu / IR</button>
+            <button class="subcat" onclick="clickProSubcat(this)">TVA / CFE / Taxes professionnelles</button>
+            <button class="subcat" onclick="clickProSubcat(this)">Taxe fonci&egrave;re / Taxe d'habitation</button>
+            <button class="subcat" onclick="clickProSubcat(this)">Contr&ocirc;le fiscal / Redressement</button>
+            <button class="subcat" onclick="clickProSubcat(this)">URSSAF / Cotisations sociales</button>
+          </div>
+        </div>
+        <div class="subcats-panel" id="psc2" data-theme="pth2">
+          <div class="subcats-title">Services essentiels &amp; R&eacute;seaux</div>
+          <div class="subcats">
+            <button class="subcat subcat-all on" onclick="clickProSubcatAll(this,'pth2','Services essentiels et Reseaux')">Toutes</button>
+            <button class="subcat" onclick="clickProSubcat(this)">Electricit&eacute; (EDF, Engie, Enedis)</button>
+            <button class="subcat" onclick="clickProSubcat(this)">Eau / Assainissement</button>
+            <button class="subcat" onclick="clickProSubcat(this)">T&eacute;l&eacute;com / Internet / Mobile</button>
+            <button class="subcat" onclick="clickProSubcat(this)">Transport ferroviaire (SNCF)</button>
+            <button class="subcat" onclick="clickProSubcat(this)">Transport collectif urbain</button>
+            <button class="subcat" onclick="clickProSubcat(this)">Poste / Colis / Courrier</button>
+            <button class="subcat" onclick="clickProSubcat(this)">Autoroutes / P&eacute;ages</button>
+          </div>
+        </div>
+        <div class="subcats-panel" id="psc3" data-theme="pth3">
+          <div class="subcats-title">Droit social &amp; Emploi</div>
+          <div class="subcats">
+            <button class="subcat subcat-all on" onclick="clickProSubcatAll(this,'pth3','Droit social et Emploi')">Toutes</button>
+            <button class="subcat" onclick="clickProSubcat(this)">Droit du travail / Rupture de contrat</button>
+            <button class="subcat" onclick="clickProSubcat(this)">S&eacute;curit&eacute; sociale / Maladie / AT-MP</button>
+            <button class="subcat" onclick="clickProSubcat(this)">Retraite / Pension</button>
+            <button class="subcat" onclick="clickProSubcat(this)">Ch&ocirc;mage / France Travail</button>
+            <button class="subcat" onclick="clickProSubcat(this)">CAF / Allocations / RSA / APL</button>
+            <button class="subcat" onclick="clickProSubcat(this)">Handicap / MDPH / AAH / RQTH</button>
+            <button class="subcat" onclick="clickProSubcat(this)">Formation professionnelle / CPF</button>
+          </div>
+        </div>
+        <div class="subcats-panel" id="psc4" data-theme="pth4">
+          <div class="subcats-title">Sant&eacute; &amp; Services de soins</div>
+          <div class="subcats">
+            <button class="subcat subcat-all on" onclick="clickProSubcatAll(this,'pth4','Sante et Services de soins')">Toutes</button>
+            <button class="subcat" onclick="clickProSubcat(this)">H&ocirc;pital public / CHU / Urgences</button>
+            <button class="subcat" onclick="clickProSubcat(this)">Acc&egrave;s aux soins / D&eacute;serts m&eacute;dicaux</button>
+            <button class="subcat" onclick="clickProSubcat(this)">EHPAD / &Eacute;tablissements m&eacute;dico-sociaux</button>
+            <button class="subcat" onclick="clickProSubcat(this)">Remboursements / CPAM / Assurance maladie</button>
+          </div>
+        </div>
+        <div class="subcats-panel" id="psc5" data-theme="pth5">
+          <div class="subcats-title">Normes &amp; Conformit&eacute;</div>
+          <div class="subcats">
+            <button class="subcat subcat-all on" onclick="clickProSubcatAll(this,'pth5','Normes et Conformite')">Toutes</button>
+            <button class="subcat" onclick="clickProSubcat(this)">Normes sanitaires / HACCP / Hygi&egrave;ne alimentaire</button>
+            <button class="subcat" onclick="clickProSubcat(this)">S&eacute;curit&eacute; incendie / S&eacute;curit&eacute; des b&acirc;timents</button>
+            <button class="subcat" onclick="clickProSubcat(this)">Normes &eacute;lectriques / Gaz / Diagnostics / DPE</button>
+          </div>
+        </div>
+        <div class="subcats-panel" id="psc6" data-theme="pth6">
+          <div class="subcats-title">Justice &amp; Proc&eacute;dures</div>
+          <div class="subcats">
+            <button class="subcat subcat-all on" onclick="clickProSubcatAll(this,'pth6','Justice et Procedures')">Toutes</button>
+            <button class="subcat" onclick="clickProSubcat(this)">Justice civile / Tribunaux judiciaires</button>
+            <button class="subcat" onclick="clickProSubcat(this)">Justice administrative / TA / CAA</button>
+            <button class="subcat" onclick="clickProSubcat(this)">M&eacute;diateur / D&eacute;fenseur des droits</button>
+            <button class="subcat" onclick="clickProSubcat(this)">Titre de s&eacute;jour / Visa / Pr&eacute;fecture</button>
+            <button class="subcat" onclick="clickProSubcat(this)">Naturalisation / Nationalit&eacute; fran&ccedil;aise</button>
+          </div>
+        </div>
+        <div class="subcats-panel" id="psc7" data-theme="pth7">
+          <div class="subcats-title">Droit europ&eacute;en</div>
+          <div class="subcats">
+            <button class="subcat subcat-all on" onclick="clickProSubcatAll(this,'pth7','Droit europeen')">Toutes</button>
+            <button class="subcat" onclick="clickProSubcat(this)">Directive non ou mal transpos&eacute;e</button>
+            <button class="subcat" onclick="clickProSubcat(this)">RGPD / Protection des donn&eacute;es / CNIL</button>
+            <button class="subcat" onclick="clickProSubcat(this)">Libre circulation / Droits citoyens europ&eacute;ens</button>
+          </div>
+        </div>
+
+                <!-- TYPE DE SITUATION -->
+        <div class="pro-acc">
+          <div class="pro-acc-hd" onclick="toggleAcc(this)">Type de situation<span class="pro-acc-arrow">&#9660;</span></div>
+          <div class="pro-acc-body">
+            <div class="pro-acc-opts">
+              <button class="pro-opt" data-val="Norme inadaptee" onclick="toggleProOpt(this)">Norme inadapt&eacute;e</button>
+              <button class="pro-opt" data-val="Norme contradictoire" onclick="toggleProOpt(this)">Norme contradictoire</button>
+              <button class="pro-opt" data-val="Norme disproportionnee" onclick="toggleProOpt(this)">Norme disproportionn&eacute;e</button>
+              <button class="pro-opt" data-val="Vide juridique" onclick="toggleProOpt(this)">Vide juridique</button>
+              <button class="pro-opt" data-val="Application retroactive" onclick="toggleProOpt(this)">Application r&eacute;troactive</button>
+              <button class="pro-opt" data-val="Delai excessif" onclick="toggleProOpt(this)">D&eacute;lai excessif</button>
+              <button class="pro-opt" data-val="Absence de reponse" onclick="toggleProOpt(this)">Absence de r&eacute;ponse</button>
+              <button class="pro-opt" data-val="Inegalite de traitement" onclick="toggleProOpt(this)">In&eacute;galit&eacute; de traitement</button>
+              <button class="pro-opt" data-val="Vice de procedure" onclick="toggleProOpt(this)">Vice de proc&eacute;dure</button>
+              <button class="pro-opt" data-val="Decision sans motivation" onclick="toggleProOpt(this)">D&eacute;cision sans motivation</button>
+              <button class="pro-opt" data-val="Recours sans effet" onclick="toggleProOpt(this)">Recours sans effet</button>
+              <button class="pro-opt" data-val="Facturation contestee" onclick="toggleProOpt(this)">Facturation contest&eacute;e</button>
+              <button class="pro-opt" data-val="Interruption de service" onclick="toggleProOpt(this)">Interruption de service</button>
+              <button class="pro-opt" data-val="Acces difficile" onclick="toggleProOpt(this)">Acc&egrave;s difficile</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- RÉGION + DÉPARTEMENT -->
+        <div class="pro-acc">
+          <div class="pro-acc-hd" onclick="toggleAcc(this)">R&eacute;gion / D&eacute;partement<span class="pro-acc-arrow">&#9660;</span></div>
+          <div class="pro-acc-body">
+            <div class="pro-acc-opts" style="margin-bottom:10px">
+              <button class="pro-opt" data-val="Ile-de-France" onclick="toggleProOpt(this);showProDepts('Ile-de-France')">Ile-de-France</button>
+              <button class="pro-opt" data-val="Auvergne-Rhone-Alpes" onclick="toggleProOpt(this);showProDepts('Auvergne-Rhone-Alpes')">Auvergne-Rh&ocirc;ne-Alpes</button>
+              <button class="pro-opt" data-val="Bretagne" onclick="toggleProOpt(this);showProDepts('Bretagne')">Bretagne</button>
+              <button class="pro-opt" data-val="Grand Est" onclick="toggleProOpt(this);showProDepts('Grand Est')">Grand Est</button>
+              <button class="pro-opt" data-val="Hauts-de-France" onclick="toggleProOpt(this);showProDepts('Hauts-de-France')">Hauts-de-France</button>
+              <button class="pro-opt" data-val="Normandie" onclick="toggleProOpt(this);showProDepts('Normandie')">Normandie</button>
+              <button class="pro-opt" data-val="Nouvelle-Aquitaine" onclick="toggleProOpt(this);showProDepts('Nouvelle-Aquitaine')">Nouvelle-Aquitaine</button>
+              <button class="pro-opt" data-val="Occitanie" onclick="toggleProOpt(this);showProDepts('Occitanie')">Occitanie</button>
+              <button class="pro-opt" data-val="Pays de la Loire" onclick="toggleProOpt(this);showProDepts('Pays de la Loire')">Pays de la Loire</button>
+              <button class="pro-opt" data-val="PACA" onclick="toggleProOpt(this);showProDepts('PACA')">Provence-Alpes-C&ocirc;te d'Azur</button>
+              <button class="pro-opt" data-val="Corse" onclick="toggleProOpt(this);showProDepts('Corse')">Corse</button>
+              <button class="pro-opt" data-val="DOM-TOM" onclick="toggleProOpt(this);showProDepts(null)">DOM-TOM</button>
+              <button class="pro-opt" data-val="Etranger" onclick="toggleProOpt(this);showProDepts(null)">Etranger / Non-r&eacute;sident</button>
+            </div>
+            <div id="proDeptZone" style="display:none;margin-top:6px">
+              <div class="pro-acc-note" style="margin-bottom:6px">D&eacute;partement (optionnel)</div>
+              <div class="pro-acc-opts" id="proDeptOpts"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PÉRIODE DES FAITS -->
+        <div class="pro-acc">
+          <div class="pro-acc-hd" onclick="toggleAcc(this)">P&eacute;riode des faits<span class="pro-acc-arrow">&#9660;</span></div>
+          <div class="pro-acc-body">
+            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:6px">
+              <span style="font-size:0.8rem;color:var(--gris-moyen)">De</span>
+              <select id="pde1" class="fsel" style="max-width:110px;background:white" onchange="selProPeriode()">
+                <option value="">--</option>
+                <option value="avant2021">Avant 2021</option>
+                <option value="2021">2021</option><option value="2022">2022</option>
+                <option value="2023">2023</option><option value="2024">2024</option>
+                <option value="2025">2025</option><option value="2026">2026</option>
+              </select>
+              <span style="font-size:0.8rem;color:var(--gris-moyen)">&agrave;</span>
+              <select id="pa1" class="fsel" style="max-width:110px;background:white" onchange="selProPeriode()">
+                <option value="">--</option>
+                <option value="avant2021">Avant 2021</option>
+                <option value="2021">2021</option><option value="2022">2022</option>
+                <option value="2023">2023</option><option value="2024">2024</option>
+                <option value="2025">2025</option><option value="2026">2026</option>
+              </select>
+            </div>
+            <div class="pro-acc-note">Ann&eacute;e des faits d&eacute;clar&eacute;e par le t&eacute;moin</div>
+          </div>
+        </div>
+
+                <!-- PROFIL DU TÉMOIN -->
+        <div class="pro-acc">
+          <div class="pro-acc-hd" onclick="toggleAcc(this)">Profil du t&eacute;moin<span class="pro-acc-arrow">&#9660;</span></div>
+          <div class="pro-acc-body">
+
+            <div class="pro-opts-sub-label">Tranche d'&acirc;ge</div>
+            <div class="pro-acc-opts">
+              <button class="pro-opt" data-val="age_moins25" onclick="toggleProOpt(this)">Moins de 25 ans</button>
+              <button class="pro-opt" data-val="age_25_34" onclick="toggleProOpt(this)">25&ndash;34 ans</button>
+              <button class="pro-opt" data-val="age_35_44" onclick="toggleProOpt(this)">35&ndash;44 ans</button>
+              <button class="pro-opt" data-val="age_45_54" onclick="toggleProOpt(this)">45&ndash;54 ans</button>
+              <button class="pro-opt" data-val="age_55_64" onclick="toggleProOpt(this)">55&ndash;64 ans</button>
+              <button class="pro-opt" data-val="age_65plus" onclick="toggleProOpt(this)">65 ans et plus</button>
+            </div>
+
+            <div class="pro-opts-sub-label" style="margin-top:10px">Sexe</div>
+            <div class="pro-acc-opts">
+              <button class="pro-opt" data-val="sexe_femme" onclick="toggleProOpt(this)">Femme</button>
+              <button class="pro-opt" data-val="sexe_homme" onclick="toggleProOpt(this)">Homme</button>
+              <button class="pro-opt" data-val="sexe_autre" onclick="toggleProOpt(this)">Autre</button>
+            </div>
+
+            <div class="pro-opts-sub-label" style="margin-top:10px">Type de territoire</div>
+            <div class="pro-acc-opts">
+              <button class="pro-opt" data-val="terr_rural" onclick="toggleProOpt(this)">Rural</button>
+              <button class="pro-opt" data-val="terr_periurbain" onclick="toggleProOpt(this)">P&eacute;riurbain</button>
+              <button class="pro-opt" data-val="terr_urbain" onclick="toggleProOpt(this)">Urbain</button>
+              <button class="pro-opt" data-val="terr_littoral_montagne" onclick="toggleProOpt(this)">Littoral / Montagne</button>
+            </div>
+
+            <div class="pro-opts-sub-label" style="margin-top:10px">Cat&eacute;gorie socio-professionnelle (CSP)</div>
+            <div class="pro-acc-opts">
+              <button class="pro-opt" data-val="csp_fonctionnaire" onclick="toggleProOpt(this)">Agent public / Fonctionnaire</button>
+              <button class="pro-opt" data-val="csp_agriculteur" onclick="toggleProOpt(this)">Agriculteur exploitant</button>
+              <button class="pro-opt" data-val="csp_artisan" onclick="toggleProOpt(this)">Artisan</button>
+              <button class="pro-opt" data-val="csp_cadre_entreprise" onclick="toggleProOpt(this)">Cadre d'entreprise</button>
+              <button class="pro-opt" data-val="csp_cadre_fp" onclick="toggleProOpt(this)">Cadre de la fonction publique</button>
+              <button class="pro-opt" data-val="csp_chef_entreprise" onclick="toggleProOpt(this)">Chef d'entreprise / Entrepreneur</button>
+              <button class="pro-opt" data-val="csp_commercant" onclick="toggleProOpt(this)">Commer&ccedil;ant</button>
+              <button class="pro-opt" data-val="csp_contremaitre" onclick="toggleProOpt(this)">Contrema&icirc;tre / Agent de ma&icirc;trise</button>
+              <button class="pro-opt" data-val="csp_demandeur_emploi" onclick="toggleProOpt(this)">Demandeur d'emploi</button>
+              <button class="pro-opt" data-val="csp_dirigeant_asso" onclick="toggleProOpt(this)">Dirigeant d'association</button>
+              <button class="pro-opt" data-val="csp_employe_admin" onclick="toggleProOpt(this)">Employ&eacute; administratif</button>
+              <button class="pro-opt" data-val="csp_employe_commerce" onclick="toggleProOpt(this)">Employ&eacute; de commerce</button>
+              <button class="pro-opt" data-val="csp_employe_service" onclick="toggleProOpt(this)">Employ&eacute; de service</button>
+              <button class="pro-opt" data-val="csp_etudiant" onclick="toggleProOpt(this)">Etudiant(e)</button>
+              <button class="pro-opt" data-val="csp_ingenieur" onclick="toggleProOpt(this)">Ing&eacute;nieur</button>
+              <button class="pro-opt" data-val="csp_non_resident" onclick="toggleProOpt(this)">Non-r&eacute;sident / Etranger</button>
+              <button class="pro-opt" data-val="csp_ouvrier_agri" onclick="toggleProOpt(this)">Ouvrier agricole</button>
+              <button class="pro-opt" data-val="csp_ouvrier_nq" onclick="toggleProOpt(this)">Ouvrier non qualifi&eacute;</button>
+              <button class="pro-opt" data-val="csp_ouvrier_q" onclick="toggleProOpt(this)">Ouvrier qualifi&eacute;</button>
+              <button class="pro-opt" data-val="csp_prof_inter" onclick="toggleProOpt(this)">Profession interm&eacute;diaire</button>
+              <button class="pro-opt" data-val="csp_prof_lib" onclick="toggleProOpt(this)">Profession lib&eacute;rale</button>
+              <button class="pro-opt" data-val="csp_professeur" onclick="toggleProOpt(this)">Professeur / Enseignant</button>
+              <button class="pro-opt" data-val="csp_retraite" onclick="toggleProOpt(this)">Retrait&eacute;(e)</button>
+              <button class="pro-opt" data-val="csp_sans_activite" onclick="toggleProOpt(this)">Sans activit&eacute; professionnelle</button>
+              <button class="pro-opt" data-val="csp_technicien" onclick="toggleProOpt(this)">Technicien</button>
+              <button class="pro-opt" data-val="csp_chercheur" onclick="toggleProOpt(this)">Chercheur / Scientifique</button>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- SECTEUR D'ACTIVITÉ -->
+        <div class="pro-acc">
+          <div class="pro-acc-hd" onclick="toggleAcc(this)">Secteur d'activit&eacute;<span class="pro-acc-arrow">&#9660;</span></div>
+          <div class="pro-acc-body">
+            <div class="pro-opts-sub-label">Cat&eacute;gorie &mdash; cliquer pour d&eacute;plier les sous-secteurs</div>
+
+            <div class="pro-acc" style="border-color:var(--vert-clair);margin-bottom:5px">
+              <div class="pro-acc-hd" style="font-size:0.82rem;padding:8px 12px;background:var(--vert-pale)" onclick="toggleAcc(this)">Agriculture & Rural<span class="pro-acc-arrow">&#9660;</span></div>
+              <div class="pro-acc-body" style="background:white;padding:10px 12px">
+                <div class="pro-acc-opts">
+                  <button class="pro-opt" data-val="sec_Agriculture_amp_Rural_all" onclick="toggleProOpt(this)">Toute la cat&eacute;gorie</button>
+                  <button class="pro-opt" data-val="sec_Agriculture_amp_Rural_Activitampeacute_ampeacutevamp" onclick="toggleProOpt(this)">Activit&eacute; &eacute;v&eacute;nementielle en zone rurale</button>
+                  <button class="pro-opt" data-val="sec_Agriculture_amp_Rural_Agriculture___Elevage" onclick="toggleProOpt(this)">Agriculture / Elevage</button>
+                  <button class="pro-opt" data-val="sec_Agriculture_amp_Rural_Apiculture" onclick="toggleProOpt(this)">Apiculture</button>
+                  <button class="pro-opt" data-val="sec_Agriculture_amp_Rural_Aquaculture" onclick="toggleProOpt(this)">Aquaculture</button>
+                  <button class="pro-opt" data-val="sec_Agriculture_amp_Rural_Arboriculture___Maraampicircch" onclick="toggleProOpt(this)">Arboriculture / Mara&icirc;chage</button>
+                  <button class="pro-opt" data-val="sec_Agriculture_amp_Rural_Artisanat_agricole___Transform" onclick="toggleProOpt(this)">Artisanat agricole / Transformation &agrave; la ferme</button>
+                  <button class="pro-opt" data-val="sec_Agriculture_amp_Rural_Agritourisme___Hampeacuteberge" onclick="toggleProOpt(this)">Agritourisme / H&eacute;bergement rural / G&icirc;tes</button>
+                  <button class="pro-opt" data-val="sec_Agriculture_amp_Rural_Pampecircche" onclick="toggleProOpt(this)">P&ecirc;che</button>
+                  <button class="pro-opt" data-val="sec_Agriculture_amp_Rural_Sylviculture___Exploitation_fo" onclick="toggleProOpt(this)">Sylviculture / Exploitation foresti&egrave;re</button>
+                  <button class="pro-opt" data-val="sec_Agriculture_amp_Rural_Viticulture___Vins" onclick="toggleProOpt(this)">Viticulture / Vins</button>
+                </div>
+              </div>
+            </div>
+            <div class="pro-acc" style="border-color:var(--vert-clair);margin-bottom:5px">
+              <div class="pro-acc-hd" style="font-size:0.82rem;padding:8px 12px;background:var(--vert-pale)" onclick="toggleAcc(this)">Alimentation & Restauration<span class="pro-acc-arrow">&#9660;</span></div>
+              <div class="pro-acc-body" style="background:white;padding:10px 12px">
+                <div class="pro-acc-opts">
+                  <button class="pro-opt" data-val="sec_Alimentation_amp_Restaura_all" onclick="toggleProOpt(this)">Toute la cat&eacute;gorie</button>
+                  <button class="pro-opt" data-val="sec_Alimentation_amp_Restaura_Artisanat_alimentaire___Boulan" onclick="toggleProOpt(this)">Artisanat alimentaire / Boulangerie / P&acirc;tisserie / Fromagerie</button>
+                  <button class="pro-opt" data-val="sec_Alimentation_amp_Restaura_Bar___Cafampeacute___Brasserie" onclick="toggleProOpt(this)">Bar / Caf&eacute; / Brasserie</button>
+                  <button class="pro-opt" data-val="sec_Alimentation_amp_Restaura_Commerce_alimentaire_de_proxim" onclick="toggleProOpt(this)">Commerce alimentaire de proximit&eacute; / Epicerie</button>
+                  <button class="pro-opt" data-val="sec_Alimentation_amp_Restaura_Marchampeacute___Vente_directe" onclick="toggleProOpt(this)">March&eacute; / Vente directe producteur</button>
+                  <button class="pro-opt" data-val="sec_Alimentation_amp_Restaura_Production_agroalimentaire" onclick="toggleProOpt(this)">Production agroalimentaire</button>
+                  <button class="pro-opt" data-val="sec_Alimentation_amp_Restaura_Restaurant" onclick="toggleProOpt(this)">Restaurant</button>
+                  <button class="pro-opt" data-val="sec_Alimentation_amp_Restaura_Restauration_rapide___Traiteur" onclick="toggleProOpt(this)">Restauration rapide / Traiteur / Cuisine de rue</button>
+                </div>
+              </div>
+            </div>
+            <div class="pro-acc" style="border-color:var(--vert-clair);margin-bottom:5px">
+              <div class="pro-acc-hd" style="font-size:0.82rem;padding:8px 12px;background:var(--vert-pale)" onclick="toggleAcc(this)">Associations & ESS<span class="pro-acc-arrow">&#9660;</span></div>
+              <div class="pro-acc-body" style="background:white;padding:10px 12px">
+                <div class="pro-acc-opts">
+                  <button class="pro-opt" data-val="sec_Associations_amp_ESS_all" onclick="toggleProOpt(this)">Toute la cat&eacute;gorie</button>
+                  <button class="pro-opt" data-val="sec_Associations_amp_ESS_Association_caritative___Human" onclick="toggleProOpt(this)">Association caritative / Humanitaire / ONG</button>
+                  <button class="pro-opt" data-val="sec_Associations_amp_ESS_Association_de_dampeacutefense" onclick="toggleProOpt(this)">Association de d&eacute;fense des droits / Syndicat</button>
+                  <button class="pro-opt" data-val="sec_Associations_amp_ESS_Association_loi_1901_(gampeacu" onclick="toggleProOpt(this)">Association loi 1901 (g&eacute;n&eacute;rale)</button>
+                  <button class="pro-opt" data-val="sec_Associations_amp_ESS_Association_sportive___Club_am" onclick="toggleProOpt(this)">Association sportive / Club amateur</button>
+                  <button class="pro-opt" data-val="sec_Associations_amp_ESS_Association_culturelle___Compa" onclick="toggleProOpt(this)">Association culturelle / Compagnie</button>
+                  <button class="pro-opt" data-val="sec_Associations_amp_ESS_Coopampeacuterative___SCOP___S" onclick="toggleProOpt(this)">Coop&eacute;rative / SCOP / SCIC</button>
+                  <button class="pro-opt" data-val="sec_Associations_amp_ESS_Fondation___Fonds_de_dotation" onclick="toggleProOpt(this)">Fondation / Fonds de dotation</button>
+                </div>
+              </div>
+            </div>
+            <div class="pro-acc" style="border-color:var(--vert-clair);margin-bottom:5px">
+              <div class="pro-acc-hd" style="font-size:0.82rem;padding:8px 12px;background:var(--vert-pale)" onclick="toggleAcc(this)">BTP & Immobilier<span class="pro-acc-arrow">&#9660;</span></div>
+              <div class="pro-acc-body" style="background:white;padding:10px 12px">
+                <div class="pro-acc-opts">
+                  <button class="pro-opt" data-val="sec_BTP_amp_Immobilier_all" onclick="toggleProOpt(this)">Toute la cat&eacute;gorie</button>
+                  <button class="pro-opt" data-val="sec_BTP_amp_Immobilier_Agence_immobiliampegravere___T" onclick="toggleProOpt(this)">Agence immobili&egrave;re / Transaction</button>
+                  <button class="pro-opt" data-val="sec_BTP_amp_Immobilier_Architecture___Maampicirctrise" onclick="toggleProOpt(this)">Architecture / Ma&icirc;trise d'oeuvre / Bureau d'&eacute;tudes</button>
+                  <button class="pro-opt" data-val="sec_BTP_amp_Immobilier_Couverture___Charpente___ampEa" onclick="toggleProOpt(this)">Couverture / Charpente / &Eacute;tanch&eacute;it&eacute;</button>
+                  <button class="pro-opt" data-val="sec_BTP_amp_Immobilier_Electricitampeacute___Plomberi" onclick="toggleProOpt(this)">Electricit&eacute; / Plomberie / CVC / Climatisation</button>
+                  <button class="pro-opt" data-val="sec_BTP_amp_Immobilier_Gampeacuteomampegravetre___Top" onclick="toggleProOpt(this)">G&eacute;om&egrave;tre / Topographe</button>
+                  <button class="pro-opt" data-val="sec_BTP_amp_Immobilier_Maampccedilonnerie___Gros_oeuv" onclick="toggleProOpt(this)">Ma&ccedil;onnerie / Gros oeuvre / Terrassement</button>
+                  <button class="pro-opt" data-val="sec_BTP_amp_Immobilier_Menuiserie___Serrurerie___Vitr" onclick="toggleProOpt(this)">Menuiserie / Serrurerie / Vitrerie</button>
+                  <button class="pro-opt" data-val="sec_BTP_amp_Immobilier_Peinture___Revampecirctements_" onclick="toggleProOpt(this)">Peinture / Rev&ecirc;tements / D&eacute;coration</button>
+                  <button class="pro-opt" data-val="sec_BTP_amp_Immobilier_Promotion_immobiliampegravere_" onclick="toggleProOpt(this)">Promotion immobili&egrave;re / Lotissement</button>
+                  <button class="pro-opt" data-val="sec_BTP_amp_Immobilier_Propriampeacutetaire_bailleur_" onclick="toggleProOpt(this)">Propri&eacute;taire bailleur / Gestion locative</button>
+                  <button class="pro-opt" data-val="sec_BTP_amp_Immobilier_Syndic_de_copropriampeacutetam" onclick="toggleProOpt(this)">Syndic de copropri&eacute;t&eacute; / Administrateur de biens</button>
+                </div>
+              </div>
+            </div>
+            <div class="pro-acc" style="border-color:var(--vert-clair);margin-bottom:5px">
+              <div class="pro-acc-hd" style="font-size:0.82rem;padding:8px 12px;background:var(--vert-pale)" onclick="toggleAcc(this)">Commerce & Distribution<span class="pro-acc-arrow">&#9660;</span></div>
+              <div class="pro-acc-body" style="background:white;padding:10px 12px">
+                <div class="pro-acc-opts">
+                  <button class="pro-opt" data-val="sec_Commerce_amp_Distribution_all" onclick="toggleProOpt(this)">Toute la cat&eacute;gorie</button>
+                  <button class="pro-opt" data-val="sec_Commerce_amp_Distribution_Commerce_de_dampeacutetail_ali" onclick="toggleProOpt(this)">Commerce de d&eacute;tail alimentaire</button>
+                  <button class="pro-opt" data-val="sec_Commerce_amp_Distribution_Commerce_de_dampeacutetail_non" onclick="toggleProOpt(this)">Commerce de d&eacute;tail non-alimentaire</button>
+                  <button class="pro-opt" data-val="sec_Commerce_amp_Distribution_Commerce_de_gros___Nampeacuteg" onclick="toggleProOpt(this)">Commerce de gros / N&eacute;goce</button>
+                  <button class="pro-opt" data-val="sec_Commerce_amp_Distribution_E-commerce___Vente_en_ligne___" onclick="toggleProOpt(this)">E-commerce / Vente en ligne / Marketplace</button>
+                  <button class="pro-opt" data-val="sec_Commerce_amp_Distribution_Franchise___Commerce_organisam" onclick="toggleProOpt(this)">Franchise / Commerce organis&eacute;</button>
+                  <button class="pro-opt" data-val="sec_Commerce_amp_Distribution_Grande_distribution___Supermar" onclick="toggleProOpt(this)">Grande distribution / Supermarch&eacute;</button>
+                  <button class="pro-opt" data-val="sec_Commerce_amp_Distribution_Vente_ampagrave_distance___Tam" onclick="toggleProOpt(this)">Vente &agrave; distance / T&eacute;l&eacute;achat</button>
+                </div>
+              </div>
+            </div>
+            <div class="pro-acc" style="border-color:var(--vert-clair);margin-bottom:5px">
+              <div class="pro-acc-hd" style="font-size:0.82rem;padding:8px 12px;background:var(--vert-pale)" onclick="toggleAcc(this)">Culture, M&eacute;dias & Loisirs<span class="pro-acc-arrow">&#9660;</span></div>
+              <div class="pro-acc-body" style="background:white;padding:10px 12px">
+                <div class="pro-acc-opts">
+                  <button class="pro-opt" data-val="sec_Culture_Mampeacutedias_am_all" onclick="toggleProOpt(this)">Toute la cat&eacute;gorie</button>
+                  <button class="pro-opt" data-val="sec_Culture_Mampeacutedias_am_Cinampeacutema___Audiovisuel__" onclick="toggleProOpt(this)">Cin&eacute;ma / Audiovisuel / Production / Streaming</button>
+                  <button class="pro-opt" data-val="sec_Culture_Mampeacutedias_am_Escape_game___Jeux___Loisirs" onclick="toggleProOpt(this)">Escape game / Jeux / Loisirs</button>
+                  <button class="pro-opt" data-val="sec_Culture_Mampeacutedias_am_Jeux_vidampeacuteo___Animation" onclick="toggleProOpt(this)">Jeux vid&eacute;o / Animation / Num&eacute;rique cr&eacute;atif</button>
+                  <button class="pro-opt" data-val="sec_Culture_Mampeacutedias_am_Librairie___Edition___Biblioth" onclick="toggleProOpt(this)">Librairie / Edition / Biblioth&egrave;que</button>
+                  <button class="pro-opt" data-val="sec_Culture_Mampeacutedias_am_Musampeacutee___Patrimoine___T" onclick="toggleProOpt(this)">Mus&eacute;e / Patrimoine / Tourisme culturel / Ch&acirc;teau</button>
+                  <button class="pro-opt" data-val="sec_Culture_Mampeacutedias_am_Musique___Arts_plastiques___Ar" onclick="toggleProOpt(this)">Musique / Arts plastiques / Artisanat d'art / Galerie</button>
+                  <button class="pro-opt" data-val="sec_Culture_Mampeacutedias_am_Parc_dattractions___Loisirs" onclick="toggleProOpt(this)">Parc d'attractions / Loisirs</button>
+                  <button class="pro-opt" data-val="sec_Culture_Mampeacutedias_am_Presse___Mampeacutedias___Jour" onclick="toggleProOpt(this)">Presse / M&eacute;dias / Journalisme / Podcast</button>
+                  <button class="pro-opt" data-val="sec_Culture_Mampeacutedias_am_Spectacle_vivant___Thampeacute" onclick="toggleProOpt(this)">Spectacle vivant / Th&eacute;&acirc;tre / Concert / Festival</button>
+                </div>
+              </div>
+            </div>
+            <div class="pro-acc" style="border-color:var(--vert-clair);margin-bottom:5px">
+              <div class="pro-acc-hd" style="font-size:0.82rem;padding:8px 12px;background:var(--vert-pale)" onclick="toggleAcc(this)">Education & Formation<span class="pro-acc-arrow">&#9660;</span></div>
+              <div class="pro-acc-body" style="background:white;padding:10px 12px">
+                <div class="pro-acc-opts">
+                  <button class="pro-opt" data-val="sec_Education_amp_Formation_all" onclick="toggleProOpt(this)">Toute la cat&eacute;gorie</button>
+                  <button class="pro-opt" data-val="sec_Education_amp_Formation_Auto-ampeacutecole___Ecole_de_" onclick="toggleProOpt(this)">Auto-&eacute;cole / Ecole de conduite</button>
+                  <button class="pro-opt" data-val="sec_Education_amp_Formation_CFA___Apprentissage" onclick="toggleProOpt(this)">CFA / Apprentissage</button>
+                  <button class="pro-opt" data-val="sec_Education_amp_Formation_Ecole_de_commerce___Ingampeacu" onclick="toggleProOpt(this)">Ecole de commerce / Ing&eacute;nieurs / Enseignement sup&eacute;rieur priv&eacute;</button>
+                  <button class="pro-opt" data-val="sec_Education_amp_Formation_Ecole_privampeacutee_hors_cont" onclick="toggleProOpt(this)">Ecole priv&eacute;e hors contrat / Ecole alternative</button>
+                  <button class="pro-opt" data-val="sec_Education_amp_Formation_Formation_professionnelle___Or" onclick="toggleProOpt(this)">Formation professionnelle / Organisme de formation</button>
+                  <button class="pro-opt" data-val="sec_Education_amp_Formation_Garde_denfants_ampagrave_domic" onclick="toggleProOpt(this)">Garde d'enfants &agrave; domicile / Cr&egrave;che / Micro-cr&egrave;che</button>
+                  <button class="pro-opt" data-val="sec_Education_amp_Formation_Soutien_scolaire___Cours_parti" onclick="toggleProOpt(this)">Soutien scolaire / Cours particuliers</button>
+                </div>
+              </div>
+            </div>
+            <div class="pro-acc" style="border-color:var(--vert-clair);margin-bottom:5px">
+              <div class="pro-acc-hd" style="font-size:0.82rem;padding:8px 12px;background:var(--vert-pale)" onclick="toggleAcc(this)">H&eacute;bergement & Tourisme<span class="pro-acc-arrow">&#9660;</span></div>
+              <div class="pro-acc-body" style="background:white;padding:10px 12px">
+                <div class="pro-acc-opts">
+                  <button class="pro-opt" data-val="sec_Hampeacutebergement_amp_T_all" onclick="toggleProOpt(this)">Toute la cat&eacute;gorie</button>
+                  <button class="pro-opt" data-val="sec_Hampeacutebergement_amp_T_Agence_de_voyage___Tour-opampe" onclick="toggleProOpt(this)">Agence de voyage / Tour-op&eacute;rateur</button>
+                  <button class="pro-opt" data-val="sec_Hampeacutebergement_amp_T_Camping___Parc_rampeacutesiden" onclick="toggleProOpt(this)">Camping / Parc r&eacute;sidentiel de loisirs</button>
+                  <button class="pro-opt" data-val="sec_Hampeacutebergement_amp_T_Chambre_dhampocirctes___Bampam" onclick="toggleProOpt(this)">Chambre d'h&ocirc;tes / B&amp;B</button>
+                  <button class="pro-opt" data-val="sec_Hampeacutebergement_amp_T_Hampocirctel___Rampeacutesiden" onclick="toggleProOpt(this)">H&ocirc;tel / R&eacute;sidence h&ocirc;teli&egrave;re</button>
+                  <button class="pro-opt" data-val="sec_Hampeacutebergement_amp_T_Location_saison_niampegravere_" onclick="toggleProOpt(this)">Location saison ni&egrave;re / Meubl&eacute; de tourisme / Airbnb</button>
+                  <button class="pro-opt" data-val="sec_Hampeacutebergement_amp_T_Tourisme_fluvial___Nautique" onclick="toggleProOpt(this)">Tourisme fluvial / Nautique</button>
+                  <button class="pro-opt" data-val="sec_Hampeacutebergement_amp_T_Village_vacances___Centre_de_l" onclick="toggleProOpt(this)">Village vacances / Centre de loisirs</button>
+                </div>
+              </div>
+            </div>
+            <div class="pro-acc" style="border-color:var(--vert-clair);margin-bottom:5px">
+              <div class="pro-acc-hd" style="font-size:0.82rem;padding:8px 12px;background:var(--vert-pale)" onclick="toggleAcc(this)">Industrie & Production<span class="pro-acc-arrow">&#9660;</span></div>
+              <div class="pro-acc-body" style="background:white;padding:10px 12px">
+                <div class="pro-acc-opts">
+                  <button class="pro-opt" data-val="sec_Industrie_amp_Production_all" onclick="toggleProOpt(this)">Toute la cat&eacute;gorie</button>
+                  <button class="pro-opt" data-val="sec_Industrie_amp_Production_Electronique___Electrotechniqu" onclick="toggleProOpt(this)">Electronique / Electrotechnique</button>
+                  <button class="pro-opt" data-val="sec_Industrie_amp_Production_Energie___Pampeacutetrole___Ga" onclick="toggleProOpt(this)">Energie / P&eacute;trole / Gaz / Energies renouvelables</button>
+                  <button class="pro-opt" data-val="sec_Industrie_amp_Production_Imprimerie___Edition___Reprogr" onclick="toggleProOpt(this)">Imprimerie / Edition / Reprographie</button>
+                  <button class="pro-opt" data-val="sec_Industrie_amp_Production_Industrie_chimique___Pharmaceu" onclick="toggleProOpt(this)">Industrie chimique / Pharmaceutique / Cosm&eacute;tique</button>
+                  <button class="pro-opt" data-val="sec_Industrie_amp_Production_Industrie_du_bois___Papier___C" onclick="toggleProOpt(this)">Industrie du bois / Papier / Carton</button>
+                  <button class="pro-opt" data-val="sec_Industrie_amp_Production_Industrie_manufacturiampegrave" onclick="toggleProOpt(this)">Industrie manufacturi&egrave;re g&eacute;n&eacute;rale</button>
+                  <button class="pro-opt" data-val="sec_Industrie_amp_Production_Mampeacutecanique___Equipement" onclick="toggleProOpt(this)">M&eacute;canique / Equipements industriels</button>
+                  <button class="pro-opt" data-val="sec_Industrie_amp_Production_Mampeacutetallurgie___Sidampea" onclick="toggleProOpt(this)">M&eacute;tallurgie / Sid&eacute;rurgie / Fonderie</button>
+                  <button class="pro-opt" data-val="sec_Industrie_amp_Production_Plastiques___Caoutchouc___Comp" onclick="toggleProOpt(this)">Plastiques / Caoutchouc / Composites</button>
+                  <button class="pro-opt" data-val="sec_Industrie_amp_Production_Recyclage___Traitement_des_dam" onclick="toggleProOpt(this)">Recyclage / Traitement des d&eacute;chets / Economie circulaire</button>
+                  <button class="pro-opt" data-val="sec_Industrie_amp_Production_Textile___Habillement___Maroqu" onclick="toggleProOpt(this)">Textile / Habillement / Maroquinerie</button>
+                </div>
+              </div>
+            </div>
+            <div class="pro-acc" style="border-color:var(--vert-clair);margin-bottom:5px">
+              <div class="pro-acc-hd" style="font-size:0.82rem;padding:8px 12px;background:var(--vert-pale)" onclick="toggleAcc(this)">Particulier<span class="pro-acc-arrow">&#9660;</span></div>
+              <div class="pro-acc-body" style="background:white;padding:10px 12px">
+                <div class="pro-acc-opts">
+                  <button class="pro-opt" data-val="sec_Particulier_all" onclick="toggleProOpt(this)">Toute la cat&eacute;gorie</button>
+                  <button class="pro-opt" data-val="sec_Particulier_Etudiant(e)" onclick="toggleProOpt(this)">Etudiant(e)</button>
+                  <button class="pro-opt" data-val="sec_Particulier_Locataire" onclick="toggleProOpt(this)">Locataire</button>
+                  <button class="pro-opt" data-val="sec_Particulier_Particulier_—_autre_situation" onclick="toggleProOpt(this)">Particulier — autre situation</button>
+                  <button class="pro-opt" data-val="sec_Particulier_Particulier_construisant___Ram" onclick="toggleProOpt(this)">Particulier construisant / R&eacute;novant</button>
+                  <button class="pro-opt" data-val="sec_Particulier_Particulier_employeur" onclick="toggleProOpt(this)">Particulier employeur</button>
+                  <button class="pro-opt" data-val="sec_Particulier_Propriampeacutetaire_occupant" onclick="toggleProOpt(this)">Propri&eacute;taire occupant</button>
+                  <button class="pro-opt" data-val="sec_Particulier_Retraitampeacute___Senior" onclick="toggleProOpt(this)">Retrait&eacute; / Senior</button>
+                </div>
+              </div>
+            </div>
+            <div class="pro-acc" style="border-color:var(--vert-clair);margin-bottom:5px">
+              <div class="pro-acc-hd" style="font-size:0.82rem;padding:8px 12px;background:var(--vert-pale)" onclick="toggleAcc(this)">Professions r&eacute;glement&eacute;es & Lib&eacute;rales<span class="pro-acc-arrow">&#9660;</span></div>
+              <div class="pro-acc-body" style="background:white;padding:10px 12px">
+                <div class="pro-acc-opts">
+                  <button class="pro-opt" data-val="sec_Professions_rampeacutegle_all" onclick="toggleProOpt(this)">Toute la cat&eacute;gorie</button>
+                  <button class="pro-opt" data-val="sec_Professions_rampeacutegle_Agent_immobilier___Administrat" onclick="toggleProOpt(this)">Agent immobilier / Administrateur de biens</button>
+                  <button class="pro-opt" data-val="sec_Professions_rampeacutegle_Architecte___Urbaniste___Paysa" onclick="toggleProOpt(this)">Architecte / Urbaniste / Paysagiste</button>
+                  <button class="pro-opt" data-val="sec_Professions_rampeacutegle_Avocat___Notaire___Huissier___" onclick="toggleProOpt(this)">Avocat / Notaire / Huissier / Commissaire de justice</button>
+                  <button class="pro-opt" data-val="sec_Professions_rampeacutegle_Conseiller_financier___Gestion" onclick="toggleProOpt(this)">Conseiller financier / Gestionnaire de patrimoine</button>
+                  <button class="pro-opt" data-val="sec_Professions_rampeacutegle_Expert-comptable___Commissaire" onclick="toggleProOpt(this)">Expert-comptable / Commissaire aux comptes</button>
+                  <button class="pro-opt" data-val="sec_Professions_rampeacutegle_Gampeacuteomampegravetre-exper" onclick="toggleProOpt(this)">G&eacute;om&egrave;tre-expert / Ing&eacute;nieur conseil</button>
+                  <button class="pro-opt" data-val="sec_Professions_rampeacutegle_Psychologue___Psychothampeacut" onclick="toggleProOpt(this)">Psychologue / Psychoth&eacute;rapeute / Sophrologue</button>
+                </div>
+              </div>
+            </div>
+            <div class="pro-acc" style="border-color:var(--vert-clair);margin-bottom:5px">
+              <div class="pro-acc-hd" style="font-size:0.82rem;padding:8px 12px;background:var(--vert-pale)" onclick="toggleAcc(this)">Sant&eacute; & M&eacute;dico-social<span class="pro-acc-arrow">&#9660;</span></div>
+              <div class="pro-acc-body" style="background:white;padding:10px 12px">
+                <div class="pro-acc-opts">
+                  <button class="pro-opt" data-val="sec_Santampeacute_amp_Mampeac_all" onclick="toggleProOpt(this)">Toute la cat&eacute;gorie</button>
+                  <button class="pro-opt" data-val="sec_Santampeacute_amp_Mampeac_Bien-ampecirctre___Esthampeacu" onclick="toggleProOpt(this)">Bien-&ecirc;tre / Esth&eacute;tique / Coiffure / Tatouage</button>
+                  <button class="pro-opt" data-val="sec_Santampeacute_amp_Mampeac_Clinique___Etablissement_de_sa" onclick="toggleProOpt(this)">Clinique / Etablissement de sant&eacute; priv&eacute;</button>
+                  <button class="pro-opt" data-val="sec_Santampeacute_amp_Mampeac_Dentiste___Orthodontiste" onclick="toggleProOpt(this)">Dentiste / Orthodontiste</button>
+                  <button class="pro-opt" data-val="sec_Santampeacute_amp_Mampeac_EHPAD___Etablissement_mampeacu" onclick="toggleProOpt(this)">EHPAD / Etablissement m&eacute;dico-social / IME</button>
+                  <button class="pro-opt" data-val="sec_Santampeacute_amp_Mampeac_Infirmier___Aide-soignant___Ki" onclick="toggleProOpt(this)">Infirmier / Aide-soignant / Kin&eacute; / Param&eacute;dical</button>
+                  <button class="pro-opt" data-val="sec_Santampeacute_amp_Mampeac_Mampeacutedecin_gampeacutenamp" onclick="toggleProOpt(this)">M&eacute;decin g&eacute;n&eacute;raliste / Sp&eacute;cialiste</button>
+                  <button class="pro-opt" data-val="sec_Santampeacute_amp_Mampeac_Pharmacie___Laboratoire_danaly" onclick="toggleProOpt(this)">Pharmacie / Laboratoire d'analyses</button>
+                  <button class="pro-opt" data-val="sec_Santampeacute_amp_Mampeac_Sport___Coaching___Salle_de_sp" onclick="toggleProOpt(this)">Sport / Coaching / Salle de sport / Fitness</button>
+                  <button class="pro-opt" data-val="sec_Santampeacute_amp_Mampeac_Vampeacutetampeacuterinaire" onclick="toggleProOpt(this)">V&eacute;t&eacute;rinaire</button>
+                </div>
+              </div>
+            </div>
+            <div class="pro-acc" style="border-color:var(--vert-clair);margin-bottom:5px">
+              <div class="pro-acc-hd" style="font-size:0.82rem;padding:8px 12px;background:var(--vert-pale)" onclick="toggleAcc(this)">Services &agrave; la personne<span class="pro-acc-arrow">&#9660;</span></div>
+              <div class="pro-acc-body" style="background:white;padding:10px 12px">
+                <div class="pro-acc-opts">
+                  <button class="pro-opt" data-val="sec_Services_ampagrave_la_per_all" onclick="toggleProOpt(this)">Toute la cat&eacute;gorie</button>
+                  <button class="pro-opt" data-val="sec_Services_ampagrave_la_per_Aide_ampagrave_domicile___Mamp" onclick="toggleProOpt(this)">Aide &agrave; domicile / M&eacute;nage</button>
+                  <button class="pro-opt" data-val="sec_Services_ampagrave_la_per_Garde_denfants_ampagrave_domic" onclick="toggleProOpt(this)">Garde d'enfants &agrave; domicile</button>
+                  <button class="pro-opt" data-val="sec_Services_ampagrave_la_per_Services_ampagrave_la_personne" onclick="toggleProOpt(this)">Services &agrave; la personne — autre</button>
+                </div>
+              </div>
+            </div>
+            <div class="pro-acc" style="border-color:var(--vert-clair);margin-bottom:5px">
+              <div class="pro-acc-hd" style="font-size:0.82rem;padding:8px 12px;background:var(--vert-pale)" onclick="toggleAcc(this)">Services aux entreprises<span class="pro-acc-arrow">&#9660;</span></div>
+              <div class="pro-acc-body" style="background:white;padding:10px 12px">
+                <div class="pro-acc-opts">
+                  <button class="pro-opt" data-val="sec_Services_aux_entreprises_all" onclick="toggleProOpt(this)">Toute la cat&eacute;gorie</button>
+                  <button class="pro-opt" data-val="sec_Services_aux_entreprises_Assurance___Courtage___Mutuell" onclick="toggleProOpt(this)">Assurance / Courtage / Mutuelles</button>
+                  <button class="pro-opt" data-val="sec_Services_aux_entreprises_Banque___Crampeacutedit___Fina" onclick="toggleProOpt(this)">Banque / Cr&eacute;dit / Financement</button>
+                  <button class="pro-opt" data-val="sec_Services_aux_entreprises_Conseil___Consulting___Managem" onclick="toggleProOpt(this)">Conseil / Consulting / Management</button>
+                  <button class="pro-opt" data-val="sec_Services_aux_entreprises_Cybersampeacutecuritampeacute_" onclick="toggleProOpt(this)">Cybers&eacute;curit&eacute; / Protection des donn&eacute;es</button>
+                  <button class="pro-opt" data-val="sec_Services_aux_entreprises_Etudes___Recherche___Laboratoi" onclick="toggleProOpt(this)">Etudes / Recherche / Laboratoire</button>
+                  <button class="pro-opt" data-val="sec_Services_aux_entreprises_Expertise_comptable___Audit" onclick="toggleProOpt(this)">Expertise comptable / Audit</button>
+                  <button class="pro-opt" data-val="sec_Services_aux_entreprises_Informatique___Dampeacutevelop" onclick="toggleProOpt(this)">Informatique / D&eacute;veloppement logiciel / ESN</button>
+                  <button class="pro-opt" data-val="sec_Services_aux_entreprises_Intampeacuterim___Recrutement_" onclick="toggleProOpt(this)">Int&eacute;rim / Recrutement / Ressources humaines</button>
+                  <button class="pro-opt" data-val="sec_Services_aux_entreprises_Nettoyage___Propretampeacute__" onclick="toggleProOpt(this)">Nettoyage / Propret&eacute; / Facility management</button>
+                  <button class="pro-opt" data-val="sec_Services_aux_entreprises_Publicitampeacute___Communicat" onclick="toggleProOpt(this)">Publicit&eacute; / Communication / Marketing</button>
+                  <button class="pro-opt" data-val="sec_Services_aux_entreprises_Sampeacutecuritampeacute_priva" onclick="toggleProOpt(this)">S&eacute;curit&eacute; priv&eacute;e / Gardiennage</button>
+                </div>
+              </div>
+            </div>
+            <div class="pro-acc" style="border-color:var(--vert-clair);margin-bottom:5px">
+              <div class="pro-acc-hd" style="font-size:0.82rem;padding:8px 12px;background:var(--vert-pale)" onclick="toggleAcc(this)">Services essentiels & Monopoles<span class="pro-acc-arrow">&#9660;</span></div>
+              <div class="pro-acc-body" style="background:white;padding:10px 12px">
+                <div class="pro-acc-opts">
+                  <button class="pro-opt" data-val="sec_Services_essentiels_amp_M_all" onclick="toggleProOpt(this)">Toute la cat&eacute;gorie</button>
+                  <button class="pro-opt" data-val="sec_Services_essentiels_amp_M_Aampeacuteroports___Aampeacute" onclick="toggleProOpt(this)">A&eacute;roports / A&eacute;roports de Paris</button>
+                  <button class="pro-opt" data-val="sec_Services_essentiels_amp_M_Autoroutes___Pampeacuteages_(V" onclick="toggleProOpt(this)">Autoroutes / P&eacute;ages (Vinci, Sanef, Eiffage)</button>
+                  <button class="pro-opt" data-val="sec_Services_essentiels_amp_M_Eau___Assainissement_(Suez_Veo" onclick="toggleProOpt(this)">Eau / Assainissement (Suez, Veolia, Saur, r&eacute;gies)</button>
+                  <button class="pro-opt" data-val="sec_Services_essentiels_amp_M_Electricitampeacute___Gaz_—_fo" onclick="toggleProOpt(this)">Electricit&eacute; / Gaz — fournisseurs (EDF, Engie, TotalEnergies)</button>
+                  <button class="pro-opt" data-val="sec_Services_essentiels_amp_M_Poste___Colis___Courrier_(La_P" onclick="toggleProOpt(this)">Poste / Colis / Courrier (La Poste, DHL, UPS, FedEx)</button>
+                  <button class="pro-opt" data-val="sec_Services_essentiels_amp_M_Rampeacuteseau_ampeacutelectri" onclick="toggleProOpt(this)">R&eacute;seau &eacute;lectrique / Gaz (Enedis, GrDF)</button>
+                  <button class="pro-opt" data-val="sec_Services_essentiels_amp_M_Tampeacutelampeacutecom___Inte" onclick="toggleProOpt(this)">T&eacute;l&eacute;com / Internet / Mobile (Orange, SFR, Free, Bouygues)</button>
+                  <button class="pro-opt" data-val="sec_Services_essentiels_amp_M_Transport_collectif_urbain_(RA" onclick="toggleProOpt(this)">Transport collectif urbain (RATP, TER, r&eacute;seaux urbains)</button>
+                  <button class="pro-opt" data-val="sec_Services_essentiels_amp_M_Transport_ferroviaire_(SNCF_Eu" onclick="toggleProOpt(this)">Transport ferroviaire (SNCF, Eurostar)</button>
+                </div>
+              </div>
+            </div>
+            <div class="pro-acc" style="border-color:var(--vert-clair);margin-bottom:5px">
+              <div class="pro-acc-hd" style="font-size:0.82rem;padding:8px 12px;background:var(--vert-pale)" onclick="toggleAcc(this)">Technologies & Innovation<span class="pro-acc-arrow">&#9660;</span></div>
+              <div class="pro-acc-body" style="background:white;padding:10px 12px">
+                <div class="pro-acc-opts">
+                  <button class="pro-opt" data-val="sec_Technologies_amp_Innovati_all" onclick="toggleProOpt(this)">Toute la cat&eacute;gorie</button>
+                  <button class="pro-opt" data-val="sec_Technologies_amp_Innovati_AgriTech___Agriculture_de_pram" onclick="toggleProOpt(this)">AgriTech / Agriculture de pr&eacute;cision</button>
+                  <button class="pro-opt" data-val="sec_Technologies_amp_Innovati_EdTech___Formation_en_ligne" onclick="toggleProOpt(this)">EdTech / Formation en ligne</button>
+                  <button class="pro-opt" data-val="sec_Technologies_amp_Innovati_FinTech___Nampeacuteobanque___" onclick="toggleProOpt(this)">FinTech / N&eacute;obanque / Cryptomonnaies</button>
+                  <button class="pro-opt" data-val="sec_Technologies_amp_Innovati_FoodTech___Nouvelles_formes_al" onclick="toggleProOpt(this)">FoodTech / Nouvelles formes alimentaires</button>
+                  <button class="pro-opt" data-val="sec_Technologies_amp_Innovati_GreenTech___Environnement___Da" onclick="toggleProOpt(this)">GreenTech / Environnement / D&eacute;veloppement durable</button>
+                  <button class="pro-opt" data-val="sec_Technologies_amp_Innovati_HealthTech___MedTech___Bien-am" onclick="toggleProOpt(this)">HealthTech / MedTech / Bien-&ecirc;tre digital</button>
+                  <button class="pro-opt" data-val="sec_Technologies_amp_Innovati_PropTech___Immobilier_numampea" onclick="toggleProOpt(this)">PropTech / Immobilier num&eacute;rique</button>
+                  <button class="pro-opt" data-val="sec_Technologies_amp_Innovati_Startup___Innovation___Incubat" onclick="toggleProOpt(this)">Startup / Innovation / Incubateur</button>
+                </div>
+              </div>
+            </div>
+            <div class="pro-acc" style="border-color:var(--vert-clair);margin-bottom:5px">
+              <div class="pro-acc-hd" style="font-size:0.82rem;padding:8px 12px;background:var(--vert-pale)" onclick="toggleAcc(this)">Transport & Logistique<span class="pro-acc-arrow">&#9660;</span></div>
+              <div class="pro-acc-body" style="background:white;padding:10px 12px">
+                <div class="pro-acc-opts">
+                  <button class="pro-opt" data-val="sec_Transport_amp_Logistique_all" onclick="toggleProOpt(this)">Toute la cat&eacute;gorie</button>
+                  <button class="pro-opt" data-val="sec_Transport_amp_Logistique_Coursier___Livraison_du_dernie" onclick="toggleProOpt(this)">Coursier / Livraison du dernier kilom&egrave;tre</button>
+                  <button class="pro-opt" data-val="sec_Transport_amp_Logistique_Location_de_vampeacutehicules" onclick="toggleProOpt(this)">Location de v&eacute;hicules</button>
+                  <button class="pro-opt" data-val="sec_Transport_amp_Logistique_Logistique___Entreposage___Sup" onclick="toggleProOpt(this)">Logistique / Entreposage / Supply chain</button>
+                  <button class="pro-opt" data-val="sec_Transport_amp_Logistique_Rampeacuteparation_automobile_" onclick="toggleProOpt(this)">R&eacute;paration automobile / Garage / Contr&ocirc;le technique</button>
+                  <button class="pro-opt" data-val="sec_Transport_amp_Logistique_Transport_aampeacuterien___Com" onclick="toggleProOpt(this)">Transport a&eacute;rien / Compagnie a&eacute;rienne</button>
+                  <button class="pro-opt" data-val="sec_Transport_amp_Logistique_Transport_de_personnes___VTC__" onclick="toggleProOpt(this)">Transport de personnes / VTC / Taxi / Car</button>
+                  <button class="pro-opt" data-val="sec_Transport_amp_Logistique_Transport_maritime___Fluvial__" onclick="toggleProOpt(this)">Transport maritime / Fluvial / Ports</button>
+                  <button class="pro-opt" data-val="sec_Transport_amp_Logistique_Transport_routier_de_marchandi" onclick="toggleProOpt(this)">Transport routier de marchandises / D&eacute;m&eacute;nagement</button>
+                </div>
+              </div>
+            </div>
+            <div class="pro-acc" style="border-color:var(--vert-clair);margin-bottom:5px">
+              <div class="pro-acc-hd" style="font-size:0.82rem;padding:8px 12px;background:var(--vert-pale)" onclick="toggleAcc(this)">Autre<span class="pro-acc-arrow">&#9660;</span></div>
+              <div class="pro-acc-body" style="background:white;padding:10px 12px">
+                <div class="pro-acc-opts">
+                  <button class="pro-opt" data-val="sec_Autre_all" onclick="toggleProOpt(this)">Toute la cat&eacute;gorie</button>
+                  <button class="pro-opt" data-val="sec_Autre_Secteur_non_listampeacute_—_je" onclick="toggleProOpt(this)">Secteur non list&eacute; — je pr&eacute;cise dans mon t&eacute;moignage</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+                <!-- RÉSOLUTION -->
         <div class="pro-acc">
           <div class="pro-acc-hd" onclick="toggleAcc(this)">R&eacute;solution du probl&egrave;me<span class="pro-acc-arrow">&#9660;</span></div>
           <div class="pro-acc-body">
@@ -516,30 +1110,34 @@ hr{border:none;border-top:1px solid var(--beige);margin:16px 0}
             <div class="pro-acc-note">Statut de r&eacute;solution d&eacute;clar&eacute; par le t&eacute;moin</div>
           </div>
         </div>
+
+        <!-- DOMMAGES -->
         <div class="pro-acc">
           <div class="pro-acc-hd" onclick="toggleAcc(this)">Dommages subis<span class="pro-acc-arrow">&#9660;</span></div>
           <div class="pro-acc-body">
             <div class="pro-opts-sub-label">Dommage mon&eacute;taire</div>
             <div class="pro-acc-opts">
-              <button class="pro-opt" data-val="Aucun dommage mon&eacute;taire" onclick="toggleProOpt(this)">Aucun</button>
-              <button class="pro-opt" data-val="Dommage &lt; 1 000 EUR" onclick="toggleProOpt(this)">&lt; 1 000 &euro;</button>
-              <button class="pro-opt" data-val="Dommage 1 000-5 000 EUR" onclick="toggleProOpt(this)">1 000&ndash;5 000 &euro;</button>
-              <button class="pro-opt" data-val="Dommage 5 000-20 000 EUR" onclick="toggleProOpt(this)">5 000&ndash;20 000 &euro;</button>
-              <button class="pro-opt" data-val="Dommage 20 000-100 000 EUR" onclick="toggleProOpt(this)">20 000&ndash;100 000 &euro;</button>
-              <button class="pro-opt" data-val="Dommage &gt; 100 000 EUR" onclick="toggleProOpt(this)">&gt; 100 000 &euro;</button>
+              <button class="pro-opt" data-val="Aucun dommage monetaire" onclick="toggleProOpt(this)">Aucun</button>
+              <button class="pro-opt" data-val="Dommage moins1000" onclick="toggleProOpt(this)">&lt; 1 000 &euro;</button>
+              <button class="pro-opt" data-val="Dommage 1000-5000" onclick="toggleProOpt(this)">1 000&ndash;5 000 &euro;</button>
+              <button class="pro-opt" data-val="Dommage 5000-20000" onclick="toggleProOpt(this)">5 000&ndash;20 000 &euro;</button>
+              <button class="pro-opt" data-val="Dommage 20000-100000" onclick="toggleProOpt(this)">20 000&ndash;100 000 &euro;</button>
+              <button class="pro-opt" data-val="Dommage plus100000" onclick="toggleProOpt(this)">&gt; 100 000 &euro;</button>
             </div>
             <div class="pro-opts-sub-label">Dommage temps</div>
             <div class="pro-acc-opts">
-              <button class="pro-opt" data-val="Dur&eacute;e &lt; 1 mois" onclick="toggleProOpt(this)">&lt; 1 mois</button>
-              <button class="pro-opt" data-val="Dur&eacute;e 1-6 mois" onclick="toggleProOpt(this)">1&ndash;6 mois</button>
-              <button class="pro-opt" data-val="Dur&eacute;e 6 mois-2 ans" onclick="toggleProOpt(this)">6 mois&ndash;2 ans</button>
-              <button class="pro-opt" data-val="Dur&eacute;e 2-5 ans" onclick="toggleProOpt(this)">2&ndash;5 ans</button>
-              <button class="pro-opt" data-val="Dur&eacute;e &gt; 5 ans" onclick="toggleProOpt(this)">&gt; 5 ans</button>
-              <button class="pro-opt" data-val="Dur&eacute;e en cours" onclick="toggleProOpt(this)">En cours</button>
+              <button class="pro-opt" data-val="Duree moins1mois" onclick="toggleProOpt(this)">&lt; 1 mois</button>
+              <button class="pro-opt" data-val="Duree 1-6mois" onclick="toggleProOpt(this)">1&ndash;6 mois</button>
+              <button class="pro-opt" data-val="Duree 6mois-2ans" onclick="toggleProOpt(this)">6 mois&ndash;2 ans</button>
+              <button class="pro-opt" data-val="Duree 2-5ans" onclick="toggleProOpt(this)">2&ndash;5 ans</button>
+              <button class="pro-opt" data-val="Duree plus5ans" onclick="toggleProOpt(this)">&gt; 5 ans</button>
+              <button class="pro-opt" data-val="Duree en cours" onclick="toggleProOpt(this)">En cours</button>
             </div>
-            <div class="pro-acc-note">Fourchettes d&eacute;clar&eacute;es par le t&eacute;moin &mdash; non v&eacute;rifi&eacute;es</div>
+            <div class="pro-acc-note">Fourchettes d&eacute;clar&eacute;es par le t&eacute;moin</div>
           </div>
         </div>
+
+        <!-- COMPENSATION -->
         <div class="pro-acc">
           <div class="pro-acc-hd" onclick="toggleAcc(this)">Compensation obtenue<span class="pro-acc-arrow">&#9660;</span></div>
           <div class="pro-acc-body">
@@ -547,17 +1145,18 @@ hr{border:none;border-top:1px solid var(--beige);margin:16px 0}
               <button class="pro-opt" data-val="Compensation obtenue" onclick="toggleProOpt(this)">Obtenue</button>
               <button class="pro-opt" data-val="Aucune compensation" onclick="toggleProOpt(this)">Aucune</button>
               <button class="pro-opt" data-val="Compensation partielle" onclick="toggleProOpt(this)">Partielle</button>
-              <button class="pro-opt" data-val="Compensation refus&eacute;e" onclick="toggleProOpt(this)">Refus&eacute;e</button>
-              <button class="pro-opt" data-val="Compensation &lt; 1 000 EUR" onclick="toggleProOpt(this)">&lt; 1 000 &euro;</button>
-              <button class="pro-opt" data-val="Compensation 1 000-5 000 EUR" onclick="toggleProOpt(this)">1 000&ndash;5 000 &euro;</button>
-              <button class="pro-opt" data-val="Compensation 5 000-20 000 EUR" onclick="toggleProOpt(this)">5 000&ndash;20 000 &euro;</button>
-              <button class="pro-opt" data-val="Compensation &gt; 20 000 EUR" onclick="toggleProOpt(this)">&gt; 20 000 &euro;</button>
+              <button class="pro-opt" data-val="Compensation refusee" onclick="toggleProOpt(this)">Refus&eacute;e</button>
+              <button class="pro-opt" data-val="Compensation moins1000" onclick="toggleProOpt(this)">&lt; 1 000 &euro;</button>
+              <button class="pro-opt" data-val="Compensation 1000-5000" onclick="toggleProOpt(this)">1 000&ndash;5 000 &euro;</button>
+              <button class="pro-opt" data-val="Compensation 5000-20000" onclick="toggleProOpt(this)">5 000&ndash;20 000 &euro;</button>
+              <button class="pro-opt" data-val="Compensation plus20000" onclick="toggleProOpt(this)">&gt; 20 000 &euro;</button>
             </div>
-            <div class="pro-acc-note">Compensation mon&eacute;taire ou autre (m&eacute;diation, accord amiable, d&eacute;cision de justice&hellip;)</div>
+            <div class="pro-acc-note">Compensation mon&eacute;taire ou autre (m&eacute;diation, accord amiable&hellip;)</div>
           </div>
         </div>
+
       </div>
-      <div class="dialogue-zone" id="dialZone">
+            <div class="dialogue-zone" id="dialZone">
         <div id="dialMsgs">
           <div class="dial-msg ai"><div class="dial-avatar ai">M&amp;L</div><div class="dial-bubble">J'ai identifi&eacute; <strong>23 situations</strong> correspondant &agrave; votre recherche. Voulez-vous affiner par r&eacute;gion, par p&eacute;riode, ou vous concentrer sur un type de dysfonctionnement particulier&nbsp;?</div></div>
         </div>
@@ -576,19 +1175,25 @@ hr{border:none;border-top:1px solid var(--beige);margin:16px 0}
     <div class="pages"><button class="pg on">1</button><button class="pg">2</button><button class="pg">3</button></div>
   </div>
 
-  <!-- ZONE INSTITUTIONNELLE -->
+  <!-- ══ ZONE INSTITUTIONNELLE ══ -->
   <div id="z2" class="hidden">
     <div class="inst-header">
       <div class="inst-badge">&#127963;&#65039; ACC&Egrave;S INSTITUTIONNEL</div>
       <div class="inst-title">&Eacute;tudes analytiques sur mesure</div>
       <div class="inst-desc">Pour gouvernements, think tanks, cabinets sp&eacute;cialis&eacute;s, institutions acad&eacute;miques et m&eacute;dias. Acc&egrave;s aux bases de donn&eacute;es juridiques (L&eacute;gifrance, EUR-Lex, jurisprudence compl&egrave;te). Rapports analytiques identifiant contradictions syst&eacute;miques, normes contre-productives et patterns d'application.</div>
     </div>
+    <!-- BANDEAU SÉLECTIONS ACTIVES -->
+    <div class="inst-selection" id="instSelBand">
+      <div class="inst-selection-title">P&eacute;rim&egrave;tre s&eacute;lectionn&eacute;</div>
+      <div class="inst-sel-tags" id="instSelTags"></div>
+    </div>
     <div class="inst-form">
       <div class="inst-form-ttl">D&eacute;crivez votre projet d'analyse</div>
       <div class="if-field"><label>Organisation</label><input type="text" placeholder="Nom de votre organisation, cabinet, institution&hellip;"></div>
       <div class="if-field"><label>Email de contact</label><input type="email" placeholder="votre@organisation.fr"></div>
       <div class="if-field"><label>Domaine d'int&eacute;r&ecirc;t</label>
-        <select><option value="">-- S&eacute;lectionner --</option>
+        <select id="instDom" onchange="instSelFilter('instDom')">
+          <option value="">-- S&eacute;lectionner --</option>
           <optgroup label="Droit public"><option>Urbanisme / PLU</option><option>ERP</option><option>Droit rural</option><option>Environnement</option></optgroup>
           <optgroup label="Droit social"><option>Droit du travail</option><option>S&eacute;curit&eacute; sociale</option><option>Retraite</option><option>Allocations</option></optgroup>
           <optgroup label="Fiscalit&eacute;"><option>Contr&ocirc;le fiscal / URSSAF</option><option>TVA</option><option>Taxes locales</option></optgroup>
@@ -596,8 +1201,29 @@ hr{border:none;border-top:1px solid var(--beige);margin:16px 0}
           <option>Plusieurs domaines &mdash; pr&eacute;ciser ci-dessous</option>
         </select>
       </div>
-      <div class="if-field"><label>Description du projet</label>
-        <textarea id="instDesc" placeholder="P&eacute;rim&egrave;tre g&eacute;ographique, p&eacute;riode, objectif de l'&eacute;tude, livrables souhait&eacute;s, contexte&hellip;"></textarea>
+      <div class="if-field"><label>P&eacute;riode concern&eacute;e</label>
+        <select id="instPeriode" onchange="instSelFilter('instPeriode')">
+          <option value="">-- S&eacute;lectionner --</option>
+          <option>2020&ndash;2026</option><option>2015&ndash;2020</option>
+          <option>2010&ndash;2015</option><option>Avant 2010</option><option>Toutes p&eacute;riodes</option>
+        </select>
+      </div>
+      <div class="if-field"><label>Zone g&eacute;ographique</label>
+        <select id="instZone" onchange="instSelFilter('instZone')">
+          <option value="">-- S&eacute;lectionner --</option>
+          <option>France enti&egrave;re</option>
+          <option>Ile-de-France</option><option>Auvergne-Rh&ocirc;ne-Alpes</option>
+          <option>Bretagne</option><option>Grand Est</option><option>Hauts-de-France</option>
+          <option>Normandie</option><option>Nouvelle-Aquitaine</option>
+          <option>Occitanie</option><option>Pays de la Loire</option>
+          <option>Provence-Alpes-C&ocirc;te d'Azur</option>
+          <option>Corse</option><option>DOM-TOM</option>
+          <option>Comparaison inter-r&eacute;gionale</option>
+        </select>
+      </div>
+      <div class="if-field">
+        <label>Description du projet</label>
+        <textarea id="instDesc" placeholder="Objectif de l'&eacute;tude, livrables souhait&eacute;s, contexte, contraintes&hellip;"></textarea>
         <div class="if-mic-row">
           <button class="if-mic-btn" id="instMicBtn" onclick="micInst()">&#127897;&#65039; Dicter la description</button>
           <span class="if-mic-st" id="instMicSt"></span>
@@ -617,9 +1243,9 @@ hr{border:none;border-top:1px solid var(--beige);margin:16px 0}
     <h2 class="tarifs-title">Choisissez votre acc&egrave;s</h2>
     <p class="tarifs-desc">La consultation des t&eacute;moignages est libre et gratuite pour tous. Les acc&egrave;s Pro et Institutionnel permettent une analyse plus approfondie.</p>
     <div class="plans">
-      <div class="plan"><div class="plan-icon">&#128275;</div><div class="plan-name f">Acc&egrave;s libre</div><div class="plan-price">0&euro;</div><div class="plan-period">Pour toujours</div><div class="plan-desc">Consultez, recherchez et d&eacute;posez vos t&eacute;moignages librement. Sans abonnement ni carte bancaire.</div><div class="plan-features"><div class="pf"><span class="pf-icon">&#10003;</span>Acc&egrave;s &agrave; tous les t&eacute;moignages publi&eacute;s</div><div class="pf"><span class="pf-icon">&#10003;</span>Recherche par mots-cl&eacute;s et cat&eacute;gories</div><div class="pf"><span class="pf-icon">&#10003;</span>R&eacute;sum&eacute; des clusters</div><div class="pf"><span class="pf-icon">&#10003;</span>D&eacute;poser un t&eacute;moignage</div><div class="pf"><span class="pf-icon">&#10003;</span>Messagerie interne (opt-in)</div><div class="pf off"><span class="pf-icon">&mdash;</span>Analyse statistique d&eacute;taill&eacute;e</div><div class="pf off"><span class="pf-icon">&mdash;</span>R&eacute;f&eacute;rences textes de loi</div><div class="pf off"><span class="pf-icon">&mdash;</span>Recherche s&eacute;mantique AI</div></div><button class="btn-plan f" onclick="window.location='compte.html'">Cr&eacute;er un compte gratuit &rarr;</button></div>
-      <div class="plan highlight"><div class="plan-ribbon">PLUS POPULAIRE</div><div class="plan-icon">&#11088;</div><div class="plan-name p">Acc&egrave;s Pro</div><div class="plan-price">99&euro;</div><div class="plan-period">par mois, HT</div><div class="plan-desc">Pour avocats, journalistes, chercheurs, associations et collectivit&eacute;s. Recherche avanc&eacute;e et analyse approfondie.</div><div class="plan-features"><div class="pf"><span class="pf-icon">&#10003;</span>Tout l'acc&egrave;s libre</div><div class="pf"><span class="pf-icon">&#10003;</span>Analyse statistique illustr&eacute;e</div><div class="pf"><span class="pf-icon">&#10003;</span>R&eacute;f&eacute;rences textes de loi (L&eacute;gifrance)</div><div class="pf"><span class="pf-icon">&#10003;</span>Jurisprudence (JUDILIBRE / JADE)</div><div class="pf"><span class="pf-icon">&#10003;</span>Recherche s&eacute;mantique AI</div><div class="pf"><span class="pf-icon">&#10003;</span>Micro &amp; dict&eacute;e vocale int&eacute;gr&eacute;s</div><div class="pf"><span class="pf-icon">&#10003;</span>Export dossiers PDF structur&eacute;s</div></div><button class="btn-plan p" onclick="alert('Abonnement Pro — bient\u00f4t disponible.\nContactez-nous : pro@moietloi.fr')">S'abonner &rarr;</button></div>
-      <div class="plan inst"><div class="plan-icon">&#127963;&#65039;</div><div class="plan-name i">Institutionnel</div><div class="plan-price inst">Nous<br>contacter</div><div class="plan-period"></div><div class="plan-desc">Pour gouvernements, think tanks, cabinets sp&eacute;cialis&eacute;s et institutions acad&eacute;miques. &Eacute;tudes analytiques sur mesure.</div><div class="plan-features"><div class="pf"><span class="pf-icon">&#10003;</span>Tout l'acc&egrave;s Pro</div><div class="pf"><span class="pf-icon">&#10003;</span>Bases jurisprudentielles compl&egrave;tes</div><div class="pf"><span class="pf-icon">&#10003;</span>Acc&egrave;s Dalloz / LexisNexis (selon projet)</div><div class="pf"><span class="pf-icon">&#10003;</span>Validation par juristes sp&eacute;cialis&eacute;s</div><div class="pf"><span class="pf-icon">&#10003;</span>Rapports analytiques sur mesure</div><div class="pf"><span class="pf-icon">&#10003;</span>Donn&eacute;es brutes exportables</div></div><button class="btn-plan i" onclick="switchTab(2);window.scrollTo({top:0,behavior:'smooth'})">Nous contacter &rarr;</button></div>
+      <div class="plan"><div class="plan-icon">&#128275;</div><div class="plan-name f">Acc&egrave;s libre</div><div class="plan-price">0&euro;</div><div class="plan-period">Pour toujours</div><div class="plan-desc">Consultez, recherchez et d&eacute;posez vos t&eacute;moignages librement.</div><div class="plan-features"><div class="pf"><span class="pf-icon">&#10003;</span>Acc&egrave;s &agrave; tous les t&eacute;moignages publi&eacute;s</div><div class="pf"><span class="pf-icon">&#10003;</span>Recherche par mots-cl&eacute;s et domaines</div><div class="pf"><span class="pf-icon">&#10003;</span>R&eacute;sum&eacute; des clusters</div><div class="pf"><span class="pf-icon">&#10003;</span>D&eacute;poser un t&eacute;moignage</div><div class="pf"><span class="pf-icon">&#10003;</span>Messagerie interne (opt-in)</div><div class="pf off"><span class="pf-icon">&mdash;</span>Analyse statistique d&eacute;taill&eacute;e</div><div class="pf off"><span class="pf-icon">&mdash;</span>R&eacute;f&eacute;rences textes de loi</div><div class="pf off"><span class="pf-icon">&mdash;</span>Recherche s&eacute;mantique AI</div></div><button class="btn-plan f" onclick="window.location='compte.html'">Cr&eacute;er un compte gratuit &rarr;</button></div>
+      <div class="plan highlight"><div class="plan-ribbon">PLUS POPULAIRE</div><div class="plan-icon">&#11088;</div><div class="plan-name p">Acc&egrave;s Pro</div><div class="plan-price" style="font-size:1.9rem">29&euro;</div><div class="plan-period">/ semaine, HT</div><div style="font-size:0.8rem;color:var(--gris-moyen);margin-top:2px">ou <strong style="color:var(--or)">99&euro;</strong>/mois &nbsp;&bull;&nbsp; <strong style="color:var(--or)">890&euro;</strong>/an</div><div style="font-size:0.75rem;color:var(--vert);margin-bottom:6px;font-style:italic">R&eacute;siliable &agrave; tout moment</div><div class="plan-desc">Pour avocats, journalistes, chercheurs, associations et collectivit&eacute;s.</div><div class="plan-features"><div class="pf"><span class="pf-icon">&#10003;</span>Tout l'acc&egrave;s libre</div><div class="pf"><span class="pf-icon">&#10003;</span>Analyse statistique illustr&eacute;e</div><div class="pf"><span class="pf-icon">&#10003;</span>R&eacute;f&eacute;rences textes de loi (L&eacute;gifrance)</div><div class="pf"><span class="pf-icon">&#10003;</span>Jurisprudence (JUDILIBRE / JADE)</div><div class="pf"><span class="pf-icon">&#10003;</span>Recherche s&eacute;mantique AI</div><div class="pf"><span class="pf-icon">&#10003;</span>Micro &amp; dict&eacute;e vocale int&eacute;gr&eacute;s</div><div class="pf"><span class="pf-icon">&#10003;</span>Export dossiers PDF structur&eacute;s</div></div><button class="btn-plan p" onclick="alert('Abonnement Pro \u2014 bient\u00f4t disponible.\nContactez-nous\u00a0: pro@moietloi.fr')">S'abonner &rarr;</button></div>
+      <div class="plan inst"><div class="plan-icon">&#127963;&#65039;</div><div class="plan-name i">Institutionnel</div><div class="plan-price inst">Nous<br>contacter</div><div class="plan-period"></div><div class="plan-desc">Pour gouvernements, think tanks, cabinets sp&eacute;cialis&eacute;s et institutions acad&eacute;miques.</div><div class="plan-features"><div class="pf"><span class="pf-icon">&#10003;</span>Tout l'acc&egrave;s Pro</div><div class="pf"><span class="pf-icon">&#10003;</span>Bases jurisprudentielles compl&egrave;tes</div><div class="pf"><span class="pf-icon">&#10003;</span>Acc&egrave;s Dalloz / LexisNexis (selon projet)</div><div class="pf"><span class="pf-icon">&#10003;</span>Validation par juristes sp&eacute;cialis&eacute;s</div><div class="pf"><span class="pf-icon">&#10003;</span>Rapports analytiques sur mesure</div><div class="pf"><span class="pf-icon">&#10003;</span>Donn&eacute;es brutes exportables</div></div><button class="btn-plan i" onclick="switchTab(2);window.scrollTo({top:0,behavior:'smooth'})">Nous contacter &rarr;</button></div>
     </div>
     <div class="tarifs-link"><a href="tarifs.html">Voir le tableau comparatif complet et la FAQ &rarr;</a></div>
   </div>
@@ -627,101 +1253,183 @@ hr{border:none;border-top:1px solid var(--beige);margin:16px 0}
 
 <script>
 // TABS
-const zs=['z0','z1','z2'],ts=['t0','t1','t2'],tcs=['af','ap','ai'];
+var zs=['z0','z1','z2'],ts=['t0','t1','t2'],tcs=['af','ap','ai'];
 function switchTab(i){
-  zs.forEach((z,j)=>document.getElementById(z).classList.toggle('hidden',j!==i));
-  ts.forEach((t,j)=>{const el=document.getElementById(t);tcs.forEach(c=>el.classList.remove(c));if(j===i)el.classList.add(tcs[i]);});
+  zs.forEach(function(z,j){document.getElementById(z).classList.toggle('hidden',j!==i);});
+  ts.forEach(function(t,j){var el=document.getElementById(t);tcs.forEach(function(c){el.classList.remove(c);});if(j===i)el.classList.add(tcs[i]);});
 }
 
-// FILTRES GRATUITS — objet centralis\u00e9
-const freeFilters={};
-
+// ── FILTRES GRATUITS
+var freeFilters={};
 function renderTags(){
-  const wrap=document.getElementById('tags0');
+  var wrap=document.getElementById('tags0');
   wrap.innerHTML='';
-  const keys=Object.keys(freeFilters);
-  if(!keys.length)return;
-  keys.forEach(k=>{
-    const f=freeFilters[k];
-    const tag=document.createElement('span');
-    tag.className='ftag f';
-    tag.innerHTML=f.label+'<button class="ftag-rm" onclick="removeFilter(\''+k+'\')" title="Retirer">\u2715</button>';
+  var keys=Object.keys(freeFilters);
+  if(!keys.length){wrap.style.display='none';return;}
+  wrap.style.display='flex';
+  keys.forEach(function(k){
+    var f=freeFilters[k];
+    var tag=document.createElement('span');tag.className='ftag f';
+    tag.innerHTML=f.label+'<button class="ftag-rm" onclick="removeFilter(\''+k.replace(/'/g,"\\'")+'\')">\u00d7</button>';
     wrap.appendChild(tag);
   });
-  const clr=document.createElement('button');
-  clr.className='clear-all';clr.textContent='Tout effacer';clr.onclick=clearAll;
+  var clr=document.createElement('button');clr.className='clear-all';clr.textContent='Tout effacer';clr.onclick=clearAll;
   wrap.appendChild(clr);
 }
-
 function addFilter(id,label,selId){
   freeFilters[id]={label:label,selId:selId||null};
   renderTags();doSearch();
 }
-
 function removeFilter(id){
-  const f=freeFilters[id];
-  if(f&&f.selId){const el=document.getElementById(f.selId);if(el){el.value='';el.classList.remove('on');}}
-  const th=document.getElementById(id);if(th)th.classList.remove('on');
+  var f=freeFilters[id];
+  if(f&&f.selId){var el=document.getElementById(f.selId);if(el){el.value='';el.classList.remove('on');}}
+  var th=document.getElementById(id);if(th)th.classList.remove('on');
+  // Si c'est un sous-cat, retirer l'état on du bouton
+  document.querySelectorAll('.subcat').forEach(function(b){if(b.dataset.filterId===id)b.classList.remove('on');});
   delete freeFilters[id];
   renderTags();doSearch();
 }
-
 function clearAll(){
-  Object.keys(freeFilters).forEach(k=>{
-    const f=freeFilters[k];
-    if(f.selId){const el=document.getElementById(f.selId);if(el){el.value='';el.classList.remove('on');}}
-    const th=document.getElementById(k);if(th)th.classList.remove('on');
+  Object.keys(freeFilters).forEach(function(k){
+    var f=freeFilters[k];
+    if(f.selId){var el=document.getElementById(f.selId);if(el){el.value='';el.classList.remove('on');}}
+    var th=document.getElementById(k);if(th)th.classList.remove('on');
+    document.querySelectorAll('.subcat').forEach(function(b){if(b.dataset.filterId===k)b.classList.remove('on');});
     delete freeFilters[k];
   });
-  const dept=document.getElementById('fdept0');
-  if(dept){dept.value='';dept.classList.remove('visible','on');}
+  // Fermer tous les panneaux sous-cats et retirer styles thèmes
+  document.querySelectorAll('.subcats-panel.open').forEach(function(p){p.classList.remove('open');});
+  document.querySelectorAll('.theme.on').forEach(function(t){t.classList.remove('on');});
+  document.querySelectorAll('.subcat.on').forEach(function(b){b.classList.remove('on');});
+  openPanel=null;
+  var dept=document.getElementById('fdept0');if(dept){dept.value='';dept.classList.remove('visible','on');}
+  var fde=document.getElementById('fde0');if(fde){fde.value='';fde.classList.remove('on');}
+  var fa=document.getElementById('fa0');if(fa){fa.value='';fa.classList.remove('on');}
   document.getElementById('q0').value='';
   renderTags();
   document.getElementById('rc0').innerHTML='<strong>223</strong> t\u00e9moignages publi\u00e9s';
 }
-
-function selFilter(selId){
-  const el=document.getElementById(selId);if(!el)return;
-  const val=el.value;
-  el.classList.toggle('on',!!val);
-  if(val){
-    addFilter(selId,el.options[el.selectedIndex].text,selId);
-  }else{
-    removeFilter(selId);
+function selPeriode(){
+  var de=document.getElementById('fde0'),a=document.getElementById('fa0');
+  var dv=de?de.value:'',av=a?a.value:'';
+  var ANNEES_F=['Avant 2021','2021','2022','2023','2024','2025','2026'];
+  if(a){
+    Array.from(a.options).forEach(function(opt){
+      if(!opt.value){opt.disabled=false;return;}
+      if(!dv){opt.disabled=false;return;}
+      var idxDe=ANNEES_F.indexOf(dv),idxOpt=ANNEES_F.indexOf(opt.value);
+      opt.disabled=(idxOpt>=0&&idxDe>=0&&idxOpt<idxDe);
+    });
+    if(av&&dv&&ANNEES_F.indexOf(av)>=0&&ANNEES_F.indexOf(dv)>=0&&ANNEES_F.indexOf(av)<ANNEES_F.indexOf(dv)){
+      a.value='';av='';
+    }
+    a.classList.toggle('on',!!a.value);
   }
+  if(de)de.classList.toggle('on',!!dv);
+  delete freeFilters['periode'];
+  var dvF=de?de.value:'',avF=a?a.value:'';
+  if(dvF||avF){freeFilters['periode']={label:'Faits : '+(dvF||'…')+' → '+(avF||'…'),selId:null};}
+  renderTags();doSearch();
 }
 
-// R\u00c9GION -> D\u00c9PARTEMENT
-const depts={
-  'Ile-de-France':['75 \u2014 Paris','77 \u2014 Seine-et-Marne','78 \u2014 Yvelines','91 \u2014 Essonne','92 \u2014 Hauts-de-Seine','93 \u2014 Seine-Saint-Denis','94 \u2014 Val-de-Marne','95 \u2014 Val-d\'Oise'],
-  'Auvergne-Rhone-Alpes':['01 \u2014 Ain','03 \u2014 Allier','07 \u2014 Ard\u00e8che','15 \u2014 Cantal','26 \u2014 Dr\u00f4me','38 \u2014 Is\u00e8re','42 \u2014 Loire','43 \u2014 Haute-Loire','63 \u2014 Puy-de-D\u00f4me','69 \u2014 Rh\u00f4ne','73 \u2014 Savoie','74 \u2014 Haute-Savoie'],
-  'Bretagne':['22 \u2014 C\u00f4tes-d\'Armor','29 \u2014 Finist\u00e8re','35 \u2014 Ille-et-Vilaine','56 \u2014 Morbihan'],
-  'Grand Est':['08 \u2014 Ardennes','10 \u2014 Aube','51 \u2014 Marne','52 \u2014 Haute-Marne','54 \u2014 Meurthe-et-Moselle','55 \u2014 Meuse','57 \u2014 Moselle','67 \u2014 Bas-Rhin','68 \u2014 Haut-Rhin','88 \u2014 Vosges'],
-  'Hauts-de-France':['02 \u2014 Aisne','59 \u2014 Nord','60 \u2014 Oise','62 \u2014 Pas-de-Calais','80 \u2014 Somme'],
-  'Normandie':['14 \u2014 Calvados','27 \u2014 Eure','50 \u2014 Manche','61 \u2014 Orne','76 \u2014 Seine-Maritime'],
-  'Nouvelle-Aquitaine':['16 \u2014 Charente','17 \u2014 Charente-Maritime','19 \u2014 Corr\u00e8ze','23 \u2014 Creuse','24 \u2014 Dordogne','33 \u2014 Gironde','40 \u2014 Landes','47 \u2014 Lot-et-Garonne','64 \u2014 Pyr\u00e9n\u00e9es-Atlantiques','79 \u2014 Deux-S\u00e8vres','86 \u2014 Vienne','87 \u2014 Haute-Vienne'],
-  'Occitanie':['09 \u2014 Ari\u00e8ge','11 \u2014 Aude','12 \u2014 Aveyron','30 \u2014 Gard','31 \u2014 Haute-Garonne','32 \u2014 Gers','34 \u2014 H\u00e9rault','46 \u2014 Lot','48 \u2014 Loz\u00e8re','65 \u2014 Hautes-Pyr\u00e9n\u00e9es','66 \u2014 Pyr\u00e9n\u00e9es-Orientales','81 \u2014 Tarn','82 \u2014 Tarn-et-Garonne'],
-  'Pays de la Loire':['44 \u2014 Loire-Atlantique','49 \u2014 Maine-et-Loire','53 \u2014 Mayenne','72 \u2014 Sarthe','85 \u2014 Vend\u00e9e'],
-  'PACA':['04 \u2014 Alpes-de-Haute-Provence','05 \u2014 Hautes-Alpes','06 \u2014 Alpes-Maritimes','13 \u2014 Bouches-du-Rh\u00f4ne','83 \u2014 Var','84 \u2014 Vaucluse'],
-  'Corse':['2A \u2014 Corse-du-Sud','2B \u2014 Haute-Corse'],
-  'Guadeloupe':['971 \u2014 Guadeloupe'],'Martinique':['972 \u2014 Martinique'],
-  'Guyane':['973 \u2014 Guyane'],'La Reunion':['974 \u2014 La R\u00e9union'],'Mayotte':['976 \u2014 Mayotte']
-};
+var ANNEES_P=['avant2021','2021','2022','2023','2024','2025','2026'];
+function selProPeriode(){
+  var de=document.getElementById('pde1'),a=document.getElementById('pa1');
+  var dv=de?de.value:'',av=a?a.value:'';
+  // Désactiver les options invalides dans "À"
+  if(a){
+    Array.from(a.options).forEach(function(opt){
+      if(!opt.value){opt.disabled=false;return;}
+      if(!dv){opt.disabled=false;return;}
+      var idxDe=ANNEES_P.indexOf(dv),idxOpt=ANNEES_P.indexOf(opt.value);
+      opt.disabled=(idxOpt>=0&&idxDe>=0&&idxOpt<idxDe);
+    });
+    if(av&&dv&&ANNEES_P.indexOf(av)>=0&&ANNEES_P.indexOf(dv)>=0&&ANNEES_P.indexOf(av)<ANNEES_P.indexOf(dv)){
+      a.value='';av='';
+    }
+    a.classList.toggle('on',!!a.value);
+  }
+  if(de)de.classList.toggle('on',!!dv);
+  delete proFilters['_periode'];
+  var dvFin=de?de.value:'',avFin=a?a.value:'';
+  if(dvFin||avFin){proFilters['_periode']='Période : '+(dvFin||'…')+' → '+(avFin||'…');}
+  renderProTags();
+}
+var proDeptsData={"Ile-de-France":["75 - Paris","77 - Seine-et-Marne","78 - Yvelines","91 - Essonne","92 - Hauts-de-Seine","93 - Seine-Saint-Denis","94 - Val-de-Marne","95 - Val-d'Oise"],"Auvergne-Rhone-Alpes":["01 - Ain","03 - Allier","26 - Drôme","38 - Isère","42 - Loire","63 - Puy-de-Dôme","69 - Rhône","73 - Savoie","74 - Haute-Savoie"],"Bretagne":["22 - Côtes-d'Armor","29 - Finistère","35 - Ille-et-Vilaine","56 - Morbihan"],"Grand Est":["08 - Ardennes","51 - Marne","54 - Meurthe-et-Moselle","57 - Moselle","67 - Bas-Rhin","68 - Haut-Rhin","88 - Vosges"],"Hauts-de-France":["02 - Aisne","59 - Nord","60 - Oise","62 - Pas-de-Calais","80 - Somme"],"Normandie":["14 - Calvados","27 - Eure","50 - Manche","61 - Orne","76 - Seine-Maritime"],"Nouvelle-Aquitaine":["16 - Charente","17 - Charente-Maritime","33 - Gironde","40 - Landes","64 - Pyrénées-Atlantiques","79 - Deux-Sèvres","86 - Vienne","87 - Haute-Vienne"],"Occitanie":["11 - Aude","30 - Gard","31 - Haute-Garonne","34 - Hérault","65 - Hautes-Pyrénées","66 - Pyrénées-Orientales","81 - Tarn","82 - Tarn-et-Garonne"],"Pays de la Loire":["44 - Loire-Atlantique","49 - Maine-et-Loire","53 - Mayenne","72 - Sarthe","85 - Vendée"],"PACA":["04 - Alpes-de-Haute-Provence","05 - Hautes-Alpes","06 - Alpes-Maritimes","13 - Bouches-du-Rhône","83 - Var","84 - Vaucluse"],"Corse":["2A - Corse-du-Sud","2B - Haute-Corse"]};
+function showProDepts(region){
+  var zone=document.getElementById('proDeptZone');
+  var opts=document.getElementById('proDeptOpts');
+  if(!region||!proDeptsData[region]){zone.style.display='none';return;}
+  var depts=proDeptsData[region];
+  opts.innerHTML=depts.map(function(d){
+    return '<button class="pro-opt" data-val="'+d+'" onclick="toggleProOpt(this)">'+d+'</button>';
+  }).join('');
+  zone.style.display='block';
+}
 
+var openProPanel=null;
+function clickProTheme(el,label,panelId){
+  var panel=document.getElementById(panelId);
+  var alreadyOpen=panel.classList.contains('open');
+  if(openProPanel&&openProPanel!==panel){
+    openProPanel.classList.remove('open');
+    var prevId=openProPanel.dataset.theme;
+    var prevEl=prevId?document.getElementById(prevId):null;
+    if(prevEl&&!hasProPanelFilters(openProPanel))prevEl.classList.remove('on');
+  }
+  if(alreadyOpen&&openProPanel===panel){
+    panel.classList.remove('open');openProPanel=null;
+    if(!hasProPanelFilters(panel))el.classList.remove('on');
+  }else{
+    el.classList.add('on');panel.classList.add('open');openProPanel=panel;
+  }
+}
+function hasProPanelFilters(panel){
+  if(!panel)return false;
+  var thId=panel.dataset.theme;
+  if(thId&&proFilters[thId])return true;
+  return Array.from(panel.querySelectorAll('.subcat.on:not(.subcat-all)')).some(function(b){return b.dataset.filterId&&proFilters[b.dataset.filterId];});
+}
+function clickProSubcatAll(btn,thId,label){
+  var panel=btn.closest('.subcats-panel');
+  if(panel){panel.querySelectorAll('.subcat.on:not(.subcat-all)').forEach(function(b){if(b.dataset.filterId)delete proFilters[b.dataset.filterId];b.classList.remove('on');});}
+  proFilters[thId]=label;
+  var thEl=document.getElementById(thId);if(thEl)thEl.classList.add('on');
+  btn.classList.add('on');
+  renderProTags();
+}
+function clickProSubcat(btn){
+  var label=btn.textContent.trim();
+  var id='psc_'+label.replace(/[^a-zA-Z0-9]/g,'_').substring(0,30);
+  btn.dataset.filterId=id;
+  var panel=btn.closest('.subcats-panel');
+  var thId=panel?panel.dataset.theme:null;
+  if(btn.classList.contains('on')){
+    btn.classList.remove('on');delete proFilters[id];
+    if(thId&&!hasProPanelFilters(panel)){var thEl=document.getElementById(thId);if(thEl)thEl.classList.remove('on');}
+  }else{
+    if(panel){var allBtn=panel.querySelector('.subcat-all');if(allBtn&&allBtn.classList.contains('on')){allBtn.classList.remove('on');if(thId)delete proFilters[thId];}}
+    btn.classList.add('on');proFilters[id]=label;
+  }
+  renderProTags();
+}
+function selFilter(selId){
+  var el=document.getElementById(selId);if(!el)return;
+  var val=el.value;
+  el.classList.toggle('on',!!val);
+  if(val){addFilter(selId,el.options[el.selectedIndex].text,selId);}
+  else{removeFilter(selId);}
+}
+
+// RÉGION → DÉPARTEMENT
+var depts={'Ile-de-France':['75 \u2014 Paris','77 \u2014 Seine-et-Marne','78 \u2014 Yvelines','91 \u2014 Essonne','92 \u2014 Hauts-de-Seine','93 \u2014 Seine-Saint-Denis','94 \u2014 Val-de-Marne','95 \u2014 Val-d\'Oise'],'Auvergne-Rhone-Alpes':['01 \u2014 Ain','03 \u2014 Allier','07 \u2014 Ard\u00e8che','15 \u2014 Cantal','26 \u2014 Dr\u00f4me','38 \u2014 Is\u00e8re','42 \u2014 Loire','43 \u2014 Haute-Loire','63 \u2014 Puy-de-D\u00f4me','69 \u2014 Rh\u00f4ne','73 \u2014 Savoie','74 \u2014 Haute-Savoie'],'Bretagne':['22 \u2014 C\u00f4tes-d\'Armor','29 \u2014 Finist\u00e8re','35 \u2014 Ille-et-Vilaine','56 \u2014 Morbihan'],'Grand Est':['08 \u2014 Ardennes','10 \u2014 Aube','51 \u2014 Marne','52 \u2014 Haute-Marne','54 \u2014 Meurthe-et-Moselle','55 \u2014 Meuse','57 \u2014 Moselle','67 \u2014 Bas-Rhin','68 \u2014 Haut-Rhin','88 \u2014 Vosges'],'Hauts-de-France':['02 \u2014 Aisne','59 \u2014 Nord','60 \u2014 Oise','62 \u2014 Pas-de-Calais','80 \u2014 Somme'],'Normandie':['14 \u2014 Calvados','27 \u2014 Eure','50 \u2014 Manche','61 \u2014 Orne','76 \u2014 Seine-Maritime'],'Nouvelle-Aquitaine':['16 \u2014 Charente','17 \u2014 Charente-Maritime','19 \u2014 Corr\u00e8ze','23 \u2014 Creuse','24 \u2014 Dordogne','33 \u2014 Gironde','40 \u2014 Landes','47 \u2014 Lot-et-Garonne','64 \u2014 Pyr\u00e9n\u00e9es-Atlantiques','79 \u2014 Deux-S\u00e8vres','86 \u2014 Vienne','87 \u2014 Haute-Vienne'],'Occitanie':['09 \u2014 Ari\u00e8ge','11 \u2014 Aude','12 \u2014 Aveyron','30 \u2014 Gard','31 \u2014 Haute-Garonne','32 \u2014 Gers','34 \u2014 H\u00e9rault','46 \u2014 Lot','48 \u2014 Loz\u00e8re','65 \u2014 Hautes-Pyr\u00e9n\u00e9es','66 \u2014 Pyr\u00e9n\u00e9es-Orientales','81 \u2014 Tarn','82 \u2014 Tarn-et-Garonne'],'Pays de la Loire':['44 \u2014 Loire-Atlantique','49 \u2014 Maine-et-Loire','53 \u2014 Mayenne','72 \u2014 Sarthe','85 \u2014 Vend\u00e9e'],'PACA':['04 \u2014 Alpes-de-Haute-Provence','05 \u2014 Hautes-Alpes','06 \u2014 Alpes-Maritimes','13 \u2014 Bouches-du-Rh\u00f4ne','83 \u2014 Var','84 \u2014 Vaucluse'],'Corse':['2A \u2014 Corse-du-Sud','2B \u2014 Haute-Corse'],'Guadeloupe':['971 \u2014 Guadeloupe'],'Martinique':['972 \u2014 Martinique'],'Guyane':['973 \u2014 Guyane'],'La Reunion':['974 \u2014 La R\u00e9union'],'Mayotte':['976 \u2014 Mayotte']};
 function onRegionChange(){
-  const sel=document.getElementById('fr0');
-  const dept=document.getElementById('fdept0');
-  const region=sel.value;
+  var sel=document.getElementById('fr0'),dept=document.getElementById('fdept0'),region=sel.value;
   removeFilter('fdept0');dept.classList.remove('visible','on');dept.value='';
   if(!region){removeFilter('fr0');return;}
-  sel.classList.add('on');
-  addFilter('fr0',sel.options[sel.selectedIndex].text,'fr0');
-  if(depts[region]){
-    dept.innerHTML='<option value="">Tous les d\u00e9partements</option>'+depts[region].map(d=>'<option value="'+d+'">'+d+'</option>').join('');
-    dept.classList.add('visible');
-  }
+  sel.classList.add('on');addFilter('fr0',sel.options[sel.selectedIndex].text,'fr0');
+  if(depts[region]){dept.innerHTML='<option value="">Tous les d\u00e9partements</option>'+depts[region].map(function(d){return'<option value="'+d+'">'+d+'</option>';}).join('');dept.classList.add('visible');}
 }
-
 document.getElementById('fdept0').addEventListener('change',function(){
   if(!this.value){removeFilter('fdept0');this.classList.remove('on');return;}
   this.classList.add('on');
@@ -729,42 +1437,129 @@ document.getElementById('fdept0').addEventListener('change',function(){
   addFilter('fdept0',this.options[this.selectedIndex].text,'fdept0');
 });
 
-// TH\u00c8MES -> TAG
-function toggleTheme(el,label,keywords){
-  const id=el.id;
-  if(freeFilters[id]){
-    removeFilter(id);
+// THÈMES — clic = ouvre sous-cats UNIQUEMENT, pas de filtre automatique
+var openPanel=null;
+function clickTheme(el,label,panelId){
+  var panel=document.getElementById(panelId);
+  var alreadyOpen=panel.classList.contains('open');
+  // Fermer l'autre panneau ouvert
+  if(openPanel&&openPanel!==panel){
+    openPanel.classList.remove('open');
+    // Retirer le style "on" du thème correspondant si pas de filtres actifs dedans
+    var prevThId=openPanel.dataset.theme;
+    if(prevThId){
+      var hasActiveFilters=Object.keys(freeFilters).some(function(k){
+        return k===prevThId||k.startsWith('sc_');
+      });
+      // Ne retirer le style "on" que si aucun filtre de ce domaine n'est actif
+      if(!freeFilters[prevThId]&&!hasPanelFilters(openPanel)){
+        var prevTh=document.getElementById(prevThId);
+        if(prevTh)prevTh.classList.remove('on');
+      }
+    }
+  }
+  if(alreadyOpen&&openPanel===panel){
+    // Fermer le panneau
+    panel.classList.remove('open');
+    openPanel=null;
+    if(!freeFilters[el.id]&&!hasPanelFilters(panel))el.classList.remove('on');
   }else{
+    // Ouvrir le panneau — marquer visuellement le thème comme actif (navigation)
+    // mais NE PAS ajouter de filtre
     el.classList.add('on');
+    panel.classList.add('open');
+    openPanel=panel;
+  }
+}
+
+function hasPanelFilters(panel){
+  if(!panel)return false;
+  return Array.from(panel.querySelectorAll('.subcat.on:not(.subcat-all)')).length>0;
+}
+
+function clearDomaine(thId,panel){
+  var el=document.getElementById(thId);
+  if(el)el.classList.remove('on');
+  clearDomainSubcats(panel);
+  panel.classList.remove('open');
+  if(openPanel===panel)openPanel=null;
+  removeFilter(thId);
+}
+
+function clearDomainSubcats(panel){
+  panel.querySelectorAll('.subcat.on').forEach(function(b){
+    var id=b.dataset.filterId;
+    if(id){delete freeFilters[id];}
+    b.classList.remove('on');
+  });
+}
+
+// SOUS-CATÉGORIES — clic = ajoute cette sous-cat comme filtre
+// Plusieurs sous-cats du même domaine peuvent être actives simultanément
+function clickSubcat(btn){
+  var label=btn.textContent.trim();
+  var id='sc_'+label.replace(/[^a-zA-Z0-9]/g,'_').substring(0,30);
+  btn.dataset.filterId=id;
+  var panel=btn.closest('.subcats-panel');
+  var thId=panel?panel.dataset.theme:null;
+  if(btn.classList.contains('on')){
+    btn.classList.remove('on');
+    delete freeFilters[id];
+    // Si plus aucune sous-cat ni filtre domaine actif, retirer le style du thème
+    if(thId&&!freeFilters[thId]&&!hasPanelFilters(panel)){
+      var thEl=document.getElementById(thId);
+      if(thEl)thEl.classList.remove('on');
+    }
+    renderTags();doSearch();
+  }else{
+    // Retirer "Toutes" si actif
+    if(panel){
+      var allBtn=panel.querySelector('.subcat-all');
+      if(allBtn&&allBtn.classList.contains('on')){
+        allBtn.classList.remove('on');
+        if(thId)delete freeFilters[thId];
+      }
+    }
+    btn.classList.add('on');
     freeFilters[id]={label:label,selId:null};
-    const q=document.getElementById('q0');
-    if(!q.value.trim())q.value=keywords;
     renderTags();doSearch();
   }
 }
 
+// "Toutes" = filtre domaine entier, retire les sous-cats individuelles
+function clickSubcatAll(btn,thId,label){
+  var panel=btn.closest('.subcats-panel');
+  // Retirer toutes les sous-cats actives
+  if(panel)clearDomainSubcats(panel);
+  // Ajouter le filtre domaine
+  freeFilters[thId]={label:label,selId:null,isDomain:true};
+  var thEl=document.getElementById(thId);if(thEl)thEl.classList.add('on');
+  btn.classList.add('on');
+  renderTags();doSearch();
+}
+
 // RECHERCHE
 function doSearch(){
-  const q=document.getElementById('q0').value.trim();
-  const filters=Object.values(freeFilters).map(f=>f.label);
-  const rc=document.getElementById('rc0');
+  var q=document.getElementById('q0').value.trim();
+  var filters=Object.values(freeFilters).map(function(f){return f.label;});
+  var rc=document.getElementById('rc0');
   if(!q&&!filters.length){rc.innerHTML='<strong>223</strong> t\u00e9moignages publi\u00e9s';return;}
-  let desc=[];
+  var desc=[];
   if(q)desc.push('"'+q+'"');
   if(filters.length)desc.push(filters.join(' \u00b7 '));
   rc.innerHTML='R\u00e9sultats pour <strong>'+desc.join(' + ')+'</strong> \u2014 <span style="color:var(--gris-moyen);font-size:0.82rem;">'+Math.floor(Math.random()*40+5)+' t\u00e9moignages</span>';
 }
 
 // MICRO PRO
-let recPro=null,recDial=null,isRecPro=false,isRecDial=false;
+var recPro=null,recDial=null,isRecPro=false,isRecDial=false;
 function initSR(){if(!('webkitSpeechRecognition'in window||'SpeechRecognition'in window))return null;return window.SpeechRecognition||window.webkitSpeechRecognition;}
 function toggleMicPro(){
-  const SR=initSR();if(!SR){document.getElementById('mt1').textContent='\u26a0\ufe0f Micro non disponible';return;}
+  var SR=initSR();if(!SR){document.getElementById('mt1').textContent='\u26a0\ufe0f Non disponible';return;}
   if(isRecPro){recPro&&recPro.stop();return;}
   recPro=new SR();recPro.lang='fr-FR';recPro.continuous=true;recPro.interimResults=true;
-  const btn=document.getElementById('m1'),dot=document.getElementById('md1'),txt=document.getElementById('mt1'),inp=document.getElementById('q1');
+  var btn=document.getElementById('m1'),dot=document.getElementById('md1'),txt=document.getElementById('mt1'),inp=document.getElementById('q1');
   recPro.onstart=function(){isRecPro=true;btn.classList.add('listening');btn.textContent='\u23f9';document.getElementById('mh1').textContent='Arr\u00eater';dot.classList.add('on');txt.textContent='En \u00e9coute\u2026';};
-  recPro.onresult=function(e){var interim=Array.from(e.results).map(function(r){return r[0].transcript;}).join('');inp.value=interim;txt.textContent=interim.length>60?interim.substring(0,60)+'\u2026':interim;};
+  recPro.onresult=function(e){var t=Array.from(e.results).map(function(r){return r[0].transcript;}).join('');inp.value=t;txt.textContent=t.length>60?t.substring(0,60)+'\u2026':t;};
   recPro.onspeechend=function(){recPro.stop();};
   recPro.onerror=function(){stopMicPro();txt.textContent='\u26a0\ufe0f Microphone non accessible';};
   recPro.onend=function(){stopMicPro();if(inp.value.trim())setTimeout(proSearch,500);};
@@ -776,7 +1571,7 @@ function stopMicPro(){
   setTimeout(function(){txt.textContent='';},3000);
 }
 function toggleMicDial(){
-  const SR=initSR();if(!SR)return;
+  var SR=initSR();if(!SR)return;
   if(isRecDial){recDial&&recDial.stop();return;}
   recDial=new SR();recDial.lang='fr-FR';recDial.continuous=false;recDial.interimResults=true;
   var btn=document.getElementById('dialMic'),inp=document.getElementById('dialInput');
@@ -793,7 +1588,7 @@ function proSearch(){
   proDialTurn=0;document.getElementById('dialZone').classList.add('open');
   var msgs=document.getElementById('dialMsgs');msgs.innerHTML='';
   setTimeout(function(){
-    msgs.innerHTML='<div class="dial-msg ai"><div class="dial-avatar ai">M&L</div><div class="dial-bubble"><strong>Votre demande reformul\u00e9e :</strong><br>Recherche de situations o\u00f9 '+q+'.<br><br>J\'ai identifi\u00e9 <strong>23 situations</strong> correspondantes dans 8 r\u00e9gions entre 2023 et 2026.<br><br>Souhaitez-vous affiner ?</div></div>';
+    msgs.innerHTML='<div class="dial-msg ai"><div class="dial-avatar ai">M&L</div><div class="dial-bubble"><strong>Votre demande reformul\u00e9e\u00a0:</strong><br>Recherche de situations o\u00f9 '+q+'.<br><br>J\'ai identifi\u00e9 <strong>23 situations</strong> correspondantes dans 8 r\u00e9gions entre 2023 et 2026.<br><br>Souhaitez-vous affiner\u00a0?</div></div>';
     msgs.scrollTop=msgs.scrollHeight;
   },600);
 }
@@ -803,34 +1598,43 @@ function dialSend(){
   msgs.innerHTML+='<div class="dial-msg user"><div class="dial-avatar user">Vous</div><div class="dial-bubble">'+msg+'</div></div>';
   inp.value='';msgs.scrollTop=msgs.scrollHeight;
   setTimeout(function(){
-    var r=proDialTurn===1?'Compris. <strong>14 situations</strong> correspondent maintenant.<br><br>Voulez-vous que je g\u00e9n\u00e8re l\'analyse compl\u00e8te ?':'Parfait \u2014 je g\u00e9n\u00e8re l\'analyse avec tous vos crit\u00e8res.';
+    var r=proDialTurn===1?'Compris. <strong>14 situations</strong> correspondent maintenant.<br><br>Voulez-vous que je g\u00e9n\u00e8re l\'analyse compl\u00e8te\u00a0?':'Parfait \u2014 je g\u00e9n\u00e8re l\'analyse avec tous vos crit\u00e8res.';
     msgs.innerHTML+='<div class="dial-msg ai"><div class="dial-avatar ai">M&L</div><div class="dial-bubble">'+r+'</div></div>';
     msgs.scrollTop=msgs.scrollHeight;
   },700);
 }
 
-// FILTRES PRO ACCORD\u00c9ON
-function toggleAcc(hd){
-  var body=hd.nextElementSibling;var open=hd.classList.contains('open');
-  hd.classList.toggle('open',!open);body.classList.toggle('open',!open);
-}
-
+// FILTRES PRO ACCORDÉON
+function toggleAcc(hd){var body=hd.nextElementSibling;var open=hd.classList.contains('open');hd.classList.toggle('open',!open);body.classList.toggle('open',!open);}
 var proFilters={};
 function renderProTags(){
-  var wrap=document.getElementById('tags1');wrap.innerHTML='';
-  var keys=Object.keys(proFilters);if(!keys.length)return;
+  var wrap=document.getElementById('tags1');
+  wrap.innerHTML='';
+  var keys=Object.keys(proFilters);
+  if(!keys.length){wrap.style.display='none';return;}
+  wrap.style.display='flex';
   keys.forEach(function(val){
-    var tag=document.createElement('span');tag.className='ftag p';
-    tag.innerHTML=val+'<button class="ftag-rm" onclick="removeProFilter(\''+val.replace(/'/g,"\\'")+'\')" title="Retirer">\u2715</button>';
+    var label=typeof proFilters[val]==='string'?proFilters[val]:val;
+    var tag=document.createElement('span');
+    tag.className='ftag p';
+    var btn=document.createElement('button');
+    btn.className='ftag-rm';
+    btn.textContent='×';
+    btn.onclick=function(){removeProFilter(val);};
+    tag.appendChild(document.createTextNode(label));
+    tag.appendChild(btn);
     wrap.appendChild(tag);
   });
-  var clr=document.createElement('button');clr.className='clear-all';clr.textContent='Tout effacer';clr.onclick=clearProFilters;
+  var clr=document.createElement('button');
+  clr.className='clear-all';
+  clr.textContent='Tout effacer';
+  clr.onclick=clearProFilters;
   wrap.appendChild(clr);
 }
 function toggleProOpt(btn){
   var val=btn.dataset.val;
   if(proFilters[val]){btn.classList.remove('on');delete proFilters[val];}
-  else{btn.classList.add('on');proFilters[val]=true;}
+  else{btn.classList.add('on');proFilters[val]=btn.textContent.trim();}
   renderProTags();
 }
 function removeProFilter(val){
@@ -840,6 +1644,32 @@ function removeProFilter(val){
 function clearProFilters(){
   document.querySelectorAll('.pro-opt.on').forEach(function(b){b.classList.remove('on');});
   for(var k in proFilters)delete proFilters[k];renderProTags();
+}
+
+// INSTITUTIONNEL — sélections visibles
+var instFilters={};
+function instSelFilter(selId){
+  var el=document.getElementById(selId);if(!el||!el.value)return;
+  var label=el.options[el.selectedIndex].text;
+  instFilters[selId]=label;
+  renderInstTags();
+}
+function renderInstTags(){
+  var band=document.getElementById('instSelBand');
+  var wrap=document.getElementById('instSelTags');
+  var keys=Object.keys(instFilters);
+  if(!keys.length){band.classList.remove('open');return;}
+  band.classList.add('open');
+  wrap.innerHTML='';
+  keys.forEach(function(k){
+    var tag=document.createElement('span');tag.className='ftag i';
+    tag.innerHTML=instFilters[k]+'<button class="ftag-rm" onclick="removeInstFilter(\''+k+'\')">\u00d7</button>';
+    wrap.appendChild(tag);
+  });
+}
+function removeInstFilter(selId){
+  var el=document.getElementById(selId);if(el)el.value='';
+  delete instFilters[selId];renderInstTags();
 }
 
 // INST MIC
