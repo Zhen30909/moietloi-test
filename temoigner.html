@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -242,7 +243,7 @@ hr { border:none; border-top:1px solid var(--beige); margin:20px 0; }
 <header>
   <a href="index.html" class="logo">moi <span class="et">&amp;</span> <span class="loi">loi</span></a>
   <div class="sous-titre">Témoignages citoyens</div>
-  <span class="badge">Pipeline v7.11</span>
+  <span class="badge">Pipeline v7.12</span>
 </header>
 
 <!-- 1. CLÉS API -->
@@ -558,33 +559,38 @@ hr { border:none; border-top:1px solid var(--beige); margin:20px 0; }
     <div class="anon-field checked" id="af_pseudo">
       <input type="checkbox" id="chk_pseudo" checked onchange="onPseudoChange()">
       <div style="flex:1;">
-        <div class="anon-field-label">🏷️ Pseudonyme</div>
+        <div class="anon-field-label">Pseudonyme</div>
         <div class="anon-field-sub" id="pseudoDisplay">votre pseudonyme</div>
       </div>
     </div>
     <div class="anon-field disabled" id="af_prenom">
-      <input type="checkbox" id="chk_prenom" onchange="updateAnonPreview()">
-      <span class="anon-field-label">👤 Prénom</span>
-      <input type="text" id="val_prenom" placeholder="Votre prénom" oninput="updateAnonPreview()" onclick="G('chk_prenom').checked=true;updateAnonPreview()">
+      <input type="checkbox" id="chk_prenom" onchange="onPreNomChange()">
+      <span class="anon-field-label">Prénom</span>
+      <input type="text" id="val_prenom" placeholder="Votre prénom" oninput="updateAnonPreview()" onclick="activatePrenom()">
     </div>
     <div class="anon-field disabled" id="af_nom">
-      <input type="checkbox" id="chk_nom" onchange="updateAnonPreview()">
-      <span class="anon-field-label">👤 Nom</span>
-      <input type="text" id="val_nom" placeholder="Votre nom" oninput="updateAnonPreview()" onclick="G('chk_nom').checked=true;updateAnonPreview()">
+      <input type="checkbox" id="chk_nom" onchange="onPreNomChange()">
+      <span class="anon-field-label">Nom</span>
+      <input type="text" id="val_nom" placeholder="Votre nom" oninput="updateAnonPreview()" onclick="activateNom()">
     </div>
     <div class="anon-field" id="af_profession">
       <input type="checkbox" id="chk_profession" onchange="updateAnonPreview()">
-      <span class="anon-field-label">💼 Profession / Catégorie</span>
+      <span class="anon-field-label">Profession / Catégorie</span>
       <input type="text" id="val_profession" placeholder="Ex: Entrepreneuse" oninput="updateAnonPreview()" onclick="G('chk_profession').checked=true;updateAnonPreview()">
+    </div>
+    <div class="anon-field" id="af_secteur">
+      <input type="checkbox" id="chk_secteur" onchange="updateAnonPreview()">
+      <span class="anon-field-label">Secteur d'activité</span>
+      <input type="text" id="val_secteur" placeholder="Ex: Hébergement & Tourisme" oninput="updateAnonPreview()" onclick="G('chk_secteur').checked=true;updateAnonPreview()">
     </div>
     <div class="anon-field" id="af_age">
       <input type="checkbox" id="chk_age" onchange="updateAnonPreview()">
-      <span class="anon-field-label">🎂 Tranche d'âge</span>
+      <span class="anon-field-label">Tranche d'âge</span>
       <input type="text" id="val_age" placeholder="Ex: 40-50 ans" oninput="updateAnonPreview()" onclick="G('chk_age').checked=true;updateAnonPreview()">
     </div>
     <div class="anon-field" id="af_region">
       <input type="checkbox" id="chk_region" onchange="updateAnonPreview()">
-      <span class="anon-field-label">📍 Région / Département</span>
+      <span class="anon-field-label">Région / Département</span>
       <input type="text" id="val_region" placeholder="Ex: Vaucluse" oninput="updateAnonPreview()" onclick="G('chk_region').checked=true;updateAnonPreview()">
     </div>
   </div>
@@ -1245,12 +1251,49 @@ function showAnon(){
     if(raw){
       const p=JSON.parse(raw);
       if(p.pseudo)G('pseudoDisplay').textContent=p.pseudo;
+      if(p.prenom)G('val_prenom').value=p.prenom;
+      if(p.nom)G('val_nom').value=p.nom;
       if(p.csp)G('val_profession').value=p.csp;
+      if(p.secteurCat)G('val_secteur').value=p.secteurSub||p.secteurCat;
+      if(p.age)G('val_age').value=p.age;
       if(p.region)G('val_region').value=p.region;
     }
   }catch{}
   updateAnonPreview();
   scrollEl('cardAnon');
+}
+
+// Quand on coche prénom ou nom — décoche pseudo automatiquement
+function onPreNomChange(){
+  const prenomChecked=G('chk_prenom').checked;
+  const nomChecked=G('chk_nom').checked;
+  if(prenomChecked||nomChecked){
+    G('chk_pseudo').checked=false;
+    G('af_pseudo').classList.remove('checked');
+    G('af_prenom').classList.remove('disabled');
+    G('af_nom').classList.remove('disabled');
+  }
+  updateAnonPreview();
+}
+
+// Cliquer dans champ prénom — décoche pseudo, coche prénom
+function activatePrenom(){
+  G('chk_pseudo').checked=false;
+  G('af_pseudo').classList.remove('checked');
+  G('af_prenom').classList.remove('disabled');
+  G('af_nom').classList.remove('disabled');
+  G('chk_prenom').checked=true;
+  updateAnonPreview();
+}
+
+// Cliquer dans champ nom — décoche pseudo, coche nom
+function activateNom(){
+  G('chk_pseudo').checked=false;
+  G('af_pseudo').classList.remove('checked');
+  G('af_prenom').classList.remove('disabled');
+  G('af_nom').classList.remove('disabled');
+  G('chk_nom').checked=true;
+  updateAnonPreview();
 }
 
 function updateAnonPreview(){
@@ -1267,7 +1310,7 @@ function updateAnonPreview(){
       else{af?.classList.remove('checked');}
     });
   }
-  ['profession','age','region'].forEach(f=>{
+  ['profession','secteur','age','region'].forEach(f=>{
     const chk=G('chk_'+f);const val=G('val_'+f);const af=G('af_'+f);
     if(chk?.checked&&val?.value.trim()){af?.classList.add('checked');parts.push(val.value.trim());}
     else{af?.classList.remove('checked');}
