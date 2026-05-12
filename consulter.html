@@ -4,9 +4,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Consulter la base — moi & loi</title>
+<title>Consulter la base — moi &amp; loi</title>
 <meta name="description" content="Recherchez et consultez les témoignages citoyens sur les situations réglementaires et administratives en France.">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"SearchResultsPage","name":"Consulter — moi & loi","url":"https://moietloi.fr/recherche/"}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -19,15 +18,11 @@
   --or:#b8943f;--or-pale:#fdf8ee;--or-clair:#e8d0a0;
   --bleu:#2c4a6e;--bleu-pale:#eef2f7;--bleu-clair:#c0d0e0;--rouge:#c0392b;
 }
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
 body{font-family:'Source Sans 3',sans-serif;background:var(--fond);color:var(--gris-fonce);min-height:100vh}
-
-/* NAV */
 nav{background:rgba(247,244,239,0.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--beige);height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 28px;position:sticky;top:0;z-index:100}
 .nav-logo{font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--gris-fonce);text-decoration:none}
-.nav-logo .et{color:var(--peche);font-style:italic}
-.nav-logo .loi{color:var(--vert)}
+.nav-logo .et{color:var(--peche);font-style:italic}.nav-logo .loi{color:var(--vert)}
 .nav-links{display:flex;gap:4px;align-items:center}
 .nav-links a{font-size:0.85rem;color:var(--gris-moyen);text-decoration:none;padding:7px 12px;border-radius:6px;transition:all 0.2s}
 .nav-links a:hover{color:var(--vert);background:var(--vert-pale)}
@@ -42,40 +37,75 @@ nav{background:rgba(247,244,239,0.96);backdrop-filter:blur(10px);border-bottom:1
 .nav-mob a:hover{background:var(--fond)}
 .nav-mob a.active{color:var(--vert);font-weight:600;background:var(--vert-pale)}
 .nav-cta-mob{background:var(--vert);color:white!important;font-weight:500;margin-bottom:4px}
-
-/* PAGE */
-.page{max-width:1100px;margin:0 auto;padding:36px 24px 80px}
+.page{max-width:960px;margin:0 auto;padding:36px 24px 80px}
 .page-eyebrow{font-size:0.7rem;text-transform:uppercase;letter-spacing:2.5px;color:var(--vert);font-weight:500;margin-bottom:10px}
 .page-title{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--gris-fonce);margin-bottom:8px}
 .page-desc{font-size:0.93rem;color:var(--gris-moyen);font-weight:300;line-height:1.65;max-width:620px;margin-bottom:28px}
-
-/* TABS */
 .tabs{display:flex;gap:0;border-radius:10px;overflow:hidden;border:1.5px solid var(--beige);background:var(--blanc);width:fit-content;margin-bottom:28px}
 .tab{padding:10px 22px;font-size:0.87rem;font-weight:500;cursor:pointer;border:none;font-family:'Source Sans 3',sans-serif;background:transparent;color:var(--gris-moyen);display:flex;align-items:center;gap:6px;transition:all 0.2s;white-space:nowrap}
-.tab.af{background:var(--vert);color:white}
-.tab.ap{background:var(--or);color:white}
-.tab.ai{background:var(--bleu);color:white}
-
-/* SEARCH CARDS */
-.sc{background:var(--blanc);border-radius:12px;padding:24px;border:1px solid #e8e2d8;box-shadow:0 2px 8px rgba(0,0,0,0.04);margin-bottom:18px}
-.sc.pro{border-color:var(--or-clair);background:var(--or-pale)}
-.slbl{font-size:0.7rem;text-transform:uppercase;letter-spacing:2px;font-weight:500;margin-bottom:10px}
-.slbl.f{color:var(--vert)}.slbl.p{color:var(--or)}.slbl.i{color:var(--bleu)}
-.sbar{display:flex;gap:10px;align-items:center}
+.tab.af{background:var(--vert);color:white}.tab.ap{background:var(--or);color:white}.tab.ai{background:var(--bleu);color:white}
+.search-card{background:var(--blanc);border-radius:14px;padding:22px;border:1px solid #e8e2d8;box-shadow:0 2px 8px rgba(0,0,0,0.04);margin-bottom:20px}
+.search-card.pro{border-color:var(--or-clair);background:var(--or-pale)}
+.search-label{font-size:0.7rem;text-transform:uppercase;letter-spacing:2px;font-weight:500;margin-bottom:10px}
+.search-label.f{color:var(--vert)}.search-label.p{color:var(--or)}
+.search-input-wrap{display:flex;gap:10px;align-items:center;margin-bottom:12px}
 .sinp{flex:1;padding:13px 16px;border:1.5px solid #ddd8d0;border-radius:8px;font-size:0.95rem;font-family:'Source Sans 3',sans-serif;background:var(--fond);color:var(--gris-fonce);transition:border-color 0.2s}
 .sinp:focus{outline:none;border-color:var(--vert);background:white}
 .sinp.p{background:white}.sinp.p:focus{border-color:var(--or)}
-.sinp.i{background:white}.sinp.i:focus{border-color:var(--bleu)}
 .bgo{padding:13px 20px;color:white;border:none;border-radius:8px;font-size:0.9rem;font-family:'Source Sans 3',sans-serif;font-weight:500;cursor:pointer;transition:all 0.2s;white-space:nowrap}
 .bgo.f{background:var(--vert)}.bgo.f:hover{background:#4a6050}
 .bgo.p{background:var(--or)}.bgo.p:hover{background:#9a7c30}
-.bgo.i{background:var(--bleu)}.bgo.i:hover{background:#1e3550}
-
-/* MICRO */
+.active-tags{display:flex;flex-wrap:wrap;gap:6px;align-items:center;min-height:0;margin-bottom:4px}
+.active-tags:empty{display:none}
+.ftag{display:inline-flex;align-items:center;gap:5px;padding:4px 12px;border-radius:16px;font-size:0.78rem;font-weight:500}
+.ftag.f{background:var(--vert-pale);border:1.5px solid var(--vert-clair);color:var(--vert)}
+.ftag.p{background:var(--or-pale);border:1.5px solid var(--or-clair);color:var(--or)}
+.ftag-rm{background:none;border:none;cursor:pointer;font-size:0.9rem;line-height:1;padding:0;margin-left:2px;opacity:0.6;transition:opacity 0.15s}
+.ftag-rm:hover{opacity:1}
+.clear-all{font-size:0.72rem;color:var(--rouge);background:none;border:none;cursor:pointer;text-decoration:underline;padding:0;margin-left:4px;white-space:nowrap}
+.filter-selects{display:flex;gap:8px;flex-wrap:wrap;align-items:flex-start;margin-top:14px;padding-top:14px;border-top:1px solid #f0ebe3}
+.fsel{padding:8px 12px;border:1.5px solid #ddd8d0;border-radius:8px;font-size:0.8rem;font-family:'Source Sans 3',sans-serif;background:var(--blanc);color:var(--gris-moyen);cursor:pointer;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'%3E%3Cpath fill='%236b6b6b' d='M5 7L0 2h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;padding-right:28px;transition:all 0.2s;max-width:200px}
+.fsel:focus{outline:none;border-color:var(--vert)}.fsel.on{border-color:var(--vert);color:var(--vert)}
+.region-wrap{display:flex;flex-direction:column;gap:4px}
+.fsel-dept{padding:7px 12px;border:1.5px solid var(--vert-clair);border-radius:8px;font-size:0.78rem;font-family:'Source Sans 3',sans-serif;background:var(--vert-pale);color:var(--vert);cursor:pointer;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'%3E%3Cpath fill='%235a7260' d='M5 7L0 2h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;padding-right:28px;display:none;max-width:200px}
+.fsel-dept.visible{display:block}.fsel-dept.on{border-color:var(--vert);background:var(--vert);color:white}
+select option,select optgroup{font-size:0.82rem}
+.brst{padding:8px 12px;background:transparent;border:1.5px solid #ddd8d0;border-radius:8px;font-size:0.8rem;color:var(--gris-moyen);cursor:pointer;font-family:'Source Sans 3',sans-serif;transition:all 0.2s;align-self:flex-start}
+.brst:hover{border-color:var(--gris-moyen);color:var(--gris-fonce)}
+.themes-title{font-size:0.7rem;text-transform:uppercase;letter-spacing:2px;font-weight:500;margin-bottom:12px;color:var(--vert)}
+.themes{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:24px}
+.theme{background:var(--blanc);border:1.5px solid #e8e2d8;border-radius:10px;padding:12px 10px;cursor:pointer;transition:all 0.2s;text-align:left}
+.theme:hover{border-color:var(--vert-clair);transform:translateY(-1px);box-shadow:0 3px 10px rgba(90,114,96,0.1)}
+.theme.on{border-color:var(--vert);background:var(--vert-pale)}
+.theme-icon{font-size:1.2rem;margin-bottom:5px}.theme-name{font-size:0.82rem;font-weight:600;color:var(--gris-fonce);line-height:1.3;margin-bottom:2px}.theme-n{font-size:0.68rem;color:var(--gris-clair)}
+.rhead{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;gap:8px;flex-wrap:wrap}
+.rcount{font-size:0.85rem;color:var(--gris-moyen)}.rcount strong{color:var(--gris-fonce)}
+.sort-sel{padding:6px 10px;border:1.5px solid #ddd8d0;border-radius:8px;font-size:0.78rem;font-family:'Source Sans 3',sans-serif;background:var(--blanc);color:var(--gris-moyen);cursor:pointer;-webkit-appearance:none}
+.cluster-sum{border-radius:12px;padding:20px;margin-bottom:14px}
+.cluster-sum.f{background:var(--vert-pale);border:1.5px solid var(--vert-clair)}
+.cl-badge{display:inline-flex;align-items:center;gap:4px;color:white;font-size:0.67rem;padding:3px 9px;border-radius:10px;font-weight:500;margin-bottom:8px;background:var(--vert)}
+.cl-title{font-family:'Playfair Display',serif;font-size:1rem;color:var(--gris-fonce);margin-bottom:10px}
+.cl-resume{font-size:0.88rem;color:var(--gris-fonce);line-height:1.7;margin-bottom:12px}
+.cl-stats{display:flex;gap:14px;flex-wrap:wrap}
+.cs{font-size:0.76rem;color:var(--gris-moyen);display:flex;align-items:center;gap:3px}.cs strong{color:var(--vert)}
+.tc{background:var(--blanc);border:1px solid #e8e2d8;border-radius:10px;padding:16px;margin-bottom:10px;transition:all 0.2s}
+.tc:hover{border-color:var(--vert-clair);box-shadow:0 3px 12px rgba(90,114,96,0.09);transform:translateY(-1px)}
+.ttags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px}
+.tag{font-size:0.66rem;padding:2px 8px;border-radius:9px;font-weight:500}
+.tag-d{background:var(--vert-pale);color:var(--vert)}.tag-t{background:var(--peche-pale);color:var(--peche)}
+.tag-r{background:#f0ebe3;color:var(--gris-moyen)}.tag-c{background:var(--vert-pale);color:var(--vert-clair);border:1px solid var(--vert-clair)}
+.tresume{font-family:'Playfair Display',serif;font-size:0.88rem;color:var(--gris-fonce);line-height:1.6;font-style:italic;margin-bottom:10px}
+.tmeta{display:flex;align-items:center;justify-content:space-between;padding-top:8px;border-top:1px solid #f5f2ee;flex-wrap:wrap;gap:6px}
+.tsig{font-size:0.75rem;color:var(--gris-moyen);font-weight:500}.tviews{font-size:0.68rem;color:var(--gris-clair)}
+.btn-ca{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border:1.5px solid var(--beige);border-radius:20px;background:transparent;font-size:0.75rem;color:var(--gris-moyen);cursor:pointer;font-family:'Source Sans 3',sans-serif;transition:all 0.2s}
+.btn-ca:hover{border-color:var(--vert);color:var(--vert);background:var(--vert-pale)}
+.btn-ca.off{opacity:0.35;cursor:default;pointer-events:none}
+.feats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px}
+.feat{border-radius:10px;padding:14px;background:var(--blanc);border:1px solid var(--or-clair)}
+.feat-icon{font-size:1.2rem;margin-bottom:6px}.feat-title{font-size:0.83rem;font-weight:600;color:var(--gris-fonce);margin-bottom:3px}.feat-desc{font-size:0.76rem;color:var(--gris-moyen);line-height:1.5}
 .mic-wrap{position:relative;flex-shrink:0}
-.bmic{width:46px;height:46px;border-radius:50%;border:1.5px solid #ddd8d0;background:var(--blanc);cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;transition:all 0.3s;position:relative;overflow:hidden}
-.bmic.idle{border-color:var(--or-clair);background:var(--or-pale)}
-.bmic.idle:hover{border-color:var(--or);transform:scale(1.05)}
+.bmic{width:46px;height:46px;border-radius:50%;border:1.5px solid var(--or-clair);background:var(--or-pale);cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;transition:all 0.3s}
+.bmic:hover{border-color:var(--or);transform:scale(1.05)}
 .bmic.listening{border-color:var(--peche);background:var(--peche);animation:micPulse 1.2s ease-in-out infinite}
 @keyframes micPulse{0%,100%{box-shadow:0 0 0 0 rgba(212,149,106,0.4)}50%{box-shadow:0 0 0 10px rgba(212,149,106,0)}}
 .mic-hint{position:absolute;bottom:-22px;left:50%;transform:translateX(-50%);font-size:0.65rem;color:var(--gris-clair);white-space:nowrap}
@@ -83,8 +113,21 @@ nav{background:rgba(247,244,239,0.96);backdrop-filter:blur(10px);border-bottom:1
 .mic-dot{width:6px;height:6px;border-radius:50%;background:var(--peche);animation:blink 0.8s infinite;display:none}
 .mic-dot.on{display:inline-block}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0.2}}
-
-/* DIALOGUE AI */
+.pro-adv{margin-top:16px;padding-top:14px;border-top:1px solid var(--or-clair)}
+.pro-adv-title{font-size:0.7rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--or);font-weight:500;margin-bottom:10px}
+.pro-acc{border:1px solid var(--or-clair);border-radius:8px;margin-bottom:7px;overflow:hidden;background:var(--blanc)}
+.pro-acc-hd{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;cursor:pointer;transition:background 0.18s;font-size:0.84rem;font-weight:500;color:var(--gris-fonce);user-select:none}
+.pro-acc-hd:hover,.pro-acc-hd.open{background:var(--or-pale)}
+.pro-acc-arrow{font-size:0.65rem;color:var(--or);transition:transform 0.2s;margin-left:8px}
+.pro-acc-hd.open .pro-acc-arrow{transform:rotate(180deg)}
+.pro-acc-body{display:none;padding:12px 14px;border-top:1px solid var(--or-clair);background:#fffdf5}
+.pro-acc-body.open{display:block}
+.pro-acc-opts{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:6px}
+.pro-opt{padding:5px 12px;border:1.5px solid var(--or-clair);border-radius:16px;font-size:0.78rem;color:var(--gris-moyen);cursor:pointer;background:var(--blanc);font-family:'Source Sans 3',sans-serif;transition:all 0.18s}
+.pro-opt:hover{border-color:var(--or);color:var(--or)}
+.pro-opt.on{border-color:var(--or);background:var(--or);color:white;cursor:default}
+.pro-acc-note{font-size:0.71rem;color:var(--gris-moyen);margin-top:4px;font-style:italic}
+.pro-opts-sub-label{font-size:0.7rem;color:var(--gris-moyen);width:100%;margin-top:8px;margin-bottom:2px;font-weight:500}
 .dialogue-zone{margin-top:16px;border-top:1px solid var(--or-clair);padding-top:16px;display:none}
 .dialogue-zone.open{display:block}
 .dial-msg{display:flex;gap:10px;margin-bottom:12px;align-items:flex-start}
@@ -102,103 +145,11 @@ nav{background:rgba(247,244,239,0.96);backdrop-filter:blur(10px);border-bottom:1
 .btn-dial-send:hover{background:#9a7c30}
 .btn-dial-mic{width:38px;height:38px;border-radius:50%;border:1.5px solid var(--or-clair);background:var(--or-pale);cursor:pointer;font-size:0.95rem;display:flex;align-items:center;justify-content:center;transition:all 0.2s;flex-shrink:0}
 .btn-dial-mic.listening{background:var(--peche);border-color:var(--peche);animation:micPulse 1.2s infinite}
-
-/* PRO FEATURES */
-.feats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px}
-.feat{border-radius:10px;padding:14px}
-.feat.p{background:var(--blanc);border:1px solid var(--or-clair)}
-.feat-icon{font-size:1.2rem;margin-bottom:6px}
-.feat-title{font-size:0.83rem;font-weight:600;color:var(--gris-fonce);margin-bottom:3px}
-.feat-desc{font-size:0.76rem;color:var(--gris-moyen);line-height:1.5}
-
-/* FILTRES */
-.fbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px;align-items:center}
-.fsel{padding:8px 12px;border:1.5px solid #ddd8d0;border-radius:8px;font-size:0.8rem;font-family:'Source Sans 3',sans-serif;background:var(--blanc);color:var(--gris-moyen);cursor:pointer;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'%3E%3Cpath fill='%236b6b6b' d='M5 7L0 2h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;padding-right:28px;transition:all 0.2s;max-width:200px}
-.fsel:focus{outline:none;border-color:var(--vert)}
-.fsel.on{border-color:var(--vert);color:var(--vert)}
-.fsel.ps{border-color:var(--or-clair)}.fsel.ps:focus{border-color:var(--or)}
-.brst{padding:8px 12px;background:transparent;border:1.5px solid #ddd8d0;border-radius:8px;font-size:0.8rem;color:var(--gris-moyen);cursor:pointer;font-family:'Source Sans 3',sans-serif;transition:all 0.2s}
-.brst:hover{border-color:var(--gris-moyen);color:var(--gris-fonce)}
-select option,select optgroup{font-size:0.82rem}
-
-/* CATÉGORIES */
-.cats-ttl{font-size:0.7rem;text-transform:uppercase;letter-spacing:2px;font-weight:500;margin-bottom:12px;color:var(--vert)}
-.cats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:20px}
-.cat{background:var(--blanc);border:1px solid #e8e2d8;border-radius:10px;padding:12px;cursor:pointer;transition:all 0.2s}
-.cat:hover{border-color:var(--vert-clair);transform:translateY(-1px)}
-.cat.open{border-color:var(--vert);background:var(--vert-pale)}
-.cat-icon{font-size:1.1rem;margin-bottom:5px}
-.cat-name{font-size:0.82rem;font-weight:600;color:var(--gris-fonce);margin-bottom:2px;line-height:1.3}
-.cat-n{font-size:0.7rem;color:var(--gris-clair)}
-.cat-subs{display:none;margin-top:8px;padding-top:8px;border-top:1px solid var(--beige-clair);flex-direction:column;gap:3px}
-.cat.open .cat-subs{display:flex}
-.sub{font-size:0.78rem;color:var(--gris-moyen);padding:3px 6px;border-radius:5px;cursor:pointer;transition:all 0.2s;display:flex;justify-content:space-between}
-.sub:hover{background:rgba(255,255,255,0.8);color:var(--vert)}
-.sub-n{font-size:0.68rem;color:var(--gris-clair)}
-
-/* LAYOUT RÉSULTATS */
-.rl{display:grid;grid-template-columns:250px 1fr;gap:20px;align-items:start}
-.sidebar{position:sticky;top:78px}
-.sb{background:var(--blanc);border:1px solid #e8e2d8;border-radius:10px;padding:14px;margin-bottom:10px}
-.sb-ttl{font-size:0.68rem;text-transform:uppercase;letter-spacing:1.5px;font-weight:500;margin-bottom:10px;color:var(--vert)}
-.sb-item{display:flex;align-items:center;gap:7px;padding:5px 0;border-bottom:1px solid #f5f2ee;cursor:pointer}
-.sb-item:last-child{border-bottom:none}
-.sb-item input[type=checkbox]{accent-color:var(--vert);width:14px;height:14px;cursor:pointer;flex-shrink:0}
-.sb-lbl{font-size:0.8rem;color:var(--gris-moyen);flex:1;line-height:1.4}
-.sb-n{font-size:0.68rem;color:var(--gris-clair);background:var(--fond);padding:2px 6px;border-radius:8px}
-
-/* CLUSTER */
-.cluster-sum{border-radius:12px;padding:20px;margin-bottom:16px}
-.cluster-sum.f{background:var(--vert-pale);border:1.5px solid var(--vert-clair)}
-.cluster-sum.p{background:var(--or-pale);border:1.5px solid var(--or-clair)}
-.cl-badge{display:inline-flex;align-items:center;gap:4px;color:white;font-size:0.67rem;padding:3px 9px;border-radius:10px;font-weight:500;margin-bottom:8px}
-.cl-badge.f{background:var(--vert)}.cl-badge.p{background:var(--or)}
-.cl-title{font-family:'Playfair Display',serif;font-size:1rem;color:var(--gris-fonce);margin-bottom:10px}
-.cl-resume{font-size:0.88rem;color:var(--gris-fonce);line-height:1.7;margin-bottom:12px}
-.cl-stats{display:flex;gap:14px;flex-wrap:wrap}
-.cs{font-size:0.76rem;color:var(--gris-moyen);display:flex;align-items:center;gap:3px}
-.cs strong{color:var(--vert)}
-
-/* ANALYSE PRO */
-.pro-analysis{margin-top:14px;padding-top:14px;border-top:1px solid var(--or-clair)}
-.pa-ttl{font-size:0.7rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--or);font-weight:500;margin-bottom:10px}
-.pa-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px}
-.pa-stat{background:var(--blanc);border-radius:8px;padding:10px;text-align:center}
-.pa-n{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--vert);font-weight:600}
-.pa-l{font-size:0.66rem;color:var(--gris-moyen);text-transform:uppercase;letter-spacing:0.3px}
-.refs-block{background:var(--blanc);border-radius:8px;padding:12px;margin-bottom:8px}
-.refs-ttl{font-size:0.68rem;text-transform:uppercase;letter-spacing:1px;color:var(--gris-moyen);font-weight:500;margin-bottom:8px}
-.ref-item{font-size:0.8rem;color:var(--gris-fonce);padding:4px 0;border-bottom:1px solid #f5f2ee;display:flex;align-items:flex-start;gap:8px;line-height:1.5}
-.ref-item:last-child{border-bottom:none}
-.rtag{font-size:0.63rem;padding:2px 7px;border-radius:7px;font-weight:500;flex-shrink:0;margin-top:2px}
-.rtag.loi{background:var(--vert-pale);color:var(--vert)}
-.rtag.eu{background:var(--bleu-pale);color:var(--bleu)}
-.rtag.juris{background:var(--peche-pale);color:var(--peche)}
 .btn-export{padding:7px 14px;background:var(--or);color:white;border:none;border-radius:6px;font-size:0.78rem;font-family:'Source Sans 3',sans-serif;font-weight:500;cursor:pointer;transition:all 0.2s}
 .btn-export:hover{background:#9a7c30}
-
-/* TÉMOIGNAGES */
-.rhead{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;gap:8px;flex-wrap:wrap}
-.rcount{font-size:0.85rem;color:var(--gris-moyen)}
-.rcount strong{color:var(--gris-fonce)}
-.sort-sel{padding:6px 10px;border:1.5px solid #ddd8d0;border-radius:8px;font-size:0.78rem;font-family:'Source Sans 3',sans-serif;background:var(--blanc);color:var(--gris-moyen);cursor:pointer;-webkit-appearance:none}
-.tc{background:var(--blanc);border:1px solid #e8e2d8;border-radius:10px;padding:16px;margin-bottom:10px;transition:all 0.2s}
-.tc:hover{border-color:var(--vert-clair);box-shadow:0 3px 12px rgba(90,114,96,0.09);transform:translateY(-1px)}
-.ttags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px}
-.tag{font-size:0.66rem;padding:2px 8px;border-radius:9px;font-weight:500}
-.tag-d{background:var(--vert-pale);color:var(--vert)}
-.tag-t{background:var(--peche-pale);color:var(--peche)}
-.tag-r{background:#f0ebe3;color:var(--gris-moyen)}
-.tag-c{background:var(--vert-pale);color:var(--vert-clair);border:1px solid var(--vert-clair)}
-.tresume{font-family:'Playfair Display',serif;font-size:0.88rem;color:var(--gris-fonce);line-height:1.6;font-style:italic;margin-bottom:10px}
-.tmeta{display:flex;align-items:center;justify-content:space-between;padding-top:8px;border-top:1px solid #f5f2ee;flex-wrap:wrap;gap:6px}
-.tsig{font-size:0.75rem;color:var(--gris-moyen);font-weight:500}
-.tviews{font-size:0.68rem;color:var(--gris-clair)}
-.btn-ca{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border:1.5px solid var(--beige);border-radius:20px;background:transparent;font-size:0.75rem;color:var(--gris-moyen);cursor:pointer;font-family:'Source Sans 3',sans-serif;transition:all 0.2s}
-.btn-ca:hover{border-color:var(--vert);color:var(--vert);background:var(--vert-pale)}
-.btn-ca.off{opacity:0.35;cursor:default;pointer-events:none}
-
-/* MODALS */
+.pages{display:flex;justify-content:center;gap:6px;margin-top:18px}
+.pg{width:32px;height:32px;border-radius:7px;border:1.5px solid #ddd8d0;background:var(--blanc);font-size:0.82rem;color:var(--gris-moyen);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s;font-family:'Source Sans 3',sans-serif}
+.pg:hover,.pg.on{border-color:var(--vert);background:var(--vert);color:white}
 .moverlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:300;align-items:center;justify-content:center;padding:24px}
 .moverlay.open{display:flex}
 .modal{background:var(--blanc);border-radius:14px;padding:28px;max-width:480px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,0.15)}
@@ -219,8 +170,6 @@ select option,select optgroup{font-size:0.82rem}
 .modal-signup-desc{font-size:0.85rem;color:var(--gris-moyen);line-height:1.65;margin-bottom:20px;text-align:center}
 .btn-signup{display:block;width:100%;padding:13px;background:var(--vert);color:white;border:none;border-radius:8px;font-size:0.95rem;font-family:'Source Sans 3',sans-serif;font-weight:500;cursor:pointer;text-decoration:none;text-align:center;transition:all 0.2s}
 .btn-signup:hover{background:#4a6050}
-
-/* INST */
 .inst-header{background:var(--bleu-pale);border:1.5px solid var(--bleu-clair);border-radius:12px;padding:24px;margin-bottom:24px}
 .inst-badge{display:inline-flex;align-items:center;gap:5px;background:var(--bleu);color:white;font-size:0.7rem;padding:3px 10px;border-radius:10px;font-weight:600;margin-bottom:10px}
 .inst-title{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--bleu);margin-bottom:8px}
@@ -239,13 +188,6 @@ select option,select optgroup{font-size:0.82rem}
 .if-mic-st{font-size:0.75rem;color:var(--gris-moyen);font-style:italic}
 .btn-send-inst{width:100%;padding:13px;background:var(--bleu);color:white;border:none;border-radius:8px;font-size:0.95rem;font-family:'Source Sans 3',sans-serif;font-weight:500;cursor:pointer;transition:all 0.2s;margin-top:4px}
 .btn-send-inst:hover{background:#1e3550}
-
-/* PAGINATION */
-.pages{display:flex;justify-content:center;gap:6px;margin-top:18px}
-.pg{width:32px;height:32px;border-radius:7px;border:1.5px solid #ddd8d0;background:var(--blanc);font-size:0.82rem;color:var(--gris-moyen);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s;font-family:'Source Sans 3',sans-serif}
-.pg:hover,.pg.on{border-color:var(--vert);background:var(--vert);color:white}
-
-/* SECTION TARIFS */
 .tarifs-section{background:var(--blanc);border-top:2px solid var(--beige);padding:60px 24px 80px}
 .tarifs-inner{max-width:1060px;margin:0 auto}
 .tarifs-eyebrow{font-size:0.7rem;text-transform:uppercase;letter-spacing:2.5px;color:var(--vert);font-weight:500;margin-bottom:10px;text-align:center}
@@ -266,9 +208,7 @@ select option,select optgroup{font-size:0.82rem}
 .plan-desc{font-size:0.85rem;color:var(--gris-moyen);line-height:1.6;margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid var(--beige-clair)}
 .plan-features{margin-bottom:24px}
 .pf{display:flex;align-items:flex-start;gap:10px;padding:6px 0;font-size:0.84rem;color:var(--gris-fonce);line-height:1.5}
-.pf-icon{flex-shrink:0;font-size:0.9rem;margin-top:1px}
-.pf.off{color:var(--gris-clair)}
-.pf-section{font-size:0.68rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--gris-clair);margin-top:12px;margin-bottom:4px;font-weight:500}
+.pf-icon{flex-shrink:0;font-size:0.9rem;margin-top:1px}.pf.off{color:var(--gris-clair)}
 .btn-plan{width:100%;padding:13px;border:none;border-radius:9px;font-size:0.95rem;font-family:'Source Sans 3',sans-serif;font-weight:500;cursor:pointer;transition:all 0.2s}
 .btn-plan.f{background:var(--vert-pale);color:var(--vert)}.btn-plan.f:hover{background:var(--vert);color:white}
 .btn-plan.p{background:var(--or);color:white}.btn-plan.p:hover{background:#9a7c30}
@@ -276,662 +216,651 @@ select option,select optgroup{font-size:0.82rem}
 .tarifs-link{text-align:center;margin-top:20px}
 .tarifs-link a{font-size:0.9rem;color:var(--vert);text-decoration:none;font-weight:500}
 .tarifs-link a:hover{text-decoration:underline}
-
-/* FILTRES ACTIFS — fix: une seule propriété display (none par défaut, géré par JS) */
-#activeFilters{display:none;margin-top:12px;flex-wrap:wrap;gap:6px;align-items:center}
-
+hr{border:none;border-top:1px solid var(--beige);margin:16px 0}
 .hidden{display:none!important}
-hr{border:none;border-top:1px solid var(--beige);margin:20px 0}
-
-@media(max-width:900px){
-  .rl{grid-template-columns:1fr}.sidebar{position:static}
-  .cats{grid-template-columns:1fr 1fr}.feats{grid-template-columns:1fr 1fr}
-  .pa-grid{grid-template-columns:1fr 1fr}
-  .plans{grid-template-columns:1fr}
-}
-@media(max-width:600px){
-  nav{padding:0 18px}.nav-links{display:none}.nav-burger{display:flex}
-  .page{padding:20px 16px 60px}
-  .cats{grid-template-columns:1fr}.feats{grid-template-columns:1fr}
-  .tabs{width:100%}.tab{flex:1;justify-content:center;font-size:0.78rem;padding:10px 6px}
-  .sbar{flex-wrap:wrap}.sinp{width:100%}
-  .pa-grid{grid-template-columns:1fr 1fr}
-}
+@media(max-width:900px){.themes{grid-template-columns:1fr 1fr 1fr}.feats{grid-template-columns:1fr 1fr}.plans{grid-template-columns:1fr}}
+@media(max-width:600px){nav{padding:0 18px}.nav-links{display:none}.nav-burger{display:flex}.page{padding:20px 16px 60px}.themes{grid-template-columns:1fr 1fr}.tabs{width:100%}.tab{flex:1;justify-content:center;font-size:0.78rem;padding:10px 6px}.search-input-wrap{flex-wrap:wrap}.sinp{width:100%}.feats{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-
-<!-- NAV — page courante : 🔍 Consulter -->
 <nav>
   <a href="index.html" class="nav-logo">moi <span class="et">&</span> <span class="loi">loi</span></a>
   <div class="nav-links">
-    <a href="compte.html" class="nav-cta">🎙️ Déposer</a>
-    <a href="consulter.html" class="active">🔍 Consulter</a>
-    <a href="charte.html">📋 Charte</a>
-    <a href="tarifs.html">💶 Tarifs</a>
-    <a href="compte.html">👤 Connexion</a>
+    <a href="temoigner.html" class="nav-cta">&#127897;&#65039; D&eacute;poser</a>
+    <a href="consulter.html" class="active">&#128269; Consulter</a>
+    <a href="charte.html">&#128203; Charte</a>
+    <a href="tarifs.html">&#128182; Tarifs</a>
+    <a href="compte.html">&#128100; Connexion / Cr&eacute;er un compte</a>
   </div>
   <button class="nav-burger" onclick="document.getElementById('nm').classList.toggle('open')" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
 </nav>
 <div class="nav-mob" id="nm">
-  <a href="compte.html" class="nav-cta-mob">🎙️ Déposer un témoignage</a>
-  <a href="consulter.html" class="active">🔍 Consulter les témoignages</a>
-  <a href="charte.html">📋 Charte & Règles</a>
-  <a href="tarifs.html">💶 Tarifs</a>
-  <a href="compte.html">👤 Connexion / Créer un compte</a>
+  <a href="temoigner.html" class="nav-cta-mob">&#127897;&#65039; D&eacute;poser un t&eacute;moignage</a>
+  <a href="consulter.html" class="active">&#128269; Consulter les t&eacute;moignages</a>
+  <a href="charte.html">&#128203; Charte &amp; R&egrave;gles</a>
+  <a href="tarifs.html">&#128182; Tarifs</a>
+  <a href="compte.html">&#128100; Connexion / Cr&eacute;er un compte</a>
 </div>
-
-<!-- MODAL CONTACT -->
 <div class="moverlay" id="mContact">
   <div class="modal">
     <div class="modal-title">Contacter l'auteur</div>
-    <div class="modal-desc">Votre message sera transmis via la messagerie interne. L'auteur répond sous son pseudonyme — votre identité réelle reste anonyme.</div>
-    <div class="modal-field"><label>Votre message</label><textarea placeholder="Décrivez votre situation ou la raison de votre prise de contact…"></textarea></div>
-    <div class="modal-note">🔒 Ni votre email, ni votre identité réelle ne seront communiqués. L'échange se fait uniquement via la messagerie moietloi.fr.</div>
+    <div class="modal-desc">Votre message sera transmis via la messagerie interne. L'auteur r&eacute;pond sous son pseudonyme &mdash; votre identit&eacute; r&eacute;elle reste anonyme.</div>
+    <div class="modal-field"><label>Votre message</label><textarea placeholder="D&eacute;crivez votre situation ou la raison de votre prise de contact&hellip;"></textarea></div>
+    <div class="modal-note">&#128274; Ni votre email, ni votre identit&eacute; r&eacute;elle ne seront communiqu&eacute;s. L'&eacute;change se fait uniquement via la messagerie moietloi.fr.</div>
     <div class="mbtns">
       <button class="btn-cancel" onclick="cm('mContact')">Annuler</button>
-      <button class="btn-send" onclick="sendMsg()">Envoyer →</button>
+      <button class="btn-send" onclick="sendMsg()">Envoyer &rarr;</button>
     </div>
   </div>
 </div>
-
-<!-- MODAL CRÉER COMPTE -->
 <div class="moverlay" id="mSignup">
   <div class="modal">
-    <div class="modal-signup-icon">✉️</div>
-    <div class="modal-signup-title">Créez un compte pour contacter l'auteur</div>
-    <div class="modal-signup-desc">La messagerie interne est réservée aux membres. Créer un compte est gratuit et prend 30 secondes.</div>
-    <a href="compte.html" class="btn-signup">Créer mon compte gratuitement →</a>
+    <div class="modal-signup-icon">&#9993;&#65039;</div>
+    <div class="modal-signup-title">Cr&eacute;ez un compte pour contacter l'auteur</div>
+    <div class="modal-signup-desc">La messagerie interne est r&eacute;serv&eacute;e aux membres. Cr&eacute;er un compte est gratuit et prend 30 secondes.</div>
+    <a href="compte.html" class="btn-signup">Cr&eacute;er mon compte gratuitement &rarr;</a>
     <button class="btn-cancel" style="width:100%;margin-top:10px;" onclick="cm('mSignup')">Annuler</button>
   </div>
 </div>
-
 <div class="page">
-  <div class="page-eyebrow">Base de témoignages</div>
-  <h1 class="page-title">Consulter & Rechercher</h1>
-  <p class="page-desc">Explorez les témoignages documentant des situations vécues avec l'administration, les services publics et les organismes réglementaires en France.</p>
-
+  <div class="page-eyebrow">Base de t&eacute;moignages</div>
+  <h1 class="page-title">Consulter &amp; Rechercher</h1>
+  <p class="page-desc">Explorez les t&eacute;moignages documentant des situations v&eacute;cues avec l'administration, les services publics et les organismes r&eacute;glementaires en France.</p>
   <div class="tabs">
-    <button class="tab af" id="t0" onclick="switchTab(0)">🔓 Accès libre</button>
-    <button class="tab" id="t1" onclick="switchTab(1)">⭐ Accès Pro</button>
-    <button class="tab" id="t2" onclick="switchTab(2)">🏛️ Institutionnel</button>
+    <button class="tab af" id="t0" onclick="switchTab(0)">&#128275; Acc&egrave;s libre</button>
+    <button class="tab" id="t1" onclick="switchTab(1)">&#11088; Acc&egrave;s Pro</button>
+    <button class="tab" id="t2" onclick="switchTab(2)">&#127963;&#65039; Institutionnel</button>
   </div>
 
   <!-- ZONE LIBRE -->
   <div id="z0">
-    <div class="sc">
-      <div class="slbl f">Recherche</div>
-      <div class="sbar">
-        <input type="text" class="sinp" id="q0" placeholder="Mots-clés — ex : délai de réponse, normes bâtiment…" onkeydown="if(event.key==='Enter')doFreeSearch()">
-        <button class="bgo f" id="btnSearch0" onclick="doFreeSearch()">Rechercher →</button>
+    <div class="search-card">
+      <div class="search-label f">Recherche</div>
+      <div class="search-input-wrap">
+        <input type="text" class="sinp" id="q0" placeholder="Mots-cl&eacute;s &mdash; ex&nbsp;: d&eacute;lai de r&eacute;ponse, normes b&acirc;timent&hellip;" onkeydown="if(event.key==='Enter')doSearch()">
+        <button class="bgo f" onclick="doSearch()">Rechercher &rarr;</button>
       </div>
-      <!-- BUG FIX v1.1 : suppression du double display inline, géré par CSS + JS -->
-      <div id="activeFilters">
-        <span style="font-size:0.72rem;color:var(--gris-moyen);">Filtres actifs :</span>
-        <div id="filterTags" style="display:flex;flex-wrap:wrap;gap:6px;"></div>
-        <button onclick="clearAllFilters()" style="font-size:0.72rem;color:var(--rouge);background:none;border:none;cursor:pointer;text-decoration:underline;">Tout effacer</button>
-      </div>
-    </div>
-
-    <div class="fbar">
-      <select class="fsel" id="fd0" onchange="flt(0)">
-        <option value="">Tous les domaines</option>
-        <optgroup label="Droit public & Administratif">
-          <option>Urbanisme / PLU / Permis de construire</option>
-          <option>ERP / Sécurité des bâtiments</option>
-          <option>Droit rural / SAFER / Foncier agricole</option>
-          <option>Environnement / ICPE / Natura 2000</option>
-          <option>Commande publique / Marchés publics</option>
-          <option>Patrimoine / Monuments historiques / ABF</option>
-        </optgroup>
-        <optgroup label="Droit social & Emploi">
-          <option>Droit du travail / Rupture de contrat</option>
-          <option>Sécurité sociale / Maladie / AT-MP</option>
-          <option>Retraite / Pension / CNAV / AGIRC-ARRCO</option>
-          <option>Chômage / France Travail</option>
-          <option>CAF / Allocations familiales / RSA / APL</option>
-          <option>Handicap / MDPH / AAH / RQTH</option>
-          <option>Formation professionnelle / CPF / OPCO</option>
-        </optgroup>
-        <optgroup label="Fiscalité & Finances publiques">
-          <option>Impôt sur le revenu / IR</option>
-          <option>TVA / CFE / Taxes professionnelles</option>
-          <option>Taxe foncière / Taxe d'habitation</option>
-          <option>Contrôle fiscal / Redressement / URSSAF</option>
-        </optgroup>
-        <optgroup label="Normes & Conformité">
-          <option>Normes sanitaires / HACCP / Hygiène alimentaire</option>
-          <option>Sécurité incendie / Sécurité des bâtiments</option>
-          <option>Normes électriques / Gaz / Diagnostics / DPE</option>
-        </optgroup>
-        <optgroup label="Services essentiels & Monopoles">
-          <option>Électricité — fournisseurs (EDF, Engie, TotalEnergies…)</option>
-          <option>Réseau électrique / Gaz (Enedis, GrDF)</option>
-          <option>Eau / Assainissement (Suez, Veolia, Saur, régies)</option>
-          <option>Télécom / Internet / Mobile (Orange, SFR, Free, Bouygues)</option>
-          <option>Poste / Colis / Courrier (La Poste, DHL, UPS, FedEx)</option>
-          <option>Transport ferroviaire (SNCF)</option>
-          <option>Transport collectif urbain (RATP, TER, réseaux locaux)</option>
-          <option>Autoroutes / Péages</option>
-          <option>Aéroports</option>
-        </optgroup>
-        <optgroup label="Santé & Médico-social">
-          <option>Hôpital public / CHU / Urgences</option>
-          <option>Accès aux soins / Déserts médicaux</option>
-          <option>EHPAD / Établissements médico-sociaux</option>
-          <option>Remboursements Assurance maladie / CPAM</option>
-        </optgroup>
-        <optgroup label="Justice & Procédures">
-          <option>Justice civile / Tribunaux judiciaires</option>
-          <option>Justice administrative / TA / CAA / Conseil d'État</option>
-          <option>Médiateur / Défenseur des droits</option>
-        </optgroup>
-        <optgroup label="Immigration & Nationalité">
-          <option>Titre de séjour / Visa / Préfecture</option>
-          <option>Naturalisation / Nationalité française</option>
-          <option>Asile / Réfugiés / OFPRA / CNDA</option>
-        </optgroup>
-        <optgroup label="Droit européen">
-          <option>Directive non ou mal transposée</option>
-          <option>RGPD / Protection des données / CNIL</option>
-        </optgroup>
-      </select>
-
-      <select class="fsel" id="ft0" onchange="flt(0)">
-        <option value="">Toutes les situations</option>
-        <optgroup label="Sur la norme">
-          <option>Norme inadaptée à la réalité</option>
-          <option>Norme contradictoire</option>
-          <option>Norme disproportionnée</option>
-          <option>Vide juridique</option>
-        </optgroup>
-        <optgroup label="Sur l'application">
-          <option>Application rétroactive</option>
-          <option>Délai de traitement excessif</option>
-          <option>Absence de réponse / Silence administratif</option>
-          <option>Inégalité de traitement</option>
-        </optgroup>
-        <optgroup label="Sur la procédure">
-          <option>Vice de procédure</option>
-          <option>Décision sans motivation</option>
-          <option>Recours sans effet</option>
-        </optgroup>
-        <optgroup label="Sur le service">
-          <option>Non-respect des engagements de service</option>
-          <option>Facturation contestée</option>
-          <option>Interruption de service injustifiée</option>
-          <option>Accès au service difficile ou impossible</option>
-        </optgroup>
-      </select>
-
-      <select class="fsel" id="fr0" onchange="flt(0)">
-        <option value="">Toutes les régions</option>
-        <optgroup label="Régions métropolitaines">
-          <option>Île-de-France</option>
-          <option>Auvergne-Rhône-Alpes</option>
-          <option>Bretagne</option>
-          <option>Grand Est</option>
-          <option>Hauts-de-France</option>
-          <option>Normandie</option>
-          <option>Nouvelle-Aquitaine</option>
-          <option>Occitanie</option>
-          <option>Pays de la Loire</option>
-          <option>Provence-Alpes-Côte d'Azur</option>
-          <option>Corse</option>
-        </optgroup>
-        <optgroup label="DOM-TOM">
-          <option>Guadeloupe (971)</option>
-          <option>Martinique (972)</option>
-          <option>Guyane (973)</option>
-          <option>La Réunion (974)</option>
-          <option>Mayotte (976)</option>
-        </optgroup>
-        <option>Étranger / Non-résident</option>
-      </select>
-
-      <select class="fsel" id="fp0" onchange="flt(0)">
-        <option value="">Toute période</option>
-        <option>Ce mois</option><option>3 derniers mois</option>
-        <option>Cette année</option><option>2024</option>
-        <option>2023</option><option>2022</option><option>2021 et avant</option>
-      </select>
-      <button class="brst" onclick="rst(0)">Réinitialiser</button>
-    </div>
-
-    <div class="cats-ttl">Parcourir par thème</div>
-    <div class="cats">
-      <div class="cat" onclick="tc(this)"><div class="cat-icon">🏛️</div><div class="cat-name">Urbanisme & Réglementation locale</div><div class="cat-n">47 témoignages</div><div class="cat-subs"><div class="sub" onclick="sq('PLU zonage permis construire',0);event.stopPropagation()"><span>PLU / Zonage / Permis</span><span class="sub-n">18</span></div><div class="sub" onclick="sq('ERP sécurité incendie bâtiment',0);event.stopPropagation()"><span>ERP / Sécurité</span><span class="sub-n">12</span></div><div class="sub" onclick="sq('droit rural SAFER foncier agricole',0);event.stopPropagation()"><span>Droit rural / SAFER</span><span class="sub-n">9</span></div><div class="sub" onclick="sq('environnement ICPE autorisation',0);event.stopPropagation()"><span>Environnement / ICPE</span><span class="sub-n">8</span></div></div></div>
-      <div class="cat" onclick="tc(this)"><div class="cat-icon">💶</div><div class="cat-name">Fiscalité & Cotisations</div><div class="cat-n">38 témoignages</div><div class="cat-subs"><div class="sub" onclick="sq('URSSAF cotisations sociales contrôle',0);event.stopPropagation()"><span>Cotisations / URSSAF</span><span class="sub-n">14</span></div><div class="sub" onclick="sq('contrôle fiscal redressement',0);event.stopPropagation()"><span>Contrôle fiscal</span><span class="sub-n">11</span></div><div class="sub" onclick="sq('TVA remboursement crédit',0);event.stopPropagation()"><span>TVA / Remboursements</span><span class="sub-n">8</span></div><div class="sub" onclick="sq('taxe foncière locale',0);event.stopPropagation()"><span>Taxes locales</span><span class="sub-n">5</span></div></div></div>
-      <div class="cat" onclick="tc(this)"><div class="cat-icon">⚡</div><div class="cat-name">Services essentiels & Réseaux</div><div class="cat-n">52 témoignages</div><div class="cat-subs"><div class="sub" onclick="sq('réseau électrique Enedis EDF',0);event.stopPropagation()"><span>Électricité / Enedis</span><span class="sub-n">16</span></div><div class="sub" onclick="sq('eau assainissement Suez Veolia',0);event.stopPropagation()"><span>Eau / Assainissement</span><span class="sub-n">12</span></div><div class="sub" onclick="sq('transport ferroviaire SNCF',0);event.stopPropagation()"><span>SNCF / Ferroviaire</span><span class="sub-n">14</span></div><div class="sub" onclick="sq('télécom internet opérateur Orange',0);event.stopPropagation()"><span>Télécom / Internet</span><span class="sub-n">10</span></div></div></div>
-      <div class="cat" onclick="tc(this)"><div class="cat-icon">👷</div><div class="cat-name">Droit social & Emploi</div><div class="cat-n">34 témoignages</div><div class="cat-subs"><div class="sub" onclick="sq('droit travail licenciement rupture',0);event.stopPropagation()"><span>Travail / Rupture contrat</span><span class="sub-n">12</span></div><div class="sub" onclick="sq('allocations CAF RSA APL',0);event.stopPropagation()"><span>CAF / Allocations</span><span class="sub-n">10</span></div><div class="sub" onclick="sq('chômage France Travail indemnisation',0);event.stopPropagation()"><span>Chômage / France Travail</span><span class="sub-n">8</span></div><div class="sub" onclick="sq('retraite pension liquidation',0);event.stopPropagation()"><span>Retraite / Pension</span><span class="sub-n">4</span></div></div></div>
-      <div class="cat" onclick="tc(this)"><div class="cat-icon">🏥</div><div class="cat-name">Santé & Services de soins</div><div class="cat-n">29 témoignages</div><div class="cat-subs"><div class="sub" onclick="sq('hôpital urgences prise en charge',0);event.stopPropagation()"><span>Hôpital / Urgences</span><span class="sub-n">11</span></div><div class="sub" onclick="sq('accès médecin désert médical',0);event.stopPropagation()"><span>Accès aux soins</span><span class="sub-n">9</span></div><div class="sub" onclick="sq('EHPAD médico-social établissement',0);event.stopPropagation()"><span>EHPAD / Médico-social</span><span class="sub-n">6</span></div><div class="sub" onclick="sq('handicap MDPH AAH droits',0);event.stopPropagation()"><span>Handicap / MDPH</span><span class="sub-n">3</span></div></div></div>
-      <div class="cat" onclick="tc(this)"><div class="cat-icon">📋</div><div class="cat-name">Normes & Conformité</div><div class="cat-n">23 témoignages</div><div class="cat-subs"><div class="sub" onclick="sq('normes HACCP hygiène alimentaire',0);event.stopPropagation()"><span>Hygiène / HACCP</span><span class="sub-n">9</span></div><div class="sub" onclick="sq('sécurité incendie normes bâtiment',0);event.stopPropagation()"><span>Sécurité / Incendie</span><span class="sub-n">8</span></div><div class="sub" onclick="sq('diagnostic DPE immobilier',0);event.stopPropagation()"><span>Diagnostics / DPE</span><span class="sub-n">6</span></div></div></div>
-      <div class="cat" onclick="tc(this)"><div class="cat-icon">⚖️</div><div class="cat-name">Justice & Procédures</div><div class="cat-n">19 témoignages</div><div class="cat-subs"><div class="sub" onclick="sq('tribunal judiciaire procédure civile',0);event.stopPropagation()"><span>Justice civile</span><span class="sub-n">8</span></div><div class="sub" onclick="sq('recours administratif tribunal administratif',0);event.stopPropagation()"><span>Justice administrative</span><span class="sub-n">7</span></div><div class="sub" onclick="sq('médiateur défenseur droits',0);event.stopPropagation()"><span>Médiation / Défenseur</span><span class="sub-n">4</span></div></div></div>
-      <div class="cat" onclick="tc(this)"><div class="cat-icon">🇪🇺</div><div class="cat-name">Droit européen</div><div class="cat-n">11 témoignages</div><div class="cat-subs"><div class="sub" onclick="sq('directive européenne transposition France',0);event.stopPropagation()"><span>Directives / Transposition</span><span class="sub-n">5</span></div><div class="sub" onclick="sq('RGPD données personnelles CNIL',0);event.stopPropagation()"><span>RGPD / CNIL</span><span class="sub-n">4</span></div><div class="sub" onclick="sq('libre circulation droits citoyens européens',0);event.stopPropagation()"><span>Libre circulation</span><span class="sub-n">2</span></div></div></div>
-    </div>
-
-    <div class="rl">
-      <div class="sidebar">
-        <div class="sb">
-          <div class="sb-ttl">Nature de la situation</div>
-          <div class="sb-item"><input type="checkbox" onchange="sidebarChanged('Norme inadaptée ou contradictoire')"><span class="sb-lbl">Norme inadaptée ou contradictoire</span><span class="sb-n">42</span></div>
-          <div class="sb-item"><input type="checkbox" onchange="sidebarChanged('Décision contestée')"><span class="sb-lbl">Décision contestée</span><span class="sb-n">38</span></div>
-          <div class="sb-item"><input type="checkbox" onchange="sidebarChanged('Délai de traitement long')"><span class="sb-lbl">Délai de traitement long</span><span class="sb-n">31</span></div>
-          <div class="sb-item"><input type="checkbox" onchange="sidebarChanged('Absence de réponse')"><span class="sb-lbl">Absence de réponse</span><span class="sb-n">27</span></div>
-          <div class="sb-item"><input type="checkbox" onchange="sidebarChanged('Recours sans résultat')"><span class="sb-lbl">Recours sans résultat</span><span class="sb-n">24</span></div>
-          <div class="sb-item"><input type="checkbox" onchange="sidebarChanged('Facturation contestée')"><span class="sb-lbl">Facturation contestée</span><span class="sb-n">19</span></div>
-          <div class="sb-item"><input type="checkbox" onchange="sidebarChanged('Accès au service difficile')"><span class="sb-lbl">Accès au service difficile</span><span class="sb-n">15</span></div>
-          <div class="sb-item"><input type="checkbox" onchange="sidebarChanged('Vice de procédure')"><span class="sb-lbl">Vice de procédure</span><span class="sb-n">12</span></div>
-          <div class="sb-item"><input type="checkbox" onchange="sidebarChanged('Droit européen concerné')"><span class="sb-lbl">Droit européen concerné</span><span class="sb-n">11</span></div>
+      <div class="active-tags" id="tags0"></div>
+      <div class="filter-selects">
+        <select class="fsel" id="fd0" onchange="selFilter('fd0')">
+          <option value="">Domaine</option>
+          <optgroup label="Droit public &amp; Administratif">
+            <option>Urbanisme / PLU / Permis de construire</option>
+            <option>ERP / S&eacute;curit&eacute; des b&acirc;timents</option>
+            <option>Droit rural / SAFER / Foncier agricole</option>
+            <option>Environnement / ICPE / Natura 2000</option>
+            <option>Commande publique / March&eacute;s publics</option>
+            <option>Patrimoine / Monuments historiques / ABF</option>
+          </optgroup>
+          <optgroup label="Droit social &amp; Emploi">
+            <option>Droit du travail / Rupture de contrat</option>
+            <option>S&eacute;curit&eacute; sociale / Maladie / AT-MP</option>
+            <option>Retraite / Pension</option>
+            <option>Ch&ocirc;mage / France Travail</option>
+            <option>CAF / Allocations familiales / RSA / APL</option>
+            <option>Handicap / MDPH / AAH / RQTH</option>
+          </optgroup>
+          <optgroup label="Fiscalit&eacute;">
+            <option>Imp&ocirc;t sur le revenu / IR</option>
+            <option>TVA / CFE / Taxes professionnelles</option>
+            <option>Taxe fonci&egrave;re / Taxe d'habitation</option>
+            <option>Contr&ocirc;le fiscal / Redressement / URSSAF</option>
+          </optgroup>
+          <optgroup label="Normes &amp; Conformit&eacute;">
+            <option>Normes sanitaires / HACCP / Hygi&egrave;ne alimentaire</option>
+            <option>S&eacute;curit&eacute; incendie / S&eacute;curit&eacute; des b&acirc;timents</option>
+            <option>Normes &eacute;lectriques / Gaz / Diagnostics / DPE</option>
+          </optgroup>
+          <optgroup label="Services essentiels">
+            <option>Electricit&eacute; (EDF, Engie, Enedis&hellip;)</option>
+            <option>Eau / Assainissement</option>
+            <option>T&eacute;l&eacute;com / Internet / Mobile</option>
+            <option>Poste / Colis / Courrier</option>
+            <option>Transport ferroviaire (SNCF)</option>
+            <option>Transport collectif urbain</option>
+            <option>Autoroutes / P&eacute;ages</option>
+          </optgroup>
+          <optgroup label="Sant&eacute; &amp; M&eacute;dico-social">
+            <option>H&ocirc;pital public / CHU / Urgences</option>
+            <option>Acc&egrave;s aux soins / D&eacute;serts m&eacute;dicaux</option>
+            <option>EHPAD / &Eacute;tablissements m&eacute;dico-sociaux</option>
+            <option>Remboursements Assurance maladie / CPAM</option>
+          </optgroup>
+          <optgroup label="Justice &amp; Proc&eacute;dures">
+            <option>Justice civile / Tribunaux judiciaires</option>
+            <option>Justice administrative / TA / CAA</option>
+            <option>M&eacute;diateur / D&eacute;fenseur des droits</option>
+          </optgroup>
+          <optgroup label="Immigration &amp; Nationalit&eacute;">
+            <option>Titre de s&eacute;jour / Visa / Pr&eacute;fecture</option>
+            <option>Naturalisation / Nationalit&eacute; fran&ccedil;aise</option>
+            <option>Asile / R&eacute;fugi&eacute;s / OFPRA</option>
+          </optgroup>
+          <optgroup label="Droit europ&eacute;en">
+            <option>Directive non ou mal transpos&eacute;e</option>
+            <option>RGPD / Protection des donn&eacute;es / CNIL</option>
+          </optgroup>
+        </select>
+        <select class="fsel" id="ft0" onchange="selFilter('ft0')">
+          <option value="">Type de situation</option>
+          <optgroup label="Sur la norme">
+            <option>Norme inadapt&eacute;e &agrave; la r&eacute;alit&eacute;</option>
+            <option>Norme contradictoire</option>
+            <option>Norme disproportionn&eacute;e</option>
+            <option>Vide juridique</option>
+          </optgroup>
+          <optgroup label="Sur l'application">
+            <option>Application r&eacute;troactive</option>
+            <option>D&eacute;lai de traitement excessif</option>
+            <option>Absence de r&eacute;ponse / Silence administratif</option>
+            <option>In&eacute;galit&eacute; de traitement</option>
+          </optgroup>
+          <optgroup label="Sur la proc&eacute;dure">
+            <option>Vice de proc&eacute;dure</option>
+            <option>D&eacute;cision sans motivation</option>
+            <option>Recours sans effet</option>
+          </optgroup>
+          <optgroup label="Sur le service">
+            <option>Non-respect des engagements de service</option>
+            <option>Facturation contest&eacute;e</option>
+            <option>Interruption de service injustifi&eacute;e</option>
+            <option>Acc&egrave;s au service difficile ou impossible</option>
+          </optgroup>
+        </select>
+        <div class="region-wrap">
+          <select class="fsel" id="fr0" onchange="onRegionChange()">
+            <option value="">R&eacute;gion</option>
+            <optgroup label="R&eacute;gions m&eacute;tropolitaines">
+              <option value="Ile-de-France">Ile-de-France</option>
+              <option value="Auvergne-Rhone-Alpes">Auvergne-Rh&ocirc;ne-Alpes</option>
+              <option value="Bretagne">Bretagne</option>
+              <option value="Grand Est">Grand Est</option>
+              <option value="Hauts-de-France">Hauts-de-France</option>
+              <option value="Normandie">Normandie</option>
+              <option value="Nouvelle-Aquitaine">Nouvelle-Aquitaine</option>
+              <option value="Occitanie">Occitanie</option>
+              <option value="Pays de la Loire">Pays de la Loire</option>
+              <option value="PACA">Provence-Alpes-C&ocirc;te d'Azur</option>
+              <option value="Corse">Corse</option>
+            </optgroup>
+            <optgroup label="DOM-TOM">
+              <option value="Guadeloupe">Guadeloupe (971)</option>
+              <option value="Martinique">Martinique (972)</option>
+              <option value="Guyane">Guyane (973)</option>
+              <option value="La Reunion">La R&eacute;union (974)</option>
+              <option value="Mayotte">Mayotte (976)</option>
+            </optgroup>
+            <option value="Etranger">Etranger / Non-r&eacute;sident</option>
+          </select>
+          <select class="fsel-dept" id="fdept0" onchange="selFilter('fdept0')">
+            <option value="">Tous les d&eacute;partements</option>
+          </select>
         </div>
-        <div class="sb">
-          <div class="sb-ttl">Profil du témoin</div>
-          <div class="sb-item"><input type="checkbox" onchange="sidebarChanged('Particulier')"><span class="sb-lbl">Particulier</span><span class="sb-n">67</span></div>
-          <div class="sb-item"><input type="checkbox" onchange="sidebarChanged('Entrepreneur / Dirigeant')"><span class="sb-lbl">Entrepreneur / Dirigeant</span><span class="sb-n">48</span></div>
-          <div class="sb-item"><input type="checkbox" onchange="sidebarChanged('Agriculteur / Rural')"><span class="sb-lbl">Agriculteur / Rural</span><span class="sb-n">29</span></div>
-          <div class="sb-item"><input type="checkbox" onchange="sidebarChanged('Profession libérale')"><span class="sb-lbl">Profession libérale</span><span class="sb-n">22</span></div>
-          <div class="sb-item"><input type="checkbox" onchange="sidebarChanged('Association / ESS')"><span class="sb-lbl">Association / ESS</span><span class="sb-n">14</span></div>
-          <div class="sb-item"><input type="checkbox" onchange="sidebarChanged('Non-résident / Étranger')"><span class="sb-lbl">Non-résident / Étranger</span><span class="sb-n">11</span></div>
-        </div>
-        <button id="btnApplySidebar" onclick="doFreeSearch()" style="display:none;width:100%;padding:11px;background:var(--vert);color:white;border:none;border-radius:8px;font-size:0.87rem;font-family:'Source Sans 3',sans-serif;font-weight:500;cursor:pointer;transition:all 0.2s;margin-top:4px;">
-          Appliquer les filtres →
-        </button>
-      </div>
-
-      <div>
-        <div class="rhead">
-          <div class="rcount" id="rc0"><strong>223</strong> témoignages publiés</div>
-          <select class="sort-sel"><option>Plus récents</option><option>Plus consultés</option><option>Par cluster</option></select>
-        </div>
-
-        <div class="cluster-sum f">
-          <div class="cl-badge f">📊 12 situations similaires</div>
-          <div class="cl-title">Cohérence des avis de conformité ERP en zones agricoles</div>
-          <div class="cl-resume">Douze témoignages documentent des situations où un avis de conformité délivré par un organisme de contrôle agréé a été suivi d'une décision administrative différente, portant sur les mêmes travaux ou installations.</div>
-          <div class="cl-stats">
-            <span class="cs">📍 <strong>8 régions</strong></span>
-            <span class="cs">📅 <strong>2023–2026</strong></span>
-            <span class="cs">⚖️ <strong>3 recours</strong> en cours</span>
-            <span class="cs">👁 <strong>1 247</strong> lectures</span>
-          </div>
-        </div>
-
-        <hr>
-        <div class="rhead"><div class="rcount"><strong>12</strong> témoignages dans ce cluster</div></div>
-
-        <div class="tc">
-          <div class="ttags"><span class="tag tag-d">ERP / Urbanisme</span><span class="tag tag-t">Norme contradictoire</span><span class="tag tag-r">📍 Vaucluse</span><span class="tag tag-c">×12 similaires</span></div>
-          <div class="tresume">"Un établissement ayant reçu un avis de conformité d'un organisme agréé s'est vu notifier une décision administrative différente six mois plus tard, portant sur les mêmes travaux."</div>
-          <div class="tmeta"><span class="tsig">Une entrepreneuse, Vaucluse</span><div style="display:flex;align-items:center;gap:10px"><span class="tviews">👁 342</span><button class="btn-ca" onclick="oc(true)">✉️ Contacter</button></div></div>
-        </div>
-        <div class="tc">
-          <div class="ttags"><span class="tag tag-d">Droit rural</span><span class="tag tag-t">Application disproportionnée</span><span class="tag tag-r">📍 Bretagne</span></div>
-          <div class="tresume">"Suite à la révision du PLU communal, une exploitation s'est retrouvée en zone A2, rendant inéligibles des activités pour lesquelles un accompagnement avait été initié trois ans auparavant."</div>
-          <div class="tmeta"><span class="tsig">Un agriculteur, Finistère</span><div style="display:flex;align-items:center;gap:10px"><span class="tviews">👁 189</span><button class="btn-ca off">✉️ Non souhaité</button></div></div>
-        </div>
-        <div class="tc">
-          <div class="ttags"><span class="tag tag-d">Normes / Conformité</span><span class="tag tag-t">Délai de traitement excessif</span><span class="tag tag-r">📍 Occitanie</span></div>
-          <div class="tresume">"Une cuisine en activité depuis 1997 a fait l'objet d'une injonction de mise aux normes avec un délai de 60 jours, sans possibilité d'étalement malgré des travaux engagés."</div>
-          <div class="tmeta"><span class="tsig">Un restaurateur, Hérault</span><div style="display:flex;align-items:center;gap:10px"><span class="tviews">👁 217</span><button class="btn-ca" onclick="oc(false)">✉️ Contacter</button></div></div>
-        </div>
-        <div class="tc">
-          <div class="ttags"><span class="tag tag-d">Services essentiels</span><span class="tag tag-t">Interruption de service</span><span class="tag tag-r">📍 Normandie</span></div>
-          <div class="tresume">"Une interruption de 11 jours a suivi une erreur dans les fichiers du gestionnaire de réseau. Les interlocuteurs successifs ont orienté vers d'autres services sans résolution."</div>
-          <div class="tmeta"><span class="tsig">Un exploitant, Seine-Maritime</span><div style="display:flex;align-items:center;gap:10px"><span class="tviews">👁 156</span><button class="btn-ca" onclick="oc(false)">✉️ Contacter</button></div></div>
-        </div>
-        <div class="tc">
-          <div class="ttags"><span class="tag tag-d">Fiscalité / Cotisations</span><span class="tag tag-t">Décision contestée</span><span class="tag tag-r">📍 Île-de-France</span></div>
-          <div class="tresume">"Un contrôle a abouti à une requalification de contrats sur la base d'une circulaire interne non publiée. La décision a été annulée plusieurs années plus tard par le tribunal."</div>
-          <div class="tmeta"><span class="tsig">Une dirigeante TPE, Paris</span><div style="display:flex;align-items:center;gap:10px"><span class="tviews">👁 298</span><button class="btn-ca" onclick="oc(false)">✉️ Contacter</button></div></div>
-        </div>
-
-        <div class="pages"><button class="pg on">1</button><button class="pg">2</button><button class="pg">3</button><button class="pg">…</button><button class="pg">19</button></div>
+        <select class="fsel" id="fp0" onchange="selFilter('fp0')">
+          <option value="">P&eacute;riode</option>
+          <option>Ce mois</option>
+          <option>3 derniers mois</option>
+          <option>Cette ann&eacute;e</option>
+          <option>2024</option><option>2023</option><option>2022</option>
+          <option>2021 et avant</option>
+        </select>
+        <button class="brst" onclick="clearAll()">R&eacute;initialiser</button>
       </div>
     </div>
+
+    <div class="themes-title">Parcourir par th&egrave;me &mdash; cliquez pour filtrer</div>
+    <div class="themes">
+      <div class="theme" id="th0" onclick="toggleTheme(this,'Urbanisme &amp; R&eacute;glementation locale','PLU urbanisme ERP droit rural environnement')">
+        <div class="theme-icon">&#127963;&#65039;</div><div class="theme-name">Urbanisme &amp; R&eacute;glementation locale</div><div class="theme-n">47 t&eacute;moignages</div>
+      </div>
+      <div class="theme" id="th1" onclick="toggleTheme(this,'Fiscalit&eacute; &amp; Cotisations','URSSAF cotisations fiscalit&eacute; imp&ocirc;t TVA')">
+        <div class="theme-icon">&#128182;</div><div class="theme-name">Fiscalit&eacute; &amp; Cotisations</div><div class="theme-n">38 t&eacute;moignages</div>
+      </div>
+      <div class="theme" id="th2" onclick="toggleTheme(this,'Services essentiels &amp; R&eacute;seaux','&eacute;lectricit&eacute; eau SNCF t&eacute;l&eacute;com r&eacute;seau')">
+        <div class="theme-icon">&#9889;</div><div class="theme-name">Services essentiels &amp; R&eacute;seaux</div><div class="theme-n">52 t&eacute;moignages</div>
+      </div>
+      <div class="theme" id="th3" onclick="toggleTheme(this,'Droit social &amp; Emploi','travail licenciement CAF allocations ch&ocirc;mage retraite')">
+        <div class="theme-icon">&#128119;</div><div class="theme-name">Droit social &amp; Emploi</div><div class="theme-n">34 t&eacute;moignages</div>
+      </div>
+      <div class="theme" id="th4" onclick="toggleTheme(this,'Sant&eacute; &amp; Services de soins','h&ocirc;pital urgences m&eacute;decin EHPAD handicap MDPH')">
+        <div class="theme-icon">&#127973;&#65039;</div><div class="theme-name">Sant&eacute; &amp; Services de soins</div><div class="theme-n">29 t&eacute;moignages</div>
+      </div>
+      <div class="theme" id="th5" onclick="toggleTheme(this,'Normes &amp; Conformit&eacute;','normes HACCP s&eacute;curit&eacute; incendie DPE diagnostic')">
+        <div class="theme-icon">&#128203;</div><div class="theme-name">Normes &amp; Conformit&eacute;</div><div class="theme-n">23 t&eacute;moignages</div>
+      </div>
+      <div class="theme" id="th6" onclick="toggleTheme(this,'Justice &amp; Proc&eacute;dures','tribunal judiciaire administratif m&eacute;diateur recours')">
+        <div class="theme-icon">&#9878;&#65039;</div><div class="theme-name">Justice &amp; Proc&eacute;dures</div><div class="theme-n">19 t&eacute;moignages</div>
+      </div>
+      <div class="theme" id="th7" onclick="toggleTheme(this,'Droit europ&eacute;en','directive europ&eacute;enne RGPD CNIL libre circulation')">
+        <div class="theme-icon">&#127466;&#127482;</div><div class="theme-name">Droit europ&eacute;en</div><div class="theme-n">11 t&eacute;moignages</div>
+      </div>
+    </div>
+
+    <div class="rhead">
+      <div class="rcount" id="rc0"><strong>223</strong> t&eacute;moignages publi&eacute;s</div>
+      <select class="sort-sel"><option>Plus r&eacute;cents</option><option>Plus consult&eacute;s</option><option>Par cluster</option></select>
+    </div>
+    <div class="cluster-sum f">
+      <div class="cl-badge">&#128202; 12 situations similaires</div>
+      <div class="cl-title">Coh&eacute;rence des avis de conformit&eacute; ERP en zones agricoles</div>
+      <div class="cl-resume">Douze t&eacute;moignages documentent des situations o&ugrave; un avis de conformit&eacute; d&eacute;livr&eacute; par un organisme de contr&ocirc;le agr&eacute;&eacute; a &eacute;t&eacute; suivi d'une d&eacute;cision administrative diff&eacute;rente, portant sur les m&ecirc;mes travaux ou installations.</div>
+      <div class="cl-stats">
+        <span class="cs">&#128205; <strong>8 r&eacute;gions</strong></span>
+        <span class="cs">&#128197; <strong>2023&ndash;2026</strong></span>
+        <span class="cs">&#9878;&#65039; <strong>3 recours</strong> en cours</span>
+        <span class="cs">&#128065; <strong>1&nbsp;247</strong> lectures</span>
+      </div>
+    </div>
+    <hr>
+    <div class="tc">
+      <div class="ttags"><span class="tag tag-d">ERP / Urbanisme</span><span class="tag tag-t">Norme contradictoire</span><span class="tag tag-r">&#128205; Vaucluse</span><span class="tag tag-c">&times;12 similaires</span></div>
+      <div class="tresume">&ldquo;Un &eacute;tablissement ayant re&ccedil;u un avis de conformit&eacute; d'un organisme agr&eacute;&eacute; s'est vu notifier une d&eacute;cision administrative diff&eacute;rente six mois plus tard, portant sur les m&ecirc;mes travaux.&rdquo;</div>
+      <div class="tmeta"><span class="tsig">Une entrepreneuse, Vaucluse</span><div style="display:flex;align-items:center;gap:10px"><span class="tviews">&#128065; 342</span><button class="btn-ca" onclick="oc(true)">&#9993;&#65039; Contacter</button></div></div>
+    </div>
+    <div class="tc">
+      <div class="ttags"><span class="tag tag-d">Droit rural</span><span class="tag tag-t">Application disproportionn&eacute;e</span><span class="tag tag-r">&#128205; Bretagne</span></div>
+      <div class="tresume">&ldquo;Suite &agrave; la r&eacute;vision du PLU communal, une exploitation s'est retrouv&eacute;e en zone A2, rendant in&eacute;ligibles des activit&eacute;s pour lesquelles un accompagnement avait &eacute;t&eacute; initi&eacute; trois ans auparavant.&rdquo;</div>
+      <div class="tmeta"><span class="tsig">Un agriculteur, Finist&egrave;re</span><div style="display:flex;align-items:center;gap:10px"><span class="tviews">&#128065; 189</span><button class="btn-ca off">&#9993;&#65039; Non souhait&eacute;</button></div></div>
+    </div>
+    <div class="tc">
+      <div class="ttags"><span class="tag tag-d">Normes / Conformit&eacute;</span><span class="tag tag-t">D&eacute;lai de traitement excessif</span><span class="tag tag-r">&#128205; Occitanie</span></div>
+      <div class="tresume">&ldquo;Une cuisine en activit&eacute; depuis 1997 a fait l'objet d'une injonction de mise aux normes avec un d&eacute;lai de 60 jours, sans possibilit&eacute; d'&eacute;talement malgr&eacute; des travaux engag&eacute;s.&rdquo;</div>
+      <div class="tmeta"><span class="tsig">Un restaurateur, H&eacute;rault</span><div style="display:flex;align-items:center;gap:10px"><span class="tviews">&#128065; 217</span><button class="btn-ca" onclick="oc(false)">&#9993;&#65039; Contacter</button></div></div>
+    </div>
+    <div class="tc">
+      <div class="ttags"><span class="tag tag-d">Services essentiels</span><span class="tag tag-t">Interruption de service</span><span class="tag tag-r">&#128205; Normandie</span></div>
+      <div class="tresume">&ldquo;Une interruption de 11 jours a suivi une erreur dans les fichiers du gestionnaire de r&eacute;seau. Les interlocuteurs successifs ont orient&eacute; vers d'autres services sans r&eacute;solution.&rdquo;</div>
+      <div class="tmeta"><span class="tsig">Un exploitant, Seine-Maritime</span><div style="display:flex;align-items:center;gap:10px"><span class="tviews">&#128065; 156</span><button class="btn-ca" onclick="oc(false)">&#9993;&#65039; Contacter</button></div></div>
+    </div>
+    <div class="tc">
+      <div class="ttags"><span class="tag tag-d">Fiscalit&eacute; / Cotisations</span><span class="tag tag-t">D&eacute;cision contest&eacute;e</span><span class="tag tag-r">&#128205; Ile-de-France</span></div>
+      <div class="tresume">&ldquo;Un contr&ocirc;le a abouti &agrave; une requalification de contrats sur la base d'une circulaire interne non publi&eacute;e. La d&eacute;cision a &eacute;t&eacute; annul&eacute;e plusieurs ann&eacute;es plus tard par le tribunal.&rdquo;</div>
+      <div class="tmeta"><span class="tsig">Une dirigeante TPE, Paris</span><div style="display:flex;align-items:center;gap:10px"><span class="tviews">&#128065; 298</span><button class="btn-ca" onclick="oc(false)">&#9993;&#65039; Contacter</button></div></div>
+    </div>
+    <div class="pages"><button class="pg on">1</button><button class="pg">2</button><button class="pg">3</button><button class="pg">&hellip;</button><button class="pg">19</button></div>
   </div>
 
   <!-- ZONE PRO -->
   <div id="z1" class="hidden">
     <div class="feats">
-      <div class="feat p"><div class="feat-icon">🧠</div><div class="feat-title">Recherche sémantique AI</div><div class="feat-desc">Décrivez en langage naturel. L'AI reformule, affine et dialogue pour préciser votre recherche.</div></div>
-      <div class="feat p"><div class="feat-icon">📊</div><div class="feat-title">Analyse statistique illustrée</div><div class="feat-desc">Graphiques, répartitions, tendances, données agrégées sur chaque cluster identifié.</div></div>
-      <div class="feat p"><div class="feat-icon">⚖️</div><div class="feat-title">Textes & jurisprudence</div><div class="feat-desc">Articles de loi (Légifrance), directives EU, jurisprudence JUDILIBRE associés aux clusters.</div></div>
+      <div class="feat"><div class="feat-icon">&#129504;</div><div class="feat-title">Recherche s&eacute;mantique AI</div><div class="feat-desc">D&eacute;crivez en langage naturel. L'AI reformule, affine et dialogue pour pr&eacute;ciser votre recherche.</div></div>
+      <div class="feat"><div class="feat-icon">&#128202;</div><div class="feat-title">Analyse statistique illustr&eacute;e</div><div class="feat-desc">Graphiques, r&eacute;partitions, tendances, donn&eacute;es agr&eacute;g&eacute;es sur chaque cluster identifi&eacute;.</div></div>
+      <div class="feat"><div class="feat-icon">&#9878;&#65039;</div><div class="feat-title">Textes &amp; jurisprudence</div><div class="feat-desc">Articles de loi (L&eacute;gifrance), directives EU, jurisprudence JUDILIBRE associ&eacute;s aux clusters.</div></div>
     </div>
-    <div class="sc pro">
-      <div class="slbl p">Décrivez ce que vous recherchez — l'AI dialogue avec vous pour affiner</div>
-      <div class="sbar">
-        <input type="text" class="sinp p" id="q1" placeholder="Ex : situations où une norme a été appliquée rétroactivement à des installations existantes…" onkeydown="if(event.key==='Enter')proSearch()">
+    <div class="search-card pro">
+      <div class="search-label p">D&eacute;crivez ce que vous recherchez &mdash; l'AI dialogue avec vous pour affiner</div>
+      <div class="search-input-wrap">
+        <input type="text" class="sinp p" id="q1" placeholder="Ex&nbsp;: situations o&ugrave; une norme a &eacute;t&eacute; appliqu&eacute;e r&eacute;troactivement &agrave; des installations existantes&hellip;" onkeydown="if(event.key==='Enter')proSearch()">
         <div class="mic-wrap">
-          <button class="bmic idle" id="m1" onclick="toggleMicPro()" title="Parler pour dicter votre recherche">🎙️</button>
+          <button class="bmic" id="m1" onclick="toggleMicPro()" title="Parler">&#127897;&#65039;</button>
           <span class="mic-hint" id="mh1">Parler</span>
         </div>
-        <button class="bgo p" onclick="proSearch()">Analyser →</button>
+        <button class="bgo p" onclick="proSearch()">Analyser &rarr;</button>
       </div>
       <div class="mic-live" id="ml1"><span class="mic-dot" id="md1"></span><span id="mt1"></span></div>
-      <div class="dialogue-zone" id="dialZone">
-        <div id="dialMsgs">
-          <div class="dial-msg ai">
-            <div class="dial-avatar ai">M&L</div>
-            <div class="dial-bubble">J'ai identifié <strong>23 situations</strong> correspondant à votre recherche. Voulez-vous affiner par région, par période, ou vous concentrer sur un type de dysfonctionnement particulier ?</div>
+      <div class="active-tags" id="tags1"></div>
+      <div class="pro-adv">
+        <div class="pro-adv-title">Filtres avanc&eacute;s &mdash; cliquez pour ouvrir</div>
+        <div class="pro-acc">
+          <div class="pro-acc-hd" onclick="toggleAcc(this)">R&eacute;solution du probl&egrave;me<span class="pro-acc-arrow">&#9660;</span></div>
+          <div class="pro-acc-body">
+            <div class="pro-acc-opts">
+              <button class="pro-opt" data-val="R&eacute;solu" onclick="toggleProOpt(this)">R&eacute;solu</button>
+              <button class="pro-opt" data-val="Non r&eacute;solu" onclick="toggleProOpt(this)">Non r&eacute;solu</button>
+              <button class="pro-opt" data-val="R&eacute;solution partielle" onclick="toggleProOpt(this)">R&eacute;solution partielle</button>
+              <button class="pro-opt" data-val="Recours abandonn&eacute;s" onclick="toggleProOpt(this)">Recours abandonn&eacute;s</button>
+              <button class="pro-opt" data-val="En cours" onclick="toggleProOpt(this)">En cours</button>
+            </div>
+            <div class="pro-acc-note">Statut de r&eacute;solution d&eacute;clar&eacute; par le t&eacute;moin</div>
           </div>
         </div>
+        <div class="pro-acc">
+          <div class="pro-acc-hd" onclick="toggleAcc(this)">Dommages subis<span class="pro-acc-arrow">&#9660;</span></div>
+          <div class="pro-acc-body">
+            <div class="pro-opts-sub-label">Dommage mon&eacute;taire</div>
+            <div class="pro-acc-opts">
+              <button class="pro-opt" data-val="Aucun dommage mon&eacute;taire" onclick="toggleProOpt(this)">Aucun</button>
+              <button class="pro-opt" data-val="Dommage &lt; 1 000 EUR" onclick="toggleProOpt(this)">&lt; 1 000 &euro;</button>
+              <button class="pro-opt" data-val="Dommage 1 000-5 000 EUR" onclick="toggleProOpt(this)">1 000&ndash;5 000 &euro;</button>
+              <button class="pro-opt" data-val="Dommage 5 000-20 000 EUR" onclick="toggleProOpt(this)">5 000&ndash;20 000 &euro;</button>
+              <button class="pro-opt" data-val="Dommage 20 000-100 000 EUR" onclick="toggleProOpt(this)">20 000&ndash;100 000 &euro;</button>
+              <button class="pro-opt" data-val="Dommage &gt; 100 000 EUR" onclick="toggleProOpt(this)">&gt; 100 000 &euro;</button>
+            </div>
+            <div class="pro-opts-sub-label">Dommage temps</div>
+            <div class="pro-acc-opts">
+              <button class="pro-opt" data-val="Dur&eacute;e &lt; 1 mois" onclick="toggleProOpt(this)">&lt; 1 mois</button>
+              <button class="pro-opt" data-val="Dur&eacute;e 1-6 mois" onclick="toggleProOpt(this)">1&ndash;6 mois</button>
+              <button class="pro-opt" data-val="Dur&eacute;e 6 mois-2 ans" onclick="toggleProOpt(this)">6 mois&ndash;2 ans</button>
+              <button class="pro-opt" data-val="Dur&eacute;e 2-5 ans" onclick="toggleProOpt(this)">2&ndash;5 ans</button>
+              <button class="pro-opt" data-val="Dur&eacute;e &gt; 5 ans" onclick="toggleProOpt(this)">&gt; 5 ans</button>
+              <button class="pro-opt" data-val="Dur&eacute;e en cours" onclick="toggleProOpt(this)">En cours</button>
+            </div>
+            <div class="pro-acc-note">Fourchettes d&eacute;clar&eacute;es par le t&eacute;moin &mdash; non v&eacute;rifi&eacute;es</div>
+          </div>
+        </div>
+        <div class="pro-acc">
+          <div class="pro-acc-hd" onclick="toggleAcc(this)">Compensation obtenue<span class="pro-acc-arrow">&#9660;</span></div>
+          <div class="pro-acc-body">
+            <div class="pro-acc-opts">
+              <button class="pro-opt" data-val="Compensation obtenue" onclick="toggleProOpt(this)">Obtenue</button>
+              <button class="pro-opt" data-val="Aucune compensation" onclick="toggleProOpt(this)">Aucune</button>
+              <button class="pro-opt" data-val="Compensation partielle" onclick="toggleProOpt(this)">Partielle</button>
+              <button class="pro-opt" data-val="Compensation refus&eacute;e" onclick="toggleProOpt(this)">Refus&eacute;e</button>
+              <button class="pro-opt" data-val="Compensation &lt; 1 000 EUR" onclick="toggleProOpt(this)">&lt; 1 000 &euro;</button>
+              <button class="pro-opt" data-val="Compensation 1 000-5 000 EUR" onclick="toggleProOpt(this)">1 000&ndash;5 000 &euro;</button>
+              <button class="pro-opt" data-val="Compensation 5 000-20 000 EUR" onclick="toggleProOpt(this)">5 000&ndash;20 000 &euro;</button>
+              <button class="pro-opt" data-val="Compensation &gt; 20 000 EUR" onclick="toggleProOpt(this)">&gt; 20 000 &euro;</button>
+            </div>
+            <div class="pro-acc-note">Compensation mon&eacute;taire ou autre (m&eacute;diation, accord amiable, d&eacute;cision de justice&hellip;)</div>
+          </div>
+        </div>
+      </div>
+      <div class="dialogue-zone" id="dialZone">
+        <div id="dialMsgs">
+          <div class="dial-msg ai"><div class="dial-avatar ai">M&amp;L</div><div class="dial-bubble">J'ai identifi&eacute; <strong>23 situations</strong> correspondant &agrave; votre recherche. Voulez-vous affiner par r&eacute;gion, par p&eacute;riode, ou vous concentrer sur un type de dysfonctionnement particulier&nbsp;?</div></div>
+        </div>
         <div class="dial-input-row">
-          <input type="text" class="dial-input" id="dialInput" placeholder="Répondez pour affiner…" onkeydown="if(event.key==='Enter')dialSend()">
-          <button class="btn-dial-mic" id="dialMic" onclick="toggleMicDial()" title="Parler">🎙️</button>
-          <button class="btn-dial-send" onclick="dialSend()">→</button>
+          <input type="text" class="dial-input" id="dialInput" placeholder="R&eacute;pondez pour affiner&hellip;" onkeydown="if(event.key==='Enter')dialSend()">
+          <button class="btn-dial-mic" id="dialMic" onclick="toggleMicDial()" title="Parler">&#127897;&#65039;</button>
+          <button class="btn-dial-send" onclick="dialSend()">&rarr;</button>
         </div>
       </div>
     </div>
     <div class="rhead">
-      <div class="rcount"><strong>23 situations</strong> — analyse sémantique</div>
-      <button class="btn-export">📋 Exporter dossier PDF</button>
+      <div class="rcount"><strong>23 situations</strong> &mdash; analyse s&eacute;mantique</div>
+      <button class="btn-export">&#128203; Exporter dossier PDF</button>
     </div>
-    <div class="tc"><div class="ttags"><span class="tag tag-d">ERP / Urbanisme</span><span class="tag tag-t">Norme contradictoire</span><span class="tag tag-r">📍 Vaucluse</span></div><div class="tresume">"Un établissement ayant reçu un avis de conformité s'est vu notifier une décision administrative différente six mois plus tard, portant sur les mêmes travaux."</div><div class="tmeta"><span class="tsig">Une entrepreneuse, Vaucluse</span><div style="display:flex;align-items:center;gap:10px"><span class="tviews">👁 342</span><button class="btn-ca" onclick="oc(true)">✉️ Contacter</button></div></div></div>
+    <div class="tc"><div class="ttags"><span class="tag tag-d">ERP / Urbanisme</span><span class="tag tag-t">Norme contradictoire</span><span class="tag tag-r">&#128205; Vaucluse</span></div><div class="tresume">&ldquo;Un &eacute;tablissement ayant re&ccedil;u un avis de conformit&eacute; s'est vu notifier une d&eacute;cision administrative diff&eacute;rente six mois plus tard, portant sur les m&ecirc;mes travaux.&rdquo;</div><div class="tmeta"><span class="tsig">Une entrepreneuse, Vaucluse</span><div style="display:flex;align-items:center;gap:10px"><span class="tviews">&#128065; 342</span><button class="btn-ca" onclick="oc(true)">&#9993;&#65039; Contacter</button></div></div></div>
     <div class="pages"><button class="pg on">1</button><button class="pg">2</button><button class="pg">3</button></div>
   </div>
 
   <!-- ZONE INSTITUTIONNELLE -->
   <div id="z2" class="hidden">
     <div class="inst-header">
-      <div class="inst-badge">🏛️ ACCÈS INSTITUTIONNEL</div>
-      <div class="inst-title">Études analytiques sur mesure</div>
-      <div class="inst-desc">Pour gouvernements, think tanks, cabinets spécialisés, institutions académiques et médias. Accès aux bases de données juridiques (Légifrance, EUR-Lex, jurisprudence complète). Rapports analytiques identifiant contradictions systémiques, normes contre-productives et patterns d'application.</div>
+      <div class="inst-badge">&#127963;&#65039; ACC&Egrave;S INSTITUTIONNEL</div>
+      <div class="inst-title">&Eacute;tudes analytiques sur mesure</div>
+      <div class="inst-desc">Pour gouvernements, think tanks, cabinets sp&eacute;cialis&eacute;s, institutions acad&eacute;miques et m&eacute;dias. Acc&egrave;s aux bases de donn&eacute;es juridiques (L&eacute;gifrance, EUR-Lex, jurisprudence compl&egrave;te). Rapports analytiques identifiant contradictions syst&eacute;miques, normes contre-productives et patterns d'application.</div>
     </div>
     <div class="inst-form">
-      <div class="inst-form-ttl">Décrivez votre projet d'analyse</div>
-      <div class="if-field"><label>Organisation</label><input type="text" placeholder="Nom de votre organisation, cabinet, institution…"></div>
+      <div class="inst-form-ttl">D&eacute;crivez votre projet d'analyse</div>
+      <div class="if-field"><label>Organisation</label><input type="text" placeholder="Nom de votre organisation, cabinet, institution&hellip;"></div>
       <div class="if-field"><label>Email de contact</label><input type="email" placeholder="votre@organisation.fr"></div>
-      <div class="if-field">
-        <label>Domaine d'intérêt</label>
-        <select>
-          <option value="">— Sélectionner —</option>
+      <div class="if-field"><label>Domaine d'int&eacute;r&ecirc;t</label>
+        <select><option value="">-- S&eacute;lectionner --</option>
           <optgroup label="Droit public"><option>Urbanisme / PLU</option><option>ERP</option><option>Droit rural</option><option>Environnement</option></optgroup>
-          <optgroup label="Droit social"><option>Droit du travail</option><option>Sécurité sociale</option><option>Retraite</option><option>Allocations</option></optgroup>
-          <optgroup label="Fiscalité"><option>Contrôle fiscal / URSSAF</option><option>TVA</option><option>Taxes locales</option></optgroup>
-          <optgroup label="Services essentiels"><option>Énergie / Réseaux</option><option>Eau</option><option>Télécom</option><option>Transport</option></optgroup>
-          <option>Plusieurs domaines — préciser ci-dessous</option>
+          <optgroup label="Droit social"><option>Droit du travail</option><option>S&eacute;curit&eacute; sociale</option><option>Retraite</option><option>Allocations</option></optgroup>
+          <optgroup label="Fiscalit&eacute;"><option>Contr&ocirc;le fiscal / URSSAF</option><option>TVA</option><option>Taxes locales</option></optgroup>
+          <optgroup label="Services essentiels"><option>Energie / R&eacute;seaux</option><option>Eau</option><option>T&eacute;l&eacute;com</option><option>Transport</option></optgroup>
+          <option>Plusieurs domaines &mdash; pr&eacute;ciser ci-dessous</option>
         </select>
       </div>
-      <div class="if-field">
-        <label>Description du projet</label>
-        <textarea id="instDesc" placeholder="Périmètre géographique, période, objectif de l'étude, livrables souhaités, contexte…"></textarea>
+      <div class="if-field"><label>Description du projet</label>
+        <textarea id="instDesc" placeholder="P&eacute;rim&egrave;tre g&eacute;ographique, p&eacute;riode, objectif de l'&eacute;tude, livrables souhait&eacute;s, contexte&hellip;"></textarea>
         <div class="if-mic-row">
-          <button class="if-mic-btn" id="instMicBtn" onclick="micInst()">🎙️ Dicter la description</button>
+          <button class="if-mic-btn" id="instMicBtn" onclick="micInst()">&#127897;&#65039; Dicter la description</button>
           <span class="if-mic-st" id="instMicSt"></span>
         </div>
       </div>
-      <div class="if-field">
-        <label>Délai souhaité</label>
-        <select><option value="">— Sélectionner —</option><option>Moins de 2 semaines</option><option>2 à 4 semaines</option><option>1 à 2 mois</option><option>Plus de 2 mois</option><option>Flexible</option></select>
+      <div class="if-field"><label>D&eacute;lai souhait&eacute;</label>
+        <select><option value="">-- S&eacute;lectionner --</option><option>Moins de 2 semaines</option><option>2 &agrave; 4 semaines</option><option>1 &agrave; 2 mois</option><option>Plus de 2 mois</option><option>Flexible</option></select>
       </div>
-      <button class="btn-send-inst" onclick="sendInst()">Envoyer la demande →</button>
-    </div>
-  </div>
-
-</div><!-- fin .page -->
-
-<!-- SECTION TARIFS EN BAS -->
-<div class="tarifs-section">
-  <div class="tarifs-inner">
-    <div class="tarifs-eyebrow">Accès & tarifs</div>
-    <h2 class="tarifs-title">Choisissez votre accès</h2>
-    <p class="tarifs-desc">La consultation des témoignages est libre et gratuite pour tous. Les accès Pro et Institutionnel permettent une analyse plus approfondie.</p>
-
-    <div class="plans">
-      <div class="plan">
-        <div class="plan-icon">🔓</div>
-        <div class="plan-name f">Accès libre</div>
-        <div class="plan-price">0€</div>
-        <div class="plan-period">Pour toujours</div>
-        <div class="plan-desc">Consultez, recherchez et déposez vos témoignages librement. Sans abonnement ni carte bancaire.</div>
-        <div class="plan-features">
-          <div class="pf"><span class="pf-icon">✓</span>Accès à tous les témoignages publiés</div>
-          <div class="pf"><span class="pf-icon">✓</span>Recherche par mots-clés et catégories</div>
-          <div class="pf"><span class="pf-icon">✓</span>Résumé des clusters</div>
-          <div class="pf"><span class="pf-icon">✓</span>Déposer un témoignage</div>
-          <div class="pf"><span class="pf-icon">✓</span>Messagerie interne (opt-in)</div>
-          <div class="pf off"><span class="pf-icon">—</span>Analyse statistique détaillée</div>
-          <div class="pf off"><span class="pf-icon">—</span>Références textes de loi</div>
-          <div class="pf off"><span class="pf-icon">—</span>Recherche sémantique AI</div>
-        </div>
-        <button class="btn-plan f" onclick="window.location='compte.html'">Créer un compte gratuit →</button>
-      </div>
-
-      <div class="plan highlight">
-        <div class="plan-ribbon">PLUS POPULAIRE</div>
-        <div class="plan-icon">⭐</div>
-        <div class="plan-name p">Accès Pro</div>
-        <div class="plan-price">99€</div>
-        <div class="plan-period">par mois, HT</div>
-        <div class="plan-desc">Pour avocats, journalistes, chercheurs, associations et collectivités. Recherche avancée et analyse approfondie.</div>
-        <div class="plan-features">
-          <div class="pf"><span class="pf-icon">✓</span>Tout l'accès libre</div>
-          <div class="pf"><span class="pf-icon">✓</span>Analyse statistique illustrée</div>
-          <div class="pf"><span class="pf-icon">✓</span>Références textes de loi (Légifrance)</div>
-          <div class="pf"><span class="pf-icon">✓</span>Jurisprudence (JUDILIBRE / JADE)</div>
-          <div class="pf"><span class="pf-icon">✓</span>Recherche sémantique AI</div>
-          <div class="pf"><span class="pf-icon">✓</span>Micro & dictée vocale intégrés</div>
-          <div class="pf"><span class="pf-icon">✓</span>Export dossiers PDF structurés</div>
-        </div>
-        <button class="btn-plan p" onclick="alert('Abonnement Pro — bientôt disponible.\nContactez-nous : pro@moietloi.fr')">S'abonner →</button>
-      </div>
-
-      <div class="plan inst">
-        <div class="plan-icon">🏛️</div>
-        <div class="plan-name i">Institutionnel</div>
-        <div class="plan-price inst">Nous<br>contacter</div>
-        <div class="plan-period"></div>
-        <div class="plan-desc">Pour gouvernements, think tanks, cabinets spécialisés et institutions académiques. Études analytiques sur mesure.</div>
-        <div class="plan-features">
-          <div class="pf"><span class="pf-icon">✓</span>Tout l'accès Pro</div>
-          <div class="pf"><span class="pf-icon">✓</span>Bases jurisprudentielles complètes</div>
-          <div class="pf"><span class="pf-icon">✓</span>Accès Dalloz / LexisNexis (selon projet)</div>
-          <div class="pf"><span class="pf-icon">✓</span>Validation par juristes spécialisés</div>
-          <div class="pf"><span class="pf-icon">✓</span>Rapports analytiques sur mesure</div>
-          <div class="pf"><span class="pf-icon">✓</span>Données brutes exportables</div>
-        </div>
-        <button class="btn-plan i" onclick="switchTab(2);window.scrollTo({top:0,behavior:'smooth'})">Nous contacter →</button>
-      </div>
-    </div>
-
-    <div class="tarifs-link">
-      <a href="tarifs.html">Voir le tableau comparatif complet et la FAQ →</a>
+      <button class="btn-send-inst" onclick="sendInst()">Envoyer la demande &rarr;</button>
     </div>
   </div>
 </div>
 
+<div class="tarifs-section">
+  <div class="tarifs-inner">
+    <div class="tarifs-eyebrow">Acc&egrave;s &amp; tarifs</div>
+    <h2 class="tarifs-title">Choisissez votre acc&egrave;s</h2>
+    <p class="tarifs-desc">La consultation des t&eacute;moignages est libre et gratuite pour tous. Les acc&egrave;s Pro et Institutionnel permettent une analyse plus approfondie.</p>
+    <div class="plans">
+      <div class="plan"><div class="plan-icon">&#128275;</div><div class="plan-name f">Acc&egrave;s libre</div><div class="plan-price">0&euro;</div><div class="plan-period">Pour toujours</div><div class="plan-desc">Consultez, recherchez et d&eacute;posez vos t&eacute;moignages librement. Sans abonnement ni carte bancaire.</div><div class="plan-features"><div class="pf"><span class="pf-icon">&#10003;</span>Acc&egrave;s &agrave; tous les t&eacute;moignages publi&eacute;s</div><div class="pf"><span class="pf-icon">&#10003;</span>Recherche par mots-cl&eacute;s et cat&eacute;gories</div><div class="pf"><span class="pf-icon">&#10003;</span>R&eacute;sum&eacute; des clusters</div><div class="pf"><span class="pf-icon">&#10003;</span>D&eacute;poser un t&eacute;moignage</div><div class="pf"><span class="pf-icon">&#10003;</span>Messagerie interne (opt-in)</div><div class="pf off"><span class="pf-icon">&mdash;</span>Analyse statistique d&eacute;taill&eacute;e</div><div class="pf off"><span class="pf-icon">&mdash;</span>R&eacute;f&eacute;rences textes de loi</div><div class="pf off"><span class="pf-icon">&mdash;</span>Recherche s&eacute;mantique AI</div></div><button class="btn-plan f" onclick="window.location='compte.html'">Cr&eacute;er un compte gratuit &rarr;</button></div>
+      <div class="plan highlight"><div class="plan-ribbon">PLUS POPULAIRE</div><div class="plan-icon">&#11088;</div><div class="plan-name p">Acc&egrave;s Pro</div><div class="plan-price">99&euro;</div><div class="plan-period">par mois, HT</div><div class="plan-desc">Pour avocats, journalistes, chercheurs, associations et collectivit&eacute;s. Recherche avanc&eacute;e et analyse approfondie.</div><div class="plan-features"><div class="pf"><span class="pf-icon">&#10003;</span>Tout l'acc&egrave;s libre</div><div class="pf"><span class="pf-icon">&#10003;</span>Analyse statistique illustr&eacute;e</div><div class="pf"><span class="pf-icon">&#10003;</span>R&eacute;f&eacute;rences textes de loi (L&eacute;gifrance)</div><div class="pf"><span class="pf-icon">&#10003;</span>Jurisprudence (JUDILIBRE / JADE)</div><div class="pf"><span class="pf-icon">&#10003;</span>Recherche s&eacute;mantique AI</div><div class="pf"><span class="pf-icon">&#10003;</span>Micro &amp; dict&eacute;e vocale int&eacute;gr&eacute;s</div><div class="pf"><span class="pf-icon">&#10003;</span>Export dossiers PDF structur&eacute;s</div></div><button class="btn-plan p" onclick="alert('Abonnement Pro — bient\u00f4t disponible.\nContactez-nous : pro@moietloi.fr')">S'abonner &rarr;</button></div>
+      <div class="plan inst"><div class="plan-icon">&#127963;&#65039;</div><div class="plan-name i">Institutionnel</div><div class="plan-price inst">Nous<br>contacter</div><div class="plan-period"></div><div class="plan-desc">Pour gouvernements, think tanks, cabinets sp&eacute;cialis&eacute;s et institutions acad&eacute;miques. &Eacute;tudes analytiques sur mesure.</div><div class="plan-features"><div class="pf"><span class="pf-icon">&#10003;</span>Tout l'acc&egrave;s Pro</div><div class="pf"><span class="pf-icon">&#10003;</span>Bases jurisprudentielles compl&egrave;tes</div><div class="pf"><span class="pf-icon">&#10003;</span>Acc&egrave;s Dalloz / LexisNexis (selon projet)</div><div class="pf"><span class="pf-icon">&#10003;</span>Validation par juristes sp&eacute;cialis&eacute;s</div><div class="pf"><span class="pf-icon">&#10003;</span>Rapports analytiques sur mesure</div><div class="pf"><span class="pf-icon">&#10003;</span>Donn&eacute;es brutes exportables</div></div><button class="btn-plan i" onclick="switchTab(2);window.scrollTo({top:0,behavior:'smooth'})">Nous contacter &rarr;</button></div>
+    </div>
+    <div class="tarifs-link"><a href="tarifs.html">Voir le tableau comparatif complet et la FAQ &rarr;</a></div>
+  </div>
+</div>
+
 <script>
-// ── TABS
+// TABS
 const zs=['z0','z1','z2'],ts=['t0','t1','t2'],tcs=['af','ap','ai'];
 function switchTab(i){
   zs.forEach((z,j)=>document.getElementById(z).classList.toggle('hidden',j!==i));
   ts.forEach((t,j)=>{const el=document.getElementById(t);tcs.forEach(c=>el.classList.remove(c));if(j===i)el.classList.add(tcs[i]);});
 }
 
-// ── MICRO PRO
-let recPro=null,recDial=null,isRecPro=false,isRecDial=false;
-function initSR(){
-  if(!('webkitSpeechRecognition'in window||'SpeechRecognition'in window))return null;
-  return window.SpeechRecognition||window.webkitSpeechRecognition;
+// FILTRES GRATUITS — objet centralis\u00e9
+const freeFilters={};
+
+function renderTags(){
+  const wrap=document.getElementById('tags0');
+  wrap.innerHTML='';
+  const keys=Object.keys(freeFilters);
+  if(!keys.length)return;
+  keys.forEach(k=>{
+    const f=freeFilters[k];
+    const tag=document.createElement('span');
+    tag.className='ftag f';
+    tag.innerHTML=f.label+'<button class="ftag-rm" onclick="removeFilter(\''+k+'\')" title="Retirer">\u2715</button>';
+    wrap.appendChild(tag);
+  });
+  const clr=document.createElement('button');
+  clr.className='clear-all';clr.textContent='Tout effacer';clr.onclick=clearAll;
+  wrap.appendChild(clr);
 }
+
+function addFilter(id,label,selId){
+  freeFilters[id]={label:label,selId:selId||null};
+  renderTags();doSearch();
+}
+
+function removeFilter(id){
+  const f=freeFilters[id];
+  if(f&&f.selId){const el=document.getElementById(f.selId);if(el){el.value='';el.classList.remove('on');}}
+  const th=document.getElementById(id);if(th)th.classList.remove('on');
+  delete freeFilters[id];
+  renderTags();doSearch();
+}
+
+function clearAll(){
+  Object.keys(freeFilters).forEach(k=>{
+    const f=freeFilters[k];
+    if(f.selId){const el=document.getElementById(f.selId);if(el){el.value='';el.classList.remove('on');}}
+    const th=document.getElementById(k);if(th)th.classList.remove('on');
+    delete freeFilters[k];
+  });
+  const dept=document.getElementById('fdept0');
+  if(dept){dept.value='';dept.classList.remove('visible','on');}
+  document.getElementById('q0').value='';
+  renderTags();
+  document.getElementById('rc0').innerHTML='<strong>223</strong> t\u00e9moignages publi\u00e9s';
+}
+
+function selFilter(selId){
+  const el=document.getElementById(selId);if(!el)return;
+  const val=el.value;
+  el.classList.toggle('on',!!val);
+  if(val){
+    addFilter(selId,el.options[el.selectedIndex].text,selId);
+  }else{
+    removeFilter(selId);
+  }
+}
+
+// R\u00c9GION -> D\u00c9PARTEMENT
+const depts={
+  'Ile-de-France':['75 \u2014 Paris','77 \u2014 Seine-et-Marne','78 \u2014 Yvelines','91 \u2014 Essonne','92 \u2014 Hauts-de-Seine','93 \u2014 Seine-Saint-Denis','94 \u2014 Val-de-Marne','95 \u2014 Val-d\'Oise'],
+  'Auvergne-Rhone-Alpes':['01 \u2014 Ain','03 \u2014 Allier','07 \u2014 Ard\u00e8che','15 \u2014 Cantal','26 \u2014 Dr\u00f4me','38 \u2014 Is\u00e8re','42 \u2014 Loire','43 \u2014 Haute-Loire','63 \u2014 Puy-de-D\u00f4me','69 \u2014 Rh\u00f4ne','73 \u2014 Savoie','74 \u2014 Haute-Savoie'],
+  'Bretagne':['22 \u2014 C\u00f4tes-d\'Armor','29 \u2014 Finist\u00e8re','35 \u2014 Ille-et-Vilaine','56 \u2014 Morbihan'],
+  'Grand Est':['08 \u2014 Ardennes','10 \u2014 Aube','51 \u2014 Marne','52 \u2014 Haute-Marne','54 \u2014 Meurthe-et-Moselle','55 \u2014 Meuse','57 \u2014 Moselle','67 \u2014 Bas-Rhin','68 \u2014 Haut-Rhin','88 \u2014 Vosges'],
+  'Hauts-de-France':['02 \u2014 Aisne','59 \u2014 Nord','60 \u2014 Oise','62 \u2014 Pas-de-Calais','80 \u2014 Somme'],
+  'Normandie':['14 \u2014 Calvados','27 \u2014 Eure','50 \u2014 Manche','61 \u2014 Orne','76 \u2014 Seine-Maritime'],
+  'Nouvelle-Aquitaine':['16 \u2014 Charente','17 \u2014 Charente-Maritime','19 \u2014 Corr\u00e8ze','23 \u2014 Creuse','24 \u2014 Dordogne','33 \u2014 Gironde','40 \u2014 Landes','47 \u2014 Lot-et-Garonne','64 \u2014 Pyr\u00e9n\u00e9es-Atlantiques','79 \u2014 Deux-S\u00e8vres','86 \u2014 Vienne','87 \u2014 Haute-Vienne'],
+  'Occitanie':['09 \u2014 Ari\u00e8ge','11 \u2014 Aude','12 \u2014 Aveyron','30 \u2014 Gard','31 \u2014 Haute-Garonne','32 \u2014 Gers','34 \u2014 H\u00e9rault','46 \u2014 Lot','48 \u2014 Loz\u00e8re','65 \u2014 Hautes-Pyr\u00e9n\u00e9es','66 \u2014 Pyr\u00e9n\u00e9es-Orientales','81 \u2014 Tarn','82 \u2014 Tarn-et-Garonne'],
+  'Pays de la Loire':['44 \u2014 Loire-Atlantique','49 \u2014 Maine-et-Loire','53 \u2014 Mayenne','72 \u2014 Sarthe','85 \u2014 Vend\u00e9e'],
+  'PACA':['04 \u2014 Alpes-de-Haute-Provence','05 \u2014 Hautes-Alpes','06 \u2014 Alpes-Maritimes','13 \u2014 Bouches-du-Rh\u00f4ne','83 \u2014 Var','84 \u2014 Vaucluse'],
+  'Corse':['2A \u2014 Corse-du-Sud','2B \u2014 Haute-Corse'],
+  'Guadeloupe':['971 \u2014 Guadeloupe'],'Martinique':['972 \u2014 Martinique'],
+  'Guyane':['973 \u2014 Guyane'],'La Reunion':['974 \u2014 La R\u00e9union'],'Mayotte':['976 \u2014 Mayotte']
+};
+
+function onRegionChange(){
+  const sel=document.getElementById('fr0');
+  const dept=document.getElementById('fdept0');
+  const region=sel.value;
+  removeFilter('fdept0');dept.classList.remove('visible','on');dept.value='';
+  if(!region){removeFilter('fr0');return;}
+  sel.classList.add('on');
+  addFilter('fr0',sel.options[sel.selectedIndex].text,'fr0');
+  if(depts[region]){
+    dept.innerHTML='<option value="">Tous les d\u00e9partements</option>'+depts[region].map(d=>'<option value="'+d+'">'+d+'</option>').join('');
+    dept.classList.add('visible');
+  }
+}
+
+document.getElementById('fdept0').addEventListener('change',function(){
+  if(!this.value){removeFilter('fdept0');this.classList.remove('on');return;}
+  this.classList.add('on');
+  if(freeFilters['fr0'])delete freeFilters['fr0'];
+  addFilter('fdept0',this.options[this.selectedIndex].text,'fdept0');
+});
+
+// TH\u00c8MES -> TAG
+function toggleTheme(el,label,keywords){
+  const id=el.id;
+  if(freeFilters[id]){
+    removeFilter(id);
+  }else{
+    el.classList.add('on');
+    freeFilters[id]={label:label,selId:null};
+    const q=document.getElementById('q0');
+    if(!q.value.trim())q.value=keywords;
+    renderTags();doSearch();
+  }
+}
+
+// RECHERCHE
+function doSearch(){
+  const q=document.getElementById('q0').value.trim();
+  const filters=Object.values(freeFilters).map(f=>f.label);
+  const rc=document.getElementById('rc0');
+  if(!q&&!filters.length){rc.innerHTML='<strong>223</strong> t\u00e9moignages publi\u00e9s';return;}
+  let desc=[];
+  if(q)desc.push('"'+q+'"');
+  if(filters.length)desc.push(filters.join(' \u00b7 '));
+  rc.innerHTML='R\u00e9sultats pour <strong>'+desc.join(' + ')+'</strong> \u2014 <span style="color:var(--gris-moyen);font-size:0.82rem;">'+Math.floor(Math.random()*40+5)+' t\u00e9moignages</span>';
+}
+
+// MICRO PRO
+let recPro=null,recDial=null,isRecPro=false,isRecDial=false;
+function initSR(){if(!('webkitSpeechRecognition'in window||'SpeechRecognition'in window))return null;return window.SpeechRecognition||window.webkitSpeechRecognition;}
 function toggleMicPro(){
-  const SR=initSR();
-  if(!SR){document.getElementById('mt1').textContent='⚠️ Micro non disponible sur ce navigateur';return;}
-  if(isRecPro){recPro?.stop();return;}
-  recPro=new SR();
-  recPro.lang='fr-FR';recPro.continuous=true;recPro.interimResults=true;
+  const SR=initSR();if(!SR){document.getElementById('mt1').textContent='\u26a0\ufe0f Micro non disponible';return;}
+  if(isRecPro){recPro&&recPro.stop();return;}
+  recPro=new SR();recPro.lang='fr-FR';recPro.continuous=true;recPro.interimResults=true;
   const btn=document.getElementById('m1'),dot=document.getElementById('md1'),txt=document.getElementById('mt1'),inp=document.getElementById('q1');
-  recPro.onstart=()=>{isRecPro=true;btn.classList.remove('idle');btn.classList.add('listening');btn.textContent='⏹';document.getElementById('mh1').textContent='Arrêter';dot.classList.add('on');txt.textContent='En écoute…';};
-  recPro.onresult=e=>{const interim=Array.from(e.results).map(r=>r[0].transcript).join('');inp.value=interim;txt.textContent=interim.length>60?interim.substring(0,60)+'…':interim;};
-  recPro.onspeechend=()=>{recPro.stop();};
-  recPro.onerror=()=>{stopMicPro();txt.textContent='⚠️ Microphone non accessible';};
-  recPro.onend=()=>{stopMicPro();if(inp.value.trim())setTimeout(()=>proSearch(),500);};
+  recPro.onstart=function(){isRecPro=true;btn.classList.add('listening');btn.textContent='\u23f9';document.getElementById('mh1').textContent='Arr\u00eater';dot.classList.add('on');txt.textContent='En \u00e9coute\u2026';};
+  recPro.onresult=function(e){var interim=Array.from(e.results).map(function(r){return r[0].transcript;}).join('');inp.value=interim;txt.textContent=interim.length>60?interim.substring(0,60)+'\u2026':interim;};
+  recPro.onspeechend=function(){recPro.stop();};
+  recPro.onerror=function(){stopMicPro();txt.textContent='\u26a0\ufe0f Microphone non accessible';};
+  recPro.onend=function(){stopMicPro();if(inp.value.trim())setTimeout(proSearch,500);};
   recPro.start();
 }
 function stopMicPro(){
-  isRecPro=false;
-  const btn=document.getElementById('m1'),dot=document.getElementById('md1'),txt=document.getElementById('mt1');
-  btn.classList.remove('listening');btn.classList.add('idle');btn.textContent='🎙️';
-  document.getElementById('mh1').textContent='Parler';
-  dot.classList.remove('on');
-  setTimeout(()=>txt.textContent='',3000);
+  isRecPro=false;var btn=document.getElementById('m1'),dot=document.getElementById('md1'),txt=document.getElementById('mt1');
+  btn.classList.remove('listening');btn.textContent='\ud83c\udfa7\ufe0f';document.getElementById('mh1').textContent='Parler';dot.classList.remove('on');
+  setTimeout(function(){txt.textContent='';},3000);
 }
 function toggleMicDial(){
   const SR=initSR();if(!SR)return;
-  if(isRecDial){recDial?.stop();return;}
+  if(isRecDial){recDial&&recDial.stop();return;}
   recDial=new SR();recDial.lang='fr-FR';recDial.continuous=false;recDial.interimResults=true;
-  const btn=document.getElementById('dialMic'),inp=document.getElementById('dialInput');
-  recDial.onstart=()=>{isRecDial=true;btn.classList.add('listening');btn.textContent='⏹';};
-  recDial.onresult=e=>{inp.value=Array.from(e.results).map(r=>r[0].transcript).join('');};
-  recDial.onend=()=>{isRecDial=false;btn.classList.remove('listening');btn.textContent='🎙️';};
+  var btn=document.getElementById('dialMic'),inp=document.getElementById('dialInput');
+  recDial.onstart=function(){isRecDial=true;btn.classList.add('listening');btn.textContent='\u23f9';};
+  recDial.onresult=function(e){inp.value=Array.from(e.results).map(function(r){return r[0].transcript;}).join('');};
+  recDial.onend=function(){isRecDial=false;btn.classList.remove('listening');btn.textContent='\ud83c\udfa7\ufe0f';};
   recDial.start();
 }
 
-// ── RECHERCHE PRO
-let proDialTurn=0;
+// RECHERCHE PRO
+var proDialTurn=0;
 function proSearch(){
-  const q=document.getElementById('q1').value.trim();
-  if(!q)return;
-  proDialTurn=0;
-  document.getElementById('dialZone').classList.add('open');
-  const msgs=document.getElementById('dialMsgs');
-  msgs.innerHTML='';
-  setTimeout(()=>{
-    msgs.innerHTML=`<div class="dial-msg ai"><div class="dial-avatar ai">M&L</div><div class="dial-bubble"><strong>Votre demande reformulée :</strong><br>Recherche de situations où ${q}.<br><br>J'ai identifié <strong>23 situations</strong> correspondantes dans 8 régions entre 2023 et 2026.<br><br>Souhaitez-vous affiner ?</div></div>`;
+  var q=document.getElementById('q1').value.trim();if(!q)return;
+  proDialTurn=0;document.getElementById('dialZone').classList.add('open');
+  var msgs=document.getElementById('dialMsgs');msgs.innerHTML='';
+  setTimeout(function(){
+    msgs.innerHTML='<div class="dial-msg ai"><div class="dial-avatar ai">M&L</div><div class="dial-bubble"><strong>Votre demande reformul\u00e9e :</strong><br>Recherche de situations o\u00f9 '+q+'.<br><br>J\'ai identifi\u00e9 <strong>23 situations</strong> correspondantes dans 8 r\u00e9gions entre 2023 et 2026.<br><br>Souhaitez-vous affiner ?</div></div>';
     msgs.scrollTop=msgs.scrollHeight;
   },600);
 }
 function dialSend(){
-  const inp=document.getElementById('dialInput');
-  const msg=inp.value.trim();if(!msg)return;
-  const msgs=document.getElementById('dialMsgs');
-  proDialTurn++;
-  msgs.innerHTML+=`<div class="dial-msg user"><div class="dial-avatar user">Vous</div><div class="dial-bubble">${msg}</div></div>`;
-  inp.value='';
-  msgs.scrollTop=msgs.scrollHeight;
-  setTimeout(()=>{
-    let aiReply=proDialTurn===1?`Compris. <strong>14 situations</strong> correspondent maintenant.<br><br>Voulez-vous que je génère l'analyse complète ?`:`Parfait — je génère l'analyse avec tous vos critères.`;
-    msgs.innerHTML+=`<div class="dial-msg ai"><div class="dial-avatar ai">M&L</div><div class="dial-bubble">${aiReply}</div></div>`;
+  var inp=document.getElementById('dialInput');var msg=inp.value.trim();if(!msg)return;
+  var msgs=document.getElementById('dialMsgs');proDialTurn++;
+  msgs.innerHTML+='<div class="dial-msg user"><div class="dial-avatar user">Vous</div><div class="dial-bubble">'+msg+'</div></div>';
+  inp.value='';msgs.scrollTop=msgs.scrollHeight;
+  setTimeout(function(){
+    var r=proDialTurn===1?'Compris. <strong>14 situations</strong> correspondent maintenant.<br><br>Voulez-vous que je g\u00e9n\u00e8re l\'analyse compl\u00e8te ?':'Parfait \u2014 je g\u00e9n\u00e8re l\'analyse avec tous vos crit\u00e8res.';
+    msgs.innerHTML+='<div class="dial-msg ai"><div class="dial-avatar ai">M&L</div><div class="dial-bubble">'+r+'</div></div>';
     msgs.scrollTop=msgs.scrollHeight;
   },700);
 }
 
-// ── INST MIC
+// FILTRES PRO ACCORD\u00c9ON
+function toggleAcc(hd){
+  var body=hd.nextElementSibling;var open=hd.classList.contains('open');
+  hd.classList.toggle('open',!open);body.classList.toggle('open',!open);
+}
+
+var proFilters={};
+function renderProTags(){
+  var wrap=document.getElementById('tags1');wrap.innerHTML='';
+  var keys=Object.keys(proFilters);if(!keys.length)return;
+  keys.forEach(function(val){
+    var tag=document.createElement('span');tag.className='ftag p';
+    tag.innerHTML=val+'<button class="ftag-rm" onclick="removeProFilter(\''+val.replace(/'/g,"\\'")+'\')" title="Retirer">\u2715</button>';
+    wrap.appendChild(tag);
+  });
+  var clr=document.createElement('button');clr.className='clear-all';clr.textContent='Tout effacer';clr.onclick=clearProFilters;
+  wrap.appendChild(clr);
+}
+function toggleProOpt(btn){
+  var val=btn.dataset.val;
+  if(proFilters[val]){btn.classList.remove('on');delete proFilters[val];}
+  else{btn.classList.add('on');proFilters[val]=true;}
+  renderProTags();
+}
+function removeProFilter(val){
+  document.querySelectorAll('.pro-opt').forEach(function(b){if(b.dataset.val===val)b.classList.remove('on');});
+  delete proFilters[val];renderProTags();
+}
+function clearProFilters(){
+  document.querySelectorAll('.pro-opt.on').forEach(function(b){b.classList.remove('on');});
+  for(var k in proFilters)delete proFilters[k];renderProTags();
+}
+
+// INST MIC
 function micInst(){
-  const SR=initSR();
-  if(!SR){document.getElementById('instMicSt').textContent='⚠️ Non disponible';return;}
-  const r=new SR();r.lang='fr-FR';r.continuous=false;r.interimResults=true;
-  const btn=document.getElementById('instMicBtn'),st=document.getElementById('instMicSt'),inp=document.getElementById('instDesc');
-  r.onstart=()=>{btn.classList.add('on');btn.textContent='⏹ Arrêter';st.textContent='🎙️ Parlez maintenant…';};
-  r.onresult=e=>{inp.value=Array.from(e.results).map(x=>x[0].transcript).join('');};
-  r.onerror=()=>{st.textContent='⚠️ Microphone non accessible';btn.classList.remove('on');btn.textContent='🎙️ Dicter la description';};
-  r.onend=()=>{btn.classList.remove('on');btn.textContent='🎙️ Dicter la description';setTimeout(()=>st.textContent='',3000);};
+  var SR=initSR();if(!SR){document.getElementById('instMicSt').textContent='\u26a0\ufe0f Non disponible';return;}
+  var r=new SR();r.lang='fr-FR';r.continuous=false;r.interimResults=true;
+  var btn=document.getElementById('instMicBtn'),st=document.getElementById('instMicSt'),inp=document.getElementById('instDesc');
+  r.onstart=function(){btn.classList.add('on');btn.textContent='\u23f9 Arr\u00eater';st.textContent='\ud83c\udfa7\ufe0f Parlez maintenant\u2026';};
+  r.onresult=function(e){inp.value=Array.from(e.results).map(function(x){return x[0].transcript;}).join('');};
+  r.onerror=function(){st.textContent='\u26a0\ufe0f Microphone non accessible';btn.classList.remove('on');btn.textContent='\ud83c\udfa7\ufe0f Dicter la description';};
+  r.onend=function(){btn.classList.remove('on');btn.textContent='\ud83c\udfa7\ufe0f Dicter la description';setTimeout(function(){st.textContent='';},3000);};
   r.start();
 }
 
-// ── FILTRES LIBRE
-let activeFilterSet=new Set();
-let activeDropdowns={};
-
-function updateFilterDisplay(){
-  const tags=document.getElementById('filterTags');
-  const bar=document.getElementById('activeFilters');
-  if(!tags||!bar)return;
-  const allFilters=[...activeFilterSet,...Object.values(activeDropdowns).filter(Boolean)];
-  if(allFilters.length===0){
-    bar.style.display='none';
-    return;
-  }
-  bar.style.display='flex';
-  tags.innerHTML=allFilters.map(f=>`<span style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:var(--vert-pale);border:1px solid var(--vert-clair);border-radius:16px;font-size:0.75rem;color:var(--vert);">${f}<button onclick="removeFilter('${f}')" style="background:none;border:none;cursor:pointer;color:var(--vert-clair);font-size:0.9rem;padding:0;line-height:1;">✕</button></span>`).join('');
-}
-
-function removeFilter(label){
-  activeFilterSet.delete(label);
-  document.querySelectorAll('.sb-item input[type=checkbox]').forEach(cb=>{const lbl=cb.parentElement.querySelector('.sb-lbl')?.textContent;if(lbl===label)cb.checked=false;});
-  Object.keys(activeDropdowns).forEach(k=>{if(activeDropdowns[k]===label){activeDropdowns[k]='';const el=document.getElementById(k);if(el){el.value='';el.classList.remove('on');}}});
-  updateFilterDisplay();updateApplyButton();doFreeSearch();
-}
-
-function clearAllFilters(){
-  activeFilterSet.clear();activeDropdowns={};
-  document.querySelectorAll('.sb-item input[type=checkbox]').forEach(cb=>cb.checked=false);
-  ['fd0','ft0','fr0','fp0'].forEach(id=>{const el=document.getElementById(id);if(el){el.value='';el.classList.remove('on');}});
-  document.getElementById('q0').value='';
-  updateFilterDisplay();updateApplyButton();
-  document.getElementById('rc0').innerHTML='<strong>223</strong> témoignages publiés';
-}
-
-function sidebarChanged(label){
-  const cb=[...document.querySelectorAll('.sb-item input[type=checkbox]')].find(c=>c.parentElement.querySelector('.sb-lbl')?.textContent===label);
-  if(cb?.checked)activeFilterSet.add(label);else activeFilterSet.delete(label);
-  updateFilterDisplay();updateApplyButton();doFreeSearch();
-}
-
-function updateApplyButton(){
-  const btn=document.getElementById('btnApplySidebar');if(!btn)return;
-  const hasActive=activeFilterSet.size>0||Object.values(activeDropdowns).some(Boolean);
-  btn.style.display=hasActive?'block':'none';
-}
-
-function doFreeSearch(){
-  const q=document.getElementById('q0').value.trim();
-  const allFilters=[...activeFilterSet,...Object.values(activeDropdowns).filter(Boolean)];
-  const rc=document.getElementById('rc0');if(!rc)return;
-  if(!q&&allFilters.length===0){rc.innerHTML='<strong>223</strong> témoignages publiés';return;}
-  let desc=[];
-  if(q)desc.push(`"${q}"`);
-  if(allFilters.length)desc.push(allFilters.join(' · '));
-  rc.innerHTML=`Résultats pour <strong>${desc.join(' + ')}</strong> — <span style="color:var(--gris-moyen);font-size:0.82rem;">${Math.floor(Math.random()*40+5)} témoignages</span>`;
-  const btn=document.getElementById('btnSearch0');
-  if(btn){btn.style.background='#4a6050';setTimeout(()=>btn.style.background='var(--vert)',300);}
-}
-
-function flt(z){
-  ['fd','ft','fr','fp'].forEach(id=>{
-    const el=document.getElementById(id+z);if(!el)return;
-    el.classList.toggle('on',!!el.value);
-    if(z===0||z==='0'){
-      const key=id+z;
-      activeDropdowns[key]=el.value?el.options[el.selectedIndex].text:'';
-      updateFilterDisplay();updateApplyButton();doFreeSearch();
-    }
-  });
-}
-
-function rst(z){
-  ['fd','ft','fr','fp'].forEach(id=>{
-    const el=document.getElementById(id+z);
-    if(el){el.value='';el.classList.remove('on');activeDropdowns[id+z]='';}
-  });
-  updateFilterDisplay();updateApplyButton();doFreeSearch();
-}
-
-function sq(txt,z){
-  if(z===0||z==='0'){document.getElementById('q0').value=txt;doFreeSearch();}
-  else{document.getElementById('q'+z).value=txt;}
-}
-
-function tc(el){
-  const was=el.classList.contains('open');
-  document.querySelectorAll('.cat').forEach(c=>c.classList.remove('open'));
-  if(!was)el.classList.add('open');
-}
-
-// ── CONTACT
-const isLoggedIn=false;
-function oc(accepts){
-  if(!accepts)return;
-  document.getElementById(isLoggedIn?'mContact':'mSignup').classList.add('open');
-}
+// CONTACT
+var isLoggedIn=false;
+function oc(accepts){if(!accepts)return;document.getElementById(isLoggedIn?'mContact':'mSignup').classList.add('open');}
 function cm(id){document.getElementById(id).classList.remove('open');}
-function sendMsg(){cm('mContact');alert('Message envoyé. L\'auteur recevra une notification via la messagerie.');}
-document.querySelectorAll('.moverlay').forEach(o=>o.addEventListener('click',e=>{if(e.target===o)o.classList.remove('open');}));
-
-// ── INST
-function sendInst(){alert('Votre demande a été envoyée.\nNous vous répondrons sous 48h ouvrés à l\'adresse indiquée.');}
+function sendMsg(){cm('mContact');alert('Message envoy\u00e9. L\'auteur recevra une notification via la messagerie.');}
+document.querySelectorAll('.moverlay').forEach(function(o){o.addEventListener('click',function(e){if(e.target===o)o.classList.remove('open');});});
+function sendInst(){alert('Votre demande a \u00e9t\u00e9 envoy\u00e9e.\nNous vous r\u00e9pondrons sous 48h ouvr\u00e9s \u00e0 l\'adresse indiqu\u00e9e.');}
 </script>
 </body>
 </html>
