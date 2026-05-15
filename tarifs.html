@@ -1,10 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tarifs — moi & loi</title>
-<meta name="description" content="Découvrez les offres moietloi.fr — accès libre, Pro et Institutionnel.">
+<title>Tarifs &mdash; moi &amp; loi</title>
+<meta name="description" content="D&eacute;couvrez les offres moietloi.fr &mdash; acc&egrave;s libre gratuit, recherche &agrave; l'usage ou abonnement.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -16,6 +17,7 @@
   --fond:#f7f4ef;--blanc:#ffffff;
   --or:#b8943f;--or-pale:#fdf8ee;--or-clair:#e8d0a0;
   --bleu:#2c4a6e;--bleu-pale:#eef2f7;--bleu-clair:#c0d0e0;
+  --rouge:#c0392b;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Source Sans 3',sans-serif;background:var(--fond);color:var(--gris-fonce);min-height:100vh}
@@ -39,47 +41,39 @@ nav{background:rgba(247,244,239,0.96);backdrop-filter:blur(10px);border-bottom:1
 .nav-mob a:hover{background:var(--fond)}
 .nav-mob a.active{color:var(--vert);font-weight:600;background:var(--vert-pale)}
 .nav-cta-mob{background:var(--vert);color:white!important;font-weight:500;margin-bottom:4px}
+.lang-btn{padding:5px 10px;border:1.5px solid var(--beige);border-radius:6px;font-size:0.78rem;font-family:'Source Sans 3',sans-serif;font-weight:500;cursor:pointer;background:transparent;color:var(--gris-moyen);transition:all 0.2s;display:flex;align-items:center;gap:4px}
+.lang-btn:hover{border-color:var(--vert);color:var(--vert);background:var(--vert-pale)}
+.lang-tooltip{position:fixed;top:68px;right:24px;background:var(--gris-fonce);color:white;font-size:0.78rem;padding:8px 14px;border-radius:8px;z-index:200;max-width:220px;line-height:1.5;display:none}
+.lang-tooltip.show{display:block}
 
 /* PAGE */
-.page{max-width:1060px;margin:0 auto;padding:48px 24px 80px}
+.page{max-width:1100px;margin:0 auto;padding:48px 24px 80px}
 .page-eyebrow{font-size:0.7rem;text-transform:uppercase;letter-spacing:2.5px;color:var(--vert);font-weight:500;margin-bottom:10px;text-align:center}
 .page-title{font-family:'Playfair Display',serif;font-size:2rem;color:var(--gris-fonce);margin-bottom:10px;text-align:center}
-.page-desc{font-size:0.93rem;color:var(--gris-moyen);line-height:1.65;text-align:center;max-width:560px;margin:0 auto 48px}
-
-/* TOGGLE */
-.billing-toggle{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:40px}
-.bt-label{font-size:0.88rem;color:var(--gris-moyen)}
-.bt-label.on{color:var(--gris-fonce);font-weight:500}
-.toggle-wrap{position:relative;width:48px;height:26px;cursor:pointer}
-.toggle-wrap input{opacity:0;width:0;height:0;position:absolute}
-.toggle-slider{position:absolute;inset:0;background:#ddd8d0;border-radius:13px;transition:0.3s}
-.toggle-wrap input:checked+.toggle-slider{background:var(--vert)}
-.toggle-slider::before{content:'';position:absolute;height:20px;width:20px;left:3px;bottom:3px;background:white;border-radius:50%;transition:0.3s}
-.toggle-wrap input:checked+.toggle-slider::before{transform:translateX(22px)}
-.saving-badge{font-size:0.75rem;background:var(--vert-pale);color:var(--vert);padding:3px 10px;border-radius:12px;font-weight:500}
+.page-desc{font-size:0.93rem;color:var(--gris-moyen);line-height:1.65;text-align:center;max-width:580px;margin:0 auto 48px}
 
 /* PLANS */
-.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:48px;align-items:start}
-.plan{background:var(--blanc);border-radius:16px;padding:28px;border:1.5px solid #e8e2d8;transition:all 0.2s;position:relative}
+.plans{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-bottom:56px;align-items:start}
+.plan{background:var(--blanc);border-radius:16px;padding:24px;border:1.5px solid #e8e2d8;transition:all 0.2s;position:relative}
 .plan:hover{box-shadow:0 8px 32px rgba(0,0,0,0.08);transform:translateY(-2px)}
 .plan.highlight{border-color:var(--or);box-shadow:0 8px 32px rgba(184,148,63,0.15)}
 .plan.inst{border-color:var(--bleu-clair)}
 .plan-ribbon{position:absolute;top:-1px;left:50%;transform:translateX(-50%);background:var(--or);color:white;font-size:0.68rem;font-weight:600;padding:4px 16px;border-radius:0 0 8px 8px;letter-spacing:0.5px;white-space:nowrap}
 .plan-icon{font-size:1.8rem;margin-bottom:14px}
 .plan-name{font-size:0.72rem;text-transform:uppercase;letter-spacing:2px;font-weight:600;margin-bottom:8px}
-.plan-name.f{color:var(--vert)}.plan-name.p{color:var(--or)}.plan-name.i{color:var(--bleu)}
-.plan-price{font-family:'Playfair Display',serif;font-size:2.4rem;color:var(--gris-fonce);font-weight:700;line-height:1;margin-bottom:4px}
+.plan-name.f{color:var(--vert)}.plan-name.p{color:var(--or)}.plan-name.a{color:var(--or)}.plan-name.i{color:var(--bleu)}
+.plan-price{font-family:'Playfair Display',serif;font-size:2.2rem;color:var(--gris-fonce);font-weight:700;line-height:1;margin-bottom:4px}
 .plan-price.inst{font-size:1.4rem;padding-top:8px}
 .plan-period{font-size:0.78rem;color:var(--gris-moyen);margin-bottom:6px}
-.plan-annual{font-size:0.78rem;color:var(--vert);font-weight:500;margin-bottom:20px;min-height:20px}
-.plan-desc{font-size:0.85rem;color:var(--gris-moyen);line-height:1.6;margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid var(--beige-clair)}
-.plan-features{margin-bottom:24px}
-.pf{display:flex;align-items:flex-start;gap:10px;padding:6px 0;font-size:0.84rem;color:var(--gris-fonce);line-height:1.5}
+.plan-sub{font-size:0.76rem;color:var(--vert);font-weight:500;margin-bottom:16px;min-height:18px}
+.plan-desc{font-size:0.83rem;color:var(--gris-moyen);line-height:1.6;margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--beige-clair)}
+.plan-features{margin-bottom:20px}
+.pf{display:flex;align-items:flex-start;gap:10px;padding:5px 0;font-size:0.82rem;color:var(--gris-fonce);line-height:1.5}
 .pf-icon{flex-shrink:0;font-size:0.9rem;margin-top:1px}
 .pf.off{color:var(--gris-clair)}
 .pf.off .pf-icon{opacity:0.4}
-.pf-section{font-size:0.68rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--gris-clair);margin-top:12px;margin-bottom:4px;font-weight:500}
-.btn-plan{width:100%;padding:13px;border:none;border-radius:9px;font-size:0.95rem;font-family:'Source Sans 3',sans-serif;font-weight:500;cursor:pointer;transition:all 0.2s}
+.pf-section{font-size:0.66rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--gris-clair);margin-top:10px;margin-bottom:3px;font-weight:500}
+.btn-plan{width:100%;padding:12px;border:none;border-radius:9px;font-size:0.92rem;font-family:'Source Sans 3',sans-serif;font-weight:500;cursor:pointer;transition:all 0.2s}
 .btn-plan.f{background:var(--vert-pale);color:var(--vert)}.btn-plan.f:hover{background:var(--vert);color:white}
 .btn-plan.p{background:var(--or);color:white}.btn-plan.p:hover{background:#9a7c30}
 .btn-plan.i{background:var(--bleu);color:white}.btn-plan.i:hover{background:#1e3550}
@@ -87,22 +81,23 @@ nav{background:rgba(247,244,239,0.96);backdrop-filter:blur(10px);border-bottom:1
 /* TABLEAU COMPARATIF */
 .compare-title{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--gris-fonce);text-align:center;margin-bottom:24px}
 .compare-table{width:100%;border-collapse:collapse;background:var(--blanc);border-radius:12px;overflow:hidden;border:1px solid #e8e2d8;box-shadow:0 2px 8px rgba(0,0,0,0.04)}
-.compare-table th{padding:16px 20px;font-size:0.8rem;font-weight:600;text-transform:uppercase;letter-spacing:1px;border-bottom:2px solid var(--beige)}
-.compare-table th:first-child{text-align:left;color:var(--gris-moyen);width:35%}
+.compare-table th{padding:14px 16px;font-size:0.76rem;font-weight:600;text-transform:uppercase;letter-spacing:1px;border-bottom:2px solid var(--beige)}
+.compare-table th:first-child{text-align:left;color:var(--gris-moyen);width:30%}
 .compare-table th.f{color:var(--vert);text-align:center}
-.compare-table th.p{color:var(--or);text-align:center;background:rgba(184,148,63,0.05)}
+.compare-table th.u{color:var(--or);text-align:center;background:rgba(184,148,63,0.05)}
+.compare-table th.a{color:var(--or);text-align:center}
 .compare-table th.i{color:var(--bleu);text-align:center}
-.compare-table td{padding:12px 20px;font-size:0.85rem;border-bottom:1px solid #f5f2ee;vertical-align:middle}
+.compare-table td{padding:11px 16px;font-size:0.83rem;border-bottom:1px solid #f5f2ee;vertical-align:middle}
 .compare-table td:first-child{color:var(--gris-moyen);font-weight:400}
 .compare-table td:not(:first-child){text-align:center}
-.compare-table td.p-col{background:rgba(184,148,63,0.03)}
+.compare-table td.u-col{background:rgba(184,148,63,0.03)}
 .compare-table tr:last-child td{border-bottom:none}
-.compare-table tr.section-row td{background:var(--fond);font-size:0.72rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--gris-clair);font-weight:500;padding:10px 20px}
+.compare-table tr.section-row td{background:var(--fond);font-size:0.7rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--gris-clair);font-weight:500;padding:9px 16px}
 .check{color:var(--vert);font-size:1rem;font-weight:600}
 .check.or{color:var(--or)}
 .check.bl{color:var(--bleu)}
 .cross{color:var(--gris-clair);font-size:0.9rem}
-.partial{color:var(--gris-moyen);font-size:0.82rem}
+.partial{color:var(--gris-moyen);font-size:0.8rem}
 
 /* FAQ */
 .faq{margin-top:48px}
@@ -115,236 +110,238 @@ nav{background:rgba(247,244,239,0.96);backdrop-filter:blur(10px);border-bottom:1
 .faq-a{display:none;padding:0 20px 16px;font-size:0.87rem;color:var(--gris-moyen);line-height:1.7}
 .faq-item.open .faq-a{display:block}
 
-@media(max-width:860px){.plans{grid-template-columns:1fr}}
+@media(max-width:1000px){.plans{grid-template-columns:1fr 1fr}}
 @media(max-width:600px){
   nav{padding:0 18px}.nav-links{display:none}.nav-burger{display:flex}
+  .plans{grid-template-columns:1fr}
+  .compare-table{font-size:0.76rem}
+  .compare-table th,.compare-table td{padding:9px 10px}
   .page{padding:32px 16px 60px}
-  .compare-table{font-size:0.78rem}
-  .compare-table th,.compare-table td{padding:10px 12px}
 }
 </style>
 </head>
 <body>
 
-<!-- NAV — page courante : 💶 Tarifs -->
 <nav>
-  <a href="index.html" class="nav-logo">moi <span class="et">&</span> <span class="loi">loi</span></a>
+  <a href="index.html" class="nav-logo">moi <span class="et">&amp;</span> <span class="loi">loi</span></a>
   <div class="nav-links">
-    <a href="compte.html" class="nav-cta">🎙️ Déposer</a>
-    <a href="consulter.html">🔍 Consulter</a>
-    <a href="charte.html">📋 Charte</a>
-    <a href="tarifs.html" class="active">💶 Tarifs</a>
-    <a href="compte.html">👤 Connexion</a>
+    <a href="temoigner.html" class="nav-cta">&#127897;&#65039; D&eacute;poser</a>
+    <a href="consulter.html">&#128269; Consulter</a>
+    <a href="charte.html">&#128203; Charte</a>
+    <a href="tarifs.html" class="active">&#128182; Tarifs</a>
+    <a href="compte.html">&#128100; Connexion / Cr&eacute;er un compte</a>
   </div>
+  <button class="lang-btn" onclick="showLangMsg()">&#127758; FR / EN</button>
   <button class="nav-burger" onclick="document.getElementById('nm').classList.toggle('open')" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
 </nav>
 <div class="nav-mob" id="nm">
-  <a href="compte.html" class="nav-cta-mob">🎙️ Déposer un témoignage</a>
-  <a href="consulter.html">🔍 Consulter les témoignages</a>
-  <a href="charte.html">📋 Charte & Règles</a>
-  <a href="tarifs.html" class="active">💶 Tarifs</a>
-  <a href="compte.html">👤 Connexion / Créer un compte</a>
+  <a href="temoigner.html" class="nav-cta-mob">&#127897;&#65039; D&eacute;poser un t&eacute;moignage</a>
+  <a href="consulter.html">&#128269; Consulter les t&eacute;moignages</a>
+  <a href="charte.html">&#128203; Charte &amp; R&egrave;gles</a>
+  <a href="tarifs.html" class="active">&#128182; Tarifs</a>
+  <a href="compte.html">&#128100; Connexion / Cr&eacute;er un compte</a>
 </div>
+<div class="lang-tooltip" id="langTooltip">&#127758; English version coming soon &mdash; we're working on it!</div>
 
 <div class="page">
-  <div class="page-eyebrow">Accès & tarifs</div>
-  <h1 class="page-title">Choisissez votre accès</h1>
-  <p class="page-desc">La consultation des témoignages est libre et gratuite pour tous. Les accès Pro et Institutionnel permettent une analyse plus approfondie.</p>
+  <div class="page-eyebrow">Acc&egrave;s &amp; tarifs</div>
+  <h1 class="page-title">Choisissez votre acc&egrave;s</h1>
+  <p class="page-desc">Acc&egrave;s libre et gratuit pour tous. Recherche avanc&eacute;e &agrave; l'usage ou en abonnement &mdash; sans engagement minimum.</p>
 
-  <div class="billing-toggle">
-    <span class="bt-label on" id="lblM">Mensuel</span>
-    <label class="toggle-wrap">
-      <input type="checkbox" id="billingToggle" onchange="toggleBilling()">
-      <span class="toggle-slider"></span>
-    </label>
-    <span class="bt-label" id="lblA">Annuel</span>
-    <span class="saving-badge">−25%</span>
-  </div>
-
+  <!-- 4 PLANS -->
   <div class="plans">
+
     <!-- GRATUIT -->
     <div class="plan">
-      <div class="plan-icon">🔓</div>
-      <div class="plan-name f">Accès libre</div>
-      <div class="plan-price">0€</div>
-      <div class="plan-period">Pour toujours</div>
-      <div class="plan-annual"></div>
-      <div class="plan-desc">Consultez, recherchez et déposez vos témoignages librement. Sans abonnement ni carte bancaire.</div>
+      <div class="plan-icon">&#128275;</div>
+      <div class="plan-name f">Acc&egrave;s libre</div>
+      <div class="plan-price">0&euro;</div>
+      <div class="plan-period">Niveau d'accès de base aux témoignages</div>
+      <div class="plan-sub"></div>
+      <div class="plan-desc">T&eacute;moignages publi&eacute;s accessibles librement. Recherche par mots-cl&eacute;s.</div>
       <div class="plan-features">
         <div class="pf-section">Consultation</div>
-        <div class="pf"><span class="pf-icon">✓</span>Accès à tous les témoignages publiés</div>
-        <div class="pf"><span class="pf-icon">✓</span>Navigation par catégories</div>
-        <div class="pf"><span class="pf-icon">✓</span>Recherche par mots-clés</div>
-        <div class="pf"><span class="pf-icon">✓</span>Résumé des clusters</div>
-        <div class="pf off"><span class="pf-icon">—</span>Analyse statistique détaillée</div>
-        <div class="pf off"><span class="pf-icon">—</span>Références textes de loi</div>
-        <div class="pf off"><span class="pf-icon">—</span>Jurisprudence</div>
-        <div class="pf-section">Dépôt & Compte</div>
-        <div class="pf"><span class="pf-icon">✓</span>Déposer un témoignage</div>
-        <div class="pf"><span class="pf-icon">✓</span>Messagerie interne (opt-in)</div>
-        <div class="pf"><span class="pf-icon">✓</span>Notifications de suivi</div>
-        <div class="pf-section">Recherche</div>
-        <div class="pf"><span class="pf-icon">✓</span>Mots-clés + catégories</div>
-        <div class="pf off"><span class="pf-icon">—</span>Recherche sémantique AI</div>
-        <div class="pf off"><span class="pf-icon">—</span>Micro & dictée vocale</div>
-        <div class="pf off"><span class="pf-icon">—</span>Dialogue AI d'affinement</div>
-        <div class="pf off"><span class="pf-icon">—</span>Export PDF</div>
+        <div class="pf"><span class="pf-icon">&#10003;</span>Tous les t&eacute;moignages publi&eacute;s</div>
+        <div class="pf"><span class="pf-icon">&#10003;</span>Recherche par mots-cl&eacute;s</div>
+        <div class="pf"><span class="pf-icon">&#10003;</span>Navigation par cat&eacute;gories</div>
+        <div class="pf off"><span class="pf-icon">&mdash;</span>Filtres avanc&eacute;s &amp; crois&eacute;s</div>
+        <div class="pf off"><span class="pf-icon">&mdash;</span>Clusters &amp; analyses</div>
+        <div class="pf off"><span class="pf-icon">&mdash;</span>Recherche s&eacute;mantique AI</div>
+        <div class="pf off"><span class="pf-icon">&mdash;</span>Export PDF</div>
+        <div class="pf-section">D&eacute;p&ocirc;t</div>
+        <div class="pf"><span class="pf-icon">&#10003;</span>D&eacute;poser un t&eacute;moignage</div>
+        <div class="pf"><span class="pf-icon">&#10003;</span>Messagerie interne (opt-in)</div>
+        <div class="pf"><span class="pf-icon">&#10003;</span>Notifications de suivi</div>
       </div>
-      <button class="btn-plan f" onclick="window.location='compte.html'">Créer un compte gratuit →</button>
+      <button class="btn-plan f" onclick="window.location='compte.html'">Cr&eacute;er un compte gratuit &rarr;</button>
     </div>
 
-    <!-- PRO -->
+    <!-- RECHERCHE À L'USAGE -->
     <div class="plan highlight">
-      <div class="plan-ribbon">PLUS POPULAIRE</div>
-      <div class="plan-icon">⭐</div>
-      <div class="plan-name p">Accès Pro</div>
-      <div class="plan-price" id="proPrice">99€</div>
-      <div class="plan-period" id="proPeriod">par mois, HT</div>
-      <div class="plan-annual" id="proAnnual"></div>
-      <div class="plan-desc">Pour avocats, journalistes, chercheurs, associations et collectivités. Recherche avancée et analyse approfondie.</div>
+      <div class="plan-ribbon">LE PLUS FLEXIBLE</div>
+      <div class="plan-icon">&#128269;</div>
+      <div class="plan-name p">Recherche &agrave; l'usage</div>
+      <div class="plan-price" style="font-size:1.9rem">1,99&euro;</div>
+      <div class="plan-period">/ 30 minutes</div>
+      <div class="plan-sub">Sans abonnement &mdash; payez ce que vous utilisez</div>
+      <div class="plan-desc">Acc&egrave;s complet &agrave; tous les outils de recherche avanc&eacute;e, le temps d'une session.</div>
       <div class="plan-features">
-        <div class="pf-section">Consultation</div>
-        <div class="pf"><span class="pf-icon">✓</span>Tout l'accès libre</div>
-        <div class="pf"><span class="pf-icon">✓</span>Analyse statistique illustrée</div>
-        <div class="pf"><span class="pf-icon">✓</span>Références textes de loi (Légifrance)</div>
-        <div class="pf"><span class="pf-icon">✓</span>Références directives EU (EUR-Lex)</div>
-        <div class="pf"><span class="pf-icon">✓</span>Jurisprudence (JUDILIBRE / JADE)</div>
-        <div class="pf"><span class="pf-icon">✓</span>Export dossiers PDF structurés</div>
-        <div class="pf-section">Recherche avancée</div>
-        <div class="pf"><span class="pf-icon">✓</span>Recherche sémantique AI</div>
-        <div class="pf"><span class="pf-icon">✓</span>Micro & dictée vocale intégrés</div>
-        <div class="pf"><span class="pf-icon">✓</span>Dialogue AI pour affiner la recherche</div>
-        <div class="pf"><span class="pf-icon">✓</span>Filtres croisés avancés</div>
-        <div class="pf-section">Compte</div>
-        <div class="pf"><span class="pf-icon">✓</span>Alertes personnalisées</div>
-        <div class="pf"><span class="pf-icon">✓</span>Historique des recherches</div>
-        <div class="pf off"><span class="pf-icon">—</span>Validation par juriste</div>
-        <div class="pf off"><span class="pf-icon">—</span>Études sur mesure</div>
+        <div class="pf-section">Recherche avanc&eacute;e</div>
+        <div class="pf"><span class="pf-icon">&#10003;</span>Filtres avanc&eacute;s &amp; crois&eacute;s</div>
+        <div class="pf"><span class="pf-icon">&#10003;</span>Clusters et analyses</div>
+        <div class="pf"><span class="pf-icon">&#10003;</span>Recherche s&eacute;mantique AI</div>
+        <div class="pf"><span class="pf-icon">&#10003;</span>Micro &amp; dict&eacute;e vocale</div>
+        <div class="pf"><span class="pf-icon">&#10003;</span>Dialogue AI d'affinement</div>
+        <div class="pf-section">R&eacute;f&eacute;rences juridiques</div>
+        <div class="pf"><span class="pf-icon">&#10003;</span>Textes de loi (L&eacute;gifrance)</div>
+        <div class="pf"><span class="pf-icon">&#10003;</span>Droit europ&eacute;en (EUR-Lex)</div>
+        <div class="pf"><span class="pf-icon">&#10003;</span>Jurisprudence (JUDILIBRE / JADE)</div>
+        <div class="pf"><span class="pf-icon">&#10003;</span>Export dossier PDF structur&eacute;</div>
       </div>
-      <button class="btn-plan p" onclick="alert('Abonnement Pro — bientôt disponible.\nContactez-nous : pro@moietloi.fr')">S'abonner →</button>
+      <button class="btn-plan p" onclick="alert('Bientôt disponible.
+Contactez-nous : contact@moietloi.fr')">Acc&eacute;der &rarr;</button>
+    </div>
+
+    <!-- ABONNEMENT -->
+    <div class="plan">
+      <div class="plan-icon">&#9733;</div>
+      <div class="plan-name a">Abonnement</div>
+      <div class="plan-price" style="font-size:1.9rem">99&euro;</div>
+      <div class="plan-period">/ mois, HT</div>
+      <div class="plan-sub">ou <strong style="color:var(--or)">890&euro;</strong>/an &mdash; R&eacute;siliable &agrave; tout moment</div>
+      <div class="plan-desc">Acc&egrave;s illimit&eacute; &agrave; tous les outils de recherche avanc&eacute;e. Sans limite de sessions.</div>
+      <div class="plan-features">
+        <div class="pf-section">Tout l'acc&egrave;s Recherche, illimit&eacute;</div>
+        <div class="pf"><span class="pf-icon">&#10003;</span>Filtres avanc&eacute;s &amp; crois&eacute;s illimit&eacute;s</div>
+        <div class="pf"><span class="pf-icon">&#10003;</span>Clusters et analyses illimit&eacute;s</div>
+        <div class="pf"><span class="pf-icon">&#10003;</span>Recherche s&eacute;mantique AI illimit&eacute;e</div>
+        <div class="pf"><span class="pf-icon">&#10003;</span>Export PDF illimit&eacute;</div>
+        <div class="pf-section">En plus</div>
+        <div class="pf"><span class="pf-icon">&#10003;</span>Alertes personnalis&eacute;es</div>
+        <div class="pf"><span class="pf-icon">&#10003;</span>Historique des recherches</div>
+        <div class="pf"><span class="pf-icon">&#10003;</span>Acc&egrave;s prioritaire aux nouveaux clusters</div>
+      </div>
+      <button class="btn-plan p" onclick="alert('Bientôt disponible.
+Contactez-nous : contact@moietloi.fr')">S'abonner &rarr;</button>
     </div>
 
     <!-- INSTITUTIONNEL -->
     <div class="plan inst">
-      <div class="plan-icon">🏛️</div>
+      <div class="plan-icon">&#127963;&#65039;</div>
       <div class="plan-name i">Institutionnel</div>
       <div class="plan-price inst">Nous<br>contacter</div>
       <div class="plan-period"></div>
-      <div class="plan-annual"></div>
-      <div class="plan-desc">Pour gouvernements, think tanks, cabinets spécialisés et institutions académiques. Études analytiques sur mesure.</div>
+      <div class="plan-sub"></div>
+      <div class="plan-desc">Etudes analytiques sur mesure, acc&egrave;s bases juridiques compl&egrave;tes, rapports personnalis&eacute;s.</div>
       <div class="plan-features">
-        <div class="pf-section">Tout l'accès Pro, plus</div>
-        <div class="pf"><span class="pf-icon">✓</span>Bases jurisprudentielles complètes</div>
-        <div class="pf"><span class="pf-icon">✓</span>Accès Dalloz / LexisNexis (selon projet)</div>
-        <div class="pf"><span class="pf-icon">✓</span>Validation par juristes spécialisés</div>
-        <div class="pf"><span class="pf-icon">✓</span>Rapports analytiques sur mesure</div>
-        <div class="pf"><span class="pf-icon">✓</span>Identification contradictions systémiques</div>
-        <div class="pf"><span class="pf-icon">✓</span>Analyse d'impact réglementaire</div>
+        <div class="pf-section">Tout l'acc&egrave;s Abonnement, plus</div>
+        <div class="pf"><span class="pf-icon">&#10003;</span>Bases jurisprudentielles compl&egrave;tes</div>
+        <div class="pf"><span class="pf-icon">&#10003;</span>Acc&egrave;s Dalloz / LexisNexis (selon projet)</div>
+        <div class="pf"><span class="pf-icon">&#10003;</span>Validation par juristes sp&eacute;cialis&eacute;s</div>
+        <div class="pf"><span class="pf-icon">&#10003;</span>Rapports analytiques sur mesure</div>
+        <div class="pf"><span class="pf-icon">&#10003;</span>Identification contradictions syst&eacute;miques</div>
+        <div class="pf"><span class="pf-icon">&#10003;</span>Analyse d'impact r&eacute;glementaire</div>
         <div class="pf-section">Livrables</div>
-        <div class="pf"><span class="pf-icon">✓</span>Rapport thématique (1 domaine)</div>
-        <div class="pf"><span class="pf-icon">✓</span>Étude multi-domaines croisée</div>
-        <div class="pf"><span class="pf-icon">✓</span>Rapport d'impact réglementaire</div>
-        <div class="pf"><span class="pf-icon">✓</span>Données brutes exportables</div>
-        <div class="pf"><span class="pf-icon">✓</span>Délai et format sur mesure</div>
+        <div class="pf"><span class="pf-icon">&#10003;</span>Rapport th&eacute;matique (1 domaine)</div>
+        <div class="pf"><span class="pf-icon">&#10003;</span>Etude multi-domaines crois&eacute;e</div>
+        <div class="pf"><span class="pf-icon">&#10003;</span>Donn&eacute;es brutes exportables</div>
+        <div class="pf"><span class="pf-icon">&#10003;</span>D&eacute;lai et format sur mesure</div>
       </div>
-      <button class="btn-plan i" onclick="window.location='consulter.html#z2'">Nous contacter →</button>
+      <button class="btn-plan i" onclick="window.location='consulter.html#z2'">Nous contacter &rarr;</button>
     </div>
   </div>
 
   <!-- TABLEAU COMPARATIF -->
-  <div class="compare-title">Comparaison détaillée</div>
+  <div class="compare-title">Comparaison d&eacute;taill&eacute;e</div>
   <table class="compare-table">
     <thead>
       <tr>
         <th></th>
-        <th class="f">🔓 Gratuit</th>
-        <th class="p">⭐ Pro</th>
-        <th class="i">🏛️ Institutionnel</th>
+        <th class="f">&#128275; Gratuit</th>
+        <th class="u">&#128269; &agrave; l'usage</th>
+        <th class="a">&#9733; Abonnement</th>
+        <th class="i">&#127963;&#65039; Institutionnel</th>
       </tr>
     </thead>
     <tbody>
-      <tr class="section-row"><td colspan="4">Consultation de la base</td></tr>
-      <tr><td>Témoignages publiés</td><td><span class="check">✓</span></td><td class="p-col"><span class="check or">✓</span></td><td><span class="check bl">✓</span></td></tr>
-      <tr><td>Résumé des clusters (3-4 phrases)</td><td><span class="check">✓</span></td><td class="p-col"><span class="check or">✓</span></td><td><span class="check bl">✓</span></td></tr>
-      <tr><td>Analyse statistique illustrée</td><td><span class="cross">—</span></td><td class="p-col"><span class="check or">✓</span></td><td><span class="check bl">✓</span></td></tr>
-      <tr><td>Références textes de loi (Légifrance)</td><td><span class="cross">—</span></td><td class="p-col"><span class="check or">✓</span></td><td><span class="check bl">✓</span></td></tr>
-      <tr><td>Références droit européen (EUR-Lex)</td><td><span class="cross">—</span></td><td class="p-col"><span class="check or">✓</span></td><td><span class="check bl">✓</span></td></tr>
-      <tr><td>Jurisprudence (JUDILIBRE / JADE)</td><td><span class="cross">—</span></td><td class="p-col"><span class="check or">✓</span></td><td><span class="check bl">✓</span></td></tr>
-      <tr><td>Bases spécialisées (Dalloz, LexisNexis)</td><td><span class="cross">—</span></td><td class="p-col"><span class="cross">—</span></td><td><span class="check bl">✓ selon projet</span></td></tr>
-      <tr><td>Export dossier PDF</td><td><span class="cross">—</span></td><td class="p-col"><span class="check or">✓</span></td><td><span class="check bl">✓</span></td></tr>
-      <tr class="section-row"><td colspan="4">Recherche</td></tr>
-      <tr><td>Mots-clés + catégories</td><td><span class="check">✓</span></td><td class="p-col"><span class="check or">✓</span></td><td><span class="check bl">✓</span></td></tr>
-      <tr><td>Recherche sémantique AI</td><td><span class="cross">—</span></td><td class="p-col"><span class="check or">✓</span></td><td><span class="check bl">✓</span></td></tr>
-      <tr><td>Dictée vocale (micro)</td><td><span class="cross">—</span></td><td class="p-col"><span class="check or">✓</span></td><td><span class="check bl">✓</span></td></tr>
-      <tr><td>Dialogue AI pour affiner</td><td><span class="cross">—</span></td><td class="p-col"><span class="partial">2-3 échanges</span></td><td><span class="check bl">✓ approfondi</span></td></tr>
-      <tr><td>Filtres croisés avancés</td><td><span class="partial">Basiques</span></td><td class="p-col"><span class="check or">✓ complets</span></td><td><span class="check bl">✓ complets</span></td></tr>
-      <tr class="section-row"><td colspan="4">Compte & Notifications</td></tr>
-      <tr><td>Dépôt de témoignages</td><td><span class="check">✓</span></td><td class="p-col"><span class="check or">✓</span></td><td><span class="check bl">✓</span></td></tr>
-      <tr><td>Messagerie interne</td><td><span class="check">✓ opt-in</span></td><td class="p-col"><span class="check or">✓</span></td><td><span class="check bl">✓</span></td></tr>
-      <tr><td>Alertes témoignages similaires</td><td><span class="check">✓</span></td><td class="p-col"><span class="check or">✓</span></td><td><span class="check bl">✓</span></td></tr>
-      <tr><td>Alertes personnalisées (critères)</td><td><span class="cross">—</span></td><td class="p-col"><span class="check or">✓</span></td><td><span class="check bl">✓</span></td></tr>
-      <tr><td>Historique des recherches</td><td><span class="cross">—</span></td><td class="p-col"><span class="check or">✓</span></td><td><span class="check bl">✓</span></td></tr>
-      <tr class="section-row"><td colspan="4">Analyses sur mesure (Institutionnel)</td></tr>
-      <tr><td>Rapport thématique</td><td><span class="cross">—</span></td><td class="p-col"><span class="cross">—</span></td><td><span class="check bl">✓</span></td></tr>
-      <tr><td>Étude multi-domaines croisée</td><td><span class="cross">—</span></td><td class="p-col"><span class="cross">—</span></td><td><span class="check bl">✓</span></td></tr>
-      <tr><td>Validation par juriste spécialisé</td><td><span class="cross">—</span></td><td class="p-col"><span class="cross">—</span></td><td><span class="check bl">✓</span></td></tr>
-      <tr><td>Analyse d'impact réglementaire</td><td><span class="cross">—</span></td><td class="p-col"><span class="cross">—</span></td><td><span class="check bl">✓</span></td></tr>
-      <tr><td>Données brutes exportables</td><td><span class="cross">—</span></td><td class="p-col"><span class="cross">—</span></td><td><span class="check bl">✓</span></td></tr>
-      <tr class="section-row"><td colspan="4">Prix</td></tr>
-      <tr><td>Mensuel</td><td><span class="check">Gratuit</span></td><td class="p-col"><span style="font-weight:600;color:var(--or)">99€ HT</span></td><td><span style="color:var(--bleu);font-weight:500">Nous contacter</span></td></tr>
-      <tr><td>Annuel</td><td><span class="check">Gratuit</span></td><td class="p-col"><span style="font-weight:600;color:var(--or)">890€ HT <span style="font-size:0.78rem;font-weight:400">(−25%)</span></span></td><td><span style="color:var(--bleu);font-weight:500">Nous contacter</span></td></tr>
+      <tr class="section-row"><td colspan="5">Consultation de la base</td></tr>
+      <tr><td>T&eacute;moignages publi&eacute;s</td><td><span class="check">&#10003;</span></td><td class="u-col"><span class="check or">&#10003;</span></td><td><span class="check or">&#10003;</span></td><td><span class="check bl">&#10003;</span></td></tr>
+      <tr><td>R&eacute;sum&eacute; des clusters</td><td><span class="check">&#10003;</span></td><td class="u-col"><span class="check or">&#10003;</span></td><td><span class="check or">&#10003;</span></td><td><span class="check bl">&#10003;</span></td></tr>
+      <tr><td>Analyse statistique illustr&eacute;e</td><td><span class="cross">&mdash;</span></td><td class="u-col"><span class="check or">&#10003;</span></td><td><span class="check or">&#10003;</span></td><td><span class="check bl">&#10003;</span></td></tr>
+      <tr><td>R&eacute;f&eacute;rences textes de loi (L&eacute;gifrance)</td><td><span class="cross">&mdash;</span></td><td class="u-col"><span class="check or">&#10003;</span></td><td><span class="check or">&#10003;</span></td><td><span class="check bl">&#10003;</span></td></tr>
+      <tr><td>R&eacute;f&eacute;rences droit europ&eacute;en (EUR-Lex)</td><td><span class="cross">&mdash;</span></td><td class="u-col"><span class="check or">&#10003;</span></td><td><span class="check or">&#10003;</span></td><td><span class="check bl">&#10003;</span></td></tr>
+      <tr><td>Jurisprudence (JUDILIBRE / JADE)</td><td><span class="cross">&mdash;</span></td><td class="u-col"><span class="check or">&#10003;</span></td><td><span class="check or">&#10003;</span></td><td><span class="check bl">&#10003;</span></td></tr>
+      <tr><td>Bases sp&eacute;cialis&eacute;es (Dalloz, LexisNexis)</td><td><span class="cross">&mdash;</span></td><td class="u-col"><span class="cross">&mdash;</span></td><td><span class="cross">&mdash;</span></td><td><span class="check bl">&#10003; selon projet</span></td></tr>
+      <tr><td>Export dossier PDF</td><td><span class="cross">&mdash;</span></td><td class="u-col"><span class="check or">&#10003;</span></td><td><span class="check or">&#10003;</span></td><td><span class="check bl">&#10003;</span></td></tr>
+      <tr class="section-row"><td colspan="5">Recherche</td></tr>
+      <tr><td>Mots-cl&eacute;s</td><td><span class="check">&#10003;</span></td><td class="u-col"><span class="check or">&#10003;</span></td><td><span class="check or">&#10003;</span></td><td><span class="check bl">&#10003;</span></td></tr>
+      <tr><td>Filtres avanc&eacute;s crois&eacute;s</td><td><span class="cross">&mdash;</span></td><td class="u-col"><span class="check or">&#10003;</span></td><td><span class="check or">&#10003;</span></td><td><span class="check bl">&#10003;</span></td></tr>
+      <tr><td>Recherche s&eacute;mantique AI</td><td><span class="cross">&mdash;</span></td><td class="u-col"><span class="check or">&#10003;</span></td><td><span class="check or">&#10003;</span></td><td><span class="check bl">&#10003;</span></td></tr>
+      <tr><td>Dict&eacute;e vocale (micro)</td><td><span class="cross">&mdash;</span></td><td class="u-col"><span class="check or">&#10003;</span></td><td><span class="check or">&#10003;</span></td><td><span class="check bl">&#10003;</span></td></tr>
+      <tr><td>Dialogue AI pour affiner</td><td><span class="cross">&mdash;</span></td><td class="u-col"><span class="partial">par session</span></td><td><span class="check or">&#10003; illimit&eacute;</span></td><td><span class="check bl">&#10003; approfondi</span></td></tr>
+      <tr class="section-row"><td colspan="5">Compte &amp; Notifications</td></tr>
+      <tr><td>D&eacute;p&ocirc;t de t&eacute;moignages</td><td><span class="check">&#10003;</span></td><td class="u-col"><span class="check or">&#10003;</span></td><td><span class="check or">&#10003;</span></td><td><span class="check bl">&#10003;</span></td></tr>
+      <tr><td>Messagerie interne</td><td><span class="check">&#10003; opt-in</span></td><td class="u-col"><span class="check or">&#10003;</span></td><td><span class="check or">&#10003;</span></td><td><span class="check bl">&#10003;</span></td></tr>
+      <tr><td>Alertes t&eacute;moignages similaires</td><td><span class="check">&#10003;</span></td><td class="u-col"><span class="check or">&#10003;</span></td><td><span class="check or">&#10003;</span></td><td><span class="check bl">&#10003;</span></td></tr>
+      <tr><td>Alertes personnalis&eacute;es (crit&egrave;res)</td><td><span class="cross">&mdash;</span></td><td class="u-col"><span class="cross">&mdash;</span></td><td><span class="check or">&#10003;</span></td><td><span class="check bl">&#10003;</span></td></tr>
+      <tr><td>Historique des recherches</td><td><span class="cross">&mdash;</span></td><td class="u-col"><span class="cross">&mdash;</span></td><td><span class="check or">&#10003;</span></td><td><span class="check bl">&#10003;</span></td></tr>
+      <tr class="section-row"><td colspan="5">Analyses sur mesure (Institutionnel)</td></tr>
+      <tr><td>Rapport th&eacute;matique</td><td><span class="cross">&mdash;</span></td><td class="u-col"><span class="cross">&mdash;</span></td><td><span class="cross">&mdash;</span></td><td><span class="check bl">&#10003;</span></td></tr>
+      <tr><td>Etude multi-domaines crois&eacute;e</td><td><span class="cross">&mdash;</span></td><td class="u-col"><span class="cross">&mdash;</span></td><td><span class="cross">&mdash;</span></td><td><span class="check bl">&#10003;</span></td></tr>
+      <tr><td>Validation par juriste sp&eacute;cialis&eacute;</td><td><span class="cross">&mdash;</span></td><td class="u-col"><span class="cross">&mdash;</span></td><td><span class="cross">&mdash;</span></td><td><span class="check bl">&#10003;</span></td></tr>
+      <tr><td>Analyse d'impact r&eacute;glementaire</td><td><span class="cross">&mdash;</span></td><td class="u-col"><span class="cross">&mdash;</span></td><td><span class="cross">&mdash;</span></td><td><span class="check bl">&#10003;</span></td></tr>
+      <tr><td>Donn&eacute;es brutes exportables</td><td><span class="cross">&mdash;</span></td><td class="u-col"><span class="cross">&mdash;</span></td><td><span class="cross">&mdash;</span></td><td><span class="check bl">&#10003;</span></td></tr>
+      <tr class="section-row"><td colspan="5">Prix</td></tr>
+      <tr><td>Acc&egrave;s de base</td><td><span class="check">Gratuit</span></td><td class="u-col"><span style="font-weight:600;color:var(--or)">1,99&euro; / 30 min</span></td><td><span style="font-weight:600;color:var(--or)">99&euro; HT / mois</span></td><td><span style="color:var(--bleu);font-weight:500">Nous contacter</span></td></tr>
+      <tr><td>Option annuelle</td><td><span class="check">Gratuit</span></td><td class="u-col"><span class="cross">&mdash;</span></td><td><span style="font-weight:600;color:var(--or)">890&euro; HT / an</span></td><td><span style="color:var(--bleu);font-weight:500">Sur mesure</span></td></tr>
+      <tr><td>Engagement</td><td><span class="check">Aucun</span></td><td class="u-col"><span class="check or">Aucun</span></td><td><span class="partial">R&eacute;siliable &agrave; tout moment</span></td><td><span class="partial">Par projet</span></td></tr>
     </tbody>
   </table>
 
-  <!-- FAQ -->
+  <!-- FAQ — intact depuis version originale -->
   <div class="faq">
-    <div class="faq-title">Questions fréquentes</div>
+    <div class="faq-title">Questions fr&eacute;quentes</div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">L'accès gratuit est-il vraiment sans limite de durée ? <span class="faq-arrow">▼</span></div>
-      <div class="faq-a">Oui. La consultation de tous les témoignages publiés, la recherche par mots-clés et le dépôt de témoignages restent gratuits sans limitation de temps. Pas de carte bancaire requise.</div>
+      <div class="faq-q" onclick="toggleFaq(this)">L'acc&egrave;s gratuit est-il vraiment sans limite de dur&eacute;e&nbsp;? <span class="faq-arrow">&#9660;</span></div>
+      <div class="faq-a">Oui. La consultation de tous les t&eacute;moignages publi&eacute;s, la recherche par mots-cl&eacute;s et le d&eacute;p&ocirc;t de t&eacute;moignages restent gratuits sans limitation de temps.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">Que contient exactement l'analyse statistique Pro ? <span class="faq-arrow">▼</span></div>
-      <div class="faq-a">L'analyse Pro comprend des données agrégées sur chaque cluster (nombre de situations, répartition régionale, délais, montants en jeu), des graphiques de tendance, et les références aux textes de loi et jurisprudences associés — sans interprétation ni conseil juridique.</div>
+      <div class="faq-q" onclick="toggleFaq(this)">Que contient exactement la recherche &agrave; l'usage&nbsp;? <span class="faq-arrow">&#9660;</span></div>
+      <div class="faq-a">La session de 30 minutes donne acc&egrave;s &agrave; tous les outils de recherche avanc&eacute;e&nbsp;: filtres crois&eacute;s, analyse de clusters, recherche s&eacute;mantique AI, jurisprudence associ&eacute;e (L&eacute;gifrance, EUR-Lex, JUDILIBRE), dictée vocale, dialogue AI d'affinement et export PDF structur&eacute;. Le compteur d&eacute;marre &agrave; l'ouverture de la session.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">Les témoignages sont-ils validés avant publication ? <span class="faq-arrow">▼</span></div>
-      <div class="faq-a">Oui. Chaque témoignage passe par un système de vérification en trois étapes : extraction des faits explicitement mentionnés, structuration du document, puis vérification de cohérence par l'IA avec un score de confiance. Les témoignages en dessous d'un certain score sont examinés par notre équipe avant publication.</div>
+      <div class="faq-q" onclick="toggleFaq(this)">Les t&eacute;moignages sont-ils valid&eacute;s avant publication&nbsp;? <span class="faq-arrow">&#9660;</span></div>
+      <div class="faq-a">Oui. Chaque t&eacute;moignage passe par un syst&egrave;me de v&eacute;rification en trois &eacute;tapes&nbsp;: extraction des faits explicitement mentionn&eacute;s, structuration du document, puis v&eacute;rification de coh&eacute;rence par l'IA avec un score de confiance. Les t&eacute;moignages en dessous d'un certain score sont examin&eacute;s par notre &eacute;quipe avant publication.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">Puis-je annuler mon abonnement Pro à tout moment ? <span class="faq-arrow">▼</span></div>
-      <div class="faq-a">Oui, sans frais ni préavis. L'accès Pro reste actif jusqu'à la fin de la période en cours. Aucun engagement minimum.</div>
+      <div class="faq-q" onclick="toggleFaq(this)">Puis-je annuler mon abonnement &agrave; tout moment&nbsp;? <span class="faq-arrow">&#9660;</span></div>
+      <div class="faq-a">Oui, sans frais ni pr&eacute;avis. L'acc&egrave;s reste actif jusqu'&agrave; la fin de la p&eacute;riode en cours. Aucun engagement minimum.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">Comment fonctionne l'accès institutionnel ? <span class="faq-arrow">▼</span></div>
-      <div class="faq-a">L'accès institutionnel fonctionne sur projet. Vous décrivez votre besoin d'analyse (domaine, périmètre, objectif), et nous construisons une réponse sur mesure avec les ressources appropriées — bases de données spécialisées, experts en sous-traitance, délai et format adaptés.</div>
+      <div class="faq-q" onclick="toggleFaq(this)">Comment fonctionne l'acc&egrave;s institutionnel&nbsp;? <span class="faq-arrow">&#9660;</span></div>
+      <div class="faq-a">L'acc&egrave;s institutionnel fonctionne sur projet. Vous d&eacute;crivez votre besoin d'analyse (domaine, p&eacute;rim&egrave;tre, objectif), et nous construisons une r&eacute;ponse sur mesure avec les ressources appropri&eacute;es &mdash; bases de donn&eacute;es sp&eacute;cialis&eacute;es, experts en sous-traitance, d&eacute;lai et format adapt&eacute;s.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">Les données personnelles des témoins sont-elles protégées ? <span class="faq-arrow">▼</span></div>
-      <div class="faq-a">Oui. Les témoignages sont publiés sous pseudonyme selon le niveau d'anonymat choisi par l'auteur. Les emails ne sont jamais publiés. Les documents joints sont détruits après traitement. Aucune donnée personnelle identifiable n'est exposée dans les analyses ou les exports.</div>
+      <div class="faq-q" onclick="toggleFaq(this)">Les donn&eacute;es personnelles des t&eacute;moins sont-elles prot&eacute;g&eacute;es&nbsp;? <span class="faq-arrow">&#9660;</span></div>
+      <div class="faq-a">Oui. Les t&eacute;moignages sont publi&eacute;s sous pseudonyme selon le niveau d'anonymat choisi par l'auteur. Les emails ne sont jamais publi&eacute;s. Les documents joints sont d&eacute;truits apr&egrave;s traitement. Aucune donn&eacute;e personnelle identifiable n'est expos&eacute;e dans les analyses ou les exports.</div>
     </div>
   </div>
 </div>
 
 <script>
-let isAnnual=false;
-function toggleBilling(){
-  isAnnual=!isAnnual;
-  document.getElementById('lblM').classList.toggle('on',!isAnnual);
-  document.getElementById('lblA').classList.toggle('on',isAnnual);
-  document.getElementById('proPrice').textContent=isAnnual?'74€':'99€';
-  document.getElementById('proPeriod').textContent=isAnnual?'par mois, HT (facturé 890€/an)':'par mois, HT';
-  document.getElementById('proAnnual').textContent=isAnnual?'Soit 890€/an — économisez 298€':'';
-}
 function toggleFaq(el){
   const item=el.parentElement;
   const wasOpen=item.classList.contains('open');
   document.querySelectorAll('.faq-item').forEach(f=>f.classList.remove('open'));
   if(!wasOpen)item.classList.add('open');
 }
-document.getElementById('lblM').classList.add('on');
+function showLangMsg(){
+  var t=document.getElementById('langTooltip');
+  t.classList.add('show');
+  setTimeout(function(){t.classList.remove('show');},3000);
+}
 </script>
 </body>
 </html>
