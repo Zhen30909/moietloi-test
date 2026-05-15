@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -149,7 +148,7 @@ input:focus, textarea:focus { outline:none; border-color:var(--vert); background
 .anon-fields { display:flex; flex-direction:column; gap:8px; margin-top:4px; }
 .anon-field { display:flex; align-items:center; gap:12px; padding:12px 16px; border-radius:8px; border:1.5px solid #ddd8d0; background:var(--fond); transition:all 0.2s; }
 .anon-field.checked { border-color:var(--vert); background:#eef3ee; }
-.anon-field.disabled { opacity:0.4; pointer-events:none; }
+.anon-field.disabled { opacity:0.5; }
 .anon-field input[type=checkbox] { accent-color:var(--vert); width:18px; height:18px; cursor:pointer; flex-shrink:0; }
 .anon-field-label { font-size:0.9rem; font-weight:500; color:var(--gris-fonce); flex:1; }
 .anon-field-sub { font-size:0.78rem; color:var(--gris-moyen); }
@@ -213,6 +212,13 @@ hr { border:none; border-top:1px solid var(--beige); margin:20px 0; }
   .logo{font-size:2rem}.card{padding:20px}.btn-row{flex-direction:column}
   nav{padding:0 18px}.nav-links{display:none}.nav-burger{display:flex}
 }
+
+/* LANGUE */
+.lang-btn{padding:5px 10px;border:1.5px solid var(--beige);border-radius:6px;font-size:0.78rem;font-family:'Source Sans 3',sans-serif;font-weight:500;cursor:pointer;background:transparent;color:var(--gris-moyen);transition:all 0.2s;display:flex;align-items:center;gap:4px}
+.lang-btn:hover{border-color:var(--vert);color:var(--vert);background:var(--vert-pale)}
+.lang-tooltip{position:fixed;top:68px;right:24px;background:var(--gris-fonce);color:white;font-size:0.78rem;padding:8px 14px;border-radius:8px;z-index:200;max-width:220px;line-height:1.5;display:none}
+.lang-tooltip.show{display:block;animation:fadeIn 0.2s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
 </style>
 </head>
 <body>
@@ -224,9 +230,10 @@ hr { border:none; border-top:1px solid var(--beige); margin:20px 0; }
     <a href="temoigner.html" class="nav-cta active">🎙️ Déposer</a>
     <a href="consulter.html">🔍 Consulter</a>
     <a href="charte.html">📋 Charte</a>
-    <a href="tarifs.html">💶 Tarifs</a>
+    <!-- <a href="tarifs.html">💶 Tarifs</a> -->
     <a href="compte.html">👤 Connexion / Créer un compte</a>
   </div>
+  <button class="lang-btn" onclick="showLangMsg()" title="Switch language">&#127758; FR / EN</button>
   <button class="nav-burger" onclick="document.getElementById('nm').classList.toggle('open')" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
@@ -235,9 +242,10 @@ hr { border:none; border-top:1px solid var(--beige); margin:20px 0; }
   <a href="temoigner.html" class="nav-cta-mob active">🎙️ Déposer un témoignage</a>
   <a href="consulter.html">🔍 Consulter les témoignages</a>
   <a href="charte.html">📋 Charte & Règles</a>
-  <a href="tarifs.html">💶 Tarifs</a>
+  <!-- <a href="tarifs.html">💶 Tarifs</a> -->
   <a href="compte.html">👤 Connexion / Créer un compte</a>
 </div>
+<div class="lang-tooltip" id="langTooltip">&#127758; English version coming soon — we're working on it!</div>
 
 <div class="container">
 <header>
@@ -528,6 +536,16 @@ hr { border:none; border-top:1px solid var(--beige); margin:20px 0; }
   <div class="classif-display" id="classifTypes">Analyse en cours…</div>
   <hr>
   <div class="igrp">
+    <label>Année des faits <span style="font-size:0.75rem;color:var(--gris-moyen);font-weight:400;text-transform:none;letter-spacing:0;">(quand la situation s'est produite)</span></label>
+    <select id="anneeFaits" style="max-width:220px;padding:10px 14px;border:1.5px solid #ddd8d0;border-radius:8px;font-size:0.9rem;font-family:'Source Sans 3',sans-serif;background:var(--fond);color:var(--gris-fonce);-webkit-appearance:none;cursor:pointer;">
+      <option value="">— Sélectionner —</option>
+      <option value="avant2021">Avant 2021</option>
+      <option value="2021-2023">2021 – 2023</option>
+      <option value="2024-2025">2024 – 2025</option>
+      <option value="2026">2026</option>
+    </select>
+  </div>
+  <div class="igrp">
     <label>Avez-vous pu vous faire aider ? (plusieurs choix possibles)</label>
     <div class="check-group" id="aideGroup">
       <label class="check-btn" id="cb_avocat"><input type="checkbox" value="Avocat" onchange="toggleCheck(this)"> Avocat</label>
@@ -740,10 +758,10 @@ function toggleBloc(key){
 }
 
 // ── MINI ENREGISTREURS 3b — système complet avec timer, stop, complément, recommencer
-let miniAllChunks={Resol:[],Etapes:[]};
-let miniTimers={Resol:null,Etapes:null};
-let miniSecs={Resol:0,Etapes:0};
-let miniIsRec={Resol:false,Etapes:false};
+let miniAllChunks={Resol:[],Etapes:[],Impact:[]};
+let miniTimers={Resol:null,Etapes:null,Impact:null};
+let miniSecs={Resol:0,Etapes:0,Impact:0};
+let miniIsRec={Resol:false,Etapes:false,Impact:false};
 
 async function togMiniRec(key){
   if(miniIsRec[key]){stopMiniRec(key);return;}
