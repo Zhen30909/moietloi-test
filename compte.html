@@ -151,6 +151,13 @@ input[list]:focus{outline:none;border-color:var(--vert);background:white}
   .field-row{grid-template-columns:1fr}
   .field-row-3{grid-template-columns:1fr;gap:10px}
 }
+
+/* LANGUE */
+.lang-btn{padding:5px 10px;border:1.5px solid var(--beige);border-radius:6px;font-size:0.78rem;font-family:'Source Sans 3',sans-serif;font-weight:500;cursor:pointer;background:transparent;color:var(--gris-moyen);transition:all 0.2s;display:flex;align-items:center;gap:4px}
+.lang-btn:hover{border-color:var(--vert);color:var(--vert);background:var(--vert-pale)}
+.lang-tooltip{position:fixed;top:68px;right:24px;background:var(--gris-fonce);color:white;font-size:0.78rem;padding:8px 14px;border-radius:8px;z-index:200;max-width:220px;line-height:1.5;display:none}
+.lang-tooltip.show{display:block;animation:fadeIn 0.2s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
 </style>
 </head>
 <body>
@@ -162,9 +169,10 @@ input[list]:focus{outline:none;border-color:var(--vert);background:white}
     <a href="temoigner.html" class="nav-cta">🎙️ Déposer</a>
     <a href="consulter.html">🔍 Consulter</a>
     <a href="charte.html">📋 Charte</a>
-    <a href="tarifs.html">💶 Tarifs</a>
+    <!-- <a href="tarifs.html">💶 Tarifs</a> -->
     <a href="compte.html" class="active">👤 Connexion / Créer un compte</a>
   </div>
+  <button class="lang-btn" onclick="showLangMsg()" title="Switch language">&#127758; FR / EN</button>
   <button class="nav-burger" onclick="document.getElementById('nm').classList.toggle('open')" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
@@ -173,9 +181,10 @@ input[list]:focus{outline:none;border-color:var(--vert);background:white}
   <a href="temoigner.html" class="nav-cta-mob">🎙️ Déposer un témoignage</a>
   <a href="consulter.html">🔍 Consulter les témoignages</a>
   <a href="charte.html">📋 Charte & Règles</a>
-  <a href="tarifs.html">💶 Tarifs</a>
+  <!-- <a href="tarifs.html">💶 Tarifs</a> -->
   <a href="compte.html" class="active">👤 Connexion / Créer un compte</a>
 </div>
+<div class="lang-tooltip" id="langTooltip">&#127758; English version coming soon — we're working on it!</div>
 
 <!-- FORMULAIRE -->
 <div class="container" id="formZone">
@@ -280,16 +289,7 @@ input[list]:focus{outline:none;border-color:var(--vert);background:white}
       <div class="field-error" id="err_age">Tranche d'âge requise</div>
     </div>
 
-    <div class="field">
-      <label>Sexe <span class="req">*</span></label>
-      <div class="radio-group">
-        <div class="radio-btn"><input type="radio" name="sexe" id="s1" value="Femme" onchange="checkForm()"><label for="s1">Femme</label></div>
-        <div class="radio-btn"><input type="radio" name="sexe" id="s2" value="Homme" onchange="checkForm()"><label for="s2">Homme</label></div>
-        <div class="radio-btn"><input type="radio" name="sexe" id="s3" value="Autre" onchange="checkForm()"><label for="s3">Autre</label></div>
-        <div class="radio-btn"><input type="radio" name="sexe" id="s4" value="Non précisé" onchange="checkForm()"><label for="s4">Préfère ne pas préciser</label></div>
-      </div>
-      <div class="field-error" id="err_sexe">Veuillez sélectionner une option</div>
-    </div>
+
 
     <div class="field">
       <label>Type de territoire <span class="req">*</span></label>
@@ -524,7 +524,6 @@ const REQUIRED_FIELDS = [
   {id:'password', type:'password', label:'Mot de passe (8 caractères minimum)', minLen:8},
   {id:'pseudo', type:'text', label:'Pseudonyme'},
   {id:'age', type:'select', label:'Tranche d\'âge'},
-  {id:'sexe', type:'radio', name:'sexe', label:'Sexe'},
   {id:'territoire', type:'radio', name:'territoire', label:'Type de territoire'},
   {id:'region', type:'text', label:'Département ou région'},
   {id:'csp', type:'text', label:'Catégorie socio-professionnelle'},
@@ -611,7 +610,7 @@ function creerCompte(){
     telephone: document.getElementById('telephone').value.trim(),
     pseudo: document.getElementById('pseudo').value.trim(),
     age: document.getElementById('age').value,
-    sexe: document.querySelector('input[name=sexe]:checked')?.value||'',
+    sexe: ({'M.':'Homme','Mme':'Femme','Autre':'Autre'})[civilite]||'Non précisé',
     territoire: document.querySelector('input[name=territoire]:checked')?.value||'',
     region: document.getElementById('region').value.trim(),
     csp: document.getElementById('csp').value.trim(),
