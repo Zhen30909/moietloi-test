@@ -251,7 +251,7 @@ hr { border:none; border-top:1px solid var(--beige); margin:20px 0; }
 <header>
   <a href="index.html" class="logo">moi <span class="et">&amp;</span> <span class="loi">loi</span></a>
   <div class="sous-titre">Témoignages citoyens</div>
-  <span class="badge">Pipeline v7.12</span>
+  <span class="badge">Pipeline v7.13</span>
 </header>
 
 <!-- 1. CLÉS API -->
@@ -590,6 +590,11 @@ hr { border:none; border-top:1px solid var(--beige); margin:20px 0; }
       <input type="checkbox" id="chk_nom" onchange="onPreNomChange()">
       <span class="anon-field-label">Nom</span>
       <input type="text" id="val_nom" placeholder="Votre nom" oninput="updateAnonPreview()" onclick="activateNom()">
+    </div>
+    <div class="anon-field" id="af_societe">
+      <input type="checkbox" id="chk_societe" onchange="updateAnonPreview()">
+      <span class="anon-field-label">Nom de la société / organisation</span>
+      <input type="text" id="val_societe" placeholder="Ex: SARL Dupont, Association X" oninput="updateAnonPreview()" onclick="G('chk_societe').checked=true;updateAnonPreview()">
     </div>
     <div class="anon-field" id="af_profession">
       <input type="checkbox" id="chk_profession" onchange="updateAnonPreview()">
@@ -1328,7 +1333,7 @@ function updateAnonPreview(){
       else{af?.classList.remove('checked');}
     });
   }
-  ['profession','secteur','age','region'].forEach(f=>{
+  ['profession','societe','secteur','age','region'].forEach(f=>{
     const chk=G('chk_'+f);const val=G('val_'+f);const af=G('af_'+f);
     if(chk?.checked&&val?.value.trim()){af?.classList.add('checked');parts.push(val.value.trim());}
     else{af?.classList.remove('checked');}
