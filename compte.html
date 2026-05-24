@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Créer mon compte — moi & loi</title>
+<title>Créer mon compte — moi & loi</title><!-- compte v7.2 -->
 <meta name="description" content="Créez votre compte moietloi.fr pour déposer votre témoignage sur un dysfonctionnement administratif.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -145,6 +145,22 @@ input[list]:focus{outline:none;border-color:var(--vert);background:white}
 /* ERROR */
 .err-box{display:none;background:#fdf0ef;border:1px solid #e8b0ad;border-radius:8px;padding:12px 16px;font-size:0.85rem;color:var(--rouge);margin-top:12px}
 
+
+/* TYPE COMPTE */
+.type-toggle{display:flex;gap:0;border-radius:10px;overflow:hidden;border:1.5px solid var(--beige);background:var(--blanc);margin-bottom:20px}
+.type-btn{flex:1;padding:14px 10px;font-size:0.9rem;font-weight:500;cursor:pointer;border:none;font-family:'Source Sans 3',sans-serif;background:transparent;color:var(--gris-moyen);transition:all 0.2s;text-align:center}
+.type-btn.on.part{background:var(--vert);color:white}
+.type-btn.on.ent{background:#4a6090;color:white}
+.ent-fields{display:none;margin-top:4px;padding:16px;background:var(--vert-pale);border:1px solid var(--vert-clair);border-radius:8px;margin-bottom:18px}
+.ent-fields.visible{display:block}
+.role-group{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.role-btn input[type=radio]{display:none}
+.role-btn label{padding:7px 14px;border:1.5px solid #ddd8d0;border-radius:20px;font-size:0.82rem;color:var(--gris-moyen);cursor:pointer;transition:all 0.2s;text-transform:none;letter-spacing:0;font-weight:400;margin:0}
+.role-btn input:checked+label{border-color:#4a6090;background:#eef2f7;color:#4a6090;font-weight:500}
+.type-badge{display:inline-flex;align-items:center;gap:5px;font-size:0.72rem;padding:3px 10px;border-radius:10px;font-weight:500;margin-left:8px}
+.type-badge.part{background:var(--vert-pale);color:var(--vert)}
+.type-badge.ent{background:#eef2f7;color:#4a6090}
+
 @media(max-width:600px){
   nav{padding:0 18px}.nav-links{display:none}.nav-burger{display:flex}
   .container{padding:28px 16px}
@@ -200,6 +216,48 @@ input[list]:focus{outline:none;border-color:var(--vert);background:white}
 
   <div class="anon-note">
     <strong>Anonymat et statistiques :</strong> même si votre témoignage est publié de façon 100% anonyme, les informations de votre profil sont rattachées en privé à votre témoignage pour enrichir les analyses collectives.
+  </div>
+
+
+  <!-- TYPE DE COMPTE -->
+  <div class="field">
+    <label>Vous déposez en tant que <span class="req">*</span></label>
+    <div class="type-toggle">
+      <button type="button" class="type-btn on part" id="btnPart" onclick="setTypeCompte('particulier')">👤 Particulier</button>
+      <button type="button" class="type-btn ent" id="btnEnt" onclick="setTypeCompte('entreprise')">🏢 Entreprise / Organisation</button>
+    </div>
+    <div class="field-error" id="err_typeCompte">Veuillez choisir un type de compte</div>
+  </div>
+
+  <!-- CHAMPS ENTREPRISE — masqués par défaut -->
+  <div class="ent-fields" id="entFields">
+    <div class="field" style="margin-bottom:14px;">
+      <label>Nom de l'entreprise / organisation <span class="req">*</span></label>
+      <input type="text" id="nomEntreprise" placeholder="Raison sociale ou nom de l'organisation" oninput="checkForm()">
+      <div class="field-error" id="err_nomEntreprise">Nom de l'entreprise requis</div>
+    </div>
+    <div class="field" style="margin-bottom:14px;">
+      <label>Adresse <span class="opt">(optionnel)</span></label>
+      <input type="text" id="adresseEntreprise" placeholder="Adresse du siège">
+    </div>
+    <div class="field" style="margin-bottom:0;">
+      <label>Site web <span class="opt">(optionnel)</span></label>
+      <input type="text" id="siteEntreprise" placeholder="https://www.exemple.fr">
+    </div>
+  </div>
+
+  <!-- RÔLE — visible pour tous -->
+  <div class="field" id="fieldRole">
+    <label>Votre rôle <span class="req">*</span></label>
+    <div class="role-group">
+      <div class="role-btn"><input type="radio" name="roleCompte" id="r1" value="Dirigeant / Propriétaire"><label for="r1">Dirigeant / Propriétaire</label></div>
+      <div class="role-btn"><input type="radio" name="roleCompte" id="r2" value="Gérant / Manager"><label for="r2">Gérant / Manager</label></div>
+      <div class="role-btn"><input type="radio" name="roleCompte" id="r3" value="Employé"><label for="r3">Employé</label></div>
+      <div class="role-btn"><input type="radio" name="roleCompte" id="r4" value="Indépendant / Freelance"><label for="r4">Indépendant / Freelance</label></div>
+      <div class="role-btn"><input type="radio" name="roleCompte" id="r5" value="Représentant légal"><label for="r5">Représentant légal</label></div>
+      <div class="role-btn"><input type="radio" name="roleCompte" id="r6" value="Autre"><label for="r6">Autre</label></div>
+    </div>
+    <div class="field-error" id="err_roleCompte">Veuillez sélectionner votre rôle</div>
   </div>
 
   <!-- RÉSUMÉ ERREURS -->
@@ -516,26 +574,37 @@ function onSecteurSub(){
 }
 
 // ── VALIDATION — liste des champs obligatoires
-const REQUIRED_FIELDS = [
-  {id:'civilite', type:'radio', name:'civilite', label:'Civilité'},
-  {id:'prenom', type:'text', label:'Prénom'},
-  {id:'nom', type:'text', label:'Nom'},
-  {id:'email', type:'email', label:'Email'},
-  {id:'password', type:'password', label:'Mot de passe (8 caractères minimum)', minLen:8},
-  {id:'pseudo', type:'text', label:'Pseudonyme'},
-  {id:'age', type:'select', label:'Tranche d\'âge'},
-  {id:'territoire', type:'radio', name:'territoire', label:'Type de territoire'},
-  {id:'region', type:'text', label:'Département ou région'},
-  {id:'csp', type:'text', label:'Catégorie socio-professionnelle'},
-  {id:'secteurCat', type:'select', label:'Secteur d\'activité'},
-  {id:'cgu', type:'checkbox', label:'Acceptation des conditions d\'utilisation'},
-];
+let currentTypeCompte = 'particulier';
+
+// REQUIRED_FIELDS moved to getRequiredFields()
+
+function getRequiredFields(){
+  const fields = [
+    {id:'civilite', type:'radio', name:'civilite', label:'Civilité'},
+    {id:'prenom', type:'text', label:'Prénom'},
+    {id:'nom', type:'text', label:'Nom'},
+    {id:'email', type:'email', label:'Email'},
+    {id:'password', type:'password', label:'Mot de passe (8 caractères minimum)', minLen:8},
+    {id:'pseudo', type:'text', label:'Pseudonyme'},
+    {id:'age', type:'select', label:'Tranche d\'âge'},
+    {id:'territoire', type:'radio', name:'territoire', label:'Type de territoire'},
+    {id:'region', type:'text', label:'Département ou région'},
+    {id:'csp', type:'text', label:'Catégorie socio-professionnelle'},
+    {id:'secteurCat', type:'select', label:'Secteur d\'activité'},
+    {id:'roleCompte', type:'radio', name:'roleCompte', label:'Votre rôle'},
+    {id:'cgu', type:'checkbox', label:'Acceptation des conditions d\'utilisation'},
+  ];
+  if(currentTypeCompte === 'entreprise'){
+    fields.push({id:'nomEntreprise', type:'text', label:'Nom de l\'entreprise'});
+  }
+  return fields;
+}
 
 function checkForm(){
   const errors=[];
   let allValid=true;
 
-  REQUIRED_FIELDS.forEach(f=>{
+  getRequiredFields().forEach(f=>{
     let valid=false;
     if(f.type==='radio'){
       valid=!!document.querySelector(`input[name=${f.name}]:checked`);
@@ -603,6 +672,7 @@ function creerCompte(){
   // Sauvegarder profil
   const civilite=document.querySelector('input[name=civilite]:checked')?.value||'';
   const profil={
+    typeCompte: currentTypeCompte,
     civilite,
     prenom: document.getElementById('prenom').value.trim(),
     nom: document.getElementById('nom').value.trim(),
@@ -616,6 +686,10 @@ function creerCompte(){
     csp: document.getElementById('csp').value.trim(),
     secteurCat: document.getElementById('secteurCat').value,
     secteurSub: document.getElementById('secteurSub').value,
+    roleCompte: document.querySelector('input[name=roleCompte]:checked')?.value||'',
+    nomEntreprise: currentTypeCompte==='entreprise'?(document.getElementById('nomEntreprise')?.value.trim()||''):'',
+    adresseEntreprise: currentTypeCompte==='entreprise'?(document.getElementById('adresseEntreprise')?.value.trim()||''):'',
+    siteEntreprise: currentTypeCompte==='entreprise'?(document.getElementById('siteEntreprise')?.value.trim()||''):'',
     messagerie: document.getElementById('chkContact').checked,
     createdAt: new Date().toISOString()
   };
@@ -635,6 +709,28 @@ function showErr(msg){
   b.style.display='block';b.textContent=msg;
   document.getElementById('btnCreer').disabled=false;
   document.getElementById('btnCreer').textContent='Créer mon compte →';
+}
+
+
+// ── TYPE COMPTE
+function setTypeCompte(type){
+  currentTypeCompte = type;
+  const btnPart = document.getElementById('btnPart');
+  const btnEnt = document.getElementById('btnEnt');
+  const entFields = document.getElementById('entFields');
+  if(type === 'entreprise'){
+    btnPart.classList.remove('on');
+    btnEnt.classList.add('on');
+    entFields.classList.add('visible');
+  } else {
+    btnEnt.classList.remove('on');
+    btnPart.classList.add('on');
+    entFields.classList.remove('visible');
+    // Vider les champs entreprise
+    const ne = document.getElementById('nomEntreprise');
+    if(ne) ne.value = '';
+  }
+  checkForm();
 }
 
 // Initialiser checkForm au chargement
