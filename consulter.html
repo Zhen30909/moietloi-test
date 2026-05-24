@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Consulter la base — moi &amp; loi</title>
+<title>Consulter la base — moi &amp; loi</title><!-- consulter v1.6 -->
 <meta name="description" content="Recherchez et consultez les témoignages citoyens sur les situations réglementaires et administratives en France.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -434,6 +434,30 @@ hr{border:none;border-top:1px solid var(--beige);margin:16px 0}
         </div>
 
         <!-- PROFIL DU TÉMOIN -->
+        <!-- TYPE DE TÉMOIN -->
+        <div class="pro-acc">
+          <div class="pro-acc-hd" onclick="toggleAcc(this)">Type de t&eacute;moin<span class="pro-acc-arrow">&#9660;</span></div>
+          <div class="pro-acc-body">
+            <div class="pro-acc-opts">
+              <button class="pro-opt" data-val="type_particulier" onclick="selectExclusive(this,'typeTemoin')">&#128100; Particulier</button>
+              <button class="pro-opt" data-val="type_entreprise" onclick="selectExclusive(this,'typeTemoin')">&#127970; Entreprise / Organisation</button>
+            </div>
+            <div class="pro-acc-note">Un seul choix possible &mdash; statut d&eacute;clar&eacute; par le t&eacute;moin</div>
+          </div>
+        </div>
+
+        <!-- T&Eacute;MOIGNAGE DOCUMENT&Eacute; -->
+        <div class="pro-acc">
+          <div class="pro-acc-hd" onclick="toggleAcc(this)">T&eacute;moignage document&eacute;<span class="pro-acc-arrow">&#9660;</span></div>
+          <div class="pro-acc-body">
+            <div class="pro-acc-opts">
+              <button class="pro-opt" data-val="doc_oui" onclick="selectExclusive(this,'docTemoin')">&#128247; Avec documents joints</button>
+              <button class="pro-opt" data-val="doc_officiel" onclick="selectExclusive(this,'docTemoin')">&#10003; Dossier officiel (arr&ecirc;t&eacute;, d&eacute;cision, courrier administratif)</button>
+            </div>
+            <div class="pro-acc-note">Un seul choix possible &mdash; pr&eacute;sence de pi&egrave;ces justificatives jointes</div>
+          </div>
+        </div>
+
         <div class="pro-acc">
           <div class="pro-acc-hd" onclick="toggleAcc(this)">Profil du t&eacute;moin<span class="pro-acc-arrow">&#9660;</span></div>
           <div class="pro-acc-body">
@@ -1022,6 +1046,18 @@ function toggleProOpt(btn){
   var val=btn.dataset.val;
   if(proFilters[val]){btn.classList.remove('on');delete proFilters[val];}
   else{btn.classList.add('on');proFilters[val]=btn.textContent.trim();}
+  renderProTags();
+}
+function selectExclusive(btn,group){
+  // Désélectionner tous les boutons du même groupe
+  document.querySelectorAll('[onclick*="' + group + '"]').forEach(function(b){
+    var v=b.dataset.val;
+    if(v&&proFilters[v]){b.classList.remove('on');delete proFilters[v];}
+  });
+  // Sélectionner le bouton cliqué
+  var val=btn.dataset.val;
+  btn.classList.add('on');
+  proFilters[val]=btn.textContent.trim();
   renderProTags();
 }
 function removeProFilter(val){
