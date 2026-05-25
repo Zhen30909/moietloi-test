@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Consulter la base — moi &amp; loi</title><!-- consulter v1.6 -->
+<title>Consulter la base — moi &amp; loi</title><!-- consulter v1.7 -->
 <meta name="description" content="Recherchez et consultez les témoignages citoyens sur les situations réglementaires et administratives en France.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -57,7 +57,7 @@ nav{background:rgba(247,244,239,0.96);backdrop-filter:blur(10px);border-bottom:1
 .ftag-rm{background:none;border:none;cursor:pointer;font-size:0.9rem;line-height:1;padding:0;margin-left:2px;opacity:0.6;transition:opacity 0.15s}
 .ftag-rm:hover{opacity:1}
 .clear-all{font-size:0.72rem;color:var(--rouge);background:none;border:none;cursor:pointer;text-decoration:underline;padding:0;margin-left:4px;white-space:nowrap}
-/* SELECTS FILTRES (sans domaine) */
+/* SELECTS FILTRES */
 .filter-selects{display:flex;gap:8px;flex-wrap:wrap;align-items:flex-start;margin-top:14px;padding-top:14px;border-top:1px solid #f0ebe3}
 .fsel{padding:8px 12px;border:1.5px solid #ddd8d0;border-radius:8px;font-size:0.8rem;font-family:'Source Sans 3',sans-serif;background:var(--blanc);color:var(--gris-moyen);cursor:pointer;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'%3E%3Cpath fill='%236b6b6b' d='M5 7L0 2h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;padding-right:28px;transition:all 0.2s;max-width:220px}
 .fsel:focus{outline:none;border-color:var(--vert)}.fsel.on{border-color:var(--vert);color:var(--vert)}
@@ -67,14 +67,14 @@ nav{background:rgba(247,244,239,0.96);backdrop-filter:blur(10px);border-bottom:1
 select option,select optgroup{font-size:0.82rem}
 .brst{padding:8px 12px;background:transparent;border:1.5px solid #ddd8d0;border-radius:8px;font-size:0.8rem;color:var(--gris-moyen);cursor:pointer;font-family:'Source Sans 3',sans-serif;transition:all 0.2s;align-self:flex-start}
 .brst:hover{border-color:var(--gris-moyen);color:var(--gris-fonce)}
-/* DOMAINES — grands thèmes + sous-catégories */
+/* DOMAINES */
 .themes-title{font-size:0.7rem;text-transform:uppercase;letter-spacing:2px;font-weight:500;margin-bottom:12px;color:var(--vert)}
 .themes{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:8px}
 .theme{background:var(--blanc);border:1.5px solid #e8e2d8;border-radius:10px;padding:12px 10px;cursor:pointer;transition:all 0.2s;text-align:left}
 .theme:hover{border-color:var(--vert-clair);transform:translateY(-1px);box-shadow:0 3px 10px rgba(90,114,96,0.1)}
 .theme.on{border-color:var(--vert);background:var(--vert-pale)}
 .theme-icon{font-size:1.2rem;margin-bottom:5px}.theme-name{font-size:0.82rem;font-weight:600;color:var(--gris-fonce);line-height:1.3;margin-bottom:2px}.theme-n{font-size:0.68rem;color:var(--gris-clair)}
-/* SOUS-CATÉGORIES — s'affichent sous la grille quand thème cliqué */
+/* SOUS-CATÉGORIES */
 .subcats-panel{display:none;background:var(--vert-pale);border:1.5px solid var(--vert-clair);border-radius:10px;padding:14px 16px;margin-bottom:16px;margin-top:4px}
 .subcats-panel.open{display:block}
 .subcats-title{font-size:0.7rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--vert);font-weight:500;margin-bottom:10px}
@@ -197,7 +197,6 @@ select option,select optgroup{font-size:0.82rem}
 .if-mic-st{font-size:0.75rem;color:var(--gris-moyen);font-style:italic}
 .btn-send-inst{width:100%;padding:13px;background:var(--bleu);color:white;border:none;border-radius:8px;font-size:0.95rem;font-family:'Source Sans 3',sans-serif;font-weight:500;cursor:pointer;transition:all 0.2s;margin-top:4px}
 .btn-send-inst:hover{background:#1e3550}
-/* Bandeau sélection institutionnel */
 .inst-selection{background:var(--bleu-pale);border:1.5px solid var(--bleu-clair);border-radius:10px;padding:14px 16px;margin-bottom:20px;display:none}
 .inst-selection.open{display:block}
 .inst-selection-title{font-size:0.7rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--bleu);font-weight:500;margin-bottom:8px}
@@ -236,7 +235,6 @@ hr{border:none;border-top:1px solid var(--beige);margin:16px 0}
 .hidden{display:none!important}
 @media(max-width:900px){.themes{grid-template-columns:1fr 1fr 1fr}.feats{grid-template-columns:1fr 1fr}.plans{grid-template-columns:1fr}}
 @media(max-width:600px){nav{padding:0 18px}.nav-links{display:none}.nav-burger{display:flex}.page{padding:20px 16px 60px}.themes{grid-template-columns:1fr 1fr}.tabs{width:100%}.tab{flex:1;justify-content:center;font-size:0.78rem;padding:10px 6px}.search-input-wrap{flex-wrap:wrap}.sinp{width:100%}.feats{grid-template-columns:1fr}}
-
 .lang-btn{padding:5px 10px;border:1.5px solid var(--beige);border-radius:6px;font-size:0.78rem;font-family:'Source Sans 3',sans-serif;font-weight:500;cursor:pointer;background:transparent;color:var(--gris-moyen);transition:all 0.2s;display:flex;align-items:center;gap:4px}
 .lang-btn:hover{border-color:var(--vert);color:var(--vert);background:var(--vert-pale)}
 .lang-tooltip{position:fixed;top:68px;right:24px;background:var(--gris-fonce);color:white;font-size:0.78rem;padding:8px 14px;border-radius:8px;z-index:200;max-width:220px;line-height:1.5;display:none}
@@ -315,7 +313,7 @@ hr{border:none;border-top:1px solid var(--beige);margin:16px 0}
     <div class="pages"><button class="pg on">1</button><button class="pg">2</button><button class="pg">3</button><button class="pg">&hellip;</button><button class="pg">19</button></div>
   </div>
 
-    <!-- ══ ZONE PRO ══ -->
+  <!-- ══ ZONE PRO ══ -->
   <div id="z1" class="hidden">
     <div class="feats">
       <div class="feat"><div class="feat-icon">&#129504;</div><div class="feat-title">Recherche s&eacute;mantique AI</div><div class="feat-desc">D&eacute;crivez en langage naturel. L'AI reformule, affine et dialogue pour pr&eacute;ciser votre recherche.</div></div>
@@ -337,7 +335,7 @@ hr{border:none;border-top:1px solid var(--beige);margin:16px 0}
       <div class="pro-adv">
         <div class="pro-adv-title">Filtres avanc&eacute;s &mdash; cliquez pour ouvrir</div>
 
-        <!-- DOMAINES — blocs visuels -->
+        <!-- DOMAINES -->
         <div class="themes-title">Domaine r&eacute;glementaire</div>
         <div class="themes">
           <div class="theme" id="pth0" onclick="clickProTheme(this,'Urbanisme','psc0')"><div class="theme-icon">&#127963;&#65039;</div><div class="theme-name">Urbanisme &amp; R&eacute;glementation locale</div></div>
@@ -352,7 +350,8 @@ hr{border:none;border-top:1px solid var(--beige);margin:16px 0}
         <div class="subcats-panel" id="psc0" data-theme="pth0"><div class="subcats-title">Urbanisme &amp; R&eacute;glementation locale</div><div class="subcats"><button class="subcat subcat-all on" onclick="clickProSubcatAll(this,'pth0','Urbanisme')">Toutes</button><button class="subcat" onclick="clickProSubcat(this)">PLU / Zonage / Permis de construire</button><button class="subcat" onclick="clickProSubcat(this)">ERP / S&eacute;curit&eacute; des b&acirc;timents</button><button class="subcat" onclick="clickProSubcat(this)">Droit rural / SAFER / Foncier agricole</button><button class="subcat" onclick="clickProSubcat(this)">Environnement / ICPE / Natura 2000</button><button class="subcat" onclick="clickProSubcat(this)">Commande publique / March&eacute;s publics</button><button class="subcat" onclick="clickProSubcat(this)">Patrimoine / Monuments historiques / ABF</button></div></div>
         <div class="subcats-panel" id="psc1" data-theme="pth1"><div class="subcats-title">Fiscalit&eacute; &amp; Cotisations</div><div class="subcats"><button class="subcat subcat-all on" onclick="clickProSubcatAll(this,'pth1','Fiscalite')">Toutes</button><button class="subcat" onclick="clickProSubcat(this)">Imp&ocirc;t sur le revenu / IR</button><button class="subcat" onclick="clickProSubcat(this)">TVA / CFE / Taxes professionnelles</button><button class="subcat" onclick="clickProSubcat(this)">Taxe fonci&egrave;re / Taxe d'habitation</button><button class="subcat" onclick="clickProSubcat(this)">Contr&ocirc;le fiscal / Redressement</button><button class="subcat" onclick="clickProSubcat(this)">URSSAF / Cotisations sociales</button></div></div>
         <div class="subcats-panel" id="psc2" data-theme="pth2"><div class="subcats-title">Services essentiels &amp; R&eacute;seaux</div><div class="subcats"><button class="subcat subcat-all on" onclick="clickProSubcatAll(this,'pth2','Services essentiels')">Toutes</button><button class="subcat" onclick="clickProSubcat(this)">Electricit&eacute; (EDF, Engie, Enedis)</button><button class="subcat" onclick="clickProSubcat(this)">Eau / Assainissement</button><button class="subcat" onclick="clickProSubcat(this)">T&eacute;l&eacute;com / Internet / Mobile</button><button class="subcat" onclick="clickProSubcat(this)">Transport ferroviaire (SNCF)</button><button class="subcat" onclick="clickProSubcat(this)">Transport collectif urbain</button><button class="subcat" onclick="clickProSubcat(this)">Poste / Colis / Courrier</button><button class="subcat" onclick="clickProSubcat(this)">Autoroutes / P&eacute;ages</button></div></div>
-        <div class="subcats-panel" id="psc3" data-theme="pth3"><div class="subcats-title">Droit social &amp; Emploi</div><div class="subcats"><button class="subcat subcat-all on" onclick="clickProSubcatAll(this,'pth3','Droit social')">Toutes</button><button class="subcat" onclick="clickProSubcat(this)">Droit du travail / Rupture de contrat</button><button class="subcat" onclick="clickProSubcat(this)">S&eacute;curit&eacute; sociale / Maladie / AT-MP</button><button class="subcat" onclick="clickProSubcat(this)">Retraite / Pension</button><button class="subcat" onclick="clickProSubcat(this)">Ch&ocirc;mage / France Travail</button><button class="subcat" onclick="clickProSubcat(this)">CAF / Allocations / RSA / APL</button><button class="subcat" onclick="clickProSubcat(this)">Handicap / MDPH / AAH / RQTH</button><button class="subcat" onclick="clickProSubcat(this)">Formation professionnelle / CPF</button></div></div>
+        <!-- MODIFICATION 2 : Services sociaux ajouté dans psc3 -->
+        <div class="subcats-panel" id="psc3" data-theme="pth3"><div class="subcats-title">Droit social &amp; Emploi</div><div class="subcats"><button class="subcat subcat-all on" onclick="clickProSubcatAll(this,'pth3','Droit social')">Toutes</button><button class="subcat" onclick="clickProSubcat(this)">Droit du travail / Rupture de contrat</button><button class="subcat" onclick="clickProSubcat(this)">S&eacute;curit&eacute; sociale / Maladie / AT-MP</button><button class="subcat" onclick="clickProSubcat(this)">Retraite / Pension</button><button class="subcat" onclick="clickProSubcat(this)">Ch&ocirc;mage / France Travail</button><button class="subcat" onclick="clickProSubcat(this)">CAF / Allocations / RSA / APL</button><button class="subcat" onclick="clickProSubcat(this)">Handicap / MDPH / AAH / RQTH</button><button class="subcat" onclick="clickProSubcat(this)">Formation professionnelle / CPF</button><button class="subcat" onclick="clickProSubcat(this)">Services sociaux / Action sociale</button></div></div>
         <div class="subcats-panel" id="psc4" data-theme="pth4"><div class="subcats-title">Sant&eacute; &amp; Services de soins</div><div class="subcats"><button class="subcat subcat-all on" onclick="clickProSubcatAll(this,'pth4','Sante')">Toutes</button><button class="subcat" onclick="clickProSubcat(this)">H&ocirc;pital public / CHU / Urgences</button><button class="subcat" onclick="clickProSubcat(this)">Acc&egrave;s aux soins / D&eacute;serts m&eacute;dicaux</button><button class="subcat" onclick="clickProSubcat(this)">EHPAD / &Eacute;tablissements m&eacute;dico-sociaux</button><button class="subcat" onclick="clickProSubcat(this)">Remboursements / CPAM / Assurance maladie</button></div></div>
         <div class="subcats-panel" id="psc5" data-theme="pth5"><div class="subcats-title">Normes &amp; Conformit&eacute;</div><div class="subcats"><button class="subcat subcat-all on" onclick="clickProSubcatAll(this,'pth5','Normes')">Toutes</button><button class="subcat" onclick="clickProSubcat(this)">Normes sanitaires / HACCP / Hygi&egrave;ne alimentaire</button><button class="subcat" onclick="clickProSubcat(this)">S&eacute;curit&eacute; incendie / S&eacute;curit&eacute; des b&acirc;timents</button><button class="subcat" onclick="clickProSubcat(this)">Normes &eacute;lectriques / Gaz / Diagnostics / DPE</button></div></div>
         <div class="subcats-panel" id="psc6" data-theme="pth6"><div class="subcats-title">Justice &amp; Proc&eacute;dures</div><div class="subcats"><button class="subcat subcat-all on" onclick="clickProSubcatAll(this,'pth6','Justice')">Toutes</button><button class="subcat" onclick="clickProSubcat(this)">Justice civile / Tribunaux judiciaires</button><button class="subcat" onclick="clickProSubcat(this)">Justice administrative / TA / CAA / Conseil d'Etat</button><button class="subcat" onclick="clickProSubcat(this)">M&eacute;diateur / D&eacute;fenseur des droits</button><button class="subcat" onclick="clickProSubcat(this)">Titre de s&eacute;jour / Visa / Pr&eacute;fecture</button><button class="subcat" onclick="clickProSubcat(this)">Naturalisation / Nationalit&eacute; fran&ccedil;aise</button></div></div>
@@ -433,7 +432,6 @@ hr{border:none;border-top:1px solid var(--beige);margin:16px 0}
           </div>
         </div>
 
-        <!-- PROFIL DU TÉMOIN -->
         <!-- TYPE DE TÉMOIN -->
         <div class="pro-acc">
           <div class="pro-acc-hd" onclick="toggleAcc(this)">Type de t&eacute;moin<span class="pro-acc-arrow">&#9660;</span></div>
@@ -446,7 +444,7 @@ hr{border:none;border-top:1px solid var(--beige);margin:16px 0}
           </div>
         </div>
 
-        <!-- T&Eacute;MOIGNAGE DOCUMENT&Eacute; -->
+        <!-- TÉMOIGNAGE DOCUMENTÉ -->
         <div class="pro-acc">
           <div class="pro-acc-hd" onclick="toggleAcc(this)">T&eacute;moignage document&eacute;<span class="pro-acc-arrow">&#9660;</span></div>
           <div class="pro-acc-body">
@@ -597,6 +595,20 @@ hr{border:none;border-top:1px solid var(--beige);margin:16px 0}
             <div class="pro-acc-note">Compensation mon&eacute;taire ou autre (m&eacute;diation, accord amiable&hellip;)</div>
           </div>
         </div>
+        <!-- MODIFICATION 3 : Accordéon score de l'expérience — échelle Likert 1-5 -->
+        <div class="pro-acc">
+          <div class="pro-acc-hd" onclick="toggleAcc(this)">Score de l&rsquo;exp&eacute;rience<span class="pro-acc-arrow">&#9660;</span></div>
+          <div class="pro-acc-body">
+            <div class="pro-acc-opts">
+              <button class="pro-opt" data-val="score_1" onclick="toggleProOpt(this)">1 &mdash; Tr&egrave;s n&eacute;gatif</button>
+              <button class="pro-opt" data-val="score_2" onclick="toggleProOpt(this)">2 &mdash; N&eacute;gatif</button>
+              <button class="pro-opt" data-val="score_3" onclick="toggleProOpt(this)">3 &mdash; Neutre / Mitig&eacute;</button>
+              <button class="pro-opt" data-val="score_4" onclick="toggleProOpt(this)">4 &mdash; Positif</button>
+              <button class="pro-opt" data-val="score_5" onclick="toggleProOpt(this)">5 &mdash; Tr&egrave;s positif</button>
+            </div>
+            <div class="pro-acc-note">Score d&eacute;clar&eacute; par le t&eacute;moin &mdash; s&eacute;lection multiple possible</div>
+          </div>
+        </div>
       </div>
       <div class="dialogue-zone" id="dialZone">
         <div id="dialMsgs">
@@ -624,7 +636,6 @@ hr{border:none;border-top:1px solid var(--beige);margin:16px 0}
       <div class="inst-title">&Eacute;tudes analytiques sur mesure</div>
       <div class="inst-desc">Acc&egrave;s aux bases de donn&eacute;es juridiques (L&eacute;gifrance, EUR-Lex, jurisprudence compl&egrave;te). Rapports analytiques identifiant contradictions syst&eacute;miques, normes contre-productives et patterns d'application.</div>
     </div>
-    <!-- BANDEAU SÉLECTIONS ACTIVES -->
     <div class="inst-selection" id="instSelBand">
       <div class="inst-selection-title">P&eacute;rim&egrave;tre s&eacute;lectionn&eacute;</div>
       <div class="inst-sel-tags" id="instSelTags"></div>
@@ -685,8 +696,6 @@ hr{border:none;border-top:1px solid var(--beige);margin:16px 0}
     <h2 class="tarifs-title">Choisissez votre acc&egrave;s</h2>
     <p class="tarifs-desc">La consultation des t&eacute;moignages est libre et gratuite pour tous. Les acc&egrave;s Pro et Institutionnel permettent une analyse plus approfondie.</p>
     <div class="plans" style="grid-template-columns:repeat(4,1fr)">
-
-      <!-- GRATUIT -->
       <div class="plan">
         <div class="plan-icon">&#128275;</div>
         <div class="plan-name f">Acc&egrave;s libre</div>
@@ -703,8 +712,6 @@ hr{border:none;border-top:1px solid var(--beige);margin:16px 0}
         </div>
         <button class="btn-plan f" onclick="window.location='compte.html'">Cr&eacute;er un compte &rarr;</button>
       </div>
-
-      <!-- À L'USAGE -->
       <div class="plan highlight">
         <div class="plan-ribbon">LE PLUS FLEXIBLE</div>
         <div class="plan-icon">&#128269;</div>
@@ -722,11 +729,8 @@ hr{border:none;border-top:1px solid var(--beige);margin:16px 0}
           <div class="pf"><span class="pf-icon">&#10003;</span>Micro &amp; dict&eacute;e vocale</div>
           <div class="pf"><span class="pf-icon">&#10003;</span>Export dossiers PDF</div>
         </div>
-        <button class="btn-plan p" onclick="alert('Bientôt disponible.
-Contactez-nous : contact@moietloi.fr')">Accéder &rarr;</button>
+        <button class="btn-plan p" onclick="alert('Bient\u00f4t disponible.\nContactez-nous : contact@moietloi.fr')">Acc&eacute;der &rarr;</button>
       </div>
-
-      <!-- ABONNEMENT -->
       <div class="plan">
         <div class="plan-icon">&#9733;</div>
         <div class="plan-name p">Abonnement</div>
@@ -740,11 +744,8 @@ Contactez-nous : contact@moietloi.fr')">Accéder &rarr;</button>
           <div class="pf"><span class="pf-icon">&#10003;</span>Alertes nouveaux t&eacute;moignages</div>
           <div class="pf"><span class="pf-icon">&#10003;</span>Acc&egrave;s prioritaire clusters</div>
         </div>
-        <button class="btn-plan p" onclick="alert('Bientôt disponible.
-Contactez-nous : contact@moietloi.fr')">S'abonner &rarr;</button>
+        <button class="btn-plan p" onclick="alert('Bient\u00f4t disponible.\nContactez-nous : contact@moietloi.fr')">S'abonner &rarr;</button>
       </div>
-
-      <!-- INSTITUTIONNEL -->
       <div class="plan inst">
         <div class="plan-icon">&#127963;&#65039;</div>
         <div class="plan-name i">Institutionnel</div>
@@ -760,7 +761,6 @@ Contactez-nous : contact@moietloi.fr')">S'abonner &rarr;</button>
         </div>
         <button class="btn-plan i" onclick="switchTab(2);window.scrollTo({top:0,behavior:'smooth'})">Nous contacter &rarr;</button>
       </div>
-
     </div>
     <div class="tarifs-link"><a href="tarifs.html">Voir le tableau comparatif complet et la FAQ &rarr;</a></div>
   </div>
@@ -798,7 +798,6 @@ function removeFilter(id){
   var f=freeFilters[id];
   if(f&&f.selId){var el=document.getElementById(f.selId);if(el){el.value='';el.classList.remove('on');}}
   var th=document.getElementById(id);if(th)th.classList.remove('on');
-  // Si c'est un sous-cat, retirer l'état on du bouton
   document.querySelectorAll('.subcat').forEach(function(b){if(b.dataset.filterId===id)b.classList.remove('on');});
   delete freeFilters[id];
   renderTags();doSearch();
@@ -811,7 +810,6 @@ function clearAll(){
     document.querySelectorAll('.subcat').forEach(function(b){if(b.dataset.filterId===k)b.classList.remove('on');});
     delete freeFilters[k];
   });
-  // Fermer tous les panneaux sous-cats et retirer styles thèmes
   document.querySelectorAll('.subcats-panel.open').forEach(function(p){p.classList.remove('open');});
   document.querySelectorAll('.theme.on').forEach(function(t){t.classList.remove('on');});
   document.querySelectorAll('.subcat.on').forEach(function(b){b.classList.remove('on');});
@@ -832,12 +830,11 @@ function selPeriode(){
   de.classList.toggle('on',!!deVal);
   a.classList.toggle('on',!!aVal);
   if(deVal||aVal){
-    var label='Faits : '+(deVal||'…')+' → '+(aVal||'…');
+    var label='Faits : '+(deVal||'\u2026')+' \u2192 '+(aVal||'\u2026');
     freeFilters['periode']={label:label,selId:null};
   }
   renderTags();doSearch();
 }
-
 function selFilter(selId){
   var el=document.getElementById(selId);if(!el)return;
   var val=el.value;
@@ -857,23 +854,16 @@ function onRegionChange(){
   sel.classList.add('on');addFilter('fr0',sel.options[sel.selectedIndex].text,'fr0');
   if(depts[region]){dept.innerHTML='<option value="">Tous les d\u00e9partements</option>'+depts[region].map(function(d){return'<option value="'+d+'">'+d+'</option>';}).join('');dept.classList.add('visible');}
 }
-/* fdept0 retiré de Z0 — addEventListener supprimé */;
 
-// THÈMES — clic = ouvre sous-cats UNIQUEMENT, pas de filtre automatique
+// THÈMES
 var openPanel=null;
 function clickTheme(el,label,panelId){
   var panel=document.getElementById(panelId);
   var alreadyOpen=panel.classList.contains('open');
-  // Fermer l'autre panneau ouvert
   if(openPanel&&openPanel!==panel){
     openPanel.classList.remove('open');
-    // Retirer le style "on" du thème correspondant si pas de filtres actifs dedans
     var prevThId=openPanel.dataset.theme;
     if(prevThId){
-      var hasActiveFilters=Object.keys(freeFilters).some(function(k){
-        return k===prevThId||k.startsWith('sc_');
-      });
-      // Ne retirer le style "on" que si aucun filtre de ce domaine n'est actif
       if(!freeFilters[prevThId]&&!hasPanelFilters(openPanel)){
         var prevTh=document.getElementById(prevThId);
         if(prevTh)prevTh.classList.remove('on');
@@ -881,24 +871,19 @@ function clickTheme(el,label,panelId){
     }
   }
   if(alreadyOpen&&openPanel===panel){
-    // Fermer le panneau
     panel.classList.remove('open');
     openPanel=null;
     if(!freeFilters[el.id]&&!hasPanelFilters(panel))el.classList.remove('on');
   }else{
-    // Ouvrir le panneau — marquer visuellement le thème comme actif (navigation)
-    // mais NE PAS ajouter de filtre
     el.classList.add('on');
     panel.classList.add('open');
     openPanel=panel;
   }
 }
-
 function hasPanelFilters(panel){
   if(!panel)return false;
   return Array.from(panel.querySelectorAll('.subcat.on:not(.subcat-all)')).length>0;
 }
-
 function clearDomaine(thId,panel){
   var el=document.getElementById(thId);
   if(el)el.classList.remove('on');
@@ -907,7 +892,6 @@ function clearDomaine(thId,panel){
   if(openPanel===panel)openPanel=null;
   removeFilter(thId);
 }
-
 function clearDomainSubcats(panel){
   panel.querySelectorAll('.subcat.on').forEach(function(b){
     var id=b.dataset.filterId;
@@ -915,9 +899,6 @@ function clearDomainSubcats(panel){
     b.classList.remove('on');
   });
 }
-
-// SOUS-CATÉGORIES — clic = ajoute cette sous-cat comme filtre
-// Plusieurs sous-cats du même domaine peuvent être actives simultanément
 function clickSubcat(btn){
   var label=btn.textContent.trim();
   var id='sc_'+label.replace(/[^a-zA-Z0-9]/g,'_').substring(0,30);
@@ -927,14 +908,12 @@ function clickSubcat(btn){
   if(btn.classList.contains('on')){
     btn.classList.remove('on');
     delete freeFilters[id];
-    // Si plus aucune sous-cat ni filtre domaine actif, retirer le style du thème
     if(thId&&!freeFilters[thId]&&!hasPanelFilters(panel)){
       var thEl=document.getElementById(thId);
       if(thEl)thEl.classList.remove('on');
     }
     renderTags();doSearch();
   }else{
-    // Retirer "Toutes" si actif
     if(panel){
       var allBtn=panel.querySelector('.subcat-all');
       if(allBtn&&allBtn.classList.contains('on')){
@@ -947,13 +926,9 @@ function clickSubcat(btn){
     renderTags();doSearch();
   }
 }
-
-// "Toutes" = filtre domaine entier, retire les sous-cats individuelles
 function clickSubcatAll(btn,thId,label){
   var panel=btn.closest('.subcats-panel');
-  // Retirer toutes les sous-cats actives
   if(panel)clearDomainSubcats(panel);
-  // Ajouter le filtre domaine
   freeFilters[thId]={label:label,selId:null,isDomain:true};
   var thEl=document.getElementById(thId);if(thEl)thEl.classList.add('on');
   btn.classList.add('on');
@@ -1049,12 +1024,10 @@ function toggleProOpt(btn){
   renderProTags();
 }
 function selectExclusive(btn,group){
-  // Désélectionner tous les boutons du même groupe
   document.querySelectorAll('[onclick*="' + group + '"]').forEach(function(b){
     var v=b.dataset.val;
     if(v&&proFilters[v]){b.classList.remove('on');delete proFilters[v];}
   });
-  // Sélectionner le bouton cliqué
   var val=btn.dataset.val;
   btn.classList.add('on');
   proFilters[val]=btn.textContent.trim();
@@ -1069,7 +1042,7 @@ function clearProFilters(){
   for(var k in proFilters)delete proFilters[k];renderProTags();
 }
 
-// INSTITUTIONNEL — sélections visibles
+// INSTITUTIONNEL
 var instFilters={};
 function instSelFilter(selId){
   var el=document.getElementById(selId);if(!el||!el.value)return;
@@ -1115,7 +1088,7 @@ function sendMsg(){cm('mContact');alert('Message envoy\u00e9. L\'auteur recevra 
 document.querySelectorAll('.moverlay').forEach(function(o){o.addEventListener('click',function(e){if(e.target===o)o.classList.remove('open');});});
 function sendInst(){alert('Votre demande a \u00e9t\u00e9 envoy\u00e9e.\nNous vous r\u00e9pondrons sous 48h ouvr\u00e9s \u00e0 l\'adresse indiqu\u00e9e.');}
 
-// ── NOUVEAUX FILTRES PRO (domaines visuels, profil, secteur, période)
+// NOUVEAUX FILTRES PRO
 var openProPanel=null;
 function clickProTheme(el,label,panelId){
   var panel=document.getElementById(panelId);
@@ -1159,7 +1132,7 @@ function clickProSubcat(btn){
   }
   renderProTags();
 }
-var proDeptsData={"Ile-de-France":["75 - Paris","77 - Seine-et-Marne","78 - Yvelines","91 - Essonne","92 - Hauts-de-Seine","93 - Seine-Saint-Denis","94 - Val-de-Marne","95 - Val-d'Oise"],"Auvergne-Rhone-Alpes":["01 - Ain","03 - Allier","07 - Ardèche","26 - Drôme","38 - Isère","42 - Loire","63 - Puy-de-Dôme","69 - Rhône","73 - Savoie","74 - Haute-Savoie"],"Bretagne":["22 - Côtes-d'Armor","29 - Finistère","35 - Ille-et-Vilaine","56 - Morbihan"],"Grand Est":["08 - Ardennes","51 - Marne","54 - Meurthe-et-Moselle","57 - Moselle","67 - Bas-Rhin","68 - Haut-Rhin","88 - Vosges"],"Hauts-de-France":["02 - Aisne","59 - Nord","60 - Oise","62 - Pas-de-Calais","80 - Somme"],"Normandie":["14 - Calvados","27 - Eure","50 - Manche","61 - Orne","76 - Seine-Maritime"],"Nouvelle-Aquitaine":["16 - Charente","17 - Charente-Maritime","33 - Gironde","40 - Landes","64 - Pyrénées-Atlantiques","79 - Deux-Sèvres","86 - Vienne","87 - Haute-Vienne"],"Occitanie":["11 - Aude","30 - Gard","31 - Haute-Garonne","34 - Hérault","65 - Hautes-Pyrénées","66 - Pyrénées-Orientales","81 - Tarn","82 - Tarn-et-Garonne"],"Pays de la Loire":["44 - Loire-Atlantique","49 - Maine-et-Loire","53 - Mayenne","72 - Sarthe","85 - Vendée"],"PACA":["04 - Alpes-de-Haute-Provence","05 - Hautes-Alpes","06 - Alpes-Maritimes","13 - Bouches-du-Rhône","83 - Var","84 - Vaucluse"],"Corse":["2A - Corse-du-Sud","2B - Haute-Corse"]};
+var proDeptsData={"Ile-de-France":["75 - Paris","77 - Seine-et-Marne","78 - Yvelines","91 - Essonne","92 - Hauts-de-Seine","93 - Seine-Saint-Denis","94 - Val-de-Marne","95 - Val-d'Oise"],"Auvergne-Rhone-Alpes":["01 - Ain","03 - Allier","07 - Ard\u00e8che","26 - Dr\u00f4me","38 - Is\u00e8re","42 - Loire","63 - Puy-de-D\u00f4me","69 - Rh\u00f4ne","73 - Savoie","74 - Haute-Savoie"],"Bretagne":["22 - C\u00f4tes-d'Armor","29 - Finist\u00e8re","35 - Ille-et-Vilaine","56 - Morbihan"],"Grand Est":["08 - Ardennes","51 - Marne","54 - Meurthe-et-Moselle","57 - Moselle","67 - Bas-Rhin","68 - Haut-Rhin","88 - Vosges"],"Hauts-de-France":["02 - Aisne","59 - Nord","60 - Oise","62 - Pas-de-Calais","80 - Somme"],"Normandie":["14 - Calvados","27 - Eure","50 - Manche","61 - Orne","76 - Seine-Maritime"],"Nouvelle-Aquitaine":["16 - Charente","17 - Charente-Maritime","33 - Gironde","40 - Landes","64 - Pyr\u00e9n\u00e9es-Atlantiques","79 - Deux-S\u00e8vres","86 - Vienne","87 - Haute-Vienne"],"Occitanie":["11 - Aude","30 - Gard","31 - Haute-Garonne","34 - H\u00e9rault","65 - Hautes-Pyr\u00e9n\u00e9es","66 - Pyr\u00e9n\u00e9es-Orientales","81 - Tarn","82 - Tarn-et-Garonne"],"Pays de la Loire":["44 - Loire-Atlantique","49 - Maine-et-Loire","53 - Mayenne","72 - Sarthe","85 - Vend\u00e9e"],"PACA":["04 - Alpes-de-Haute-Provence","05 - Hautes-Alpes","06 - Alpes-Maritimes","13 - Bouches-du-Rh\u00f4ne","83 - Var","84 - Vaucluse"],"Corse":["2A - Corse-du-Sud","2B - Haute-Corse"]};
 function showProDepts(region){
   var zone=document.getElementById('proDeptZone');
   var opts=document.getElementById('proDeptOpts');
@@ -1184,10 +1157,9 @@ function selProPeriode(){
   if(de)de.classList.toggle('on',!!dv);
   delete proFilters['_periode'];
   var dvF=de?de.value:'',avF=a?a.value:'';
-  if(dvF||avF){proFilters['_periode']=dvF||'…'+' → '+avF||'…';}
+  if(dvF||avF){proFilters['_periode']=dvF||'\u2026'+' \u2192 '+avF||'\u2026';}
   renderProTags();
 }
-
 
 function showLangMsg(){var t=document.getElementById('langTooltip');t.classList.add('show');setTimeout(function(){t.classList.remove('show');},3000);}
 </script>
