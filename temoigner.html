@@ -4,8 +4,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>moietloi.fr — Déposer un témoignage</title>
-<meta name="description" content="Déposez votre témoignage sur un dysfonctionnement administratif ou réglementaire vécu en France.">
+<title>moietloi.fr — Déposer un témoignage</title><!-- temoigner v7.15 -->
+<meta name="description" content="Déposez votre témoignage sur une expérience vécue avec la loi, une réglementation, un service public ou un opérateur.">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Source+Sans+3:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -159,6 +159,7 @@ input:focus, textarea:focus { outline:none; border-color:var(--vert); background
 .bloc-section { margin-bottom:20px; }
 .bloc-title { font-size:0.88rem; font-weight:600; color:var(--gris-fonce); margin-bottom:12px; display:flex; align-items:center; gap:8px; }
 .bloc-tag { font-size:0.7rem; padding:2px 8px; border-radius:10px; background:var(--vert-pale); color:var(--vert); font-weight:500; }
+.bloc-tag-peche { font-size:0.7rem; padding:2px 8px; border-radius:10px; background:var(--peche-pale,#faf0e8); color:var(--peche); font-weight:500; }
 .toggle-bloc { background:var(--fond); border:1.5px solid #ddd8d0; border-radius:8px; padding:12px 16px; margin-bottom:8px; }
 .toggle-bloc-header { display:flex; align-items:center; gap:10px; cursor:pointer; }
 .toggle-bloc-header input[type=checkbox] { accent-color:var(--vert); width:18px; height:18px; flex-shrink:0; }
@@ -186,6 +187,23 @@ input:focus, textarea:focus { outline:none; border-color:var(--vert); background
 .comp-radio { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:10px; }
 .comp-radio .radio-btn label { font-size:0.82rem; }
 
+/* ÉCHELLE 1-5 */
+.echelle-zone { margin:20px 0 16px; }
+.echelle-title { font-size:0.88rem; font-weight:600; color:var(--gris-fonce); margin-bottom:6px; }
+.echelle-subtitle { font-size:0.8rem; color:var(--gris-moyen); margin-bottom:14px; font-style:italic; }
+.echelle-btns { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
+.echelle-btn { width:52px; height:52px; border-radius:50%; border:2px solid #ddd8d0; background:var(--blanc); font-size:1.1rem; font-weight:600; color:var(--gris-moyen); cursor:pointer; font-family:'Playfair Display',serif; transition:all 0.2s; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+.echelle-btn:hover { border-color:var(--vert); color:var(--vert); }
+.echelle-btn.on { border-color:var(--vert); background:var(--vert); color:white; }
+.echelle-btn.on.score-1 { background:#c0392b; border-color:#c0392b; }
+.echelle-btn.on.score-2 { background:#e67e22; border-color:#e67e22; }
+.echelle-btn.on.score-3 { background:#f39c12; border-color:#f39c12; }
+.echelle-btn.on.score-4 { background:var(--vert-clair); border-color:var(--vert-clair); }
+.echelle-btn.on.score-5 { background:var(--vert); border-color:var(--vert); }
+.echelle-labels { display:flex; justify-content:space-between; margin-top:8px; font-size:0.72rem; color:var(--gris-moyen); padding:0 4px; }
+.echelle-required { font-size:0.78rem; color:var(--rouge); margin-top:8px; display:none; }
+.echelle-required.visible { display:block; }
+
 /* SOUMISSION */
 .submission-box { background:#f8f4ef; border:1.5px solid var(--beige); border-radius:12px; padding:24px; margin-top:4px; }
 .submission-title { font-family:'Playfair Display',serif; font-size:1.1rem; color:var(--gris-fonce); margin-bottom:12px; }
@@ -211,6 +229,7 @@ hr { border:none; border-top:1px solid var(--beige); margin:20px 0; }
 @media(max-width:480px){
   .logo{font-size:2rem}.card{padding:20px}.btn-row{flex-direction:column}
   nav{padding:0 18px}.nav-links{display:none}.nav-burger{display:flex}
+  .echelle-btn{width:44px;height:44px;font-size:1rem}
 }
 
 /* LANGUE */
@@ -251,7 +270,7 @@ hr { border:none; border-top:1px solid var(--beige); margin:20px 0; }
 <header>
   <a href="index.html" class="logo">moi <span class="et">&amp;</span> <span class="loi">loi</span></a>
   <div class="sous-titre">Témoignages citoyens</div>
-  <span class="badge">Pipeline v7.13</span>
+  <span class="badge">Pipeline v7.15</span>
 </header>
 
 <!-- 1. CLÉS API -->
@@ -268,11 +287,11 @@ hr { border:none; border-top:1px solid var(--beige); margin:20px 0; }
   <div class="hint">🔒 Ces clés restent dans votre navigateur — jamais transmises ni stockées.</div>
 </div>
 
-<!-- 2. ENREGISTREMENT — identique v7.7 -->
+<!-- 2. ENREGISTREMENT -->
 <div class="card">
   <div class="card-title"><span class="snum">2</span> Votre témoignage</div>
   <div class="record-zone">
-    <p class="record-instr">Racontez librement une situation absurde vécue avec l'administration.<br>Prenez le temps qu'il vous faut.</p>
+    <p class="record-instr">Décrivez librement une situation vécue avec la loi, une réglementation, un service public ou un opérateur.<br>Prenez le temps qu'il vous faut.</p>
     <button type="button" class="btn-rec" id="btnRec" onclick="toggleRec()">🎙️</button>
     <div class="timer" id="timer"></div>
     <div class="rec-status" id="recSt">Appuyez pour commencer</div>
@@ -286,13 +305,13 @@ hr { border:none; border-top:1px solid var(--beige); margin:20px 0; }
   <div class="err-box" id="errRec"></div>
 </div>
 
-<!-- 3. DOCUMENTS — identique v7.7 -->
+<!-- 3. DOCUMENTS -->
 <div class="card">
   <div class="card-title">
     <span class="snum">3</span> Documents complémentaires
     <span style="font-size:0.75rem;color:var(--gris-moyen);font-weight:300;margin-left:4px;">(optionnel)</span>
   </div>
-  <p style="font-size:0.9rem;color:var(--gris-moyen);margin-bottom:14px;line-height:1.6;">Courriers, arrêtés, refus, échanges avec l'administration — enrichissent l'analyse.</p>
+  <p style="font-size:0.9rem;color:var(--gris-moyen);margin-bottom:14px;line-height:1.6;">Courriers, arrêtés, échanges, photos, notices d'avocat, textes de loi — tout document ou illustration enrichit l'analyse.</p>
   <div class="upload-zone" id="uzMain" onclick="document.getElementById('fiMain').click()"
     ondragover="event.preventDefault();this.classList.add('over')"
     ondragleave="this.classList.remove('over')"
@@ -312,7 +331,7 @@ hr { border:none; border-top:1px solid var(--beige); margin:20px 0; }
   </div>
 </div>
 
-<!-- 3b. RÉSOLUTION — NOUVEAU -->
+<!-- 3b. RÉSOLUTION -->
 <div class="card">
   <div class="card-title">
     <span class="snum violet">3b</span> Résolution du problème
@@ -320,7 +339,6 @@ hr { border:none; border-top:1px solid var(--beige); margin:20px 0; }
   </div>
   <p style="font-size:0.88rem;color:var(--gris-moyen);margin-bottom:20px;line-height:1.6;font-style:italic;">Cochez ce qui s'applique à votre situation — vous pouvez cocher les deux si le problème est partiellement résolu.</p>
 
-  <!-- RÉSOLU -->
   <div class="toggle-bloc" id="blocResolu">
     <div class="toggle-bloc-header" onclick="toggleBloc('Resolu')">
       <input type="checkbox" id="chkResolu" onclick="event.stopPropagation();toggleBloc('Resolu')">
@@ -346,7 +364,6 @@ hr { border:none; border-top:1px solid var(--beige); margin:20px 0; }
     </div>
   </div>
 
-  <!-- PROCHAINES ÉTAPES -->
   <div class="toggle-bloc" id="blocEtapes" style="margin-top:8px;">
     <div class="toggle-bloc-header" onclick="toggleBloc('Etapes')">
       <input type="checkbox" id="chkEtapes" onclick="event.stopPropagation();toggleBloc('Etapes')">
@@ -377,17 +394,17 @@ hr { border:none; border-top:1px solid var(--beige); margin:20px 0; }
   </div>
 </div>
 
-<!-- 3c. DOMMAGES & COMPENSATION — NOUVEAU -->
+<!-- 3c. BÉNÉFICES, DOMMAGES & COMPENSATION -->
 <div class="card">
   <div class="card-title">
-    <span class="snum indigo">3c</span> Dommages & Compensation
+    <span class="snum indigo">3c</span> Bénéfices, Dommages & Compensation
     <span style="font-size:0.75rem;color:var(--gris-moyen);font-weight:300;margin-left:4px;">(optionnel)</span>
   </div>
   <p style="font-size:0.88rem;color:var(--gris-moyen);margin-bottom:20px;line-height:1.6;font-style:italic;">Ces données sont interrogeables dans les analyses statistiques. Renseignez ce que vous souhaitez partager.</p>
 
-  <!-- DOMMAGE MONÉTAIRE -->
+  <!-- IMPACT MONÉTAIRE -->
   <div class="bloc-section">
-    <div class="bloc-title">Dommage monétaire <span class="bloc-tag">Statistiques</span></div>
+    <div class="bloc-title">Impact monétaire <span class="bloc-tag">Statistiques</span></div>
     <div class="fourchette-group">
       <div class="fourchette-item"><input type="radio" name="dmgMoney" id="dm0" value="aucun"><label for="dm0">Aucun dommage monétaire</label></div>
       <div class="fourchette-item"><input type="radio" name="dmgMoney" id="dm1" value="<1000"><label for="dm1">Moins de 1 000 €</label></div>
@@ -428,16 +445,16 @@ hr { border:none; border-top:1px solid var(--beige); margin:20px 0; }
 
   <!-- IMPACT PERSONNEL / PROFESSIONNEL -->
   <div class="bloc-section">
-    <div class="bloc-title">Impact personnel & professionnel</div>
-    <p style="font-size:0.82rem;color:var(--gris-moyen);margin-bottom:12px;">Conséquences sur votre activité, votre santé, votre vie personnelle ou professionnelle.</p>
+    <div class="bloc-title">Impact de l'expérience <span class="bloc-tag">Positif ou négatif</span></div>
+    <p style="font-size:0.82rem;color:var(--gris-moyen);margin-bottom:12px;">Décrivez le bénéfice obtenu ou le préjudice subi — sur votre activité, votre santé, votre vie personnelle ou professionnelle.</p>
     <div class="mini-rec-row">
       <button type="button" class="btn-mini-rec" id="btnImpactRec" onclick="togMiniRec('Impact')">🎙️</button>
       <div>
-        <div class="mini-st" id="stImpactRec">Dicter votre réponse</div>
+        <div class="mini-st" id="stImpactRec">Décrivez le bénéfice ou le préjudice — gain, simplification, perte, blocage…</div>
         <div id="prevImpactRec"></div>
       </div>
     </div>
-    <textarea id="impactTxt" placeholder="Ou répondez par écrit…" rows="3"></textarea>
+    <textarea id="impactTxt" placeholder="Ou répondez par écrit — bénéfice obtenu, préjudice subi, impact sur votre vie ou activité…" rows="3"></textarea>
     <div class="mini-up-sm" onclick="document.getElementById('fiImpact').click()">📎 Joindre un document justificatif (PDF, JPG, PNG)</div>
     <input type="file" id="fiImpact" style="display:none" accept=".pdf,.jpg,.jpeg,.png" onchange="selDocMini(event,'Impact')">
     <div class="doc-list" id="dlImpact"></div>
@@ -487,7 +504,7 @@ hr { border:none; border-top:1px solid var(--beige); margin:20px 0; }
   <div class="err-box" id="errPipe"></div>
 </div>
 
-<!-- 5. QUESTIONS — identique v7.7 -->
+<!-- 5. QUESTIONS -->
 <div class="card hidden" id="cardQ" style="margin-top:20px;">
   <div class="card-title"><span class="snum orange">5</span> Questions de clarification</div>
   <p style="font-size:0.9rem;color:var(--gris-moyen);margin-bottom:20px;line-height:1.6;font-style:italic;">
@@ -497,7 +514,7 @@ hr { border:none; border-top:1px solid var(--beige); margin:20px 0; }
   <button class="btn-p" id="btnFinal" onclick="finaliser()">Générer mon document final →</button>
 </div>
 
-<!-- 6. DOCUMENT FINAL — identique v7.7 -->
+<!-- 6. DOCUMENT FINAL -->
 <div class="card hidden" id="cardRes" style="margin-top:20px;">
   <div class="card-title"><span class="snum">✓</span> Votre témoignage structuré</div>
   <div class="ok-badge">✓ Document généré</div>
@@ -518,6 +535,22 @@ hr { border:none; border-top:1px solid var(--beige); margin:20px 0; }
   </div>
   <input type="file" id="fiFinale" multiple accept=".pdf,.jpg,.jpeg,.png" style="display:none" onchange="selDocsFinale(event)">
   <div class="doc-list" id="dlFinale"></div>
+  <hr>
+
+  <!-- ÉCHELLE 1-5 OBLIGATOIRE -->
+  <div class="echelle-zone">
+    <div class="echelle-title">Comment qualifieriez-vous globalement cette expérience ? <span style="color:var(--rouge);">*</span></div>
+    <div class="echelle-subtitle">Sur une échelle de 1 à 5 — 1 : Très négatif · 5 : Très positif. Obligatoire.</div>
+    <div class="echelle-btns">
+      <button type="button" class="echelle-btn score-1" onclick="setScore(1)" id="score1">1<span style="font-size:0.55rem;display:block;font-family:'Source Sans 3',sans-serif;font-weight:400;">Très négatif</span></button>
+      <button type="button" class="echelle-btn score-2" onclick="setScore(2)" id="score2">2<span style="font-size:0.55rem;display:block;font-family:'Source Sans 3',sans-serif;font-weight:400;">Négatif</span></button>
+      <button type="button" class="echelle-btn score-3" onclick="setScore(3)" id="score3">3<span style="font-size:0.55rem;display:block;font-family:'Source Sans 3',sans-serif;font-weight:400;">Neutre / Mitigé</span></button>
+      <button type="button" class="echelle-btn score-4" onclick="setScore(4)" id="score4">4<span style="font-size:0.55rem;display:block;font-family:'Source Sans 3',sans-serif;font-weight:400;">Positif</span></button>
+      <button type="button" class="echelle-btn score-5" onclick="setScore(5)" id="score5">5<span style="font-size:0.55rem;display:block;font-family:'Source Sans 3',sans-serif;font-weight:400;">Très positif</span></button>
+    </div>
+    <div class="echelle-required" id="echelleRequired">⚠️ Veuillez attribuer une note avant de valider.</div>
+  </div>
+
   <div class="btn-row">
     <button class="btn-p" onclick="validerDoc()" style="margin-top:0;">✓ Valider ce document</button>
     <button class="btn-s" onclick="regenerer()" id="btnRegen" style="margin-top:0;">🔄 Régénérer avec corrections</button>
@@ -526,13 +559,13 @@ hr { border:none; border-top:1px solid var(--beige); margin:20px 0; }
   <div class="err-box" id="errRes"></div>
 </div>
 
-<!-- 6b. CLASSIFICATION AI — identique v7.7 -->
+<!-- 6b. CLASSIFICATION AI -->
 <div class="card hidden" id="cardClassif" style="margin-top:20px;">
   <div class="card-title"><span class="snum orange">6b</span> Classification par l'IA</div>
   <p style="font-size:0.9rem;color:var(--gris-moyen);margin-bottom:16px;line-height:1.6;font-style:italic;">L'IA a analysé et classifié votre témoignage. Vérifiez les informations ci-dessous.</p>
   <div class="slabel">Domaines réglementaires identifiés</div>
   <div class="classif-display" id="classifDomaines">Analyse en cours…</div>
-  <div class="slabel" style="margin-top:12px;">Types de dysfonctionnement identifiés</div>
+  <div class="slabel" style="margin-top:12px;">Types de situation identifiés</div>
   <div class="classif-display" id="classifTypes">Analyse en cours…</div>
   <hr>
   <div class="igrp">
@@ -568,7 +601,7 @@ hr { border:none; border-top:1px solid var(--beige); margin:20px 0; }
   <button class="btn-p" onclick="showAnon()">Continuer →</button>
 </div>
 
-<!-- 7. ANONYMAT — identique v7.7 avec logique pseudo -->
+<!-- 7. ANONYMAT -->
 <div class="card hidden" id="cardAnon" style="margin-top:20px;">
   <div class="card-title"><span class="snum">7</span> Anonymat</div>
   <p style="font-size:0.9rem;color:var(--gris-moyen);margin-bottom:8px;line-height:1.6;">Choisissez comment vous souhaitez apparaître dans la base publique.</p>
@@ -623,7 +656,7 @@ hr { border:none; border-top:1px solid var(--beige); margin:20px 0; }
   <button class="btn-p" onclick="showSoumission()">Continuer →</button>
 </div>
 
-<!-- 8. SOUMISSION — identique v7.7 -->
+<!-- 8. SOUMISSION -->
 <div class="card hidden" id="cardSoumission" style="margin-top:20px;">
   <div class="card-title"><span class="snum">8</span> Soumettre votre témoignage</div>
   <div class="submission-box">
@@ -644,7 +677,7 @@ hr { border:none; border-top:1px solid var(--beige); margin:20px 0; }
   <div class="err-box" id="errSoumission"></div>
 </div>
 
-<!-- 9. CONFIRMATION — identique v7.7 -->
+<!-- 9. CONFIRMATION -->
 <div class="card hidden" id="cardConfirm" style="margin-top:20px;">
   <div class="confirmation-finale">
     <div class="confirmation-icon">✓</div>
@@ -669,16 +702,16 @@ hr { border:none; border-top:1px solid var(--beige); margin:20px 0; }
 <div class="footer-bar">🔒 <span>Documents détruits automatiquement après analyse.</span> Données personnelles jamais publiées sans votre accord. moietloi.fr</div>
 
 <script>
-// ── ÉTAT — identique v7.7
+// ── ÉTAT
 let mr=null, chunks=[], audioBlob=null, isRec=false, timerInt=null, secs=0;
 let docsMain=[], docsQ={}, transcript='', questions=[], docInitial='';
 let miniMR={}, regenCount=0, anonChoice='Anonyme';
 let allChunks=[];
-// Nouveaux états 3b / 3c
-let miniRecs={Resol:null,Etapes:null,Impact:null};
+let miniRecs={Resol:null,Etapes:null,Impact:null,Benef:null};
 let miniDocs={Resol:[],Etapes:[],Impact:[]};
+let scoreExperience=0;
 
-// ── READY — identique v7.7
+// ── READY
 function checkReady(){
   const ok=G('ok').value.trim()&&G('ak').value.trim()&&audioBlob;
   G('btnLancer').disabled=!ok;
@@ -686,7 +719,17 @@ function checkReady(){
 G('ok').addEventListener('input',checkReady);
 G('ak').addEventListener('input',checkReady);
 
-// ── ENREGISTREMENT PRINCIPAL — identique v7.7
+// ── ÉCHELLE 1-5
+function setScore(n){
+  scoreExperience=n;
+  for(let i=1;i<=5;i++){
+    const btn=G('score'+i);
+    btn.classList.toggle('on',i===n);
+  }
+  G('echelleRequired').classList.remove('visible');
+}
+
+// ── ENREGISTREMENT PRINCIPAL
 async function toggleRec(){ isRec?stopRec():await startRec(); }
 async function startRec(){
   hideErr('errRec');
@@ -762,11 +805,11 @@ function toggleBloc(key){
   chk.checked=isOpen;
 }
 
-// ── MINI ENREGISTREURS 3b — système complet avec timer, stop, complément, recommencer
-let miniAllChunks={Resol:[],Etapes:[],Impact:[]};
-let miniTimers={Resol:null,Etapes:null,Impact:null};
-let miniSecs={Resol:0,Etapes:0,Impact:0};
-let miniIsRec={Resol:false,Etapes:false,Impact:false};
+// ── MINI ENREGISTREURS
+let miniAllChunks={Resol:[],Etapes:[],Impact:[],Benef:[]};
+let miniTimers={Resol:null,Etapes:null,Impact:null,Benef:null};
+let miniSecs={Resol:0,Etapes:0,Impact:0,Benef:0};
+let miniIsRec={Resol:false,Etapes:false,Impact:false,Benef:false};
 
 async function togMiniRec(key){
   if(miniIsRec[key]){stopMiniRec(key);return;}
@@ -864,7 +907,7 @@ function showCompDetail(show){
   G('compDetail').classList.toggle('hidden',!show);
 }
 
-// ── DOCUMENTS PRINCIPAUX — identique v7.7
+// ── DOCUMENTS PRINCIPAUX
 function selDocs(e){Array.from(e.target.files).forEach(f=>addDoc(f,'main'));e.target.value='';}
 function dropDocs(e){e.preventDefault();G('uzMain').classList.remove('over');Array.from(e.dataTransfer.files).forEach(f=>addDoc(f,'main'));}
 function addDoc(f,z){
@@ -906,7 +949,6 @@ async function lancer(){
   const ra=G('recActions');if(ra)ra.style.display='none';
   G('btnLancer').disabled=true;hideErr('errPipe');scrollEl('cardProg');
 
-  // WHISPER principal
   setP('piW','active');
   try{
     const fd=new FormData();
@@ -917,23 +959,20 @@ async function lancer(){
     transcript=await r.text();setP('piW','done');
   }catch(e){setP('piW','error');showErr('errPipe',`Erreur transcription : ${e.message}`);G('btnLancer').disabled=false;return;}
 
-  // DOCUMENTS
   setP('piD','active');
   let docBlocks=[];
   try{
     for(const d of docsMain){const b=await readDoc(d.f);if(b)docBlocks.push(b);}
-    // Docs mini 3b/3c
     for(const key of ['Resol','Etapes','Impact']){
       for(const d of miniDocs[key]){const b=await readDoc(d.f);if(b)docBlocks.push(b);}
     }
     docsMain=[];renderMain();setP('piD','done');
   }catch{setP('piD','done');}
 
-  // RÉSOLUTION & DOMMAGES — transcriptions vocales
   setP('piR','active');
-  let resolTr='',etapesTr='',impactTr='';
+  let resolTr='',etapesTr='',impactTr='',benefTr='';
   try{
-    for(const [key,varRef] of [['Resol',()=>resolTr=_],['Etapes',()=>etapesTr=_],['Impact',()=>impactTr=_]]){
+    for(const key of ['Resol','Etapes','Impact','Benef']){
       if(miniRecs[key]?.blob){
         const fd2=new FormData();
         fd2.append('file',new File([miniRecs[key].blob],`${key}.mp4`,{type:miniRecs[key].blob.type}));
@@ -944,17 +983,17 @@ async function lancer(){
           if(key==='Resol')resolTr=t;
           if(key==='Etapes')etapesTr=t;
           if(key==='Impact')impactTr=t;
+          if(key==='Benef')benefTr=t;
         }
       }
     }
-    // Combiner avec texte écrit
     const rTxt=G('resolTxt').value.trim();if(rTxt)resolTr=(resolTr?resolTr+' ':'')+rTxt;
     const eTxt=G('etapesTxt').value.trim();if(eTxt)etapesTr=(etapesTr?etapesTr+' ':'')+eTxt;
     const iTxt=G('impactTxt').value.trim();if(iTxt)impactTr=(impactTr?impactTr+' ':'')+iTxt;
+    const bTxt=G('benefTxt').value.trim();if(bTxt)benefTr=(benefTr?benefTr+' ':'')+bTxt;
     setP('piR','done');
   }catch{setP('piR','done');}
 
-  // Collecter données structurées
   const resolOui=G('chkResolu').checked;
   const etapesOui=G('chkEtapes').checked;
   const abandon=G('chkAbandon').checked;
@@ -967,9 +1006,8 @@ async function lancer(){
   const compMoney=document.querySelector('input[name=compMoney]:checked')?.value||'';
   const compExact=G('compMoneyExact')?.value.trim()||'';
 
-  const resolBlock=buildResolBlock(resolOui,resolTr,etapesTr,abandon,dmgMoney,dmgMoneyExact,dmgTime,dmgTimeExact,impactTr,comp,compTxt,compMoney,compExact);
+  const resolBlock=buildResolBlock(resolOui,resolTr,etapesTr,abandon,benefTr,dmgMoney,dmgMoneyExact,dmgTime,dmgTimeExact,impactTr,comp,compTxt,compMoney,compExact);
 
-  // CLAUDE
   setP('piC','active');
   try{
     const prompt=buildPrompt(transcript,resolBlock,'');
@@ -981,8 +1019,12 @@ async function lancer(){
   }catch(e){setP('piC','error');showErr('errPipe',`Erreur Claude : ${e.message}`);G('btnLancer').disabled=false;}
 }
 
-function buildResolBlock(resolOui,resolTr,etapesTr,abandon,dmgMoney,dmgMoneyExact,dmgTime,dmgTimeExact,impactTr,comp,compTxt,compMoney,compExact){
+function buildResolBlock(resolOui,resolTr,etapesTr,abandon,benefTr,dmgMoney,dmgMoneyExact,dmgTime,dmgTimeExact,impactTr,comp,compTxt,compMoney,compExact){
   let b='';
+  if(benefTr){
+    b+='\n\nBÉNÉFICE / IMPACT POSITIF :\n';
+    if(benefTr)b+=`Description : ${benefTr}\n`;
+  }
   if(resolOui||etapesTr||abandon){
     b+='\n\nRÉSOLUTION :\n';
     if(resolOui)b+=`Résolu : Oui\n${resolTr?'Comment : '+resolTr+'\n':''}`;
@@ -1005,10 +1047,10 @@ function buildResolBlock(resolOui,resolTr,etapesTr,abandon,dmgMoney,dmgMoneyExac
   return b;
 }
 
-// ── PROMPT v7.9
+// ── PROMPT v7.14
 function buildPrompt(tr,resolBlock,reps){
   const hasResol=resolBlock.trim().length>0;
-  return `Tu es l'assistant de moietloi.fr, plateforme civique documentant les dysfonctionnements administratifs en France.
+  return `Tu es l'assistant de moietloi.fr, plateforme civique documentant les expériences vécues face à la loi, aux réglementations et à l'administration — qu'elles aient aidé ou pénalisé le témoin.
 
 RÈGLES ABSOLUES :
 1. Ne jamais inventer, déduire, inférer ou compléter une information non explicitement dite par le témoin.
@@ -1019,7 +1061,8 @@ RÈGLES ABSOLUES :
 6. Français clair, 500 mots maximum pour l'ensemble du document.
 7. Si la transcription est insuffisante pour remplir une section, écrire : [information insuffisante]
 8. DOCUMENTS JOINTS — RÈGLE CRITIQUE : Lis et analyse TOUS les documents joints avant de rédiger quoi que ce soit. Intègre leur contenu dans chaque section pertinente. Indique entre parenthèses la source : (témoignage oral) ou (document : nom du fichier). Ne pose JAMAIS dans les questions de clarification une question dont la réponse se trouve déjà dans un document joint ou dans la transcription.
-9. Pour RÉSOLUTION et DOMMAGES : utiliser uniquement les données fournies dans le bloc dédié. Ne jamais déduire.
+9. Pour RÉSOLUTION, BÉNÉFICE et DOMMAGES : utiliser uniquement les données fournies dans le bloc dédié. Ne jamais déduire.
+10. NATURE DE L'EXPÉRIENCE : détermine si l'expérience est principalement positive, négative ou mixte. Adapte les volets en conséquence — si l'expérience est positive, utilise le VOLET POSITIF à la place des volets 1/2/3.
 
 Produis un document structuré avec exactement ces sections :
 
@@ -1029,20 +1072,29 @@ Produis un document structuré avec exactement ces sections :
 **RÉCIT**
 [Témoignage restructuré, fidèle, sans répétitions — 150 mots max]
 
-**CE QUI EST REPROCHÉ**
-[La règle ou décision invoquée — si non précisé : [non précisé]]
+**CE QUI EST EN JEU**
+[La règle, la décision ou la situation impliquée — si non précisé : [non précisé]]
 
 **JUSTIFICATION OFFICIELLE**
-[Les motifs donnés par l'administration — si non précisé : [non précisé]]
+[Les motifs donnés par l'administration ou l'organisme — si non précisé : [non précisé]]
 
+[Si expérience négative ou mixte :]
 **VOLET 1 — ABSURDITÉ DE LA NORME**
-[En quoi la règle est inadaptée selon le témoin]
+[En quoi la règle est inadaptée selon le témoin — si non évoqué : Non applicable]
 
 **VOLET 2 — ABUS DANS L'APPLICATION**
 [En quoi l'application est disproportionnée — si non évoqué : Non applicable]
 
 **VOLET 3 — VERROUILLAGE SYSTÉMIQUE**
 [Si les recours sont bloqués — si non évoqué : Non applicable]
+
+[Si expérience positive ou mixte :]
+**VOLET POSITIF — CE QUI A BIEN FONCTIONNÉ**
+[Ce qui a aidé le témoin, pourquoi ça a marché, si c'est reproductible — si non évoqué : Non applicable]
+
+**BÉNÉFICE OBTENU**
+- Bénéfice monétaire : [fourchette et/ou montant exact si fourni — sinon : [non précisé]]
+- Description : [si fourni — sinon : [non précisé]]
 
 **RÉSOLUTION**
 - Statut : [Résolu / Non résolu / Abandonné — selon les données fournies — sinon : [non précisé]]
@@ -1058,10 +1110,10 @@ Produis un document structuré avec exactement ces sections :
 - Montant compensation : [si fourni — sinon : [non précisé]]
 
 **CLASSIFICATION — DOMAINES RÉGLEMENTAIRES**
-[Liste tous les domaines concernés parmi : Urbanisme/PLU/Permis de construire · ERP · Droit rural/SAFER · Environnement/ICPE · Commande publique · Patrimoine/ABF · Droit du travail · Sécurité sociale · Retraite · Chômage/France Travail · CAF/Allocations · Handicap/MDPH · Formation/CPF · Impôt sur le revenu · TVA/CFE · Contrôle fiscal/URSSAF · Taxe foncière · Normes sanitaires/HACCP · Sécurité incendie · Normes électriques/DPE · Électricité/Gaz · Réseau électrique/Enedis · Eau/Assainissement · Télécom/Internet · Poste/Colis · Transport ferroviaire/SNCF · Transport collectif · Autoroutes · Hôpital public/Urgences · Déserts médicaux · EHPAD · Justice civile · Justice administrative · Médiation/Défenseur des droits · RGPD/CNIL · Droit européen. Indiquer (?) si incertain.]
+[Liste tous les domaines concernés parmi : Urbanisme/PLU/Permis de construire · ERP · Droit rural/SAFER · Environnement/ICPE · Commande publique · Patrimoine/ABF · Droit du travail · Sécurité sociale · Retraite · Chômage/France Travail · CAF/Allocations · Handicap/MDPH · Formation/CPF · Services sociaux/Action sociale · Impôt sur le revenu · TVA/CFE · Contrôle fiscal/URSSAF · Taxe foncière · Normes sanitaires/HACCP · Sécurité incendie · Normes électriques/DPE · Électricité/Gaz · Réseau électrique/Enedis · Eau/Assainissement · Télécom/Internet · Poste/Colis · Transport ferroviaire/SNCF · Transport collectif · Autoroutes · Hôpital public/Urgences · Déserts médicaux · EHPAD · Justice civile · Justice administrative · Médiation/Défenseur des droits · RGPD/CNIL · Droit européen. Indiquer (?) si incertain.]
 
-**CLASSIFICATION — TYPES DE DYSFONCTIONNEMENT**
-[Liste tous les types concernés — Volet 1 : 1A Norme déconnectée · 1B Norme contradictoire · 1C Norme contre-productive · 1D Norme disproportionnée · 1E Vide juridique · 1F Norme obsolète · 1G Conflit national/local. Volet 2 : 2A Détournement procédure · 2B Décision arbitraire · 2C Inégalité traitement · 2D Disproportion sanction · 2E Moyens pénaux/civil · 2F Non-respect procédures · 2G Délais abusifs · 2H Silence administratif · 2I Mauvaise information. Volet 3 : 3A Doctrine restrictive · 3B Recours inefficaces · 3C Dissociation institutionnelle · 3D Délais impossibles · 3E Coût prohibitif · 3F Monopole sans recours · 3G Opacité. Volet 4 : 4A Non-respect engagements · 4B Facturation abusive · 4C Coupure injustifiée · 4D Accès impossible · 4E Service dégradé · 4F Abus position dominante. Indiquer (?) si incertain.]
+**CLASSIFICATION — TYPES DE SITUATION**
+[Liste tous les types concernés — Volet 1 : 1A Norme déconnectée · 1B Norme contradictoire · 1C Norme contre-productive · 1D Norme disproportionnée · 1E Vide juridique · 1F Norme obsolète · 1G Conflit national/local. Volet 2 : 2A Détournement procédure · 2B Décision arbitraire · 2C Inégalité traitement · 2D Disproportion sanction · 2E Moyens pénaux/civil · 2F Non-respect procédures · 2G Délais abusifs · 2H Silence administratif · 2I Mauvaise information. Volet 3 : 3A Doctrine restrictive · 3B Recours inefficaces · 3C Dissociation institutionnelle · 3D Délais impossibles · 3E Coût prohibitif · 3F Monopole sans recours · 3G Opacité. Volet 4 : 4A Non-respect engagements · 4B Facturation abusive · 4C Coupure injustifiée · 4D Accès impossible · 4E Service dégradé · 4F Abus position dominante. Volet Positif : P1 Procédure efficace · P2 Administration réactive · P3 Réforme bénéfique · P4 Médiation réussie · P5 Recours abouti · P6 Service exemplaire. Indiquer (?) si incertain.]
 
 ${reps?'':`**QUESTIONS DE CLARIFICATION**
 [2 à 4 questions numérotées ciblant uniquement les sections marquées [non précisé] ou [information insuffisante] ET dont la réponse n'apparaît ni dans la transcription ni dans les documents joints. Si tout est couvert : écrire exactement "Témoignage complet — aucune question"]`}
@@ -1084,7 +1136,7 @@ function readDoc(f){return new Promise(resolve=>{
   r.readAsDataURL(f);
 });}
 
-// ── QUESTIONS — identique v7.7
+// ── QUESTIONS
 function extractQ(txt){
   const m=txt.match(/\*\*QUESTIONS DE CLARIFICATION\*\*\n([\s\S]*?)(?=\n\*\*|$)/);
   if(!m)return[];
@@ -1138,7 +1190,7 @@ async function togMini(i){
   }catch{G(`ms_${i}`).textContent='⚠️ Micro non accessible';}
 }
 
-// ── FINALISER — identique v7.7
+// ── FINALISER
 async function finaliser(){
   const okey=G('ok').value.trim(), akey=G('ak').value.trim();
   const btn=G('btnFinal');btn.disabled=true;btn.textContent='Génération en cours…';
@@ -1178,7 +1230,7 @@ ${reps}`;
   btn.disabled=false;btn.textContent='Générer mon document final →';
 }
 
-// ── DOCUMENTS FINAUX — identique v7.7
+// ── DOCUMENTS FINAUX
 let docsFinale=[];
 function selDocsFinale(e){Array.from(e.target.files).forEach(f=>addDocFinale(f));e.target.value='';}
 function dropDocsFinale(e){e.preventDefault();Array.from(e.dataTransfer.files).forEach(f=>addDocFinale(f));}
@@ -1196,7 +1248,7 @@ function renderDocsFinale(){
 }
 function rmDocFinale(id){docsFinale=docsFinale.filter(d=>d.id!==id);renderDocsFinale();}
 
-// ── CLASSIFICATION — identique v7.7
+// ── CLASSIFICATION
 function toggleCheck(cb){const lbl=cb.closest('label');if(lbl)lbl.classList.toggle('on',cb.checked);}
 function getAideValues(){return Array.from(document.querySelectorAll('#aideGroup input[type=checkbox]:checked')).map(cb=>cb.value);}
 
@@ -1206,6 +1258,8 @@ function showRes(tr,txt){
   G('docRes').innerText=txt;
   regenCount=0;G('regenCount').textContent='';
   hideErr('errRes');
+  scoreExperience=0;
+  for(let i=1;i<=5;i++)G('score'+i).classList.remove('on');
   extractClassif(txt);
   scrollEl('cardRes');
 }
@@ -1213,7 +1267,7 @@ function showRes(tr,txt){
 function extractClassif(txt){
   const mD=txt.match(/\*\*CLASSIFICATION — DOMAINES RÉGLEMENTAIRES\*\*\n([\s\S]*?)(?=\n\*\*|$)/);
   const domaines=mD?mD[1].trim():'[non classifié]';
-  const mT=txt.match(/\*\*CLASSIFICATION — TYPES DE DYSFONCTIONNEMENT\*\*\n([\s\S]*?)(?=\n\*\*|$)/);
+  const mT=txt.match(/\*\*CLASSIFICATION — TYPES DE SITUATION\*\*\n([\s\S]*?)(?=\n\*\*|$)/);
   const types=mT?mT[1].trim():'[non classifié]';
   window._classifDomaines=domaines;window._classifTypes=types;
   const dEl=G('classifDomaines');const tEl=G('classifTypes');
@@ -1249,11 +1303,16 @@ ${texteEdite}`;
 }
 
 function validerDoc(){
+  if(!scoreExperience){
+    G('echelleRequired').classList.add('visible');
+    G('echelleRequired').scrollIntoView({behavior:'smooth',block:'center'});
+    return;
+  }
   docInitial=G('docRes').innerText;
   hide('cardRes');show('cardClassif');scrollEl('cardClassif');
 }
 
-// ── ANONYMAT — logique pseudo/prénom/nom exclusifs
+// ── ANONYMAT
 function onPseudoChange(){
   const pseudoChecked=G('chk_pseudo').checked;
   const afPrenom=G('af_prenom');const afNom=G('af_nom');
@@ -1286,7 +1345,6 @@ function showAnon(){
   scrollEl('cardAnon');
 }
 
-// Quand on coche prénom ou nom — décoche pseudo automatiquement
 function onPreNomChange(){
   const prenomChecked=G('chk_prenom').checked;
   const nomChecked=G('chk_nom').checked;
@@ -1299,7 +1357,6 @@ function onPreNomChange(){
   updateAnonPreview();
 }
 
-// Cliquer dans champ prénom — décoche pseudo, coche prénom
 function activatePrenom(){
   G('chk_pseudo').checked=false;
   G('af_pseudo').classList.remove('checked');
@@ -1309,7 +1366,6 @@ function activatePrenom(){
   updateAnonPreview();
 }
 
-// Cliquer dans champ nom — décoche pseudo, coche nom
 function activateNom(){
   G('chk_pseudo').checked=false;
   G('af_pseudo').classList.remove('checked');
@@ -1344,7 +1400,7 @@ function updateAnonPreview(){
 
 function showSoumission(){hide('cardAnon');show('cardSoumission');scrollEl('cardSoumission');}
 
-// ── SOUMISSION — identique v7.7
+// ── SOUMISSION
 function toggleConfirm(){G('btnSoumettre').disabled=!G('chkConfirm').checked;}
 function soumettre(){
   const ref='TEM-'+new Date().getFullYear()+'-'+Math.floor(Math.random()*9000+1000);
@@ -1353,7 +1409,7 @@ function soumettre(){
   hide('cardSoumission');show('cardConfirm');scrollEl('cardConfirm');
 }
 
-// ── CLAUDE API — identique v7.7
+// ── CLAUDE API
 async function claude(key,prompt,max,blocks=[]){
   const content=[...blocks,{type:'text',text:prompt}];
   const r=await fetch('https://api.anthropic.com/v1/messages',{
@@ -1365,7 +1421,7 @@ async function claude(key,prompt,max,blocks=[]){
   return r.json();
 }
 
-// ── UTILS — identique v7.7
+// ── UTILS
 function G(id){return document.getElementById(id);}
 function show(id){G(id)?.classList.remove('hidden');}
 function hide(id){G(id)?.classList.add('hidden');}
@@ -1373,6 +1429,7 @@ function showErr(id,msg){const b=G(id);if(b){b.style.display='block';b.textConte
 function hideErr(id){const b=G(id);if(b)b.style.display='none';}
 function setP(id,state){const el=G(id);if(!el)return;el.className=`picon ${state}`;el.textContent=state==='done'?'✓':state==='error'?'✕':'…';}
 function scrollEl(id){const el=G(id);if(el)window.scrollTo({top:el.offsetTop-20,behavior:'smooth'});}
+function showLangMsg(){const t=G('langTooltip');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000);}
 </script>
 </body>
 </html>
