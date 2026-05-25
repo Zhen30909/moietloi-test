@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>moietloi.fr — Déposer un témoignage</title><!-- temoigner v7.15 -->
+<title>moietloi.fr — Déposer un témoignage</title><!-- temoigner v7.16 -->
 <meta name="description" content="Déposez votre témoignage sur une expérience vécue avec la loi, une réglementation, un service public ou un opérateur.">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Source+Sans+3:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -183,10 +183,6 @@ input:focus, textarea:focus { outline:none; border-color:var(--vert); background
 .exact-field { margin-top:8px; }
 .exact-field input[type=text] { font-size:0.88rem; padding:9px 12px; }
 
-/* COMPENSATION */
-.comp-radio { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:10px; }
-.comp-radio .radio-btn label { font-size:0.82rem; }
-
 /* ÉCHELLE 1-5 */
 .echelle-zone { margin:20px 0 16px; }
 .echelle-title { font-size:0.88rem; font-weight:600; color:var(--gris-fonce); margin-bottom:6px; }
@@ -270,7 +266,7 @@ hr { border:none; border-top:1px solid var(--beige); margin:20px 0; }
 <header>
   <a href="index.html" class="logo">moi <span class="et">&amp;</span> <span class="loi">loi</span></a>
   <div class="sous-titre">Témoignages citoyens</div>
-  <span class="badge">Pipeline v7.15</span>
+  <span class="badge">Pipeline v7.16</span>
 </header>
 
 <!-- 1. CLÉS API -->
@@ -394,56 +390,15 @@ hr { border:none; border-top:1px solid var(--beige); margin:20px 0; }
   </div>
 </div>
 
-<!-- 3c. BÉNÉFICES, DOMMAGES & COMPENSATION -->
+<!-- 3c. IMPACT & DONNÉES -->
 <div class="card">
   <div class="card-title">
-    <span class="snum indigo">3c</span> Bénéfices, Dommages & Compensation
+    <span class="snum indigo">3c</span> Impact & données
     <span style="font-size:0.75rem;color:var(--gris-moyen);font-weight:300;margin-left:4px;">(optionnel)</span>
   </div>
-  <p style="font-size:0.88rem;color:var(--gris-moyen);margin-bottom:20px;line-height:1.6;font-style:italic;">Ces données sont interrogeables dans les analyses statistiques. Renseignez ce que vous souhaitez partager.</p>
+  <p style="font-size:0.88rem;color:var(--gris-moyen);margin-bottom:20px;line-height:1.6;font-style:italic;">Ces données enrichissent les analyses statistiques. Renseignez ce que vous souhaitez partager.</p>
 
-  <!-- IMPACT MONÉTAIRE -->
-  <div class="bloc-section">
-    <div class="bloc-title">Impact monétaire <span class="bloc-tag">Statistiques</span></div>
-    <div class="fourchette-group">
-      <div class="fourchette-item"><input type="radio" name="dmgMoney" id="dm0" value="aucun"><label for="dm0">Aucun dommage monétaire</label></div>
-      <div class="fourchette-item"><input type="radio" name="dmgMoney" id="dm1" value="<1000"><label for="dm1">Moins de 1 000 €</label></div>
-      <div class="fourchette-item"><input type="radio" name="dmgMoney" id="dm2" value="1000-5000"><label for="dm2">1 000 – 5 000 €</label></div>
-      <div class="fourchette-item"><input type="radio" name="dmgMoney" id="dm3" value="5000-20000"><label for="dm3">5 000 – 20 000 €</label></div>
-      <div class="fourchette-item"><input type="radio" name="dmgMoney" id="dm4" value="20000-50000"><label for="dm4">20 000 – 50 000 €</label></div>
-      <div class="fourchette-item"><input type="radio" name="dmgMoney" id="dm5" value="50000-100000"><label for="dm5">50 000 – 100 000 €</label></div>
-      <div class="fourchette-item"><input type="radio" name="dmgMoney" id="dm6" value="100000-500000"><label for="dm6">100 000 – 500 000 €</label></div>
-      <div class="fourchette-item"><input type="radio" name="dmgMoney" id="dm7" value="500000-1M"><label for="dm7">500 000 € – 1 million €</label></div>
-      <div class="fourchette-item"><input type="radio" name="dmgMoney" id="dm8" value=">1M"><label for="dm8">Plus d'1 million €</label></div>
-      <div class="fourchette-item"><input type="radio" name="dmgMoney" id="dm9" value="nsp"><label for="dm9">Je ne souhaite pas préciser</label></div>
-    </div>
-    <div class="exact-field">
-      <input type="text" id="dmgMoneyExact" placeholder="Montant exact si vous souhaitez le préciser (ex : 34 500 €)">
-    </div>
-  </div>
-
-  <div class="sep"></div>
-
-  <!-- DOMMAGE TEMPS -->
-  <div class="bloc-section">
-    <div class="bloc-title">Dommage temps <span class="bloc-tag">Statistiques</span></div>
-    <div class="fourchette-group">
-      <div class="fourchette-item"><input type="radio" name="dmgTime" id="dt1" value="<1mois"><label for="dt1">Moins d'1 mois</label></div>
-      <div class="fourchette-item"><input type="radio" name="dmgTime" id="dt2" value="1-6mois"><label for="dt2">1 à 6 mois</label></div>
-      <div class="fourchette-item"><input type="radio" name="dmgTime" id="dt3" value="6mois-2ans"><label for="dt3">6 mois à 2 ans</label></div>
-      <div class="fourchette-item"><input type="radio" name="dmgTime" id="dt4" value="2-5ans"><label for="dt4">2 à 5 ans</label></div>
-      <div class="fourchette-item"><input type="radio" name="dmgTime" id="dt5" value=">5ans"><label for="dt5">Plus de 5 ans</label></div>
-      <div class="fourchette-item"><input type="radio" name="dmgTime" id="dt6" value="encours"><label for="dt6">En cours — durée indéterminée</label></div>
-      <div class="fourchette-item"><input type="radio" name="dmgTime" id="dt7" value="nsp"><label for="dt7">Je ne souhaite pas préciser</label></div>
-    </div>
-    <div class="exact-field">
-      <input type="text" id="dmgTimeExact" placeholder="Durée exacte si vous souhaitez la préciser (ex : 3 ans et 4 mois)">
-    </div>
-  </div>
-
-  <div class="sep"></div>
-
-  <!-- IMPACT PERSONNEL / PROFESSIONNEL -->
+  <!-- 1. Impact de l'expérience -->
   <div class="bloc-section">
     <div class="bloc-title">Impact de l'expérience <span class="bloc-tag">Positif ou négatif</span></div>
     <p style="font-size:0.82rem;color:var(--gris-moyen);margin-bottom:12px;">Décrivez le bénéfice obtenu ou le préjudice subi — sur votre activité, votre santé, votre vie personnelle ou professionnelle.</p>
@@ -462,31 +417,38 @@ hr { border:none; border-top:1px solid var(--beige); margin:20px 0; }
 
   <div class="sep"></div>
 
-  <!-- COMPENSATION -->
-  <div class="bloc-section">
-    <div class="bloc-title">Compensation obtenue <span class="bloc-tag">Statistiques</span></div>
-    <div class="comp-radio radio-group">
-      <div class="radio-btn"><input type="radio" name="comp" id="cp1" value="oui" onchange="showCompDetail(true)"><label for="cp1">Oui</label></div>
-      <div class="radio-btn"><input type="radio" name="comp" id="cp2" value="non" onchange="showCompDetail(false)"><label for="cp2">Non</label></div>
-      <div class="radio-btn"><input type="radio" name="comp" id="cp3" value="nsp" onchange="showCompDetail(false)"><label for="cp3">Ne souhaite pas préciser</label></div>
+  <!-- 2. Dommage monétaire -->
+  <div class="igrp">
+    <label style="font-size:0.88rem;text-transform:none;letter-spacing:0;font-weight:500;color:var(--gris-fonce);">Avez-vous subi un dommage monétaire ? <span style="font-weight:400;color:var(--gris-moyen);">Si oui, combien ?</span></label>
+    <input type="text" id="dmgMoneyExact" placeholder="Ex : 34 500 €, environ 10 000 €…">
+  </div>
+
+  <!-- 3. Compensation -->
+  <div class="igrp">
+    <label style="font-size:0.88rem;text-transform:none;letter-spacing:0;font-weight:500;color:var(--gris-fonce);">Avez-vous obtenu une compensation ? <span style="font-weight:400;color:var(--gris-moyen);">Si oui, combien ?</span></label>
+    <input type="text" id="compTxt" placeholder="Ex : 5 000 €, remboursement partiel, accord amiable…">
+  </div>
+
+  <!-- 4. Durée -->
+  <div class="igrp">
+    <label style="font-size:0.88rem;text-transform:none;letter-spacing:0;font-weight:500;color:var(--gris-fonce);">Combien de temps cela a-t-il duré ?</label>
+    <input type="text" id="dmgTimeExact" placeholder="Ex : 3 ans et 4 mois, en cours depuis 2022…">
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- 5. Échelle 1-5 -->
+  <div class="echelle-zone">
+    <div class="echelle-title">Comment qualifieriez-vous globalement cette expérience ? <span style="color:var(--rouge);">*</span></div>
+    <div class="echelle-subtitle">Sur une échelle de 1 à 5 — 1 : Très négatif · 5 : Très positif. Obligatoire.</div>
+    <div class="echelle-btns">
+      <button type="button" class="echelle-btn score-1" onclick="setScore(1)" id="score1">1<span style="font-size:0.55rem;display:block;font-family:'Source Sans 3',sans-serif;font-weight:400;">Très négatif</span></button>
+      <button type="button" class="echelle-btn score-2" onclick="setScore(2)" id="score2">2<span style="font-size:0.55rem;display:block;font-family:'Source Sans 3',sans-serif;font-weight:400;">Négatif</span></button>
+      <button type="button" class="echelle-btn score-3" onclick="setScore(3)" id="score3">3<span style="font-size:0.55rem;display:block;font-family:'Source Sans 3',sans-serif;font-weight:400;">Neutre / Mitigé</span></button>
+      <button type="button" class="echelle-btn score-4" onclick="setScore(4)" id="score4">4<span style="font-size:0.55rem;display:block;font-family:'Source Sans 3',sans-serif;font-weight:400;">Positif</span></button>
+      <button type="button" class="echelle-btn score-5" onclick="setScore(5)" id="score5">5<span style="font-size:0.55rem;display:block;font-family:'Source Sans 3',sans-serif;font-weight:400;">Très positif</span></button>
     </div>
-    <textarea id="compTxt" placeholder="Décrivez la nature de la compensation obtenue ou refusée — médiation, accord amiable, décision de justice, remboursement partiel…" rows="2" style="margin-top:10px;font-size:0.85rem;"></textarea>
-    <div class="hidden" id="compDetail" style="margin-top:12px;">
-      <div class="fourchette-group">
-        <div class="fourchette-item"><input type="radio" name="compMoney" id="cm1" value="<1000"><label for="cm1">Moins de 1 000 €</label></div>
-        <div class="fourchette-item"><input type="radio" name="compMoney" id="cm2" value="1000-5000"><label for="cm2">1 000 – 5 000 €</label></div>
-        <div class="fourchette-item"><input type="radio" name="compMoney" id="cm3" value="5000-20000"><label for="cm3">5 000 – 20 000 €</label></div>
-        <div class="fourchette-item"><input type="radio" name="compMoney" id="cm4" value="20000-50000"><label for="cm4">20 000 – 50 000 €</label></div>
-        <div class="fourchette-item"><input type="radio" name="compMoney" id="cm5" value="50000-100000"><label for="cm5">50 000 – 100 000 €</label></div>
-        <div class="fourchette-item"><input type="radio" name="compMoney" id="cm6" value="100000-500000"><label for="cm6">100 000 – 500 000 €</label></div>
-        <div class="fourchette-item"><input type="radio" name="compMoney" id="cm7" value="500000-1M"><label for="cm7">500 000 € – 1 million €</label></div>
-        <div class="fourchette-item"><input type="radio" name="compMoney" id="cm8" value=">1M"><label for="cm8">Plus d'1 million €</label></div>
-        <div class="fourchette-item"><input type="radio" name="compMoney" id="cm9" value="nsp"><label for="cm9">Je ne souhaite pas préciser</label></div>
-      </div>
-      <div class="exact-field">
-        <input type="text" id="compMoneyExact" placeholder="Montant exact si vous souhaitez le préciser">
-      </div>
-    </div>
+    <div class="echelle-required" id="echelleRequired">⚠️ Veuillez attribuer une note avant de valider.</div>
   </div>
 </div>
 
@@ -536,21 +498,6 @@ hr { border:none; border-top:1px solid var(--beige); margin:20px 0; }
   <input type="file" id="fiFinale" multiple accept=".pdf,.jpg,.jpeg,.png" style="display:none" onchange="selDocsFinale(event)">
   <div class="doc-list" id="dlFinale"></div>
   <hr>
-
-  <!-- ÉCHELLE 1-5 OBLIGATOIRE -->
-  <div class="echelle-zone">
-    <div class="echelle-title">Comment qualifieriez-vous globalement cette expérience ? <span style="color:var(--rouge);">*</span></div>
-    <div class="echelle-subtitle">Sur une échelle de 1 à 5 — 1 : Très négatif · 5 : Très positif. Obligatoire.</div>
-    <div class="echelle-btns">
-      <button type="button" class="echelle-btn score-1" onclick="setScore(1)" id="score1">1<span style="font-size:0.55rem;display:block;font-family:'Source Sans 3',sans-serif;font-weight:400;">Très négatif</span></button>
-      <button type="button" class="echelle-btn score-2" onclick="setScore(2)" id="score2">2<span style="font-size:0.55rem;display:block;font-family:'Source Sans 3',sans-serif;font-weight:400;">Négatif</span></button>
-      <button type="button" class="echelle-btn score-3" onclick="setScore(3)" id="score3">3<span style="font-size:0.55rem;display:block;font-family:'Source Sans 3',sans-serif;font-weight:400;">Neutre / Mitigé</span></button>
-      <button type="button" class="echelle-btn score-4" onclick="setScore(4)" id="score4">4<span style="font-size:0.55rem;display:block;font-family:'Source Sans 3',sans-serif;font-weight:400;">Positif</span></button>
-      <button type="button" class="echelle-btn score-5" onclick="setScore(5)" id="score5">5<span style="font-size:0.55rem;display:block;font-family:'Source Sans 3',sans-serif;font-weight:400;">Très positif</span></button>
-    </div>
-    <div class="echelle-required" id="echelleRequired">⚠️ Veuillez attribuer une note avant de valider.</div>
-  </div>
-
   <div class="btn-row">
     <button class="btn-p" onclick="validerDoc()" style="margin-top:0;">✓ Valider ce document</button>
     <button class="btn-s" onclick="regenerer()" id="btnRegen" style="margin-top:0;">🔄 Régénérer avec corrections</button>
@@ -902,11 +849,6 @@ function renderMiniDocs(key){
   l.innerHTML=miniDocs[key].map(d=>`<div class="doc-item" style="font-size:0.8rem;"><span>📄 ${d.f.name}</span><button class="doc-rm" onclick="miniDocs['${key}']=miniDocs['${key}'].filter(x=>x.id!==${d.id});renderMiniDocs('${key}')">✕</button></div>`).join('');
 }
 
-// ── COMPENSATION
-function showCompDetail(show){
-  G('compDetail').classList.toggle('hidden',!show);
-}
-
 // ── DOCUMENTS PRINCIPAUX
 function selDocs(e){Array.from(e.target.files).forEach(f=>addDoc(f,'main'));e.target.value='';}
 function dropDocs(e){e.preventDefault();G('uzMain').classList.remove('over');Array.from(e.dataTransfer.files).forEach(f=>addDoc(f,'main'));}
@@ -944,6 +886,14 @@ function renderQ(qid){
 // ── PIPELINE
 async function lancer(){
   const okey=G('ok').value.trim(), akey=G('ak').value.trim();
+
+  // Vérifier score obligatoire avant de lancer
+  if(!scoreExperience){
+    G('echelleRequired').classList.add('visible');
+    G('echelleRequired').scrollIntoView({behavior:'smooth',block:'center'});
+    return;
+  }
+
   show('cardProg');hide('cardQ');hide('cardRes');hide('cardClassif');hide('cardAnon');hide('cardSoumission');hide('cardConfirm');
   G('btnComplement').style.display='none';G('btnRecommencer').style.display='none';
   const ra=G('recActions');if(ra)ra.style.display='none';
@@ -990,23 +940,18 @@ async function lancer(){
     const rTxt=G('resolTxt').value.trim();if(rTxt)resolTr=(resolTr?resolTr+' ':'')+rTxt;
     const eTxt=G('etapesTxt').value.trim();if(eTxt)etapesTr=(etapesTr?etapesTr+' ':'')+eTxt;
     const iTxt=G('impactTxt').value.trim();if(iTxt)impactTr=(impactTr?impactTr+' ':'')+iTxt;
-    const bTxt=G('benefTxt').value.trim();if(bTxt)benefTr=(benefTr?benefTr+' ':'')+bTxt;
+    const bTxt=G('benefTxt')?.value.trim()||'';if(bTxt)benefTr=(benefTr?benefTr+' ':'')+bTxt;
     setP('piR','done');
   }catch{setP('piR','done');}
 
   const resolOui=G('chkResolu').checked;
   const etapesOui=G('chkEtapes').checked;
   const abandon=G('chkAbandon').checked;
-  const dmgMoney=document.querySelector('input[name=dmgMoney]:checked')?.value||'';
   const dmgMoneyExact=G('dmgMoneyExact').value.trim();
-  const dmgTime=document.querySelector('input[name=dmgTime]:checked')?.value||'';
   const dmgTimeExact=G('dmgTimeExact').value.trim();
-  const comp=document.querySelector('input[name=comp]:checked')?.value||'';
   const compTxt=G('compTxt')?.value.trim()||'';
-  const compMoney=document.querySelector('input[name=compMoney]:checked')?.value||'';
-  const compExact=G('compMoneyExact')?.value.trim()||'';
 
-  const resolBlock=buildResolBlock(resolOui,resolTr,etapesTr,abandon,benefTr,dmgMoney,dmgMoneyExact,dmgTime,dmgTimeExact,impactTr,comp,compTxt,compMoney,compExact);
+  const resolBlock=buildResolBlock(resolOui,resolTr,etapesTr,abandon,benefTr,dmgMoneyExact,dmgTimeExact,impactTr,compTxt);
 
   setP('piC','active');
   try{
@@ -1019,11 +964,11 @@ async function lancer(){
   }catch(e){setP('piC','error');showErr('errPipe',`Erreur Claude : ${e.message}`);G('btnLancer').disabled=false;}
 }
 
-function buildResolBlock(resolOui,resolTr,etapesTr,abandon,benefTr,dmgMoney,dmgMoneyExact,dmgTime,dmgTimeExact,impactTr,comp,compTxt,compMoney,compExact){
+function buildResolBlock(resolOui,resolTr,etapesTr,abandon,benefTr,dmgMoneyExact,dmgTimeExact,impactTr,compTxt){
   let b='';
   if(benefTr){
     b+='\n\nBÉNÉFICE / IMPACT POSITIF :\n';
-    if(benefTr)b+=`Description : ${benefTr}\n`;
+    b+=`Description : ${benefTr}\n`;
   }
   if(resolOui||etapesTr||abandon){
     b+='\n\nRÉSOLUTION :\n';
@@ -1032,22 +977,18 @@ function buildResolBlock(resolOui,resolTr,etapesTr,abandon,benefTr,dmgMoney,dmgM
     if(etapesTr)b+=`Prochaines étapes : ${etapesTr}\n`;
     if(abandon)b+=`Abandon des recours : Oui\n`;
   }
-  if(dmgMoney||dmgMoneyExact||dmgTime||dmgTimeExact||impactTr||comp||compTxt){
+  if(dmgMoneyExact||dmgTimeExact||impactTr||compTxt){
     b+='\nDOMMAGES & COMPENSATION :\n';
-    if(dmgMoney)b+=`Dommage monétaire (fourchette) : ${dmgMoney}\n`;
-    if(dmgMoneyExact)b+=`Dommage monétaire (exact) : ${dmgMoneyExact}\n`;
-    if(dmgTime)b+=`Dommage temps (fourchette) : ${dmgTime}\n`;
-    if(dmgTimeExact)b+=`Dommage temps (exact) : ${dmgTimeExact}\n`;
+    if(dmgMoneyExact)b+=`Dommage monétaire : ${dmgMoneyExact}\n`;
+    if(dmgTimeExact)b+=`Dommage temps : ${dmgTimeExact}\n`;
     if(impactTr)b+=`Impact personnel/professionnel : ${impactTr}\n`;
-    if(comp)b+=`Compensation obtenue : ${comp}\n`;
-    if(compTxt)b+=`Description compensation : ${compTxt}\n`;
-    if(compMoney)b+=`Compensation (fourchette) : ${compMoney}\n`;
-    if(compExact)b+=`Compensation (exact) : ${compExact}\n`;
+    if(compTxt)b+=`Compensation : ${compTxt}\n`;
   }
+  b+=`\nScore de l'expérience : ${scoreExperience}/5\n`;
   return b;
 }
 
-// ── PROMPT v7.14
+// ── PROMPT v7.16
 function buildPrompt(tr,resolBlock,reps){
   const hasResol=resolBlock.trim().length>0;
   return `Tu es l'assistant de moietloi.fr, plateforme civique documentant les expériences vécues face à la loi, aux réglementations et à l'administration — qu'elles aient aidé ou pénalisé le témoin.
@@ -1093,7 +1034,7 @@ Produis un document structuré avec exactement ces sections :
 [Ce qui a aidé le témoin, pourquoi ça a marché, si c'est reproductible — si non évoqué : Non applicable]
 
 **BÉNÉFICE OBTENU**
-- Bénéfice monétaire : [fourchette et/ou montant exact si fourni — sinon : [non précisé]]
+- Bénéfice monétaire : [montant si fourni — sinon : [non précisé]]
 - Description : [si fourni — sinon : [non précisé]]
 
 **RÉSOLUTION**
@@ -1103,11 +1044,10 @@ Produis un document structuré avec exactement ces sections :
 - Abandon des recours : [Oui / Non — selon les données]
 
 **DOMMAGES & COMPENSATION**
-- Dommage monétaire : [fourchette et/ou montant exact si fourni — sinon : [non précisé]]
-- Dommage temps : [fourchette et/ou durée exacte si fournie — sinon : [non précisé]]
+- Dommage monétaire : [montant si fourni — sinon : [non précisé]]
+- Dommage temps : [si fourni — sinon : [non précisé]]
 - Impact personnel/professionnel : [si fourni — sinon : [non précisé]]
-- Compensation obtenue : [Oui / Non / NSP — selon les données]
-- Montant compensation : [si fourni — sinon : [non précisé]]
+- Compensation : [si fourni — sinon : [non précisé]]
 
 **CLASSIFICATION — DOMAINES RÉGLEMENTAIRES**
 [Liste tous les domaines concernés parmi : Urbanisme/PLU/Permis de construire · ERP · Droit rural/SAFER · Environnement/ICPE · Commande publique · Patrimoine/ABF · Droit du travail · Sécurité sociale · Retraite · Chômage/France Travail · CAF/Allocations · Handicap/MDPH · Formation/CPF · Services sociaux/Action sociale · Impôt sur le revenu · TVA/CFE · Contrôle fiscal/URSSAF · Taxe foncière · Normes sanitaires/HACCP · Sécurité incendie · Normes électriques/DPE · Électricité/Gaz · Réseau électrique/Enedis · Eau/Assainissement · Télécom/Internet · Poste/Colis · Transport ferroviaire/SNCF · Transport collectif · Autoroutes · Hôpital public/Urgences · Déserts médicaux · EHPAD · Justice civile · Justice administrative · Médiation/Défenseur des droits · RGPD/CNIL · Droit européen. Indiquer (?) si incertain.]
@@ -1258,8 +1198,6 @@ function showRes(tr,txt){
   G('docRes').innerText=txt;
   regenCount=0;G('regenCount').textContent='';
   hideErr('errRes');
-  scoreExperience=0;
-  for(let i=1;i<=5;i++)G('score'+i).classList.remove('on');
   extractClassif(txt);
   scrollEl('cardRes');
 }
@@ -1303,11 +1241,6 @@ ${texteEdite}`;
 }
 
 function validerDoc(){
-  if(!scoreExperience){
-    G('echelleRequired').classList.add('visible');
-    G('echelleRequired').scrollIntoView({behavior:'smooth',block:'center'});
-    return;
-  }
   docInitial=G('docRes').innerText;
   hide('cardRes');show('cardClassif');scrollEl('cardClassif');
 }
