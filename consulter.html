@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Consulter la base — moi &amp; loi</title><!-- consulter v1.7 -->
+<title>Consulter la base — moi &amp; loi</title><!-- consulter v1.8 -->
 <meta name="description" content="Recherchez et consultez les témoignages citoyens sur les situations réglementaires et administratives en France.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -69,7 +69,7 @@ select option,select optgroup{font-size:0.82rem}
 .brst:hover{border-color:var(--gris-moyen);color:var(--gris-fonce)}
 /* DOMAINES */
 .themes-title{font-size:0.7rem;text-transform:uppercase;letter-spacing:2px;font-weight:500;margin-bottom:12px;color:var(--vert)}
-.themes{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:8px}
+.themes{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:8px}
 .theme{background:var(--blanc);border:1.5px solid #e8e2d8;border-radius:10px;padding:12px 10px;cursor:pointer;transition:all 0.2s;text-align:left}
 .theme:hover{border-color:var(--vert-clair);transform:translateY(-1px);box-shadow:0 3px 10px rgba(90,114,96,0.1)}
 .theme.on{border-color:var(--vert);background:var(--vert-pale)}
@@ -346,6 +346,8 @@ hr{border:none;border-top:1px solid var(--beige);margin:16px 0}
           <div class="theme" id="pth5" onclick="clickProTheme(this,'Normes','psc5')"><div class="theme-icon">&#128203;</div><div class="theme-name">Normes &amp; Conformit&eacute;</div></div>
           <div class="theme" id="pth6" onclick="clickProTheme(this,'Justice','psc6')"><div class="theme-icon">&#9878;&#65039;</div><div class="theme-name">Justice &amp; Proc&eacute;dures</div></div>
           <div class="theme" id="pth7" onclick="clickProTheme(this,'Droit europeen','psc7')"><div class="theme-icon">&#127466;&#127482;</div><div class="theme-name">Droit europ&eacute;en</div></div>
+          <div class="theme" id="pth8" onclick="clickProTheme(this,'Logement','psc8')"><div class="theme-icon">&#127968;</div><div class="theme-name">Logement &amp; Vie courante</div></div>
+          <div class="theme" id="pth9" onclick="clickProTheme(this,'Immigration','psc9')"><div class="theme-icon">&#127760;</div><div class="theme-name">Immigration &amp; Nationalit&eacute;</div></div>
         </div>
         <div class="subcats-panel" id="psc0" data-theme="pth0"><div class="subcats-title">Urbanisme &amp; R&eacute;glementation locale</div><div class="subcats"><button class="subcat subcat-all on" onclick="clickProSubcatAll(this,'pth0','Urbanisme')">Toutes</button><button class="subcat" onclick="clickProSubcat(this)">PLU / Zonage / Permis de construire</button><button class="subcat" onclick="clickProSubcat(this)">ERP / S&eacute;curit&eacute; des b&acirc;timents</button><button class="subcat" onclick="clickProSubcat(this)">Droit rural / SAFER / Foncier agricole</button><button class="subcat" onclick="clickProSubcat(this)">Environnement / ICPE / Natura 2000</button><button class="subcat" onclick="clickProSubcat(this)">Commande publique / March&eacute;s publics</button><button class="subcat" onclick="clickProSubcat(this)">Patrimoine / Monuments historiques / ABF</button></div></div>
         <div class="subcats-panel" id="psc1" data-theme="pth1"><div class="subcats-title">Fiscalit&eacute; &amp; Cotisations</div><div class="subcats"><button class="subcat subcat-all on" onclick="clickProSubcatAll(this,'pth1','Fiscalite')">Toutes</button><button class="subcat" onclick="clickProSubcat(this)">Imp&ocirc;t sur le revenu / IR</button><button class="subcat" onclick="clickProSubcat(this)">TVA / CFE / Taxes professionnelles</button><button class="subcat" onclick="clickProSubcat(this)">Taxe fonci&egrave;re / Taxe d'habitation</button><button class="subcat" onclick="clickProSubcat(this)">Contr&ocirc;le fiscal / Redressement</button><button class="subcat" onclick="clickProSubcat(this)">URSSAF / Cotisations sociales</button></div></div>
@@ -354,8 +356,10 @@ hr{border:none;border-top:1px solid var(--beige);margin:16px 0}
         <div class="subcats-panel" id="psc3" data-theme="pth3"><div class="subcats-title">Droit social &amp; Emploi</div><div class="subcats"><button class="subcat subcat-all on" onclick="clickProSubcatAll(this,'pth3','Droit social')">Toutes</button><button class="subcat" onclick="clickProSubcat(this)">Droit du travail / Rupture de contrat</button><button class="subcat" onclick="clickProSubcat(this)">S&eacute;curit&eacute; sociale / Maladie / AT-MP</button><button class="subcat" onclick="clickProSubcat(this)">Retraite / Pension</button><button class="subcat" onclick="clickProSubcat(this)">Ch&ocirc;mage / France Travail</button><button class="subcat" onclick="clickProSubcat(this)">CAF / Allocations / RSA / APL</button><button class="subcat" onclick="clickProSubcat(this)">Handicap / MDPH / AAH / RQTH</button><button class="subcat" onclick="clickProSubcat(this)">Formation professionnelle / CPF</button><button class="subcat" onclick="clickProSubcat(this)">Services sociaux / Action sociale</button></div></div>
         <div class="subcats-panel" id="psc4" data-theme="pth4"><div class="subcats-title">Sant&eacute; &amp; Services de soins</div><div class="subcats"><button class="subcat subcat-all on" onclick="clickProSubcatAll(this,'pth4','Sante')">Toutes</button><button class="subcat" onclick="clickProSubcat(this)">H&ocirc;pital public / CHU / Urgences</button><button class="subcat" onclick="clickProSubcat(this)">Acc&egrave;s aux soins / D&eacute;serts m&eacute;dicaux</button><button class="subcat" onclick="clickProSubcat(this)">EHPAD / &Eacute;tablissements m&eacute;dico-sociaux</button><button class="subcat" onclick="clickProSubcat(this)">Remboursements / CPAM / Assurance maladie</button></div></div>
         <div class="subcats-panel" id="psc5" data-theme="pth5"><div class="subcats-title">Normes &amp; Conformit&eacute;</div><div class="subcats"><button class="subcat subcat-all on" onclick="clickProSubcatAll(this,'pth5','Normes')">Toutes</button><button class="subcat" onclick="clickProSubcat(this)">Normes sanitaires / HACCP / Hygi&egrave;ne alimentaire</button><button class="subcat" onclick="clickProSubcat(this)">S&eacute;curit&eacute; incendie / S&eacute;curit&eacute; des b&acirc;timents</button><button class="subcat" onclick="clickProSubcat(this)">Normes &eacute;lectriques / Gaz / Diagnostics / DPE</button></div></div>
-        <div class="subcats-panel" id="psc6" data-theme="pth6"><div class="subcats-title">Justice &amp; Proc&eacute;dures</div><div class="subcats"><button class="subcat subcat-all on" onclick="clickProSubcatAll(this,'pth6','Justice')">Toutes</button><button class="subcat" onclick="clickProSubcat(this)">Justice civile / Tribunaux judiciaires</button><button class="subcat" onclick="clickProSubcat(this)">Justice administrative / TA / CAA / Conseil d'Etat</button><button class="subcat" onclick="clickProSubcat(this)">M&eacute;diateur / D&eacute;fenseur des droits</button><button class="subcat" onclick="clickProSubcat(this)">Titre de s&eacute;jour / Visa / Pr&eacute;fecture</button><button class="subcat" onclick="clickProSubcat(this)">Naturalisation / Nationalit&eacute; fran&ccedil;aise</button></div></div>
+        <div class="subcats-panel" id="psc6" data-theme="pth6"><div class="subcats-title">Justice &amp; Proc&eacute;dures</div><div class="subcats"><button class="subcat subcat-all on" onclick="clickProSubcatAll(this,'pth6','Justice')">Toutes</button><button class="subcat" onclick="clickProSubcat(this)">Justice civile / Tribunaux judiciaires</button><button class="subcat" onclick="clickProSubcat(this)">Justice administrative / TA / CAA / Conseil d'Etat</button><button class="subcat" onclick="clickProSubcat(this)">M&eacute;diateur / D&eacute;fenseur des droits</button></div></div>
         <div class="subcats-panel" id="psc7" data-theme="pth7"><div class="subcats-title">Droit europ&eacute;en</div><div class="subcats"><button class="subcat subcat-all on" onclick="clickProSubcatAll(this,'pth7','Droit europeen')">Toutes</button><button class="subcat" onclick="clickProSubcat(this)">Directive non ou mal transpos&eacute;e</button><button class="subcat" onclick="clickProSubcat(this)">RGPD / Protection des donn&eacute;es / CNIL</button><button class="subcat" onclick="clickProSubcat(this)">Libre circulation / Droits citoyens europ&eacute;ens</button></div></div>
+        <div class="subcats-panel" id="psc8" data-theme="pth8"><div class="subcats-title">Logement &amp; Vie courante</div><div class="subcats"><button class="subcat subcat-all on" onclick="clickProSubcatAll(this,'pth8','Logement')">Toutes</button><button class="subcat" onclick="clickProSubcat(this)">Immobilier / Copropri&eacute;t&eacute; / Bailleur</button><button class="subcat" onclick="clickProSubcat(this)">Diagnostics / DPE / Normes &eacute;nerg&eacute;tiques</button><button class="subcat" onclick="clickProSubcat(this)">Droit civil / Famille / Divorce</button><button class="subcat" onclick="clickProSubcat(this)">Succession / H&eacute;ritage / Donation</button><button class="subcat" onclick="clickProSubcat(this)">Tutelle / Curatelle / Incapacit&eacute;</button></div></div>
+        <div class="subcats-panel" id="psc9" data-theme="pth9"><div class="subcats-title">Immigration &amp; Nationalit&eacute;</div><div class="subcats"><button class="subcat subcat-all on" onclick="clickProSubcatAll(this,'pth9','Immigration')">Toutes</button><button class="subcat" onclick="clickProSubcat(this)">Titre de s&eacute;jour / Visa / Pr&eacute;fecture</button><button class="subcat" onclick="clickProSubcat(this)">Naturalisation / Nationalit&eacute; fran&ccedil;aise</button><button class="subcat" onclick="clickProSubcat(this)">Asile / OFPRA / CNDA</button><button class="subcat" onclick="clickProSubcat(this)">Regroupement familial</button></div></div>
 
         <!-- TYPE DE SITUATION -->
         <div class="pro-acc">
@@ -376,6 +380,59 @@ hr{border:none;border-top:1px solid var(--beige);margin:16px 0}
               <button class="pro-opt" data-val="Facturation contestee" onclick="toggleProOpt(this)">Facturation contest&eacute;e</button>
               <button class="pro-opt" data-val="Interruption de service" onclick="toggleProOpt(this)">Interruption de service</button>
               <button class="pro-opt" data-val="Acces difficile" onclick="toggleProOpt(this)">Acc&egrave;s difficile</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- TYPE DE TÉMOIN -->
+        <div class="pro-acc">
+          <div class="pro-acc-hd" onclick="toggleAcc(this)">Type de t&eacute;moin<span class="pro-acc-arrow">&#9660;</span></div>
+          <div class="pro-acc-body">
+            <div class="pro-acc-opts">
+              <button class="pro-opt" data-val="type_particulier" onclick="selectExclusive(this,'typeTemoin');showProfilTemoin('particulier')">&#128100; Particulier</button>
+              <button class="pro-opt" data-val="type_autoentrepreneur" onclick="selectExclusive(this,'typeTemoin');showProfilTemoin('particulier')">&#128188; Auto-entrepreneur / Micro-entreprise</button>
+              <button class="pro-opt" data-val="type_entreprise" onclick="selectExclusive(this,'typeTemoin');showProfilTemoin('entreprise')">&#127970; Entreprise / Organisation</button>
+            </div>
+            <div class="pro-acc-note">Un seul choix possible &mdash; statut d&eacute;clar&eacute; par le t&eacute;moin</div>
+          </div>
+        </div>
+
+        <!-- PROFIL DU TÉMOIN — conditionnel -->
+        <div class="pro-acc" id="profilTemoinAcc" style="display:none;">
+          <div class="pro-acc-hd" onclick="toggleAcc(this)">Profil du t&eacute;moin<span class="pro-acc-arrow">&#9660;</span></div>
+          <div class="pro-acc-body" id="profilTemoinBody">
+            <!-- Rempli dynamiquement selon le type -->
+          </div>
+        </div>
+
+        <!-- SECTEUR D'ACTIVITÉ -->
+        <div class="pro-acc">
+          <div class="pro-acc-hd" onclick="toggleAcc(this)">Secteur d'activit&eacute;<span class="pro-acc-arrow">&#9660;</span></div>
+          <div class="pro-acc-body" id="secBody">
+            <div class="pro-opts-sub-label">Cat&eacute;gorie — cliquez pour voir les sous-secteurs</div>
+            <div class="pro-acc-opts" id="secCatOpts">
+              <button class="pro-opt" data-val="Agriculture &amp; Rural" data-sec="sec_agri" onclick="clickSecCat(this)">Agriculture &amp; Rural</button>
+              <button class="pro-opt" data-val="Alimentation &amp; Restauration" data-sec="sec_alim" onclick="clickSecCat(this)">Alimentation &amp; Restauration</button>
+              <button class="pro-opt" data-val="Associations &amp; ESS" data-sec="sec_asso" onclick="clickSecCat(this)">Associations &amp; ESS</button>
+              <button class="pro-opt" data-val="BTP &amp; Immobilier" data-sec="sec_btp" onclick="clickSecCat(this)">BTP &amp; Immobilier</button>
+              <button class="pro-opt" data-val="Commerce &amp; Distribution" data-sec="sec_com" onclick="clickSecCat(this)">Commerce &amp; Distribution</button>
+              <button class="pro-opt" data-val="Culture, M&eacute;dias &amp; Loisirs" data-sec="sec_cult" onclick="clickSecCat(this)">Culture, M&eacute;dias &amp; Loisirs</button>
+              <button class="pro-opt" data-val="Education &amp; Formation" data-sec="sec_educ" onclick="clickSecCat(this)">Education &amp; Formation</button>
+              <button class="pro-opt" data-val="H&eacute;bergement &amp; Tourisme" data-sec="sec_heb" onclick="clickSecCat(this)">H&eacute;bergement &amp; Tourisme</button>
+              <button class="pro-opt" data-val="Industrie &amp; Production" data-sec="sec_ind" onclick="clickSecCat(this)">Industrie &amp; Production</button>
+              <button class="pro-opt" data-val="Particulier" data-sec="sec_part" onclick="clickSecCat(this)">Particulier</button>
+              <button class="pro-opt" data-val="Professions r&eacute;glement&eacute;es &amp; Lib&eacute;rales" data-sec="sec_proflib" onclick="clickSecCat(this)">Professions r&eacute;glement&eacute;es &amp; Lib&eacute;rales</button>
+              <button class="pro-opt" data-val="Sant&eacute; &amp; M&eacute;dico-social" data-sec="sec_sante" onclick="clickSecCat(this)">Sant&eacute; &amp; M&eacute;dico-social</button>
+              <button class="pro-opt" data-val="Services &agrave; la personne" data-sec="sec_serv_pers" onclick="clickSecCat(this)">Services &agrave; la personne</button>
+              <button class="pro-opt" data-val="Services aux entreprises" data-sec="sec_serv_ent" onclick="clickSecCat(this)">Services aux entreprises</button>
+              <button class="pro-opt" data-val="Services essentiels &amp; Monopoles" data-sec="sec_serv_ess" onclick="clickSecCat(this)">Services essentiels &amp; Monopoles</button>
+              <button class="pro-opt" data-val="Technologies &amp; Innovation" data-sec="sec_tech" onclick="clickSecCat(this)">Technologies &amp; Innovation</button>
+              <button class="pro-opt" data-val="Transport &amp; Logistique" data-sec="sec_transport" onclick="clickSecCat(this)">Transport &amp; Logistique</button>
+              <button class="pro-opt" data-val="Autre" data-sec="sec_autre" onclick="clickSecCat(this)">Autre</button>
+            </div>
+            <div id="secSubPanel" style="display:none;margin-top:10px;padding:10px 12px;background:var(--vert-pale);border:1.5px solid var(--vert-clair);border-radius:8px;">
+              <div class="pro-opts-sub-label" id="secSubLabel" style="color:var(--vert);margin-bottom:8px;"></div>
+              <div class="pro-acc-opts" id="secSubOpts"></div>
             </div>
           </div>
         </div>
@@ -432,112 +489,71 @@ hr{border:none;border-top:1px solid var(--beige);margin:16px 0}
           </div>
         </div>
 
-        <!-- TYPE DE TÉMOIN -->
+        <!-- PERTE / DOMMAGE -->
         <div class="pro-acc">
-          <div class="pro-acc-hd" onclick="toggleAcc(this)">Type de t&eacute;moin<span class="pro-acc-arrow">&#9660;</span></div>
+          <div class="pro-acc-hd" onclick="toggleAcc(this)">Perte / Dommage mon&eacute;taire<span class="pro-acc-arrow">&#9660;</span></div>
           <div class="pro-acc-body">
             <div class="pro-acc-opts">
-              <button class="pro-opt" data-val="type_particulier" onclick="selectExclusive(this,'typeTemoin')">&#128100; Particulier</button>
-              <button class="pro-opt" data-val="type_entreprise" onclick="selectExclusive(this,'typeTemoin')">&#127970; Entreprise / Organisation</button>
+              <button class="pro-opt" data-val="Dommage &lt; 100 EUR" onclick="toggleProOpt(this)">&lt; 100 &euro;</button>
+              <button class="pro-opt" data-val="Dommage 100-500 EUR" onclick="toggleProOpt(this)">100 &ndash; 500 &euro;</button>
+              <button class="pro-opt" data-val="Dommage 500-1000 EUR" onclick="toggleProOpt(this)">500 &ndash; 1 000 &euro;</button>
+              <button class="pro-opt" data-val="Dommage 1000-2000 EUR" onclick="toggleProOpt(this)">1 000 &ndash; 2 000 &euro;</button>
+              <button class="pro-opt" data-val="Dommage 2000-5000 EUR" onclick="toggleProOpt(this)">2 000 &ndash; 5 000 &euro;</button>
+              <button class="pro-opt" data-val="Dommage 5000-10000 EUR" onclick="toggleProOpt(this)">5 000 &ndash; 10 000 &euro;</button>
+              <button class="pro-opt" data-val="Dommage 10000-50000 EUR" onclick="toggleProOpt(this)">10 000 &ndash; 50 000 &euro;</button>
+              <button class="pro-opt" data-val="Dommage 50000-100000 EUR" onclick="toggleProOpt(this)">50 000 &ndash; 100 000 &euro;</button>
+              <button class="pro-opt" data-val="Dommage 100000-500000 EUR" onclick="toggleProOpt(this)">100 000 &ndash; 500 000 &euro;</button>
+              <button class="pro-opt" data-val="Dommage 500000-1M EUR" onclick="toggleProOpt(this)">500 000 &ndash; 1 000 000 &euro;</button>
+              <button class="pro-opt" data-val="Dommage 1M-5M EUR" onclick="toggleProOpt(this)">1 000 000 &ndash; 5 000 000 &euro;</button>
+              <button class="pro-opt" data-val="Dommage 5M-10M EUR" onclick="toggleProOpt(this)">5 000 000 &ndash; 10 000 000 &euro;</button>
+              <button class="pro-opt" data-val="Dommage &gt;10M EUR" onclick="toggleProOpt(this)">&gt; 10 000 000 &euro;</button>
             </div>
-            <div class="pro-acc-note">Un seul choix possible &mdash; statut d&eacute;clar&eacute; par le t&eacute;moin</div>
+            <div class="pro-acc-note">Fourchette d&eacute;clar&eacute;e par le t&eacute;moin</div>
           </div>
         </div>
-
-        <!-- TÉMOIGNAGE DOCUMENTÉ -->
         <div class="pro-acc">
-          <div class="pro-acc-hd" onclick="toggleAcc(this)">T&eacute;moignage document&eacute;<span class="pro-acc-arrow">&#9660;</span></div>
+          <div class="pro-acc-hd" onclick="toggleAcc(this)">Gain / &Eacute;conomie r&eacute;alis&eacute;(e)<span class="pro-acc-arrow">&#9660;</span></div>
           <div class="pro-acc-body">
             <div class="pro-acc-opts">
-              <button class="pro-opt" data-val="doc_oui" onclick="selectExclusive(this,'docTemoin')">&#128247; Avec documents joints</button>
-              <button class="pro-opt" data-val="doc_officiel" onclick="selectExclusive(this,'docTemoin')">&#10003; Dossier officiel (arr&ecirc;t&eacute;, d&eacute;cision, courrier administratif)</button>
+              <button class="pro-opt" data-val="Gain &lt; 100 EUR" onclick="toggleProOpt(this)">&lt; 100 &euro;</button>
+              <button class="pro-opt" data-val="Gain 100-500 EUR" onclick="toggleProOpt(this)">100 &ndash; 500 &euro;</button>
+              <button class="pro-opt" data-val="Gain 500-1000 EUR" onclick="toggleProOpt(this)">500 &ndash; 1 000 &euro;</button>
+              <button class="pro-opt" data-val="Gain 1000-2000 EUR" onclick="toggleProOpt(this)">1 000 &ndash; 2 000 &euro;</button>
+              <button class="pro-opt" data-val="Gain 2000-5000 EUR" onclick="toggleProOpt(this)">2 000 &ndash; 5 000 &euro;</button>
+              <button class="pro-opt" data-val="Gain 5000-10000 EUR" onclick="toggleProOpt(this)">5 000 &ndash; 10 000 &euro;</button>
+              <button class="pro-opt" data-val="Gain 10000-50000 EUR" onclick="toggleProOpt(this)">10 000 &ndash; 50 000 &euro;</button>
+              <button class="pro-opt" data-val="Gain 50000-100000 EUR" onclick="toggleProOpt(this)">50 000 &ndash; 100 000 &euro;</button>
+              <button class="pro-opt" data-val="Gain 100000-500000 EUR" onclick="toggleProOpt(this)">100 000 &ndash; 500 000 &euro;</button>
+              <button class="pro-opt" data-val="Gain 500000-1M EUR" onclick="toggleProOpt(this)">500 000 &ndash; 1 000 000 &euro;</button>
+              <button class="pro-opt" data-val="Gain 1M-5M EUR" onclick="toggleProOpt(this)">1 000 000 &ndash; 5 000 000 &euro;</button>
+              <button class="pro-opt" data-val="Gain 5M-10M EUR" onclick="toggleProOpt(this)">5 000 000 &ndash; 10 000 000 &euro;</button>
+              <button class="pro-opt" data-val="Gain &gt;10M EUR" onclick="toggleProOpt(this)">&gt; 10 000 000 &euro;</button>
             </div>
-            <div class="pro-acc-note">Un seul choix possible &mdash; pr&eacute;sence de pi&egrave;ces justificatives jointes</div>
+            <div class="pro-acc-note">Fourchette d&eacute;clar&eacute;e par le t&eacute;moin</div>
           </div>
         </div>
-
         <div class="pro-acc">
-          <div class="pro-acc-hd" onclick="toggleAcc(this)">Profil du t&eacute;moin<span class="pro-acc-arrow">&#9660;</span></div>
+          <div class="pro-acc-hd" onclick="toggleAcc(this)">Compensation obtenue<span class="pro-acc-arrow">&#9660;</span></div>
           <div class="pro-acc-body">
-            <div class="pro-opts-sub-label">Tranche d'&acirc;ge</div>
             <div class="pro-acc-opts">
-              <button class="pro-opt" data-val="age_moins25" onclick="toggleProOpt(this)">Moins de 25 ans</button>
-              <button class="pro-opt" data-val="age_25_34" onclick="toggleProOpt(this)">25&ndash;34 ans</button>
-              <button class="pro-opt" data-val="age_35_44" onclick="toggleProOpt(this)">35&ndash;44 ans</button>
-              <button class="pro-opt" data-val="age_45_54" onclick="toggleProOpt(this)">45&ndash;54 ans</button>
-              <button class="pro-opt" data-val="age_55_64" onclick="toggleProOpt(this)">55&ndash;64 ans</button>
-              <button class="pro-opt" data-val="age_65plus" onclick="toggleProOpt(this)">65 ans et plus</button>
+              <button class="pro-opt" data-val="Aucune compensation" onclick="toggleProOpt(this)">Aucune</button>
+              <button class="pro-opt" data-val="Compensation partielle" onclick="toggleProOpt(this)">Partielle (&lt; 50% du dommage)</button>
+              <button class="pro-opt" data-val="Compensation totale" onclick="toggleProOpt(this)">Totale ou sup&eacute;rieure</button>
             </div>
-            <div class="pro-opts-sub-label" style="margin-top:10px">Sexe</div>
-            <div class="pro-acc-opts">
-              <button class="pro-opt" data-val="sexe_femme" onclick="toggleProOpt(this)">Femme</button>
-              <button class="pro-opt" data-val="sexe_homme" onclick="toggleProOpt(this)">Homme</button>
-              <button class="pro-opt" data-val="sexe_autre" onclick="toggleProOpt(this)">Autre</button>
-            </div>
-            <div class="pro-opts-sub-label" style="margin-top:10px">Type de territoire</div>
-            <div class="pro-acc-opts">
-              <button class="pro-opt" data-val="terr_rural" onclick="toggleProOpt(this)">Rural</button>
-              <button class="pro-opt" data-val="terr_periurbain" onclick="toggleProOpt(this)">P&eacute;riurbain</button>
-              <button class="pro-opt" data-val="terr_urbain" onclick="toggleProOpt(this)">Urbain</button>
-              <button class="pro-opt" data-val="terr_littoral" onclick="toggleProOpt(this)">Littoral / Montagne</button>
-            </div>
-            <div class="pro-opts-sub-label" style="margin-top:10px">Cat&eacute;gorie socio-professionnelle (CSP)</div>
-            <div class="pro-acc-opts">
-              <button class="pro-opt" data-val="csp_fonctionnaire" onclick="toggleProOpt(this)">Agent public / Fonctionnaire</button>
-              <button class="pro-opt" data-val="csp_agriculteur" onclick="toggleProOpt(this)">Agriculteur exploitant</button>
-              <button class="pro-opt" data-val="csp_artisan" onclick="toggleProOpt(this)">Artisan</button>
-              <button class="pro-opt" data-val="csp_cadre_ent" onclick="toggleProOpt(this)">Cadre d'entreprise</button>
-              <button class="pro-opt" data-val="csp_cadre_fp" onclick="toggleProOpt(this)">Cadre de la fonction publique</button>
-              <button class="pro-opt" data-val="csp_chef_ent" onclick="toggleProOpt(this)">Chef d'entreprise / Entrepreneur</button>
-              <button class="pro-opt" data-val="csp_commercant" onclick="toggleProOpt(this)">Commer&ccedil;ant</button>
-              <button class="pro-opt" data-val="csp_contremaitre" onclick="toggleProOpt(this)">Contrema&icirc;tre / Agent de ma&icirc;trise</button>
-              <button class="pro-opt" data-val="csp_dem_emploi" onclick="toggleProOpt(this)">Demandeur d'emploi</button>
-              <button class="pro-opt" data-val="csp_dir_asso" onclick="toggleProOpt(this)">Dirigeant d'association</button>
-              <button class="pro-opt" data-val="csp_emp_admin" onclick="toggleProOpt(this)">Employ&eacute; administratif</button>
-              <button class="pro-opt" data-val="csp_emp_com" onclick="toggleProOpt(this)">Employ&eacute; de commerce</button>
-              <button class="pro-opt" data-val="csp_emp_serv" onclick="toggleProOpt(this)">Employ&eacute; de service</button>
-              <button class="pro-opt" data-val="csp_etudiant" onclick="toggleProOpt(this)">Etudiant(e)</button>
-              <button class="pro-opt" data-val="csp_ingenieur" onclick="toggleProOpt(this)">Ing&eacute;nieur</button>
-              <button class="pro-opt" data-val="csp_non_resident" onclick="toggleProOpt(this)">Non-r&eacute;sident / Etranger</button>
-              <button class="pro-opt" data-val="csp_ouv_agri" onclick="toggleProOpt(this)">Ouvrier agricole</button>
-              <button class="pro-opt" data-val="csp_ouv_nq" onclick="toggleProOpt(this)">Ouvrier non qualifi&eacute;</button>
-              <button class="pro-opt" data-val="csp_ouv_q" onclick="toggleProOpt(this)">Ouvrier qualifi&eacute;</button>
-              <button class="pro-opt" data-val="csp_prof_inter" onclick="toggleProOpt(this)">Profession interm&eacute;diaire</button>
-              <button class="pro-opt" data-val="csp_prof_lib" onclick="toggleProOpt(this)">Profession lib&eacute;rale</button>
-              <button class="pro-opt" data-val="csp_professeur" onclick="toggleProOpt(this)">Professeur / Enseignant</button>
-              <button class="pro-opt" data-val="csp_retraite" onclick="toggleProOpt(this)">Retrait&eacute;(e)</button>
-              <button class="pro-opt" data-val="csp_sans_act" onclick="toggleProOpt(this)">Sans activit&eacute; professionnelle</button>
-              <button class="pro-opt" data-val="csp_technicien" onclick="toggleProOpt(this)">Technicien</button>
-              <button class="pro-opt" data-val="csp_chercheur" onclick="toggleProOpt(this)">Chercheur / Scientifique</button>
-            </div>
+            <div class="pro-acc-note">Compensation mon&eacute;taire ou autre (m&eacute;diation, accord amiable&hellip;)</div>
           </div>
         </div>
-
-        <!-- SECTEUR D'ACTIVITÉ -->
         <div class="pro-acc">
-          <div class="pro-acc-hd" onclick="toggleAcc(this)">Secteur d'activit&eacute;<span class="pro-acc-arrow">&#9660;</span></div>
-          <div class="pro-acc-body" id="secBody">
-            <div class="pro-opts-sub-label">Cat&eacute;gorie</div>
+          <div class="pro-acc-hd" onclick="toggleAcc(this)">Impact dans le temps<span class="pro-acc-arrow">&#9660;</span></div>
+          <div class="pro-acc-body">
             <div class="pro-acc-opts">
-              <button class="pro-opt" data-val="sec_agri" onclick="toggleProOpt(this)">Agriculture &amp; Rural</button>
-              <button class="pro-opt" data-val="sec_alim" onclick="toggleProOpt(this)">Alimentation &amp; Restauration</button>
-              <button class="pro-opt" data-val="sec_asso" onclick="toggleProOpt(this)">Associations &amp; ESS</button>
-              <button class="pro-opt" data-val="sec_btp" onclick="toggleProOpt(this)">BTP &amp; Immobilier</button>
-              <button class="pro-opt" data-val="sec_com" onclick="toggleProOpt(this)">Commerce &amp; Distribution</button>
-              <button class="pro-opt" data-val="sec_cult" onclick="toggleProOpt(this)">Culture, M&eacute;dias &amp; Loisirs</button>
-              <button class="pro-opt" data-val="sec_educ" onclick="toggleProOpt(this)">Education &amp; Formation</button>
-              <button class="pro-opt" data-val="sec_heb" onclick="toggleProOpt(this)">H&eacute;bergement &amp; Tourisme</button>
-              <button class="pro-opt" data-val="sec_ind" onclick="toggleProOpt(this)">Industrie &amp; Production</button>
-              <button class="pro-opt" data-val="sec_part" onclick="toggleProOpt(this)">Particulier</button>
-              <button class="pro-opt" data-val="sec_proflib" onclick="toggleProOpt(this)">Professions r&eacute;glement&eacute;es &amp; Lib&eacute;rales</button>
-              <button class="pro-opt" data-val="sec_sante" onclick="toggleProOpt(this)">Sant&eacute; &amp; M&eacute;dico-social</button>
-              <button class="pro-opt" data-val="sec_serv_pers" onclick="toggleProOpt(this)">Services &agrave; la personne</button>
-              <button class="pro-opt" data-val="sec_serv_ent" onclick="toggleProOpt(this)">Services aux entreprises</button>
-              <button class="pro-opt" data-val="sec_serv_ess" onclick="toggleProOpt(this)">Services essentiels &amp; Monopoles</button>
-              <button class="pro-opt" data-val="sec_tech" onclick="toggleProOpt(this)">Technologies &amp; Innovation</button>
-              <button class="pro-opt" data-val="sec_transport" onclick="toggleProOpt(this)">Transport &amp; Logistique</button>
-              <button class="pro-opt" data-val="sec_autre" onclick="toggleProOpt(this)">Autre</button>
+              <button class="pro-opt" data-val="Dur&eacute;e &lt;1 mois" onclick="toggleProOpt(this)">&lt; 1 mois</button>
+              <button class="pro-opt" data-val="Dur&eacute;e 1-6 mois" onclick="toggleProOpt(this)">1 &ndash; 6 mois</button>
+              <button class="pro-opt" data-val="Dur&eacute;e 6 mois-2 ans" onclick="toggleProOpt(this)">6 mois &ndash; 2 ans</button>
+              <button class="pro-opt" data-val="Dur&eacute;e 2-5 ans" onclick="toggleProOpt(this)">2 &ndash; 5 ans</button>
+              <button class="pro-opt" data-val="Dur&eacute;e &gt;5 ans / En cours" onclick="toggleProOpt(this)">&gt; 5 ans / En cours</button>
             </div>
+            <div class="pro-acc-note">Dur&eacute;e d&eacute;clar&eacute;e par le t&eacute;moin</div>
           </div>
         </div>
 
@@ -555,47 +571,20 @@ hr{border:none;border-top:1px solid var(--beige);margin:16px 0}
             <div class="pro-acc-note">Statut de r&eacute;solution d&eacute;clar&eacute; par le t&eacute;moin</div>
           </div>
         </div>
+
+        <!-- TÉMOIGNAGE DOCUMENTÉ -->
         <div class="pro-acc">
-          <div class="pro-acc-hd" onclick="toggleAcc(this)">Dommages subis<span class="pro-acc-arrow">&#9660;</span></div>
-          <div class="pro-acc-body">
-            <div class="pro-opts-sub-label">Dommage mon&eacute;taire</div>
-            <div class="pro-acc-opts">
-              <button class="pro-opt" data-val="Aucun dommage mon&eacute;taire" onclick="toggleProOpt(this)">Aucun</button>
-              <button class="pro-opt" data-val="Dommage &lt;1 000 EUR" onclick="toggleProOpt(this)">&lt; 1 000 &euro;</button>
-              <button class="pro-opt" data-val="Dommage 1 000-5 000 EUR" onclick="toggleProOpt(this)">1 000&ndash;5 000 &euro;</button>
-              <button class="pro-opt" data-val="Dommage 5 000-20 000 EUR" onclick="toggleProOpt(this)">5 000&ndash;20 000 &euro;</button>
-              <button class="pro-opt" data-val="Dommage 20 000-100 000 EUR" onclick="toggleProOpt(this)">20 000&ndash;100 000 &euro;</button>
-              <button class="pro-opt" data-val="Dommage &gt;100 000 EUR" onclick="toggleProOpt(this)">&gt; 100 000 &euro;</button>
-            </div>
-            <div class="pro-opts-sub-label">Dommage temps</div>
-            <div class="pro-acc-opts">
-              <button class="pro-opt" data-val="Dur&eacute;e &lt;1 mois" onclick="toggleProOpt(this)">&lt; 1 mois</button>
-              <button class="pro-opt" data-val="Dur&eacute;e 1-6 mois" onclick="toggleProOpt(this)">1&ndash;6 mois</button>
-              <button class="pro-opt" data-val="Dur&eacute;e 6 mois-2 ans" onclick="toggleProOpt(this)">6 mois&ndash;2 ans</button>
-              <button class="pro-opt" data-val="Dur&eacute;e 2-5 ans" onclick="toggleProOpt(this)">2&ndash;5 ans</button>
-              <button class="pro-opt" data-val="Dur&eacute;e &gt;5 ans" onclick="toggleProOpt(this)">&gt; 5 ans</button>
-              <button class="pro-opt" data-val="Dur&eacute;e en cours" onclick="toggleProOpt(this)">En cours</button>
-            </div>
-            <div class="pro-acc-note">Fourchettes d&eacute;clar&eacute;es par le t&eacute;moin</div>
-          </div>
-        </div>
-        <div class="pro-acc">
-          <div class="pro-acc-hd" onclick="toggleAcc(this)">Compensation obtenue<span class="pro-acc-arrow">&#9660;</span></div>
+          <div class="pro-acc-hd" onclick="toggleAcc(this)">T&eacute;moignage document&eacute;<span class="pro-acc-arrow">&#9660;</span></div>
           <div class="pro-acc-body">
             <div class="pro-acc-opts">
-              <button class="pro-opt" data-val="Compensation obtenue" onclick="toggleProOpt(this)">Obtenue</button>
-              <button class="pro-opt" data-val="Aucune compensation" onclick="toggleProOpt(this)">Aucune</button>
-              <button class="pro-opt" data-val="Compensation partielle" onclick="toggleProOpt(this)">Partielle</button>
-              <button class="pro-opt" data-val="Compensation refus&eacute;e" onclick="toggleProOpt(this)">Refus&eacute;e</button>
-              <button class="pro-opt" data-val="Compensation &lt;1 000 EUR" onclick="toggleProOpt(this)">&lt; 1 000 &euro;</button>
-              <button class="pro-opt" data-val="Compensation 1 000-5 000 EUR" onclick="toggleProOpt(this)">1 000&ndash;5 000 &euro;</button>
-              <button class="pro-opt" data-val="Compensation 5 000-20 000 EUR" onclick="toggleProOpt(this)">5 000&ndash;20 000 &euro;</button>
-              <button class="pro-opt" data-val="Compensation &gt;20 000 EUR" onclick="toggleProOpt(this)">&gt; 20 000 &euro;</button>
+              <button class="pro-opt" data-val="doc_oui" onclick="selectExclusive(this,'docTemoin')">&#128247; Avec documents joints</button>
+              <button class="pro-opt" data-val="doc_officiel" onclick="selectExclusive(this,'docTemoin')">&#10003; Dossier officiel (arr&ecirc;t&eacute;, d&eacute;cision, courrier administratif)</button>
             </div>
-            <div class="pro-acc-note">Compensation mon&eacute;taire ou autre (m&eacute;diation, accord amiable&hellip;)</div>
+            <div class="pro-acc-note">Un seul choix possible &mdash; pr&eacute;sence de pi&egrave;ces justificatives jointes</div>
           </div>
         </div>
-        <!-- MODIFICATION 3 : Accordéon score de l'expérience — échelle Likert 1-5 -->
+
+        <!-- SCORE DE L'EXPÉRIENCE -->
         <div class="pro-acc">
           <div class="pro-acc-hd" onclick="toggleAcc(this)">Score de l&rsquo;exp&eacute;rience<span class="pro-acc-arrow">&#9660;</span></div>
           <div class="pro-acc-body">
@@ -652,6 +641,8 @@ hr{border:none;border-top:1px solid var(--beige);margin:16px 0}
           <optgroup label="Fiscalit&eacute;"><option>Contr&ocirc;le fiscal / URSSAF</option><option>TVA</option><option>Taxes locales</option></optgroup>
           <optgroup label="Services essentiels"><option>Energie / R&eacute;seaux</option><option>Eau</option><option>T&eacute;l&eacute;com</option><option>Transport</option></optgroup>
           <option>Plusieurs domaines &mdash; pr&eacute;ciser ci-dessous</option>
+          <option>Logement &amp; Vie courante</option>
+          <option>Immigration &amp; Nationalit&eacute;</option>
         </select>
       </div>
       <div class="if-field"><label>P&eacute;riode concern&eacute;e</label>
@@ -1112,7 +1103,19 @@ function hasProPanelFilters(panel){
 }
 function clickProSubcatAll(btn,thId,label){
   var panel=btn.closest('.subcats-panel');
-  if(panel){panel.querySelectorAll('.subcat.on').forEach(function(b){b.classList.remove('on');});}
+  // Si déjà sélectionné → désélectionner tout
+  if(btn.classList.contains('on')){
+    btn.classList.remove('on');
+    delete proFilters[thId];
+    var thEl=document.getElementById(thId);if(thEl)thEl.classList.remove('on');
+    renderProTags();
+    return;
+  }
+  // Sinon → sélectionner Toutes, effacer les sous-cats
+  if(panel){panel.querySelectorAll('.subcat.on').forEach(function(b){
+    var bid=b.dataset.filterId;if(bid)delete proFilters[bid];
+    b.classList.remove('on');
+  });}
   proFilters[thId]=label;
   var thEl=document.getElementById(thId);if(thEl)thEl.classList.add('on');
   btn.classList.add('on');
@@ -1127,8 +1130,13 @@ function clickProSubcat(btn){
   if(btn.classList.contains('on')){
     btn.classList.remove('on');delete proFilters[id];
   }else{
-    if(panel){var allBtn=panel.querySelector('.subcat-all');if(allBtn)allBtn.classList.remove('on');if(thId)delete proFilters[thId];}
-    btn.classList.add('on');proFilters[id]=true;
+    // Désélectionner Toutes (visuel + filtre)
+    if(panel){
+      var allBtn=panel.querySelector('.subcat-all');
+      if(allBtn){allBtn.classList.remove('on');}
+      if(thId)delete proFilters[thId];
+    }
+    btn.classList.add('on');proFilters[id]=label;
   }
   renderProTags();
 }
@@ -1158,6 +1166,159 @@ function selProPeriode(){
   delete proFilters['_periode'];
   var dvF=de?de.value:'',avF=a?a.value:'';
   if(dvF||avF){proFilters['_periode']=dvF||'\u2026'+' \u2192 '+avF||'\u2026';}
+  renderProTags();
+}
+
+// ── PROFIL TÉMOIN CONDITIONNEL
+function showProfilTemoin(type){
+  var acc=document.getElementById('profilTemoinAcc');
+  var body=document.getElementById('profilTemoinBody');
+  if(!acc||!body)return;
+
+  // Effacer les filtres profil existants
+  ['age_moins25','age_25_34','age_35_44','age_45_54','age_55_64','age_65plus',
+   'sexe_femme','sexe_homme','sexe_autre',
+   'terr_rural','terr_periurbain','terr_urbain','terr_littoral'].forEach(function(k){delete proFilters[k];});
+  Object.keys(proFilters).forEach(function(k){if(k.startsWith('csp_'))delete proFilters[k];});
+  renderProTags();
+
+  if(type==='particulier'){
+    body.innerHTML=`
+      <div class="pro-opts-sub-label">Tranche d'âge</div>
+      <div class="pro-acc-opts">
+        <button class="pro-opt" data-val="age_moins25" onclick="toggleProOpt(this)">Moins de 25 ans</button>
+        <button class="pro-opt" data-val="age_25_34" onclick="toggleProOpt(this)">25–34 ans</button>
+        <button class="pro-opt" data-val="age_35_44" onclick="toggleProOpt(this)">35–44 ans</button>
+        <button class="pro-opt" data-val="age_45_54" onclick="toggleProOpt(this)">45–54 ans</button>
+        <button class="pro-opt" data-val="age_55_64" onclick="toggleProOpt(this)">55–64 ans</button>
+        <button class="pro-opt" data-val="age_65plus" onclick="toggleProOpt(this)">65 ans et plus</button>
+      </div>
+      <div class="pro-opts-sub-label" style="margin-top:10px">Sexe</div>
+      <div class="pro-acc-opts">
+        <button class="pro-opt" data-val="sexe_femme" onclick="toggleProOpt(this)">Femme</button>
+        <button class="pro-opt" data-val="sexe_homme" onclick="toggleProOpt(this)">Homme</button>
+        <button class="pro-opt" data-val="sexe_autre" onclick="toggleProOpt(this)">Autre</button>
+      </div>
+      <div class="pro-opts-sub-label" style="margin-top:10px">Type de territoire</div>
+      <div class="pro-acc-opts">
+        <button class="pro-opt" data-val="terr_rural" onclick="toggleProOpt(this)">Rural</button>
+        <button class="pro-opt" data-val="terr_periurbain" onclick="toggleProOpt(this)">Périurbain</button>
+        <button class="pro-opt" data-val="terr_urbain" onclick="toggleProOpt(this)">Urbain</button>
+        <button class="pro-opt" data-val="terr_littoral" onclick="toggleProOpt(this)">Littoral / Montagne</button>
+      </div>
+      <div class="pro-opts-sub-label" style="margin-top:10px">Catégorie socio-professionnelle</div>
+      <div class="pro-acc-opts">
+        <button class="pro-opt" data-val="csp_fonctionnaire" onclick="toggleProOpt(this)">Agent public / Fonctionnaire</button>
+        <button class="pro-opt" data-val="csp_agriculteur" onclick="toggleProOpt(this)">Agriculteur exploitant</button>
+        <button class="pro-opt" data-val="csp_artisan" onclick="toggleProOpt(this)">Artisan</button>
+        <button class="pro-opt" data-val="csp_cadre_ent" onclick="toggleProOpt(this)">Cadre d'entreprise</button>
+        <button class="pro-opt" data-val="csp_cadre_fp" onclick="toggleProOpt(this)">Cadre de la fonction publique</button>
+        <button class="pro-opt" data-val="csp_chef_ent" onclick="toggleProOpt(this)">Chef d'entreprise / Entrepreneur</button>
+        <button class="pro-opt" data-val="csp_commercant" onclick="toggleProOpt(this)">Commerçant</button>
+        <button class="pro-opt" data-val="csp_dem_emploi" onclick="toggleProOpt(this)">Demandeur d'emploi</button>
+        <button class="pro-opt" data-val="csp_etudiant" onclick="toggleProOpt(this)">Etudiant(e)</button>
+        <button class="pro-opt" data-val="csp_ingenieur" onclick="toggleProOpt(this)">Ingénieur</button>
+        <button class="pro-opt" data-val="csp_non_resident" onclick="toggleProOpt(this)">Non-résident / Etranger</button>
+        <button class="pro-opt" data-val="csp_prof_inter" onclick="toggleProOpt(this)">Profession intermédiaire</button>
+        <button class="pro-opt" data-val="csp_prof_lib" onclick="toggleProOpt(this)">Profession libérale</button>
+        <button class="pro-opt" data-val="csp_professeur" onclick="toggleProOpt(this)">Professeur / Enseignant</button>
+        <button class="pro-opt" data-val="csp_retraite" onclick="toggleProOpt(this)">Retraité(e)</button>
+        <button class="pro-opt" data-val="csp_sans_act" onclick="toggleProOpt(this)">Sans activité professionnelle</button>
+        <button class="pro-opt" data-val="csp_technicien" onclick="toggleProOpt(this)">Technicien</button>
+        <button class="pro-opt" data-val="csp_chercheur" onclick="toggleProOpt(this)">Chercheur / Scientifique</button>
+      </div>`;
+    acc.style.display='block';
+  } else {
+    // Entreprise — pas de profil individuel
+    body.innerHTML='';
+    acc.style.display='none';
+  }
+}
+
+// ── SECTEURS D'ACTIVITÉ avec sous-catégories
+var secData={
+  "Agriculture & Rural":["Activité événementielle en zone rurale","Agriculture / Élevage","Apiculture","Aquaculture","Arboriculture / Maraîchage","Artisanat agricole / Transformation à la ferme","Agritourisme / Hébergement rural / Gîtes","Pêche","Sylviculture / Exploitation forestière","Viticulture / Vins"],
+  "Alimentation & Restauration":["Artisanat alimentaire / Boulangerie / Pâtisserie / Fromagerie","Bar / Café / Brasserie","Commerce alimentaire de proximité / Épicerie","Marché / Vente directe producteur","Production agroalimentaire","Restaurant","Restauration rapide / Traiteur / Cuisine de rue"],
+  "Associations & ESS":["Association caritative / Humanitaire / ONG","Association de défense des droits / Syndicat","Association loi 1901 (générale)","Association sportive / Club amateur","Association culturelle / Compagnie","Coopérative / SCOP / SCIC","Fondation / Fonds de dotation"],
+  "BTP & Immobilier":["Agence immobilière / Transaction","Architecture / Maîtrise d'œuvre / Bureau d'études","Couverture / Charpente / Étanchéité","Électricité / Plomberie / CVC / Climatisation","Géomètre / Topographe","Maçonnerie / Gros œuvre / Terrassement","Menuiserie / Serrurerie / Vitrerie","Peinture / Revêtements / Décoration","Promotion immobilière / Lotissement","Propriétaire bailleur / Gestion locative","Syndic de copropriété / Administrateur de biens"],
+  "Commerce & Distribution":["Commerce de détail alimentaire","Commerce de détail non-alimentaire","Commerce de gros / Négoce","E-commerce / Vente en ligne / Marketplace","Franchise / Commerce organisé","Grande distribution / Supermarché","Vente à distance / Téléachat"],
+  "Culture, Médias & Loisirs":["Cinéma / Audiovisuel / Production / Streaming","Escape game / Jeux / Loisirs","Jeux vidéo / Animation / Numérique créatif","Librairie / Édition / Bibliothèque","Musée / Patrimoine / Tourisme culturel / Château","Musique / Arts plastiques / Artisanat d'art / Galerie","Parc d'attractions / Loisirs","Presse / Médias / Journalisme / Podcast","Spectacle vivant / Théâtre / Concert / Festival"],
+  "Education & Formation":["Auto-école / École de conduite","CFA / Apprentissage","École de commerce / Ingénieurs / Enseignement supérieur privé","École privée hors contrat / École alternative","Formation professionnelle / Organisme de formation","Garde d'enfants à domicile / Crèche / Micro-crèche","Soutien scolaire / Cours particuliers"],
+  "Hébergement & Tourisme":["Agence de voyage / Tour-opérateur","Camping / Parc résidentiel de loisirs","Chambre d'hôtes / B&B","Hôtel / Résidence hôtelière","Location saisonnière / Meublé de tourisme / Airbnb","Tourisme fluvial / Nautique","Village vacances / Centre de loisirs"],
+  "Industrie & Production":["Électronique / Électrotechnique","Énergie / Pétrole / Gaz / Énergies renouvelables","Imprimerie / Édition / Reprographie","Industrie chimique / Pharmaceutique / Cosmétique","Industrie du bois / Papier / Carton","Industrie manufacturière générale","Mécanique / Équipements industriels","Métallurgie / Sidérurgie / Fonderie","Plastiques / Caoutchouc / Composites","Recyclage / Traitement des déchets / Économie circulaire","Textile / Habillement / Maroquinerie"],
+  "Particulier":["Étudiant(e)","Locataire","Particulier — autre situation","Particulier construisant / Rénovant","Particulier employeur","Propriétaire occupant","Retraité / Senior"],
+  "Professions réglementées & Libérales":["Agent immobilier / Administrateur de biens","Architecte / Urbaniste / Paysagiste","Avocat / Notaire / Huissier / Commissaire de justice","Conseiller financier / Gestionnaire de patrimoine","Expert-comptable / Commissaire aux comptes","Géomètre-expert / Ingénieur conseil","Psychologue / Psychothérapeute / Sophrologue"],
+  "Santé & Médico-social":["Bien-être / Esthétique / Coiffure / Tatouage","Clinique / Établissement de santé privé","Dentiste / Orthodontiste","EHPAD / Établissement médico-social / IME","Infirmier / Aide-soignant / Kiné / Paramédical","Médecin généraliste / Spécialiste","Pharmacie / Laboratoire d'analyses","Sport / Coaching / Salle de sport / Fitness","Vétérinaire"],
+  "Services à la personne":["Aide à domicile / Ménage","Garde d'enfants à domicile","Services à la personne — autre"],
+  "Services aux entreprises":["Assurance / Courtage / Mutuelles","Banque / Crédit / Financement","Conseil / Consulting / Management","Cybersécurité / Protection des données","Études / Recherche / Laboratoire","Expertise comptable / Audit","Informatique / Développement logiciel / ESN","Intérim / Recrutement / Ressources humaines","Nettoyage / Propreté / Facility management","Publicité / Communication / Marketing","Sécurité privée / Gardiennage"],
+  "Services essentiels & Monopoles":["Aéroports / Aéroports de Paris","Autoroutes / Péages (Vinci, Sanef, Eiffage)","Eau / Assainissement (Suez, Veolia, Saur, régies)","Électricité / Gaz — fournisseurs (EDF, Engie, TotalEnergies)","Poste / Colis / Courrier (La Poste, DHL, UPS, FedEx)","Réseau électrique / Gaz (Enedis, GrDF)","Télécom / Internet / Mobile (Orange, SFR, Free, Bouygues)","Transport collectif urbain (RATP, TER, réseaux urbains)","Transport ferroviaire (SNCF, Eurostar)"],
+  "Technologies & Innovation":["AgriTech / Agriculture de précision","EdTech / Formation en ligne","FinTech / Néobanque / Cryptomonnaies","FoodTech / Nouvelles formes alimentaires","GreenTech / Environnement / Développement durable","HealthTech / MedTech / Bien-être digital","PropTech / Immobilier numérique","Startup / Innovation / Incubateur"],
+  "Transport & Logistique":["Coursier / Livraison du dernier kilomètre","Location de véhicules","Logistique / Entreposage / Supply chain","Réparation automobile / Garage / Contrôle technique","Transport aérien / Compagnie aérienne","Transport de personnes / VTC / Taxi / Car","Transport maritime / Fluvial / Ports","Transport routier de marchandises / Déménagement"],
+  "Autre":["Secteur non listé — je précise dans mon témoignage"]
+};
+
+var currentSecCat=null;
+
+function clickSecCat(btn){
+  var cat=btn.dataset.val;
+  var secId=btn.dataset.sec;
+  var panel=document.getElementById('secSubPanel');
+  var subOpts=document.getElementById('secSubOpts');
+  var subLabel=document.getElementById('secSubLabel');
+
+  // Si déjà sélectionné → toggle off
+  if(btn.classList.contains('on')&&currentSecCat===cat){
+    btn.classList.remove('on');
+    delete proFilters[secId];
+    // Supprimer aussi les sous-filtres éventuels
+    if(subOpts)Array.from(subOpts.querySelectorAll('.pro-opt.on')).forEach(function(b){
+      var v=b.dataset.val;if(v)delete proFilters[v];b.classList.remove('on');
+    });
+    panel.style.display='none';
+    currentSecCat=null;
+    renderProTags();
+    return;
+  }
+
+  // Désélectionner la catégorie précédente et ses sous-filtres
+  document.querySelectorAll('#secCatOpts .pro-opt.on').forEach(function(b){
+    var sid=b.dataset.sec;if(sid)delete proFilters[sid];
+    b.classList.remove('on');
+  });
+  if(subOpts)Array.from(subOpts.querySelectorAll('.pro-opt.on')).forEach(function(b){
+    var v=b.dataset.val;if(v)delete proFilters[v];b.classList.remove('on');
+  });
+
+  // Sélectionner la nouvelle catégorie
+  btn.classList.add('on');
+  proFilters[secId]=cat;
+  currentSecCat=cat;
+
+  // Afficher les sous-catégories
+  var subs=secData[cat]||[];
+  if(subs.length>0){
+    subLabel.textContent=cat+' — sous-secteurs (optionnel)';
+    subOpts.innerHTML=subs.map(function(s){
+      var sid='sub_'+s.replace(/[^a-zA-Z0-9]/g,'_').substring(0,30);
+      return '<button class="pro-opt" data-val="'+sid+'" data-label="'+s.replace(/"/g,'&quot;')+'" onclick="clickSecSub(this)">'+s+'</button>';
+    }).join('');
+    panel.style.display='block';
+  }else{
+    panel.style.display='none';
+  }
+  renderProTags();
+}
+
+function clickSecSub(btn){
+  var val=btn.dataset.val;
+  var label=btn.dataset.label||btn.textContent.trim();
+  if(btn.classList.contains('on')){
+    btn.classList.remove('on');
+    delete proFilters[val];
+  }else{
+    btn.classList.add('on');
+    proFilters[val]=label;
+  }
   renderProTags();
 }
 
