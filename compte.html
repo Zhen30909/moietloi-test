@@ -145,11 +145,11 @@ input[list]:focus{outline:none;border-color:var(--vert);background:white}
 /* ERROR */
 .err-box{display:none;background:#fdf0ef;border:1px solid #e8b0ad;border-radius:8px;padding:12px 16px;font-size:0.85rem;color:var(--rouge);margin-top:12px}
 
-
 /* TYPE COMPTE */
 .type-toggle{display:flex;gap:0;border-radius:10px;overflow:hidden;border:1.5px solid var(--beige);background:var(--blanc);margin-bottom:20px}
 .type-btn{flex:1;padding:14px 10px;font-size:0.9rem;font-weight:500;cursor:pointer;border:none;font-family:'Source Sans 3',sans-serif;background:transparent;color:var(--gris-moyen);transition:all 0.2s;text-align:center}
 .type-btn.on.part{background:var(--vert);color:white}
+.type-btn.on.auto{background:#7c6b9e;color:white}
 .type-btn.on.ent{background:#4a6090;color:white}
 .ent-fields{display:none;margin-top:4px;padding:16px;background:var(--vert-pale);border:1px solid var(--vert-clair);border-radius:8px;margin-bottom:18px}
 .ent-fields.visible{display:block}
@@ -185,7 +185,6 @@ input[list]:focus{outline:none;border-color:var(--vert);background:white}
     <a href="temoigner.html" class="nav-cta">🎙️ Déposer</a>
     <a href="consulter.html">🔍 Consulter</a>
     <a href="charte.html">📋 Charte</a>
-    <!-- <a href="tarifs.html">💶 Tarifs</a> -->
     <a href="compte.html" class="active">👤 Connexion / Créer un compte</a>
   </div>
   <button class="lang-btn" onclick="showLangMsg()" title="Switch language">&#127758; FR / EN</button>
@@ -197,7 +196,6 @@ input[list]:focus{outline:none;border-color:var(--vert);background:white}
   <a href="temoigner.html" class="nav-cta-mob">🎙️ Déposer un témoignage</a>
   <a href="consulter.html">🔍 Consulter les témoignages</a>
   <a href="charte.html">📋 Charte & Règles</a>
-  <!-- <a href="tarifs.html">💶 Tarifs</a> -->
   <a href="compte.html" class="active">👤 Connexion / Créer un compte</a>
 </div>
 <div class="lang-tooltip" id="langTooltip">&#127758; English version coming soon — we're working on it!</div>
@@ -218,12 +216,12 @@ input[list]:focus{outline:none;border-color:var(--vert);background:white}
     <strong>Anonymat et statistiques :</strong> même si votre témoignage est publié de façon 100% anonyme, les informations de votre profil sont rattachées en privé à votre témoignage pour enrichir les analyses collectives.
   </div>
 
-
   <!-- TYPE DE COMPTE -->
   <div class="field">
     <label>Vous déposez en tant que <span class="req">*</span></label>
     <div class="type-toggle">
       <button type="button" class="type-btn on part" id="btnPart" onclick="setTypeCompte('particulier')">👤 Particulier</button>
+      <button type="button" class="type-btn" id="btnAuto" onclick="setTypeCompte('autoentrepreneur')">💼 Auto-entrepreneur</button>
       <button type="button" class="type-btn ent" id="btnEnt" onclick="setTypeCompte('entreprise')">🏢 Entreprise / Organisation</button>
     </div>
     <div class="field-error" id="err_typeCompte">Veuillez choisir un type de compte</div>
@@ -246,9 +244,9 @@ input[list]:focus{outline:none;border-color:var(--vert);background:white}
     </div>
   </div>
 
-  <!-- RÔLE — visible pour tous -->
-  <div class="field" id="fieldRole">
-    <label>Votre rôle <span class="req">*</span></label>
+  <!-- RÔLE — visible uniquement si entreprise -->
+  <div class="field" id="fieldRole" style="display:none;">
+    <label>Votre rôle dans l'organisation <span class="req">*</span></label>
     <div class="role-group">
       <div class="role-btn"><input type="radio" name="roleCompte" id="r1" value="Dirigeant / Propriétaire"><label for="r1">Dirigeant / Propriétaire</label></div>
       <div class="role-btn"><input type="radio" name="roleCompte" id="r2" value="Gérant / Manager"><label for="r2">Gérant / Manager</label></div>
@@ -270,7 +268,6 @@ input[list]:focus{outline:none;border-color:var(--vert);background:white}
   <div class="card">
     <div class="card-title"><span class="card-num">1</span> Informations de compte</div>
 
-    <!-- CIVILITÉ + PRÉNOM + NOM -->
     <div class="field">
       <label>Civilité <span class="req">*</span></label>
       <div class="civilite-group">
@@ -346,8 +343,6 @@ input[list]:focus{outline:none;border-color:var(--vert);background:white}
       </select>
       <div class="field-error" id="err_age">Tranche d'âge requise</div>
     </div>
-
-
 
     <div class="field">
       <label>Type de territoire <span class="req">*</span></label>
@@ -529,7 +524,7 @@ input[list]:focus{outline:none;border-color:var(--vert);background:white}
 </div>
 
 <script>
-// ── DONNÉES SECTEURS — identiques v6
+// ── DONNÉES SECTEURS
 const secteurData = {
   "Agriculture & Rural": ["Activité événementielle en zone rurale","Agriculture / Élevage","Apiculture","Aquaculture","Arboriculture / Maraîchage","Artisanat agricole / Transformation à la ferme","Agritourisme / Hébergement rural / Gîtes","Pêche","Sylviculture / Exploitation forestière","Viticulture / Vins"],
   "Alimentation & Restauration": ["Artisanat alimentaire / Boulangerie / Pâtisserie / Fromagerie","Bar / Café / Brasserie","Commerce alimentaire de proximité / Épicerie","Marché / Vente directe producteur","Production agroalimentaire","Restaurant","Restauration rapide / Traiteur / Cuisine de rue"],
@@ -573,10 +568,8 @@ function onSecteurSub(){
   checkForm();
 }
 
-// ── VALIDATION — liste des champs obligatoires
+// ── VALIDATION
 let currentTypeCompte = 'particulier';
-
-// REQUIRED_FIELDS moved to getRequiredFields()
 
 function getRequiredFields(){
   const fields = [
@@ -591,11 +584,11 @@ function getRequiredFields(){
     {id:'region', type:'text', label:'Département ou région'},
     {id:'csp', type:'text', label:'Catégorie socio-professionnelle'},
     {id:'secteurCat', type:'select', label:'Secteur d\'activité'},
-    {id:'roleCompte', type:'radio', name:'roleCompte', label:'Votre rôle'},
     {id:'cgu', type:'checkbox', label:'Acceptation des conditions d\'utilisation'},
   ];
   if(currentTypeCompte === 'entreprise'){
     fields.push({id:'nomEntreprise', type:'text', label:'Nom de l\'entreprise'});
+    fields.push({id:'roleCompte', type:'radio', name:'roleCompte', label:'Votre rôle dans l\'organisation'});
   }
   return fields;
 }
@@ -655,7 +648,6 @@ function togglePw(){
 function creerCompte(){
   const {valid,errors}=checkForm();
   if(!valid){
-    // Afficher le résumé des erreurs
     const summary=document.getElementById('validationSummary');
     const list=document.getElementById('validationList');
     list.innerHTML=errors.map(e=>`<li>${e}</li>`).join('');
@@ -669,7 +661,6 @@ function creerCompte(){
   btn.disabled=true;btn.textContent='Création en cours…';
   document.getElementById('validationSummary').classList.remove('visible');
 
-  // Sauvegarder profil
   const civilite=document.querySelector('input[name=civilite]:checked')?.value||'';
   const profil={
     typeCompte: currentTypeCompte,
@@ -686,7 +677,7 @@ function creerCompte(){
     csp: document.getElementById('csp').value.trim(),
     secteurCat: document.getElementById('secteurCat').value,
     secteurSub: document.getElementById('secteurSub').value,
-    roleCompte: document.querySelector('input[name=roleCompte]:checked')?.value||'',
+    roleCompte: currentTypeCompte==='entreprise'?(document.querySelector('input[name=roleCompte]:checked')?.value||''):'',
     nomEntreprise: currentTypeCompte==='entreprise'?(document.getElementById('nomEntreprise')?.value.trim()||''):'',
     adresseEntreprise: currentTypeCompte==='entreprise'?(document.getElementById('adresseEntreprise')?.value.trim()||''):'',
     siteEntreprise: currentTypeCompte==='entreprise'?(document.getElementById('siteEntreprise')?.value.trim()||''):'',
@@ -711,30 +702,46 @@ function showErr(msg){
   document.getElementById('btnCreer').textContent='Créer mon compte →';
 }
 
-
 // ── TYPE COMPTE
 function setTypeCompte(type){
   currentTypeCompte = type;
   const btnPart = document.getElementById('btnPart');
+  const btnAuto = document.getElementById('btnAuto');
   const btnEnt = document.getElementById('btnEnt');
   const entFields = document.getElementById('entFields');
+  const fieldRole = document.getElementById('fieldRole');
+
+  // Reset all buttons
+  btnPart.classList.remove('on','part','auto','ent');
+  btnAuto.classList.remove('on','part','auto','ent');
+  btnEnt.classList.remove('on','part','auto','ent');
+
   if(type === 'entreprise'){
-    btnPart.classList.remove('on');
-    btnEnt.classList.add('on');
+    btnEnt.classList.add('on','ent');
     entFields.classList.add('visible');
-  } else {
-    btnEnt.classList.remove('on');
-    btnPart.classList.add('on');
+    fieldRole.style.display = 'block';
+  } else if(type === 'autoentrepreneur'){
+    btnAuto.classList.add('on','auto');
     entFields.classList.remove('visible');
-    // Vider les champs entreprise
+    fieldRole.style.display = 'none';
     const ne = document.getElementById('nomEntreprise');
     if(ne) ne.value = '';
+    document.querySelectorAll('input[name=roleCompte]').forEach(r=>r.checked=false);
+  } else {
+    btnPart.classList.add('on','part');
+    entFields.classList.remove('visible');
+    fieldRole.style.display = 'none';
+    const ne = document.getElementById('nomEntreprise');
+    if(ne) ne.value = '';
+    document.querySelectorAll('input[name=roleCompte]').forEach(r=>r.checked=false);
   }
   checkForm();
 }
 
-// Initialiser checkForm au chargement
-document.addEventListener('DOMContentLoaded',checkForm);
+// Initialiser au chargement
+document.addEventListener('DOMContentLoaded', checkForm);
+
+function showLangMsg(){const t=document.getElementById('langTooltip');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000);}
 </script>
 </body>
 </html>
