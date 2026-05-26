@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>moietloi.fr — Déposer un témoignage</title><!-- temoigner v7.16 -->
+<title>moietloi.fr — Déposer un témoignage</title><!-- temoigner v7.18 -->
 <meta name="description" content="Déposez votre témoignage sur une expérience vécue avec la loi, une réglementation, un service public ou un opérateur.">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Source+Sans+3:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -228,6 +228,17 @@ hr { border:none; border-top:1px solid var(--beige); margin:20px 0; }
   .echelle-btn{width:44px;height:44px;font-size:1rem}
 }
 
+/* DONNÉES CHIFFRÉES */
+.acc-donnees-wrap{border:1.5px solid #ddd8d0;border-radius:8px;overflow:hidden;margin-bottom:0;}
+.acc-donnees-header{padding:12px 16px 10px;font-size:0.88rem;font-weight:600;color:var(--gris-fonce);background:var(--fond);border-bottom:1px solid #e8e2d8;}
+.acc-inner{border-bottom:1px solid #e8e2d8;background:var(--blanc);}
+.acc-inner:last-child{border-bottom:none;}
+.acc-inner-hd-static{padding:10px 14px 4px;font-size:0.85rem;font-weight:600;color:var(--gris-fonce);background:var(--blanc);}
+.acc-inner-toggle{width:100%;display:flex;align-items:center;justify-content:space-between;padding:4px 14px 10px;background:var(--blanc);border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:0.8rem;color:var(--gris-moyen);text-align:left;transition:background 0.2s;}
+.acc-inner-toggle:hover{background:#eef3ee;color:var(--vert);}
+.acc-inner-arrow{font-size:0.65rem;color:var(--gris-moyen);transition:transform 0.2s;flex-shrink:0;}
+.acc-inner-body{padding:10px 14px 14px;border-top:1px solid #f0ebe3;background:var(--blanc);}
+
 /* LANGUE */
 .lang-btn{padding:5px 10px;border:1.5px solid var(--beige);border-radius:6px;font-size:0.78rem;font-family:'Source Sans 3',sans-serif;font-weight:500;cursor:pointer;background:transparent;color:var(--gris-moyen);transition:all 0.2s;display:flex;align-items:center;gap:4px}
 .lang-btn:hover{border-color:var(--vert);color:var(--vert);background:var(--vert-pale)}
@@ -266,7 +277,7 @@ hr { border:none; border-top:1px solid var(--beige); margin:20px 0; }
 <header>
   <a href="index.html" class="logo">moi <span class="et">&amp;</span> <span class="loi">loi</span></a>
   <div class="sous-titre">Témoignages citoyens</div>
-  <span class="badge">Pipeline v7.16</span>
+  <span class="badge">Pipeline v7.18</span>
 </header>
 
 <!-- 1. CLÉS API -->
@@ -417,23 +428,109 @@ hr { border:none; border-top:1px solid var(--beige); margin:20px 0; }
 
   <div class="sep"></div>
 
-  <!-- 2. Dommage monétaire -->
-  <div class="igrp">
-    <label style="font-size:0.88rem;text-transform:none;letter-spacing:0;font-weight:500;color:var(--gris-fonce);">Avez-vous subi un dommage monétaire ? <span style="font-weight:400;color:var(--gris-moyen);">Si oui, combien ?</span></label>
-    <input type="text" id="dmgMoneyExact" placeholder="Ex : 34 500 €, environ 10 000 €…">
-  </div>
+  <!-- DONNÉES CHIFFRÉES — titres toujours visibles, fourchettes dépliables -->
+  <div class="acc-donnees-wrap">
+    <div class="acc-donnees-header">📊 Données chiffrées <span style="font-size:0.75rem;color:var(--gris-moyen);font-weight:400;font-style:italic;">— optionnel</span></div>
 
-  <!-- 3. Compensation -->
-  <div class="igrp">
-    <label style="font-size:0.88rem;text-transform:none;letter-spacing:0;font-weight:500;color:var(--gris-fonce);">Avez-vous obtenu une compensation ? <span style="font-weight:400;color:var(--gris-moyen);">Si oui, combien ?</span></label>
-    <input type="text" id="compTxt" placeholder="Ex : 5 000 €, remboursement partiel, accord amiable…">
-  </div>
+    <!-- PERTE / DOMMAGE -->
+    <div class="acc-inner">
+      <div class="acc-inner-hd-static">💸 Perte / Dommage monétaire subi</div>
+      <button type="button" class="acc-inner-toggle" onclick="toggleAccInner('Perte')" id="btnAccPerte">
+        <span id="lblAccPerte">Sélectionner une fourchette</span>
+        <span class="acc-inner-arrow" id="arrowAccPerte">▼</span>
+      </button>
+      <div class="acc-inner-body" id="bodyAccPerte" style="display:none;">
+        <div class="fourchette-group">
+          <div class="fourchette-item"><input type="radio" name="dmgMoney" id="dm0" value="Moins de 100 €" onchange="updateAccLabel('Perte',this.value)"><label for="dm0">Moins de 100 €</label></div>
+          <div class="fourchette-item"><input type="radio" name="dmgMoney" id="dm1" value="100 – 500 €" onchange="updateAccLabel('Perte',this.value)"><label for="dm1">100 – 500 €</label></div>
+          <div class="fourchette-item"><input type="radio" name="dmgMoney" id="dm2" value="500 – 1 000 €" onchange="updateAccLabel('Perte',this.value)"><label for="dm2">500 – 1 000 €</label></div>
+          <div class="fourchette-item"><input type="radio" name="dmgMoney" id="dm3" value="1 000 – 2 000 €" onchange="updateAccLabel('Perte',this.value)"><label for="dm3">1 000 – 2 000 €</label></div>
+          <div class="fourchette-item"><input type="radio" name="dmgMoney" id="dm4" value="2 000 – 5 000 €" onchange="updateAccLabel('Perte',this.value)"><label for="dm4">2 000 – 5 000 €</label></div>
+          <div class="fourchette-item"><input type="radio" name="dmgMoney" id="dm5" value="5 000 – 10 000 €" onchange="updateAccLabel('Perte',this.value)"><label for="dm5">5 000 – 10 000 €</label></div>
+          <div class="fourchette-item"><input type="radio" name="dmgMoney" id="dm6" value="10 000 – 50 000 €" onchange="updateAccLabel('Perte',this.value)"><label for="dm6">10 000 – 50 000 €</label></div>
+          <div class="fourchette-item"><input type="radio" name="dmgMoney" id="dm7" value="50 000 – 100 000 €" onchange="updateAccLabel('Perte',this.value)"><label for="dm7">50 000 – 100 000 €</label></div>
+          <div class="fourchette-item"><input type="radio" name="dmgMoney" id="dm8" value="100 000 – 500 000 €" onchange="updateAccLabel('Perte',this.value)"><label for="dm8">100 000 – 500 000 €</label></div>
+          <div class="fourchette-item"><input type="radio" name="dmgMoney" id="dm9" value="500 000 – 1 000 000 €" onchange="updateAccLabel('Perte',this.value)"><label for="dm9">500 000 – 1 000 000 €</label></div>
+          <div class="fourchette-item"><input type="radio" name="dmgMoney" id="dm10" value="1 000 000 – 5 000 000 €" onchange="updateAccLabel('Perte',this.value)"><label for="dm10">1 000 000 – 5 000 000 €</label></div>
+          <div class="fourchette-item"><input type="radio" name="dmgMoney" id="dm11" value="5 000 000 – 10 000 000 €" onchange="updateAccLabel('Perte',this.value)"><label for="dm11">5 000 000 – 10 000 000 €</label></div>
+          <div class="fourchette-item"><input type="radio" name="dmgMoney" id="dm12" value="Plus de 10 000 000 €" onchange="updateAccLabel('Perte',this.value)"><label for="dm12">Plus de 10 000 000 €</label></div>
+        </div>
+        <div class="exact-field">
+          <input type="text" id="dmgMoneyExact" placeholder="Montant exact (optionnel) — ex : 34 500 €">
+        </div>
+      </div>
+    </div>
 
-  <!-- 4. Durée -->
-  <div class="igrp">
-    <label style="font-size:0.88rem;text-transform:none;letter-spacing:0;font-weight:500;color:var(--gris-fonce);">Combien de temps cela a-t-il duré ?</label>
-    <input type="text" id="dmgTimeExact" placeholder="Ex : 3 ans et 4 mois, en cours depuis 2022…">
-  </div>
+    <!-- GAIN / ÉCONOMIE -->
+    <div class="acc-inner" style="margin-top:8px;">
+      <div class="acc-inner-hd-static">💰 Gain / Économie réalisé(e)</div>
+      <button type="button" class="acc-inner-toggle" onclick="toggleAccInner('Gain')" id="btnAccGain">
+        <span id="lblAccGain">Sélectionner une fourchette</span>
+        <span class="acc-inner-arrow" id="arrowAccGain">▼</span>
+      </button>
+      <div class="acc-inner-body" id="bodyAccGain" style="display:none;">
+        <div class="fourchette-group">
+          <div class="fourchette-item"><input type="radio" name="gainMoney" id="gm0" value="Moins de 100 €" onchange="updateAccLabel('Gain',this.value)"><label for="gm0">Moins de 100 €</label></div>
+          <div class="fourchette-item"><input type="radio" name="gainMoney" id="gm1" value="100 – 500 €" onchange="updateAccLabel('Gain',this.value)"><label for="gm1">100 – 500 €</label></div>
+          <div class="fourchette-item"><input type="radio" name="gainMoney" id="gm2" value="500 – 1 000 €" onchange="updateAccLabel('Gain',this.value)"><label for="gm2">500 – 1 000 €</label></div>
+          <div class="fourchette-item"><input type="radio" name="gainMoney" id="gm3" value="1 000 – 2 000 €" onchange="updateAccLabel('Gain',this.value)"><label for="gm3">1 000 – 2 000 €</label></div>
+          <div class="fourchette-item"><input type="radio" name="gainMoney" id="gm4" value="2 000 – 5 000 €" onchange="updateAccLabel('Gain',this.value)"><label for="gm4">2 000 – 5 000 €</label></div>
+          <div class="fourchette-item"><input type="radio" name="gainMoney" id="gm5" value="5 000 – 10 000 €" onchange="updateAccLabel('Gain',this.value)"><label for="gm5">5 000 – 10 000 €</label></div>
+          <div class="fourchette-item"><input type="radio" name="gainMoney" id="gm6" value="10 000 – 50 000 €" onchange="updateAccLabel('Gain',this.value)"><label for="gm6">10 000 – 50 000 €</label></div>
+          <div class="fourchette-item"><input type="radio" name="gainMoney" id="gm7" value="50 000 – 100 000 €" onchange="updateAccLabel('Gain',this.value)"><label for="gm7">50 000 – 100 000 €</label></div>
+          <div class="fourchette-item"><input type="radio" name="gainMoney" id="gm8" value="100 000 – 500 000 €" onchange="updateAccLabel('Gain',this.value)"><label for="gm8">100 000 – 500 000 €</label></div>
+          <div class="fourchette-item"><input type="radio" name="gainMoney" id="gm9" value="500 000 – 1 000 000 €" onchange="updateAccLabel('Gain',this.value)"><label for="gm9">500 000 – 1 000 000 €</label></div>
+          <div class="fourchette-item"><input type="radio" name="gainMoney" id="gm10" value="1 000 000 – 5 000 000 €" onchange="updateAccLabel('Gain',this.value)"><label for="gm10">1 000 000 – 5 000 000 €</label></div>
+          <div class="fourchette-item"><input type="radio" name="gainMoney" id="gm11" value="5 000 000 – 10 000 000 €" onchange="updateAccLabel('Gain',this.value)"><label for="gm11">5 000 000 – 10 000 000 €</label></div>
+          <div class="fourchette-item"><input type="radio" name="gainMoney" id="gm12" value="Plus de 10 000 000 €" onchange="updateAccLabel('Gain',this.value)"><label for="gm12">Plus de 10 000 000 €</label></div>
+        </div>
+        <div class="exact-field">
+          <input type="text" id="gainMoneyExact" placeholder="Montant exact (optionnel) — ex : 12 000 €">
+        </div>
+      </div>
+    </div>
+
+    <!-- COMPENSATION -->
+    <div class="acc-inner" style="margin-top:8px;">
+      <div class="acc-inner-hd-static">⚖️ Compensation obtenue</div>
+      <button type="button" class="acc-inner-toggle" onclick="toggleAccInner('Comp')" id="btnAccComp">
+        <span id="lblAccComp">Sélectionner</span>
+        <span class="acc-inner-arrow" id="arrowAccComp">▼</span>
+      </button>
+      <div class="acc-inner-body" id="bodyAccComp" style="display:none;">
+        <div class="fourchette-group">
+          <div class="fourchette-item"><input type="radio" name="compRadio" id="cr0" value="Aucune" onchange="updateAccLabel('Comp',this.value)"><label for="cr0">Aucune</label></div>
+          <div class="fourchette-item"><input type="radio" name="compRadio" id="cr1" value="Partielle (moins de 50% du dommage)" onchange="updateAccLabel('Comp',this.value)"><label for="cr1">Partielle (moins de 50% du dommage)</label></div>
+          <div class="fourchette-item"><input type="radio" name="compRadio" id="cr2" value="Totale ou supérieure" onchange="updateAccLabel('Comp',this.value)"><label for="cr2">Totale ou supérieure</label></div>
+        </div>
+        <div class="exact-field">
+          <input type="text" id="compTxt" placeholder="Montant exact ou nature (optionnel) — ex : 5 000 €, accord amiable…">
+        </div>
+      </div>
+    </div>
+
+    <!-- DURÉE -->
+    <div class="acc-inner" style="margin-top:8px;">
+      <div class="acc-inner-hd-static">⏱ Impact dans le temps</div>
+      <button type="button" class="acc-inner-toggle" onclick="toggleAccInner('Duree')" id="btnAccDuree">
+        <span id="lblAccDuree">Sélectionner une fourchette</span>
+        <span class="acc-inner-arrow" id="arrowAccDuree">▼</span>
+      </button>
+      <div class="acc-inner-body" id="bodyAccDuree" style="display:none;">
+        <div class="fourchette-group">
+          <div class="fourchette-item"><input type="radio" name="dureeRadio" id="dr0" value="Moins d'1 mois" onchange="updateAccLabel('Duree',this.value)"><label for="dr0">Moins d'1 mois</label></div>
+          <div class="fourchette-item"><input type="radio" name="dureeRadio" id="dr1" value="1 à 6 mois" onchange="updateAccLabel('Duree',this.value)"><label for="dr1">1 à 6 mois</label></div>
+          <div class="fourchette-item"><input type="radio" name="dureeRadio" id="dr2" value="6 mois à 2 ans" onchange="updateAccLabel('Duree',this.value)"><label for="dr2">6 mois à 2 ans</label></div>
+          <div class="fourchette-item"><input type="radio" name="dureeRadio" id="dr3" value="2 à 5 ans" onchange="updateAccLabel('Duree',this.value)"><label for="dr3">2 à 5 ans</label></div>
+          <div class="fourchette-item"><input type="radio" name="dureeRadio" id="dr4" value="Plus de 5 ans / En cours" onchange="updateAccLabel('Duree',this.value)"><label for="dr4">Plus de 5 ans / En cours</label></div>
+        </div>
+        <div class="exact-field">
+          <input type="text" id="dmgTimeExact" placeholder="Précisez si vous le souhaitez — ex : procédure bloquée 2 ans, chantier retardé de 8 mois…">
+        </div>
+      </div>
+    </div>
+
+  </div><!-- fin acc-donnees-wrap -->
 
   <div class="sep"></div>
 
@@ -948,10 +1045,15 @@ async function lancer(){
   const etapesOui=G('chkEtapes').checked;
   const abandon=G('chkAbandon').checked;
   const dmgMoneyExact=G('dmgMoneyExact').value.trim();
+  const dmgMoneyRadio=document.querySelector('input[name=dmgMoney]:checked')?.value||'';
+  const gainMoneyExact=G('gainMoneyExact').value.trim();
+  const gainMoneyRadio=document.querySelector('input[name=gainMoney]:checked')?.value||'';
+  const compRadio=document.querySelector('input[name=compRadio]:checked')?.value||'';
   const dmgTimeExact=G('dmgTimeExact').value.trim();
+  const dureeRadio=document.querySelector('input[name=dureeRadio]:checked')?.value||'';
   const compTxt=G('compTxt')?.value.trim()||'';
 
-  const resolBlock=buildResolBlock(resolOui,resolTr,etapesTr,abandon,benefTr,dmgMoneyExact,dmgTimeExact,impactTr,compTxt);
+  const resolBlock=buildResolBlock(resolOui,resolTr,etapesTr,abandon,benefTr,dmgMoneyRadio,dmgMoneyExact,gainMoneyRadio,gainMoneyExact,compRadio,compTxt,dureeRadio,dmgTimeExact,impactTr);
 
   setP('piC','active');
   try{
@@ -964,7 +1066,7 @@ async function lancer(){
   }catch(e){setP('piC','error');showErr('errPipe',`Erreur Claude : ${e.message}`);G('btnLancer').disabled=false;}
 }
 
-function buildResolBlock(resolOui,resolTr,etapesTr,abandon,benefTr,dmgMoneyExact,dmgTimeExact,impactTr,compTxt){
+function buildResolBlock(resolOui,resolTr,etapesTr,abandon,benefTr,dmgMoneyRadio,dmgMoneyExact,gainMoneyRadio,gainMoneyExact,compRadio,compTxt,dureeRadio,dmgTimeExact,impactTr){
   let b='';
   if(benefTr){
     b+='\n\nBÉNÉFICE / IMPACT POSITIF :\n';
@@ -977,12 +1079,17 @@ function buildResolBlock(resolOui,resolTr,etapesTr,abandon,benefTr,dmgMoneyExact
     if(etapesTr)b+=`Prochaines étapes : ${etapesTr}\n`;
     if(abandon)b+=`Abandon des recours : Oui\n`;
   }
-  if(dmgMoneyExact||dmgTimeExact||impactTr||compTxt){
-    b+='\nDOMMAGES & COMPENSATION :\n';
-    if(dmgMoneyExact)b+=`Dommage monétaire : ${dmgMoneyExact}\n`;
-    if(dmgTimeExact)b+=`Dommage temps : ${dmgTimeExact}\n`;
+  if(dmgMoneyRadio||dmgMoneyExact||gainMoneyRadio||gainMoneyExact||compRadio||compTxt||dureeRadio||dmgTimeExact||impactTr){
+    b+='\nDOMMAGES, GAINS & COMPENSATION :\n';
+    if(dmgMoneyRadio)b+=`Dommage monétaire (fourchette) : ${dmgMoneyRadio}\n`;
+    if(dmgMoneyExact)b+=`Dommage monétaire (montant exact) : ${dmgMoneyExact}\n`;
+    if(gainMoneyRadio)b+=`Gain / Économie (fourchette) : ${gainMoneyRadio}\n`;
+    if(gainMoneyExact)b+=`Gain / Économie (montant exact) : ${gainMoneyExact}\n`;
+    if(compRadio)b+=`Compensation : ${compRadio}\n`;
+    if(compTxt)b+=`Compensation (détail) : ${compTxt}\n`;
+    if(dureeRadio)b+=`Durée (fourchette) : ${dureeRadio}\n`;
+    if(dmgTimeExact)b+=`Durée (précision) : ${dmgTimeExact}\n`;
     if(impactTr)b+=`Impact personnel/professionnel : ${impactTr}\n`;
-    if(compTxt)b+=`Compensation : ${compTxt}\n`;
   }
   b+=`\nScore de l'expérience : ${scoreExperience}/5\n`;
   return b;
@@ -1363,6 +1470,18 @@ function hideErr(id){const b=G(id);if(b)b.style.display='none';}
 function setP(id,state){const el=G(id);if(!el)return;el.className=`picon ${state}`;el.textContent=state==='done'?'✓':state==='error'?'✕':'…';}
 function scrollEl(id){const el=G(id);if(el)window.scrollTo({top:el.offsetTop-20,behavior:'smooth'});}
 function showLangMsg(){const t=G('langTooltip');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000);}
+
+// ── ACCORDÉONS DONNÉES CHIFFRÉES
+function toggleAccInner(key){
+  const body=G(`bodyAcc${key}`);const arrow=G(`arrowAcc${key}`);
+  const open=body.style.display==='none';
+  body.style.display=open?'block':'none';
+  arrow.style.transform=open?'rotate(180deg)':'';
+}
+function updateAccLabel(key,val){
+  const lbl=G(`lblAcc${key}`);
+  if(lbl)lbl.textContent=val;
+}
 </script>
 </body>
 </html>
